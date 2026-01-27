@@ -8,12 +8,14 @@ public class PlayerInputManager : MonoBehaviour
 {
     private PlayerAction playerAction;
     private PlayerMovement playerMovement;
+    private PlayerGunHandler playerGunHandler;
     private PlayerCameraMovement playerCameraMovement;
 
     private void Awake()
     {
         playerAction = new PlayerAction();
         playerMovement = GetComponent<PlayerMovement>();
+        playerGunHandler = GetComponentInChildren<PlayerGunHandler>();
         playerCameraMovement = GetComponentInChildren<PlayerCameraMovement>();
 
         Mapping();
@@ -36,6 +38,9 @@ public class PlayerInputManager : MonoBehaviour
         playerAction.Player.Look.performed += OnLook;
         playerAction.Player.Look.canceled += OnLook;
 
+        playerAction.Player.Fire.performed += OnFire;
+        playerAction.Player.Fire.canceled += OnFire;
+
         playerAction.Enable();
     }
 
@@ -57,5 +62,10 @@ public class PlayerInputManager : MonoBehaviour
     public void OnLook(CallbackContext context)
     {
         playerCameraMovement.SetInput(context.ReadValue<Vector2>());
+    }
+
+    public void OnFire(CallbackContext context)
+    {
+        playerGunHandler.OnFire(context.performed);
     }
 }
