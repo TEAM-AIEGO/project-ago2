@@ -8,11 +8,13 @@ public class PlayerInputManager : MonoBehaviour
 {
     private PlayerAction playerAction;
     private PlayerMovement playerMovement;
+    private PlayerCameraMovement playerCameraMovement;
 
     private void Awake()
     {
         playerAction = new PlayerAction();
         playerMovement = GetComponent<PlayerMovement>();
+        playerCameraMovement = GetComponentInChildren<PlayerCameraMovement>();
 
         Mapping();
     }
@@ -31,6 +33,9 @@ public class PlayerInputManager : MonoBehaviour
         playerAction.Player.Sprint.performed += OnSprint;
         playerAction.Player.Sprint.canceled += OnSprint;
 
+        playerAction.Player.Look.performed += OnLook;
+        playerAction.Player.Look.canceled += OnLook;
+
         playerAction.Enable();
     }
 
@@ -47,5 +52,10 @@ public class PlayerInputManager : MonoBehaviour
     public void OnSprint(CallbackContext context) 
     {
         playerMovement.Sprint(context.performed);
+    }
+
+    public void OnLook(CallbackContext context)
+    {
+        playerCameraMovement.SetInput(context.ReadValue<Vector2>());
     }
 }
