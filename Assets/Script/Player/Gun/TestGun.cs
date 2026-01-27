@@ -7,6 +7,7 @@ public class TestGun : MonoBehaviour
     public float FireInterval;
     public float FireTime;
     public bool IsFireAble;
+    public LayerMask LayerMasks;
 
     private void OnEnable()
     {
@@ -32,7 +33,7 @@ public class TestGun : MonoBehaviour
 
     private void DebugLay()
     {
-        Ray aimRay = Camera.main.ScreenPointToRay(new Vector2(Screen.currentResolution.width / 2, Screen.currentResolution.height / 2));
+        Ray aimRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
         Debug.DrawRay(aimRay.origin, aimRay.direction * 1000f, Color.blue);
 
@@ -56,13 +57,18 @@ public class TestGun : MonoBehaviour
     {
         Vector3 direction = Vector3.zero;
 
-        Ray aimRay = Camera.main.ScreenPointToRay(new Vector2(Screen.currentResolution.width / 2, Screen.currentResolution.height / 2));
-
+        Ray aimRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
         Vector3 aimPoint;
 
-        if (Physics.Raycast(aimRay, out RaycastHit hitinfo, 1000))
+        if (Physics.Raycast(aimRay, out RaycastHit hitinfo, 1000, LayerMasks))
         {
+            hitinfo.collider.TryGetComponent<MeleeEnemy>(out var hitbox);
+            if (hitbox != null)
+            {
+                hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(10);
+            }
+
             aimPoint = hitinfo.point;
         }
         else
@@ -71,7 +77,6 @@ public class TestGun : MonoBehaviour
         }
 
         Vector3 aimDirection = (aimPoint - ProjectileLunchPoint.position).normalized;
-
 
         if (Physics.Raycast(ProjectileLunchPoint.position, aimDirection, out RaycastHit hit, 1000f))
         {
@@ -83,8 +88,6 @@ public class TestGun : MonoBehaviour
         }
 
         GameObject newProjectile = Instantiate(Projectile, ProjectileLunchPoint.position, Quaternion.LookRotation(direction));
-        //newProjectile.GetComponent<Projectile>().TargetTag = "Enemy";
-        //newProjectile.GetComponent<Projectile>().damage = weaponStat.Damage;
 
         IsFireAble = false;
     }

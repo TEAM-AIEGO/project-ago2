@@ -14,14 +14,12 @@ public class MeleeEnemy : Unit
     private MeleeState meleeState;
     private Rigidbody rb;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (meleeState)
@@ -62,5 +60,12 @@ public class MeleeEnemy : Unit
     {
         print("atk");
         meleeState = MeleeState.moving;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+
+        Debug.Log($"Melee Enemy took {damage} damage. Remaining Health: {Health}");
     }
 }

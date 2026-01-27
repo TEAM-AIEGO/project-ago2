@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetMovement(Vector2 movementInput)
     {
-        Debug.Log(movementInput);
         movement = new Vector3(movementInput.x, 0, movementInput.y);
     }
 
