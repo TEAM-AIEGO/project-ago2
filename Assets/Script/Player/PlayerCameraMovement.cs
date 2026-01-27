@@ -20,7 +20,6 @@ public class PlayerCameraMovement : MonoBehaviour
 
     public void SetInput(Vector2 lookInput)
     {
-        Debug.Log("Look Input: " + lookInput);
         look = lookInput;
     }
 
