@@ -45,16 +45,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         HandleJumpe();
+        TranslationPosition();
         HandleCounters();
     }
 
     private void FixedUpdate()
     {
-        TranslationPosition();
+        
     }
 
     public void SetMovement(Vector2 movementInput)
     {
+        Debug.Log(movementInput);
         movement = new Vector3(movementInput.x, 0, movementInput.y);
     }
 
@@ -66,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(bool IsJumping)
     {
-        Debug.Log("Jump Input Received: " + IsJumping);
         if (IsJumping)
         {
             currentJumpBuffer = JumpBufferDuration;
@@ -85,10 +86,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 camRight = cam.right;
         camForward.y = 0;
         camRight.y = 0;
-        camForward.Normalize();
-        camRight.Normalize();
 
         Vector3 moveDirection = camForward * movement.z + camRight * movement.x;
+        moveDirection.y = 0;
+        moveDirection.Normalize();
 
         if (IsSprinting)
         {
@@ -107,18 +108,20 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection == Vector3.zero)
         {
             IsSprinting = false;
+            rb.linearVelocity = new (0, rb.linearVelocity.y, 0);
             return;
         }
 
         float speed = IsSprinting && CurrentStamina > 0 ? SprintSpeed : WalkSpeed;
-
-        rb.MovePosition(rb.position + moveDirection.normalized * speed * Time.deltaTime);
+        moveDirection *= speed;
+        moveDirection.y = rb.linearVelocity.y;
+        rb.linearVelocity = moveDirection;
     }
 
     private bool IsGrounded()
     {
-        int layerMask = LayerMask.GetMask("Enemy", "Ground", "Platform", "Object");
-        bool isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, col.bounds.extents.y + 0.2f, layerMask);
+        int layerMask = LayerMask.GetMask("Ground");
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, col.bounds.extents.y + 0.2f, layerMask);
         wasGrounded = isGrounded;
         return isGrounded;
     }
