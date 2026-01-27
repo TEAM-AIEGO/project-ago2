@@ -5,6 +5,8 @@ public class PlayerGunHandler : MonoBehaviour
     [SerializeField] private TestGun testGun;
     //[SerializeField] private Transform firePoint;
 
+    private bool isFiring;
+
     private void Start()
     {
         
@@ -12,14 +14,15 @@ public class PlayerGunHandler : MonoBehaviour
 
     void Update()
     {
-        
+        if (isFiring)
+            if (testGun.IsFireAble)
+            {
+                testGun.Fire();
+            }
     }
 
     public void OnFire(bool isFiring)
     {
-        if (testGun.IsFireAble)
-        {
-            testGun.Fire();
-        }
+        this.isFiring = isFiring;
     }
 }

@@ -11,6 +11,8 @@ public class PlayerInputManager : MonoBehaviour
     private PlayerGunHandler playerGunHandler;
     private PlayerCameraMovement playerCameraMovement;
 
+    private bool isFireHeld;
+
     private void Awake()
     {
         playerAction = new PlayerAction();
@@ -38,7 +40,7 @@ public class PlayerInputManager : MonoBehaviour
         playerAction.Player.Look.performed += OnLook;
         playerAction.Player.Look.canceled += OnLook;
 
-        playerAction.Player.Fire.performed += OnFire;
+        playerAction.Player.Fire.started += OnFire;
         playerAction.Player.Fire.canceled += OnFire;
 
         playerAction.Enable();
@@ -66,6 +68,18 @@ public class PlayerInputManager : MonoBehaviour
 
     public void OnFire(CallbackContext context)
     {
-        playerGunHandler.OnFire(context.performed);
+        if (context.started)
+        {
+            isFireHeld = true;
+            playerGunHandler.OnFire(true);
+            return;
+        }
+
+        if (context.canceled)   
+        {
+            isFireHeld = false;
+            playerGunHandler.OnFire(false);
+            return;
+        }
     }
 }
