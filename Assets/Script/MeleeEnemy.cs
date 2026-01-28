@@ -19,6 +19,11 @@ public class MeleeEnemy : Unit
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
+
+        if (player == null)
+        {
+            Debug.LogError("player is Null");
+        }
     }
 
     protected override void Update()

@@ -7,6 +7,14 @@ public class Menu : MonoBehaviour
 
     public bool IsMenuOpen;
 
+    private void Start()
+    {
+        if (MenuImage == null)
+        {
+            Debug.LogError("MenuImage is NUll");
+        }
+    }
+
     public void ToggleMenu()
     {
         IsMenuOpen = !IsMenuOpen;

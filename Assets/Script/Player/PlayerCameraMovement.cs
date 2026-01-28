@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerCameraMovement : MonoBehaviour
 {
-    [SerializeField] private PlayerInput playerAction;
-
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private float gamepadSensitivity;
 

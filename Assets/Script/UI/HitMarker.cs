@@ -9,6 +9,14 @@ public class HitMarker : MonoBehaviour
     private float remainingTime;
     [SerializeField] private float displayDuration;
 
+    private void Start()
+    {
+        if (hitMarker == null)
+        {
+            Debug.LogError("hitMarkerImage is NUll");
+        }
+    }
+
     public void OnHit()
     {
         hitMarker.enabled = true;

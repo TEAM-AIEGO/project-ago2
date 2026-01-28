@@ -9,7 +9,10 @@ public class PlayerGunHandler : MonoBehaviour
 
     private void Start()
     {
-        
+        if (testGun == null)
+        {
+            Debug.LogError("testGun is Null");
+        }
     }
 
     void Update()
