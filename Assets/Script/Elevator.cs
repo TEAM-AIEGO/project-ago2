@@ -1,12 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public class Elevator : MonoBehaviour
 {
     [SerializeField] private Vector3 moveOffset;
-    [SerializeField] private float speed = 2f;
+    [SerializeField] private float speed;
+    [SerializeField] private float returnDelay;
 
     private Vector3 startPos;
     private bool isPlayerOn;
+    private Coroutine returnCoroutine;
 
     void Awake()
     {
@@ -15,11 +18,14 @@ public class Elevator : MonoBehaviour
 
     void Update()
     {
-        if (!isPlayerOn)
-            return;
+        if (isPlayerOn)
+        {
+            MoveTo(startPos + moveOffset);
+        }
+    }
 
-        Vector3 targetPos = startPos + moveOffset;
-
+    void MoveTo(Vector3 targetPos)
+    {
         transform.position = Vector3.MoveTowards(
             transform.position,
             targetPos,
@@ -29,19 +35,40 @@ public class Elevator : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        collision.transform.SetParent(transform);
+        isPlayerOn = true;
+
+        if (returnCoroutine != null)
         {
-            collision.transform.SetParent(transform);
-            isPlayerOn = true;
+            StopCoroutine(returnCoroutine);
+            returnCoroutine = null;
         }
     }
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        collision.transform.SetParent(null);
+        isPlayerOn = false;
+
+        returnCoroutine = StartCoroutine(ReturnAfterDelay());
+    }
+
+    IEnumerator ReturnAfterDelay()
+    {
+        yield return new WaitForSeconds(returnDelay);
+
+        while (Vector3.Distance(transform.position, startPos) > 0.01f)
         {
-            collision.transform.SetParent(null);
-            isPlayerOn = false;
+            MoveTo(startPos);
+            yield return null;
         }
+
+        returnCoroutine = null;
     }
 }
