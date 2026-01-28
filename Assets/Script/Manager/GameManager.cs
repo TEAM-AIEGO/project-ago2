@@ -1,18 +1,80 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[Serializable]
+public enum StageState
+{
+    Loading,
+    Fighting,
+    Ended
+}
+
+[Serializable]
+public class Stage
+{
+    public StageState StageState;
+    public GameObject StageTarget;
+    public List<GameObject> RemainingEnemies;
+}
 
 public class GameManager : Singleton<GameManager>
 {
+
+    public List<Stage> Stages;
+
     #region Warping Stages
     /// <summary>
-    /// 0. µÚÆ²¸² 1´Ü°è
-    /// 1. µÚÆ²¸² Áß°£ ´Ü°è
-    /// 2. µÚÆ²¸² 2´Ü°è
+    /// 0. ï¿½ï¿½Æ²ï¿½ï¿½ 1ï¿½Ü°ï¿½
+    /// 1. ï¿½ï¿½Æ²ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½Ü°ï¿½
+    /// 2. ï¿½ï¿½Æ²ï¿½ï¿½ 2ï¿½Ü°ï¿½
     /// </summary>
-    public bool[] isWarpingStages;
+    public int WarpStage = 0;
     #endregion
+
+    public UnityEvent Menu;
+
+
+    //
+    //
+    //
+
+    private int currentStageIndex = 0;
+    private int StageEnemyLeft = 0;
+
     void Start()
     {
-        
+        StartStage(0);
+    }
+
+    void StartStage(int stageIndex)
+    {
+        if (Stages[stageIndex] == default(Stage)) return;
+        var currentStage = Stages[stageIndex];
+        currentStage.StageState = StageState.Loading;
+        currentStageIndex = stageIndex;
+        StageEnemyLeft = currentStage.RemainingEnemies.Count;
+        for (int i = 0; i < currentStage.RemainingEnemies.Count; i++)
+        {
+            var currentEnemy = currentStage.RemainingEnemies[i];
+            currentEnemy.SetActive(true);
+            currentEnemy.GetComponent<Unit>().Died.AddListener(OnStageEnemyKilled);
+        }
+        currentStage.StageState = StageState.Fighting;
+    }
+
+    
+
+    void OnStageEnemyKilled()
+    {
+        StageEnemyLeft--;
+        if (StageEnemyLeft <= 0)
+        {
+            Stages[currentStageIndex].StageState = StageState.Ended;
+            Stages[currentStageIndex].StageTarget.SetActive(false);
+            StartStage(++currentStageIndex);
+        }
     }
 
     void Update()

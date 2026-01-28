@@ -1,8 +1,19 @@
 using UnityEngine;
 using Unity.Mathematics;
+using NUnit.Framework;
+using Unity.VisualScripting;
+
+
 
 public class PlayerMovement : MonoBehaviour
 {
+    const float WALKING_SPEED_STAGE1 = 6.0f;
+    const float SPRINTING_SPEED_STAGE1 = 8.0f;
+    const float WALKING_SPEED_STAGE2 = 10.0f;
+    const float SPRINTING_SPEED_STAGE2 = 16.0f;
+    const float WALKING_SPEED_STAGE3 = 18.0f;
+    const float SPRINTING_SPEED_STAGE3 = 30.0f;
+
     private PlayerManager playerManager;
     private Collider col;
     private Rigidbody rb;
@@ -27,11 +38,12 @@ public class PlayerMovement : MonoBehaviour
     public float JumpHoldTime;
     public float JumpBufferDuration;
     public float CoyoteTimeDuration;
-    private bool wasGrounded;
     private bool isJumping;
+    private bool isGroundPounding;
     private float currentJumpTime;
     private float currentJumpBuffer;
     private float currentCoyoteTime;
+    private float groundPoundStartHeight;
     #endregion
 
     private void Awake()
@@ -47,11 +59,6 @@ public class PlayerMovement : MonoBehaviour
         HandleJumpe();
         TranslationPosition();
         HandleCounters();
-    }
-
-    private void FixedUpdate()
-    {
-        
     }
 
     public void SetMovement(Vector2 movementInput)
@@ -111,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        float speed = IsSprinting && CurrentStamina > 0 ? SprintSpeed : WalkSpeed;
+        float speed = GetSpeed(GameManager.Instance.WarpStage);
         moveDirection *= speed;
         moveDirection.y = rb.linearVelocity.y;
         rb.linearVelocity = moveDirection;
@@ -121,8 +128,30 @@ public class PlayerMovement : MonoBehaviour
     {
         int layerMask = LayerMask.GetMask("Ground");
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, col.bounds.extents.y + 0.2f, layerMask);
-        wasGrounded = isGrounded;
+        if (isGrounded && isGroundPounding)
+        {
+            isGroundPounding = false;
+            GroundPound();
+        }
         return isGrounded;
+    }
+
+    public void HandleGroundPound()
+    {
+        Debug.Log(!IsGrounded() && !isGroundPounding);
+        if (!IsGrounded() && !isGroundPounding)
+        {
+            isGroundPounding = true;
+            isJumping = false;
+            groundPoundStartHeight = transform.position.y;
+            currentJumpBuffer = currentCoyoteTime = 0f;
+            rb.linearVelocity = Vector3.down * 50; //gpspeed
+        }
+    }
+
+    public void GroundPound()
+    {
+        Debug.Log($"GP Power: {groundPoundStartHeight - transform.position.y}");
     }
 
     private void HandleJumpe()
@@ -148,5 +177,29 @@ public class PlayerMovement : MonoBehaviour
         else currentCoyoteTime -= Time.deltaTime;
 
         currentJumpBuffer -= Time.deltaTime;
+    }
+
+    private float GetSpeed(int warpStage)
+    {
+        if (IsSprinting && CurrentStamina > 0)
+        {
+            return warpStage switch
+            {
+                0 => SPRINTING_SPEED_STAGE1,
+                1 => SPRINTING_SPEED_STAGE2,
+                //2
+                _ => SPRINTING_SPEED_STAGE3,
+            };
+        }
+        else
+        {
+            return warpStage switch
+            {
+                0 => WALKING_SPEED_STAGE1,
+                1 => WALKING_SPEED_STAGE2,
+                //2
+                _ => WALKING_SPEED_STAGE3,
+            };
+        }
     }
 }

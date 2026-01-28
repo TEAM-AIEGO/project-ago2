@@ -2,37 +2,19 @@ using UnityEngine;
 
 public class PlayerManager : Unit
 {
-    void Start()
+    protected override void Update()
     {
-        
+        base.Update();
+        ChangeWarpStage();
     }
 
-    void Update()
+    void ChangeWarpStage()
     {
-        
-        
-    }
-
-    void OnWarpingStagesChange()
-    {
-        for (int i = 0; i < 3; i++)
-            GameManager.Instance.isWarpingStages[i] = false;
-
         if (Health >= 0 && Health <= 100)
-            GameManager.Instance.isWarpingStages[0] = true;
+            GameManager.Instance.WarpStage = 0;
         else if (Health > 100 && Health < 200)
-            GameManager.Instance.isWarpingStages[1] = true;
+            GameManager.Instance.WarpStage = 1;
         else
-            GameManager.Instance.isWarpingStages[2] = true;
-    }
-
-    void OnGetDamage(int damage)
-    {
-        Health -= damage;
-        OnWarpingStagesChange();
-        if (Health <= 0)
-        {
-            // dead
-        }
+            GameManager.Instance.WarpStage = 2;
     }
 }

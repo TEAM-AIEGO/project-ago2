@@ -20,8 +20,9 @@ public class MeleeEnemy : Unit
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         switch (meleeState)
         {
             case MeleeState.idle:

@@ -29,6 +29,12 @@ public class PlayerInputManager : MonoBehaviour
         playerAction.Enable();
     }
 
+    private void OnDestroy()
+    {
+        UnMapping();
+        playerAction.Disable();
+    }
+
     private void Mapping()
     {
         playerAction.Player.Move.performed += OnMove;
@@ -37,6 +43,7 @@ public class PlayerInputManager : MonoBehaviour
         playerAction.Player.Jump.canceled += OnJump;
         playerAction.Player.Sprint.performed += OnSprint;
         playerAction.Player.Sprint.canceled += OnSprint;
+        playerAction.Player.GroundPound.performed += OnGroundPound;
 
         playerAction.Player.Look.performed += OnLook;
         playerAction.Player.Look.canceled += OnLook;
@@ -44,31 +51,75 @@ public class PlayerInputManager : MonoBehaviour
         playerAction.Player.Fire.started += OnFire;
         playerAction.Player.Fire.canceled += OnFire;
 
+        playerAction.Player.Menu.started += OnMenu;
+
         playerAction.Enable();
+    }
+
+    private void UnMapping()
+    {
+        playerAction.Player.Move.performed -= OnMove;
+        playerAction.Player.Move.canceled -= OnMove;
+        playerAction.Player.Jump.performed -= OnJump;
+        playerAction.Player.Jump.canceled -= OnJump;
+        playerAction.Player.Sprint.performed -= OnSprint;
+        playerAction.Player.Sprint.canceled -= OnSprint;
+        playerAction.Player.GroundPound.performed -= OnGroundPound;
+
+        playerAction.Player.Look.performed -= OnLook;
+        playerAction.Player.Look.canceled -= OnLook;
+
+        playerAction.Player.Fire.started -= OnFire;
+        playerAction.Player.Fire.canceled -= OnFire;
+
+        playerAction.Player.Menu.started -= OnMenu;
+
+        playerAction.Enable();
+    }
+
+    public void OnGroundPound(CallbackContext context)
+    {
+        if (Menu.Instance.IsMenuOpen) return;
+        playerMovement.HandleGroundPound();
     }
 
     public void OnMove(CallbackContext context)
     {
+        if (Menu.Instance.IsMenuOpen) return;
         playerMovement.SetMovement(context.ReadValue<Vector2>());
     }
 
     public void OnJump(CallbackContext context)
     {
+        if (Menu.Instance.IsMenuOpen) return;
         playerMovement.Jump(context.performed);
     }
 
     public void OnSprint(CallbackContext context) 
     {
+        if (Menu.Instance.IsMenuOpen) return;
         playerMovement.Sprint(context.performed);
     }
 
     public void OnLook(CallbackContext context)
     {
+        if (Menu.Instance.IsMenuOpen) return;
         playerCameraMovement.SetInput(context.ReadValue<Vector2>());
+    }
+
+    public void OnMenu(CallbackContext context)
+    {
+        Menu.Instance.ToggleMenu();
+    }
+
+    public void GroundPound(CallbackContext context)
+    {
+        Menu.Instance.ToggleMenu();
     }
 
     public void OnFire(CallbackContext context)
     {
+        if (Menu.Instance.IsMenuOpen) return;
         if (context.started)
         {
             playerGunHandler.OnFire(true);
