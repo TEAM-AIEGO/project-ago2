@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
 
@@ -11,9 +9,12 @@ public class PlayerInputManager : MonoBehaviour
     private PlayerGunHandler playerGunHandler;
     private PlayerCameraMovement playerCameraMovement;
 
-    private bool isFireHeld;
-
     private void Awake()
+    {
+        Init();
+    }
+    
+    private void Init()
     {
         playerAction = new PlayerAction();
         playerMovement = GetComponent<PlayerMovement>();
@@ -70,14 +71,12 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (context.started)
         {
-            isFireHeld = true;
             playerGunHandler.OnFire(true);
             return;
         }
 
         if (context.canceled)   
         {
-            isFireHeld = false;
             playerGunHandler.OnFire(false);
             return;
         }

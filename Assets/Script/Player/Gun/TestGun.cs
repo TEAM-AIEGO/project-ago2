@@ -67,6 +67,7 @@ public class TestGun : MonoBehaviour
             if (hitbox != null)
             {
                 hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(10);
+                UIManager.Instance.ShowHitMarker();
             }
 
             aimPoint = hitinfo.point;
