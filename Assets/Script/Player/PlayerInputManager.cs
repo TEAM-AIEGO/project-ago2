@@ -8,6 +8,7 @@ public class PlayerInputManager : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerGunHandler playerGunHandler;
     private PlayerCameraMovement playerCameraMovement;
+    private Menu menu;
 
     private void Awake()
     {
@@ -20,6 +21,11 @@ public class PlayerInputManager : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerGunHandler = GetComponentInChildren<PlayerGunHandler>();
         playerCameraMovement = GetComponentInChildren<PlayerCameraMovement>();
+        menu = FindFirstObjectByType<Menu>();
+        if (!menu)
+        {
+            Debug.LogWarning("No Menu Found! Toggling menu will not work.");
+        }
 
         Mapping();
     }
@@ -79,47 +85,43 @@ public class PlayerInputManager : MonoBehaviour
 
     public void OnGroundPound(CallbackContext context)
     {
-        if (Menu.Instance.IsMenuOpen) return;
+        if (menu && menu.IsMenuOpen) return;
         playerMovement.HandleGroundPound();
     }
 
     public void OnMove(CallbackContext context)
     {
-        if (Menu.Instance.IsMenuOpen) return;
+        if (menu && menu.IsMenuOpen) return;
         playerMovement.SetMovement(context.ReadValue<Vector2>());
     }
 
     public void OnJump(CallbackContext context)
     {
-        if (Menu.Instance.IsMenuOpen) return;
+        if (menu && menu.IsMenuOpen) return;
         playerMovement.Jump(context.performed);
     }
 
     public void OnSprint(CallbackContext context) 
     {
-        if (Menu.Instance.IsMenuOpen) return;
+        if (menu && menu.IsMenuOpen) return;
         playerMovement.Sprint(context.performed);
     }
 
     public void OnLook(CallbackContext context)
     {
-        if (Menu.Instance.IsMenuOpen) return;
+        if (menu && menu.IsMenuOpen) return;
         playerCameraMovement.SetInput(context.ReadValue<Vector2>());
     }
 
     public void OnMenu(CallbackContext context)
     {
-        Menu.Instance.ToggleMenu();
-    }
-
-    public void GroundPound(CallbackContext context)
-    {
-        Menu.Instance.ToggleMenu();
+        if (!menu) return;
+        menu.ToggleMenu();
     }
 
     public void OnFire(CallbackContext context)
     {
-        if (Menu.Instance.IsMenuOpen) return;
+        if (menu && menu.IsMenuOpen) return;
         if (context.started)
         {
             playerGunHandler.OnFire(true);

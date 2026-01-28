@@ -42,8 +42,15 @@ public class PlayerMovement : MonoBehaviour
     private float groundPoundStartHeight;
     #endregion
 
+    private GameManager gameManager;
+
     private void Awake()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
+        if (!gameManager)
+        {
+            Debug.LogError("GameManager not found! Warping will not work. Be sure to add one");
+        }
         playerManager = GetComponent<PlayerManager>();
         col = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
@@ -114,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        float speed = GetSpeed(GameManager.Instance.WarpStage);
+        float speed = GetSpeed(gameManager.WarpStage);
         moveDirection *= speed;
         moveDirection.y = rb.linearVelocity.y;
         rb.linearVelocity = moveDirection;
@@ -147,6 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void GroundPound()
     {
+        // TODO: make this actually damage things
         Debug.Log($"GP Power: {groundPoundStartHeight - transform.position.y}");
     }
 

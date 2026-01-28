@@ -19,7 +19,7 @@ public class Stage
     public List<GameObject> RemainingEnemies;
 }
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
 
     public List<Stage> Stages;

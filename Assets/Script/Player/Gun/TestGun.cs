@@ -10,8 +10,16 @@ public class TestGun : MonoBehaviour
     public bool IsFireAble => isFireAble;
     [SerializeField] private LayerMask layerMasks;
 
+
+    private UIManager uiManager;
+
     private void OnEnable()
     {
+        uiManager = FindFirstObjectByType<UIManager>();
+        if (!uiManager)
+        {
+            Debug.LogWarning("UIManager not found! Hitmarker will not show.");
+        }
         fireTime = fireInterval;
         isFireAble = true;
     }
@@ -68,7 +76,7 @@ public class TestGun : MonoBehaviour
             if (hitbox != null)
             {
                 hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(10);
-                UIManager.Instance.ShowHitMarker();
+                uiManager.ShowHitMarker();
             }
 
             aimPoint = hitinfo.point;

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerManager : Unit
 {
+    private GameManager gameManager;
     protected override void Update()
     {
         base.Update();
@@ -10,11 +11,29 @@ public class PlayerManager : Unit
 
     void ChangeWarpStage()
     {
-        if (health >= 0 && health <= 100)
-            GameManager.Instance.WarpStage = 0;
-        else if (health > 100 && health < 200)
-            GameManager.Instance.WarpStage = 1;
+        if (gameManager)
+        {
+            if (health >= 0 && health <= 100)
+            {
+                gameManager.WarpStage = 0;
+            }
+            else if (health > 100 && health < 200)
+            {
+                gameManager.WarpStage = 1;
+            }
+            else
+            {
+                gameManager.WarpStage = 2;
+            }
+        }
         else
-            GameManager.Instance.WarpStage = 2;
+        {
+            gameManager = FindFirstObjectByType<GameManager>();
+            if (!gameManager)
+            {
+                Debug.LogError("GameManager not found! Warping will not work. Be sure to add one.");
+            }
+        }
+        
     }
 }
