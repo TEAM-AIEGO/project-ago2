@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HitMaker : MonoBehaviour
+public class HitMarker : MonoBehaviour
 {
     [SerializeField] private Image hitMarker;
 
@@ -13,10 +13,10 @@ public class HitMaker : MonoBehaviour
         if (hitMakerCoroutine != null)
             StopCoroutine(hitMakerCoroutine);
 
-        hitMakerCoroutine = StartCoroutine(EnableHitMaker());
+        hitMakerCoroutine = StartCoroutine(EnableHitMarker());
     }
 
-    private IEnumerator EnableHitMaker()
+    private IEnumerator EnableHitMarker()
     {
         hitMarker.enabled = true;
         yield return new WaitForSeconds(0.2f);

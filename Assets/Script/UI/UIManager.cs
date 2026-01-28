@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] private HitMaker hitMarker;
+    [SerializeField] private HitMarker hitMarker;
 
     private void Awake()
     {
