@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class TestGun : MonoBehaviour
 {
-    public GameObject Projectile;
-    public Transform ProjectileLunchPoint;
-    public float FireInterval;
-    public float FireTime;
-    public bool IsFireAble;
-    public LayerMask LayerMasks;
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private Transform projectileLunchPoint;
+    [SerializeField] private float fireInterval;
+    [SerializeField] private float fireTime;
+    [SerializeField] private bool isFireAble;
+    public bool IsFireAble => isFireAble;
+    [SerializeField] private LayerMask layerMasks;
 
     private void OnEnable()
     {
-        FireTime = FireInterval;
-        IsFireAble = true;
+        fireTime = fireInterval;
+        isFireAble = true;
     }
 
     void Update()
@@ -21,13 +22,13 @@ public class TestGun : MonoBehaviour
 
         if (!IsFireAble)
         {
-            FireTime += Time.deltaTime;
+            fireTime += Time.deltaTime;
         }
 
-        if (FireTime >= FireInterval)
+        if (fireTime >= fireInterval)
         {
-            FireTime = 0f;
-            IsFireAble = true;
+            fireTime = 0f;
+            isFireAble = true;
         }
     }
 
@@ -48,9 +49,9 @@ public class TestGun : MonoBehaviour
             aimPoint = Camera.main.transform.position + Camera.main.transform.forward * 1000f;
         }
 
-        Vector3 aimDirection = (aimPoint - ProjectileLunchPoint.position).normalized;
+        Vector3 aimDirection = (aimPoint - projectileLunchPoint.position).normalized;
 
-        Debug.DrawRay(ProjectileLunchPoint.position, aimDirection * 1000f, Color.red);
+        Debug.DrawRay(projectileLunchPoint.position, aimDirection * 1000f, Color.red);
     }
 
     public void Fire()
@@ -61,7 +62,7 @@ public class TestGun : MonoBehaviour
 
         Vector3 aimPoint;
 
-        if (Physics.Raycast(aimRay, out RaycastHit hitinfo, 1000, LayerMasks))
+        if (Physics.Raycast(aimRay, out RaycastHit hitinfo, 1000, layerMasks))
         {
             hitinfo.collider.TryGetComponent<MeleeEnemy>(out var hitbox);
             if (hitbox != null)
@@ -77,19 +78,19 @@ public class TestGun : MonoBehaviour
             aimPoint = Camera.main.transform.position + Camera.main.transform.forward * 1000f;
         }
 
-        Vector3 aimDirection = (aimPoint - ProjectileLunchPoint.position).normalized;
+        Vector3 aimDirection = (aimPoint - projectileLunchPoint.position).normalized;
 
-        if (Physics.Raycast(ProjectileLunchPoint.position, aimDirection, out RaycastHit hit, 1000f))
+        if (Physics.Raycast(projectileLunchPoint.position, aimDirection, out RaycastHit hit, 1000f))
         {
-            direction = (hit.point - ProjectileLunchPoint.position).normalized;
+            direction = (hit.point - projectileLunchPoint.position).normalized;
         }
         else
         {
             direction = aimDirection;
         }
 
-        GameObject newProjectile = Instantiate(Projectile, ProjectileLunchPoint.position, Quaternion.LookRotation(direction));
+        GameObject newProjectile = Instantiate(projectile, projectileLunchPoint.position, Quaternion.LookRotation(direction));
 
-        IsFireAble = false;
+        isFireAble = false;
     }
 }

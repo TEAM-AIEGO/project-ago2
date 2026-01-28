@@ -10,9 +10,9 @@ public class PlayerManager : Unit
 
     void ChangeWarpStage()
     {
-        if (Health >= 0 && Health <= 100)
+        if (health >= 0 && health <= 100)
             GameManager.Instance.WarpStage = 0;
-        else if (Health > 100 && Health < 200)
+        else if (health > 100 && health < 200)
             GameManager.Instance.WarpStage = 1;
         else
             GameManager.Instance.WarpStage = 2;

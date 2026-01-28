@@ -14,6 +14,7 @@ public class MeleeEnemy : Unit
     private MeleeState meleeState;
     private Rigidbody rb;
     [SerializeField] private HitFlash hitFlash;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -65,9 +66,9 @@ public class MeleeEnemy : Unit
 
     public void TakeDamage(int damage)
     {
-        Health -= damage;
+        health -= damage;
 
         hitFlash.Flash();
-        Debug.Log($"Melee Enemy took {damage} damage. Remaining Health: {Health}");
+        Debug.Log($"Melee Enemy took {damage} damage. Remaining Health: {health}");
     }
 }

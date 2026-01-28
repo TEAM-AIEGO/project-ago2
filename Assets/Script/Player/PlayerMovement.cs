@@ -1,9 +1,5 @@
-using UnityEngine;
 using Unity.Mathematics;
-using NUnit.Framework;
-using Unity.VisualScripting;
-
-
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movement;
 
     [Header("Main Camera Transform")]
-    public Transform cam;
+    [SerializeField] private Transform cam;
 
     #region Stamina and Movement Stats
     public float CurrentStamina;

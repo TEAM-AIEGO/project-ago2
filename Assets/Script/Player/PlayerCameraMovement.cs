@@ -5,8 +5,8 @@ public class PlayerCameraMovement : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerAction;
 
-    public float MouseSensitivity;
-    public float GamepadSensitivity;
+    [SerializeField] private float mouseSensitivity;
+    [SerializeField] private float gamepadSensitivity;
 
     private float yaw;
     private float pitch;
@@ -25,8 +25,8 @@ public class PlayerCameraMovement : MonoBehaviour
 
     void Update()
     {
-        yaw += look.x * MouseSensitivity;
-        pitch -= look.y * MouseSensitivity;
+        yaw += look.x * mouseSensitivity;
+        pitch -= look.y * mouseSensitivity;
 
         pitch = Mathf.Clamp(pitch, -40f, 40f);
 

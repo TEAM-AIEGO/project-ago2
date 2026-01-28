@@ -318,11 +318,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: 1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -437,6 +432,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!1 &259630155
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,8 +812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e8f43c3b5421a4bab96a3de93111fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  MaxHealth: 100
-  Health: 100
+  maxHealth: 100
+  health: 100
   Died:
     m_PersistentCalls:
       m_Calls: []
@@ -1325,8 +1325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2343497504b0e1a43bde7e31f6cd0864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  MaxHealth: 300
-  Health: 100
+  maxHealth: 100
+  health: 100
   Died:
     m_PersistentCalls:
       m_Calls: []
@@ -1465,6 +1465,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b38edee5-c7e9-4833-a2fd-1f8750f7d0a5
     m_ActionName: 'Player/Menu[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b315f0ea-ce65-402c-b905-f79e03abc323
+    m_ActionName: 'Player/GroundPound[/Keyboard/ctrl]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -1531,8 +1535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e8f43c3b5421a4bab96a3de93111fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  MaxHealth: 100
-  Health: 100
+  maxHealth: 100
+  health: 100
   Died:
     m_PersistentCalls:
       m_Calls: []
@@ -2007,8 +2011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e8f43c3b5421a4bab96a3de93111fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  MaxHealth: 100
-  Health: 100
+  maxHealth: 100
+  health: 100
   Died:
     m_PersistentCalls:
       m_Calls: []
@@ -2374,8 +2378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e8f43c3b5421a4bab96a3de93111fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  MaxHealth: 100
-  Health: 100
+  maxHealth: 100
+  health: 100
   Died:
     m_PersistentCalls:
       m_Calls: []
@@ -2550,8 +2554,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e8f43c3b5421a4bab96a3de93111fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  MaxHealth: 100
-  Health: 100
+  maxHealth: 100
+  health: 100
   Died:
     m_PersistentCalls:
       m_Calls: []
@@ -2784,53 +2788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 9
-  m_ObsoleteRenderingPath: 0
-  m_ObsoleteFrameSettings:
-    overrides: 0
-    enableShadow: 0
-    enableContactShadows: 0
-    enableShadowMask: 0
-    enableSSR: 0
-    enableSSAO: 0
-    enableSubsurfaceScattering: 0
-    enableTransmission: 0
-    enableAtmosphericScattering: 0
-    enableVolumetrics: 0
-    enableReprojectionForVolumetrics: 0
-    enableLightLayers: 0
-    enableExposureControl: 1
-    diffuseGlobalDimmer: 0
-    specularGlobalDimmer: 0
-    shaderLitMode: 0
-    enableDepthPrepassWithDeferredRendering: 0
-    enableTransparentPrepass: 0
-    enableMotionVectors: 0
-    enableObjectMotionVectors: 0
-    enableDecals: 0
-    enableRoughRefraction: 0
-    enableTransparentPostpass: 0
-    enableDistortion: 0
-    enablePostprocess: 0
-    enableOpaqueObjects: 0
-    enableTransparentObjects: 0
-    enableRealtimePlanarReflection: 0
-    enableMSAA: 0
-    enableAsyncCompute: 0
-    runLightListAsync: 0
-    runSSRAsync: 0
-    runSSAOAsync: 0
-    runContactShadowsAsync: 0
-    runVolumeVoxelizationAsync: 0
-    lightLoopSettings:
-      overrides: 0
-      enableDeferredTileAndCluster: 0
-      enableComputeLightEvaluation: 0
-      enableComputeLightVariants: 0
-      enableComputeMaterialVariants: 0
-      enableFptlForForwardOpaque: 0
-      enableBigTilePrepass: 0
-      isFptlEnabled: 0
   clearColorMode: 0
   backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
   clearDepth: 1
@@ -2911,6 +2868,53 @@ MonoBehaviour:
       data1: 0
       data2: 0
   defaultFrameSettings: 0
+  m_Version: 9
+  m_ObsoleteRenderingPath: 0
+  m_ObsoleteFrameSettings:
+    overrides: 0
+    enableShadow: 0
+    enableContactShadows: 0
+    enableShadowMask: 0
+    enableSSR: 0
+    enableSSAO: 0
+    enableSubsurfaceScattering: 0
+    enableTransmission: 0
+    enableAtmosphericScattering: 0
+    enableVolumetrics: 0
+    enableReprojectionForVolumetrics: 0
+    enableLightLayers: 0
+    enableExposureControl: 1
+    diffuseGlobalDimmer: 0
+    specularGlobalDimmer: 0
+    shaderLitMode: 0
+    enableDepthPrepassWithDeferredRendering: 0
+    enableTransparentPrepass: 0
+    enableMotionVectors: 0
+    enableObjectMotionVectors: 0
+    enableDecals: 0
+    enableRoughRefraction: 0
+    enableTransparentPostpass: 0
+    enableDistortion: 0
+    enablePostprocess: 0
+    enableOpaqueObjects: 0
+    enableTransparentObjects: 0
+    enableRealtimePlanarReflection: 0
+    enableMSAA: 0
+    enableAsyncCompute: 0
+    runLightListAsync: 0
+    runSSRAsync: 0
+    runSSAOAsync: 0
+    runContactShadowsAsync: 0
+    runVolumeVoxelizationAsync: 0
+    lightLoopSettings:
+      overrides: 0
+      enableDeferredTileAndCluster: 0
+      enableComputeLightEvaluation: 0
+      enableComputeLightVariants: 0
+      enableComputeMaterialVariants: 0
+      enableFptlForForwardOpaque: 0
+      enableBigTilePrepass: 0
+      isFptlEnabled: 0
 --- !u!114 &1823688469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2924,8 +2928,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraMovement
   playerAction: {fileID: 733986119}
-  MouseSensitivity: 0.2
-  GamepadSensitivity: 2
+  mouseSensitivity: 0.1
+  gamepadSensitivity: 2
 --- !u!1 &1845579159
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,12 +3310,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3264b71637f9b41814909e8ac25e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestGun
-  Projectile: {fileID: 3252375257216778117, guid: a24e63d1a18ddcd419c137ab37f8a109, type: 3}
-  ProjectileLunchPoint: {fileID: 1389141006}
-  FireInterval: 0.1
-  FireTime: 0
-  IsFireAble: 0
-  LayerMasks:
+  projectile: {fileID: 3252375257216778117, guid: a24e63d1a18ddcd419c137ab37f8a109, type: 3}
+  projectileLunchPoint: {fileID: 1389141006}
+  fireInterval: 0.2
+  fireTime: 0
+  isFireAble: 0
+  layerMasks:
     serializedVersion: 2
     m_Bits: 192
 --- !u!1 &4914837848563670671
