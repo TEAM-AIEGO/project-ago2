@@ -43,6 +43,7 @@ public class ObjectPool : MonoBehaviour
 
         projectile.transform.position = spawnPos;
         projectile.transform.rotation = spawnRot;
+        projectile.transform.SetParent(projectileParent);
         projectile.gameObject.SetActive(true);
 
         return projectile;
