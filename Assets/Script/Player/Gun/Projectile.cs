@@ -3,6 +3,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float speed = 50f;
+    public Projectile OriginPrefab;
 
     void Start()
     {
