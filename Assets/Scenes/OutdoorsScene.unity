@@ -468,6 +468,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   projectilePrefabs:
   - {fileID: -7587069919348615963, guid: a24e63d1a18ddcd419c137ab37f8a109, type: 3}
+  ProjectileRequest:
+    m_PersistentCalls:
+      m_Calls: []
   projectileParent: {fileID: 798548893}
 --- !u!4 &173203513
 Transform:
@@ -3007,7 +3010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7294847374e904b8858d7534bc5094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraMovement
-  playerAction: {fileID: 733986119}
   mouseSensitivity: 0.1
   gamepadSensitivity: 2
 --- !u!1 &1845579159
@@ -3261,9 +3263,6 @@ MonoBehaviour:
     - {fileID: 1692003628}
     - {fileID: 1015188673}
   WarpStage: 0
-  Menu:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &1990891933
 Transform:
   m_ObjectHideFlags: 0
@@ -3390,6 +3389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3264b71637f9b41814909e8ac25e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestGun
+  objectPool: {fileID: 173203512}
   projectile: {fileID: 3252375257216778117, guid: a24e63d1a18ddcd419c137ab37f8a109, type: 3}
   projectileLunchPoint: {fileID: 1389141006}
   fireInterval: 0.2

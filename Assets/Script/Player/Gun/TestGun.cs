@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TestGun : MonoBehaviour
 {
+    [SerializeField] private ObjectPool objectPool;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform projectileLunchPoint;
     [SerializeField] private float fireInterval;
@@ -97,7 +98,9 @@ public class TestGun : MonoBehaviour
             direction = aimDirection;
         }
 
-        GameObject newProjectile = Instantiate(projectile, projectileLunchPoint.position, Quaternion.LookRotation(direction));
+        //GameObject newProjectile = Instantiate(projectile, projectileLunchPoint.position, Quaternion.LookRotation(direction));
+
+        objectPool.ProjectileRequest.Invoke(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
 
         isFireAble = false;
     }

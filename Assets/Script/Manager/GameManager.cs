@@ -33,9 +33,6 @@ public class GameManager : MonoBehaviour
     public int WarpStage = 0;
     #endregion
 
-    public UnityEvent Menu;
-
-
     //
     //
     //
