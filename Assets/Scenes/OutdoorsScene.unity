@@ -527,6 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitMaker
   hitMarker: {fileID: 1190145403}
+  displayDuration: 0.2
 --- !u!1 &266641884
 GameObject:
   m_ObjectHideFlags: 0

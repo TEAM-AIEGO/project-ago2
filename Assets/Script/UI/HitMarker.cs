@@ -6,20 +6,24 @@ public class HitMarker : MonoBehaviour
 {
     [SerializeField] private Image hitMarker;
 
-    private Coroutine hitMakerCoroutine;
+    private float remainingTime;
+    [SerializeField] private float displayDuration;
 
     public void OnHit()
     {
-        if (hitMakerCoroutine != null)
-            StopCoroutine(hitMakerCoroutine);
-
-        hitMakerCoroutine = StartCoroutine(EnableHitMarker());
+        hitMarker.enabled = true;
+        remainingTime = displayDuration;
     }
 
-    private IEnumerator EnableHitMarker()
+    private void Update()
     {
-        hitMarker.enabled = true;
-        yield return new WaitForSeconds(0.2f);
-        hitMarker.enabled = false;
+        if (!hitMarker.enabled) return;
+
+        remainingTime -= Time.deltaTime;
+
+        if (remainingTime <= 0f)
+        {
+            hitMarker.enabled = false;
+        }
     }
 }
