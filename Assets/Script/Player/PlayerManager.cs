@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerManager : Unit
+public class PlayerManager : Unit, IStat
 {
     #region IStat
     public float CurrentValue => health;
@@ -54,6 +54,7 @@ public class PlayerManager : Unit
             return;
 
         health -= damageAmount;
+        OnValueChanged?.Invoke(health, maxHealth);
         Debug.Log($"Player took {damageAmount} damage. Remaining Health: {health}");
     }
 }
