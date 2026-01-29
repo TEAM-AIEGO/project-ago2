@@ -61,7 +61,7 @@ public class MeleeEnemy : EnemyBase
         attackTime = 0f;
     }
 
-    protected override void TakeDamage(float damageAmount)
+    public override void TakeDamage(float damageAmount)
     {
         if (health <= 0) 
             return;

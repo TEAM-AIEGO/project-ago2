@@ -100,5 +100,5 @@ public abstract class EnemyBase : Unit
 
     protected abstract void Attacking();
 
-    protected abstract void TakeDamage(float damageAmount);
+    public abstract void TakeDamage(float damageAmount);
 }
