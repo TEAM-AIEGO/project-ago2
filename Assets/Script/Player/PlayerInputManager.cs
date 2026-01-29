@@ -14,7 +14,7 @@ public class PlayerInputManager : MonoBehaviour
 
     
     
-    [SerializeField] private InputActionReference MoveActionReference, JumpActionReference, SprintActionReference, MovementAction1ActionReference, LookActionReference, FireActionReference, PlayerMenuActionReference, UiMenuActionReference; 
+    [SerializeField] private InputActionReference MoveActionReference, JumpActionReference, SprintActionReference, MovementAction1ActionReference, LookActionReference, FireActionReference, PlayerMenuActionReference, UiMenuActionReference, UseSubActionReference; 
 
     private void Awake()
     {
@@ -28,7 +28,6 @@ public class PlayerInputManager : MonoBehaviour
         playerGunHandler = GetComponentInChildren<PlayerGunHandler>();
         playerCameraMovement = GetComponentInChildren<PlayerCameraMovement>();
 
-
         menu = FindFirstObjectByType<Menu>();
         if (!menu)
         {
@@ -36,7 +35,6 @@ public class PlayerInputManager : MonoBehaviour
         }
 
         Mapping();
-        
     }
 
     private void OnEnable()
@@ -67,6 +65,8 @@ public class PlayerInputManager : MonoBehaviour
 
         PlayerMenuActionReference.action.started += OnMenu;
         UiMenuActionReference.action.started += OnMenu;
+
+        UseSubActionReference.action.performed += OnUseSub;
     }
 
     private void UnMapping()
@@ -86,6 +86,8 @@ public class PlayerInputManager : MonoBehaviour
         FireActionReference.action.canceled -= OnFire;
 
         UiMenuActionReference.action.started += OnMenu;
+
+        UseSubActionReference.action.performed -= OnUseSub;
     }
 
     public void OnGroundPound(CallbackContext context)
@@ -148,5 +150,10 @@ public class PlayerInputManager : MonoBehaviour
             playerGunHandler.OnFire(false);
             return;
         }
+    }
+
+    public void OnUseSub(CallbackContext context)
+    {
+        Debug.Log("Use Sub Weapon Input Received");
     }
 }

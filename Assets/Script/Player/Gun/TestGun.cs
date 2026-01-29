@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TestGun : MonoBehaviour
+public class TestGun : MonoBehaviour // 이 클래스 기능을 베이스로 추상 클래스를 만들어야함.
 {
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private GameObject projectile;
@@ -10,7 +10,6 @@ public class TestGun : MonoBehaviour
     [SerializeField] private bool isFireAble;
     public bool IsFireAble => isFireAble;
     [SerializeField] private LayerMask layerMasks;
-
 
     private UIManager uiManager;
 
@@ -76,7 +75,7 @@ public class TestGun : MonoBehaviour
             hitinfo.collider.TryGetComponent<MeleeEnemy>(out var hitbox);
             if (hitbox != null)
             {
-                hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(10);
+                hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(10f);
                 uiManager.ShowHitMarker();
             }
 
@@ -97,8 +96,6 @@ public class TestGun : MonoBehaviour
         {
             direction = aimDirection;
         }
-
-        //GameObject newProjectile = Instantiate(projectile, projectileLunchPoint.position, Quaternion.LookRotation(direction));
 
         objectPool.ProjectileRequest.Invoke(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
 
