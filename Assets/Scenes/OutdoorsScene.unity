@@ -1944,6 +1944,7 @@ MonoBehaviour:
   FireActionReference: {fileID: 541824787}
   PlayerMenuActionReference: {fileID: 910402467}
   UiMenuActionReference: {fileID: 653296557}
+  UseSubActionReference: {fileID: 1138857202}
 --- !u!23 &733986116
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2074,6 +2075,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 42678bde-839e-43c3-800b-686465acfe23
     m_ActionName: 'Player/Menu[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1bdee88e-3aa8-40eb-8b50-03188e53f60c
+    m_ActionName: 'Player/UseSub[/Keyboard/g]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -2092,6 +2097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGunHandler
   testGun: {fileID: 2939823097667078889}
+  subWeapon: {fileID: 0}
 --- !u!1 &736333232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2824,6 +2830,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1138857202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Player/UseSub
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: b6bf6bfc66fa993468d400d664261490, type: 3}
+  m_ActionId: 1bdee88e-3aa8-40eb-8b50-03188e53f60c
 --- !u!1 &1190145402
 GameObject:
   m_ObjectHideFlags: 0
