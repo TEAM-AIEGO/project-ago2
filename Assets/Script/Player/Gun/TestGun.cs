@@ -76,7 +76,7 @@ public class TestGun : MonoBehaviour
             hitinfo.collider.TryGetComponent<MeleeEnemy>(out var hitbox);
             if (hitbox != null)
             {
-                hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(10);
+                //hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(10);
                 uiManager.ShowHitMarker();
             }
 

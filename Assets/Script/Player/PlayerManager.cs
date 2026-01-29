@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerManager : Unit
 {
     private GameManager gameManager;
+
     protected override void Update()
     {
         base.Update();
@@ -35,5 +36,14 @@ public class PlayerManager : Unit
             }
         }
         
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        if (health <= 0) 
+            return;
+
+        health -= damageAmount;
+        Debug.Log($"Player took {damageAmount} damage. Remaining Health: {health}");
     }
 }

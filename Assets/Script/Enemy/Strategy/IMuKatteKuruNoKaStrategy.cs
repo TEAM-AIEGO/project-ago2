@@ -1,0 +1,6 @@
+using UnityEngine;
+
+public interface IMuKatteKuruNoKaStrategy // Oh? You're Approaching Me? (In the style of DIO)
+{
+    public void KonoDIOniMuKatteKuruNoKa(EnemyBase enemy, Transform target);
+}
