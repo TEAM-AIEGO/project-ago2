@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerManager : Unit, IStat
+public class PlayerManager : Unit
 {
     #region IStat
     public float CurrentValue => health;
@@ -13,6 +13,7 @@ public class PlayerManager : Unit, IStat
     {
         OnValueChanged?.Invoke(health, maxHealth);
     }
+    
     protected override void Update()
     {
         base.Update();
