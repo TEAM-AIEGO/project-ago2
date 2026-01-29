@@ -7,7 +7,7 @@ using static UnityEngine.InputSystem.InputAction;
 public class PlayerInputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
-    private PlayerMovement playerMovement;
+    private PlayerController playerController;
     private PlayerGunHandler playerGunHandler;
     private PlayerCameraMovement playerCameraMovement;
     private Menu menu;
@@ -24,7 +24,7 @@ public class PlayerInputManager : MonoBehaviour
     private void Init()
     {
         playerInput = GetComponent<PlayerInput>();
-        playerMovement = GetComponent<PlayerMovement>();
+        playerController = GetComponent<PlayerController>();
         playerGunHandler = GetComponentInChildren<PlayerGunHandler>();
         playerCameraMovement = GetComponentInChildren<PlayerCameraMovement>();
 
@@ -93,25 +93,25 @@ public class PlayerInputManager : MonoBehaviour
     public void OnGroundPound(CallbackContext context)
     {
         if (menu && menu.IsMenuOpen) return;
-        playerMovement.HandleGroundPound();
+        playerController.GroundPound();
     }
 
     public void OnMove(CallbackContext context)
     {
         if (menu && menu.IsMenuOpen) return;
-        playerMovement.SetMovement(context.ReadValue<Vector2>());
+        playerController.SetMovement(context.ReadValue<Vector2>());
     }
 
     public void OnJump(CallbackContext context)
     {
         if (menu && menu.IsMenuOpen) return;
-        playerMovement.Jump(context.performed);
+        playerController.Jump(context.performed);
     }
 
     public void OnSprint(CallbackContext context) 
     {
         if (menu && menu.IsMenuOpen) return;
-        playerMovement.Sprint(context.performed);
+        playerController.Sprint(context.performed);
     }
 
     public void OnLook(CallbackContext context)
