@@ -15,16 +15,17 @@ public class Menu : MonoBehaviour
         }
     }
 
-    public void ToggleMenu()
+    public bool ToggleMenu()
     {
         IsMenuOpen = !IsMenuOpen;
         Time.timeScale = IsMenuOpen? 0 : 1;
-        Cursor.lockState =  IsMenuOpen? CursorLockMode.None : CursorLockMode.Locked;
         MenuImage.SetActive(IsMenuOpen);
+        return IsMenuOpen;
     }
 
     public void GoToTitleScene()
     {
+        ToggleMenu();
         SceneManager.LoadSceneAsync("TitleScene");
     }
 }

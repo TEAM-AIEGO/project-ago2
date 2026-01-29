@@ -1,14 +1,20 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-
+[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerInputManager : MonoBehaviour
 {
-    private PlayerAction playerAction;
+    private PlayerInput playerInput;
     private PlayerMovement playerMovement;
     private PlayerGunHandler playerGunHandler;
     private PlayerCameraMovement playerCameraMovement;
     private Menu menu;
+
+    
+    
+    [SerializeField] private InputActionReference MoveActionReference, JumpActionReference, SprintActionReference, MovementAction1ActionReference, LookActionReference, FireActionReference, PlayerMenuActionReference, UiMenuActionReference; 
 
     private void Awake()
     {
@@ -17,10 +23,12 @@ public class PlayerInputManager : MonoBehaviour
     
     private void Init()
     {
-        playerAction = new PlayerAction();
+        playerInput = GetComponent<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();
         playerGunHandler = GetComponentInChildren<PlayerGunHandler>();
         playerCameraMovement = GetComponentInChildren<PlayerCameraMovement>();
+
+
         menu = FindFirstObjectByType<Menu>();
         if (!menu)
         {
@@ -28,59 +36,56 @@ public class PlayerInputManager : MonoBehaviour
         }
 
         Mapping();
+        
     }
 
     private void OnEnable()
     {
-        playerAction.Enable();
+        Mapping();
     }
 
     private void OnDestroy()
     {
         UnMapping();
-        playerAction.Disable();
     }
 
     private void Mapping()
     {
-        playerAction.Player.Move.performed += OnMove;
-        playerAction.Player.Move.canceled += OnMove;
-        playerAction.Player.Jump.performed += OnJump;
-        playerAction.Player.Jump.canceled += OnJump;
-        playerAction.Player.Sprint.performed += OnSprint;
-        playerAction.Player.Sprint.canceled += OnSprint;
-        playerAction.Player.GroundPound.performed += OnGroundPound;
+        MoveActionReference.action.performed += OnMove;
+        MoveActionReference.action.canceled += OnMove;
+        JumpActionReference.action.performed += OnJump;
+        JumpActionReference.action.canceled += OnJump;
+        SprintActionReference.action.performed += OnSprint;
+        SprintActionReference.action.canceled += OnSprint;
+        MovementAction1ActionReference.action.performed += OnGroundPound;
 
-        playerAction.Player.Look.performed += OnLook;
-        playerAction.Player.Look.canceled += OnLook;
+        LookActionReference.action.performed += OnLook;
+        LookActionReference.action.canceled += OnLook;
 
-        playerAction.Player.Fire.started += OnFire;
-        playerAction.Player.Fire.canceled += OnFire;
+        FireActionReference.action.started += OnFire;
+        FireActionReference.action.canceled += OnFire;
 
-        playerAction.Player.Menu.started += OnMenu;
-
-        playerAction.Enable();
+        PlayerMenuActionReference.action.started += OnMenu;
+        UiMenuActionReference.action.started += OnMenu;
     }
 
     private void UnMapping()
     {
-        playerAction.Player.Move.performed -= OnMove;
-        playerAction.Player.Move.canceled -= OnMove;
-        playerAction.Player.Jump.performed -= OnJump;
-        playerAction.Player.Jump.canceled -= OnJump;
-        playerAction.Player.Sprint.performed -= OnSprint;
-        playerAction.Player.Sprint.canceled -= OnSprint;
-        playerAction.Player.GroundPound.performed -= OnGroundPound;
+        MoveActionReference.action.performed -= OnMove;
+        MoveActionReference.action.canceled -= OnMove;
+        JumpActionReference.action.performed -= OnJump;
+        JumpActionReference.action.canceled -= OnJump;
+        SprintActionReference.action.performed -= OnSprint;
+        SprintActionReference.action.canceled -= OnSprint;
+        MovementAction1ActionReference.action.performed -= OnGroundPound;
 
-        playerAction.Player.Look.performed -= OnLook;
-        playerAction.Player.Look.canceled -= OnLook;
+        LookActionReference.action.performed -= OnLook;
+        LookActionReference.action.canceled -= OnLook;
 
-        playerAction.Player.Fire.started -= OnFire;
-        playerAction.Player.Fire.canceled -= OnFire;
+        FireActionReference.action.started -= OnFire;
+        FireActionReference.action.canceled -= OnFire;
 
-        playerAction.Player.Menu.started -= OnMenu;
-
-        playerAction.Enable();
+        UiMenuActionReference.action.started += OnMenu;
     }
 
     public void OnGroundPound(CallbackContext context)
@@ -116,7 +121,17 @@ public class PlayerInputManager : MonoBehaviour
     public void OnMenu(CallbackContext context)
     {
         if (!menu) return;
-        menu.ToggleMenu();
+        if (menu.ToggleMenu())
+        {
+            playerInput.SwitchCurrentActionMap("UI");
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            playerInput.SwitchCurrentActionMap("Player");
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
     }
 
     public void OnFire(CallbackContext context)

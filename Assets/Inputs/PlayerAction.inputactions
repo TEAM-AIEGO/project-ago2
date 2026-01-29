@@ -52,18 +52,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Menu",
+                    "name": "GroundPound",
                     "type": "Button",
-                    "id": "b38edee5-c7e9-4833-a2fd-1f8750f7d0a5",
+                    "id": "b315f0ea-ce65-402c-b905-f79e03abc323",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GroundPound",
+                    "name": "Menu",
                     "type": "Button",
-                    "id": "b315f0ea-ce65-402c-b905-f79e03abc323",
+                    "id": "42678bde-839e-43c3-800b-686465acfe23",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -172,7 +172,18 @@
                 },
                 {
                     "name": "",
-                    "id": "149b5622-8caa-4b33-8ef6-afb0aac4b119",
+                    "id": "93a8590d-569c-4aa8-9264-80d7adef7797",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GroundPound",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bdedefcd-a0bb-471a-857a-76bab263f70c",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -180,15 +191,32 @@
                     "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "f5d68cae-402a-4735-88ec-41273d0e4a00",
+            "actions": [
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "c21da419-8b8b-4ed4-8574-9e2e7c1418eb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "93a8590d-569c-4aa8-9264-80d7adef7797",
-                    "path": "<Keyboard>/ctrl",
+                    "id": "f1551ee6-88f6-4046-b380-a5377eb9dd6d",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GroundPound",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
