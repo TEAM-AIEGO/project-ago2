@@ -166,7 +166,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isGrounded)
         {
-            Debug.Log("slide");
             if (!isSliding)
             {
                 isSliding = true;
@@ -179,7 +178,6 @@ public class PlayerMovement : MonoBehaviour
     private void GroundPound()
     {
         // TODO: make this actually damage things
-        Debug.Log($"GP Power: {groundPoundStartHeight - transform.position.y}");
     }
 
     private void HandleJump()

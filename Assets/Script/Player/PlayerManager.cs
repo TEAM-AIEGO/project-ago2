@@ -46,4 +46,13 @@ public class PlayerManager : Unit, IStat
         }
         
     }
+
+    public void TakeDamage(float damageAmount)
+    {
+        if (health <= 0) 
+            return;
+
+        health -= damageAmount;
+        Debug.Log($"Player took {damageAmount} damage. Remaining Health: {health}");
+    }
 }
