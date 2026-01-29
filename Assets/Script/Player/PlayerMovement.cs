@@ -1,5 +1,7 @@
+using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,27 +21,38 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform cam;
 
     #region Stamina and Movement Stats
-    public float CurrentStamina;
-    public float MaxStamina;
+    [SerializeField] private float CurrentStamina;
+    [SerializeField] private float MaxStamina;
     [Tooltip("per second")]
-    public float StaminaRegenSpeed;
-    public float WalkSpeed;
-    public float SprintSpeed;
-    public bool IsSprinting;
-    public float JumpForce;
+    [SerializeField] private float StaminaRegenSpeed;
+    [SerializeField] private float WalkSpeed;
+    [SerializeField] private float SprintSpeed;
+    [SerializeField] private bool IsSprinting;
+    [SerializeField] private float JumpForce;
+    [SerializeField] private float SlideForce;
+    [SerializeField] private float SlideTime;
     #endregion
 
     #region Jump Stats
     [Header("Jump Settings")]
-    public float JumpHoldTime;
-    public float JumpBufferDuration;
-    public float CoyoteTimeDuration;
-    private bool isJumping;
-    private bool isGroundPounding;
+    [SerializeField] private float JumpHoldTime;
+    [SerializeField] private float JumpBufferDuration;
+    [SerializeField] private float CoyoteTimeDuration;
+    
+    #endregion
+
+    #region floats
     private float currentJumpTime;
     private float currentJumpBuffer;
     private float currentCoyoteTime;
     private float groundPoundStartHeight;
+    private float currentSlideTime;
+    #endregion
+
+    #region booleans
+    private bool isJumping;
+    private bool isGroundPounding;
+    private bool isSliding;
     #endregion
 
     private GameManager gameManager;
@@ -59,9 +72,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        HandleJumpe();
-        TranslationPosition();
         HandleCounters();
+        if (isSliding) return; // temporay solution for sliding. will be changed in favor of states
+        HandleJump();
+        TranslationPosition();
     }
 
     public void SetMovement(Vector2 movementInput)
@@ -141,8 +155,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleGroundPound()
     {
-        Debug.Log(!IsGrounded() && !isGroundPounding);
-        if (!IsGrounded() && !isGroundPounding)
+        bool isGrounded = IsGrounded();
+        if (!isGrounded && !isGroundPounding)
         {
             isGroundPounding = true;
             isJumping = false;
@@ -150,15 +164,25 @@ public class PlayerMovement : MonoBehaviour
             currentJumpBuffer = currentCoyoteTime = 0f;
             rb.linearVelocity = Vector3.down * 50; //gpspeed
         }
+        else if (isGrounded)
+        {
+            Debug.Log("slide");
+            if (!isSliding)
+            {
+                isSliding = true;
+                currentSlideTime = 0;
+            }
+            Slide();
+        }
     }
 
-    public void GroundPound()
+    private void GroundPound()
     {
         // TODO: make this actually damage things
         Debug.Log($"GP Power: {groundPoundStartHeight - transform.position.y}");
     }
 
-    private void HandleJumpe()
+    private void HandleJump()
     {
         if (currentJumpBuffer > 0f && currentCoyoteTime > 0f)
         {
@@ -175,12 +199,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Slide()
+    {
+        Vector3 camForward = cam.forward;
+        Vector3 camRight = cam.right;
+        camForward.y = 0;
+        camRight.y = 0;
+
+        Vector3 moveDirection = (movement == Vector3.zero) ? camForward : camForward * movement.z + camRight * movement.x ;
+        moveDirection.y = 0;
+        moveDirection.Normalize();
+        
+        
+        rb.linearVelocity = moveDirection * SlideForce;
+    }
+
     private void HandleCounters()
     {
         if (IsGrounded()) currentCoyoteTime = CoyoteTimeDuration;
         else currentCoyoteTime -= Time.deltaTime;
 
         currentJumpBuffer -= Time.deltaTime;
+        currentSlideTime += Time.deltaTime;
+        if (SlideTime <= currentSlideTime)
+        {
+            isSliding = false;
+        }
     }
 
     private float GetSpeed(int warpStage)

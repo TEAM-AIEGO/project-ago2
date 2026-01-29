@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   speed: 150
+  lifeTime: 2
 --- !u!135 &549560395043706117
 SphereCollider:
   m_ObjectHideFlags: 0
