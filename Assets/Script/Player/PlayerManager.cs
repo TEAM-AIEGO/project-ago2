@@ -1,8 +1,18 @@
 using UnityEngine;
 
-public class PlayerManager : Unit
+public class PlayerManager : Unit, IStat
 {
+    #region IStat
+    public float CurrentValue => health;
+    public float MaxValue => maxHealth;
+    public event System.Action<float, float> OnValueChanged;
+    #endregion
     private GameManager gameManager;
+
+    private void Awake()
+    {
+        OnValueChanged?.Invoke(health, maxHealth);
+    }
 
     protected override void Update()
     {
