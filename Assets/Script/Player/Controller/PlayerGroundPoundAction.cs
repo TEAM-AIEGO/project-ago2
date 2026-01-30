@@ -13,30 +13,14 @@ public class PlayerGroundPoundAction : MonoBehaviour
         this.rb = rb;
     }
 
-    public void HandleGroundPound()
+    public void GroundPound()
     {
         groundPoundStartHeight = transform.position.y;
         rb.linearVelocity = Vector3.down * 50; //gpspeed
     }
 
-    //public void HandleGroundPound()
-    //{
-    //    bool isGrounded = IsGrounded();
-    //    if (!isGrounded && !isGroundPounding)
-    //    {
-    //        isGroundPounding = true;
-    //        isJumping = false;
-    //        groundPoundStartHeight = transform.position.y;
-    //        currentJumpBuffer = currentCoyoteTime = 0f;
-    //        rb.linearVelocity = Vector3.down * 50; //gpspeed
-    //    }
-    //    else if (isGrounded)
-    //    {
-    //        if (!isSliding)
-    //        {
-    //            isSliding = true;
-    //            currentSlideTime = 0;
-    //        }
-    //    }
-    //}
+    public void GroundPoundKaboom()
+    {
+        Debug.Log($"GP KABOOM POWER: {groundPoundStartHeight - transform.position.y}");
+    }
 }
