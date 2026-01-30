@@ -3071,6 +3071,7 @@ MonoBehaviour:
   objectPool: {fileID: 173203512}
   railCannonProjectilePrefab: {fileID: 3252375257216778117, guid: a24e63d1a18ddcd419c137ab37f8a109, type: 3}
   projectileLunchPoint: {fileID: 954605448}
+  cameraShake: {fileID: 1823688470}
   lunchDelayTime: 0.5
   lunchAftereffectTime: 0.5
   delayTimer: 0
