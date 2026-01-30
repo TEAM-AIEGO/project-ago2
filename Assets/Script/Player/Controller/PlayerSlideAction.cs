@@ -7,6 +7,7 @@ public class PlayerSlideAction : MonoBehaviour
     [SerializeField] private float SlideTime;
 
     private float currentSlideTime;
+    private Vector3 moveDirection = Vector3.zero;
 
     private Transform cam;
     private Rigidbody rb;
@@ -17,17 +18,28 @@ public class PlayerSlideAction : MonoBehaviour
         this.rb = rb;
     }
 
-    private void Slide(Vector3 movement)
+    void Update()
     {
+        currentSlideTime -= Time.deltaTime;
+        if (CheckSlideEnded()) return;
+        rb.linearVelocity = moveDirection * SlideForce;
+    }
+
+    public void Slide(Vector3 movement)
+    {
+        currentSlideTime = SlideTime;
         Vector3 camForward = cam.forward;
         Vector3 camRight = cam.right;
         camForward.y = 0;
         camRight.y = 0;
 
-        Vector3 moveDirection = (movement == Vector3.zero) ? camForward : camForward * movement.z + camRight * movement.x;
+        moveDirection = (movement == Vector3.zero) ? camForward : camForward * movement.z + camRight * movement.x;
         moveDirection.y = 0;
         moveDirection.Normalize();
+    }
 
-        rb.linearVelocity = moveDirection * SlideForce;
+    public bool CheckSlideEnded()
+    {
+        return currentSlideTime <= 0;
     }
 }

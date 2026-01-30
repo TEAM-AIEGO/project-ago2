@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     public bool IsGrounded => isGrounded;
 
+
+
     [Header("Main Camera Transform")]
     [SerializeField] private Transform cam;
 
@@ -133,14 +135,17 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(bool isJumping)
     {
-        if (playerStateMachine.CurrentState is PlayerDefaultState)
+        if (playerStateMachine.CurrentState is PlayerDefaultState or PlayerJumpState)
             playerStateMachine.ChangeState(new PlayerJumpState(this, isJumping));
 
     }
 
     public void GroundPound()
     {
-
+        if (playerStateMachine.CurrentState is PlayerDefaultState)
+        {
+            playerStateMachine.ChangeState(new PlayerSlideState(this));
+        }
     }
 
     private float GetSpeed(int warpStage)

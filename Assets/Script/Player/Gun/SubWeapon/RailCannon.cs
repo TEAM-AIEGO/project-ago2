@@ -85,7 +85,7 @@ public class RailCannon : SubWeapon
             hitinfo.collider.TryGetComponent<MeleeEnemy>(out var hitbox);
             if (hitbox != null)
             {
-                hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(60f);
+                hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(9999f);
                 uiManager.ShowHitMarker();
             }
 

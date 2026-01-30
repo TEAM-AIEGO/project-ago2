@@ -98,12 +98,15 @@ public class PlayerSlideState : PlayerFSMBase
 
     public override void Enter() 
     {
-
+        player.PlayerSlideAction.Slide(player.Movement);
     }
 
     public override void Update() 
     {
-
+        if (player.PlayerSlideAction.CheckSlideEnded())
+        {
+            player.PlayerStateMachine.ChangeState(new PlayerDefaultState(player));
+        }
     }
 
     public override void Exit() 
