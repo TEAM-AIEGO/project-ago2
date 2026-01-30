@@ -7,6 +7,8 @@ public class PlayerGunHandler : MonoBehaviour
     [SerializeField] private SubWeapon subWeapon;
     //[SerializeField] private Transform firePoint;
 
+    [SerializeField] private CameraShake cameraShake;
+
     private UnityEvent subWeaponUsingComplete;
 
     private bool isFirable;
@@ -43,6 +45,7 @@ public class PlayerGunHandler : MonoBehaviour
                 if (testGun.IsFireAble)
                 {
                     testGun.Fire();
+                    cameraShake?.AddRecoil(new Vector2(Random.Range(-0.4f, 0.4f), 1f));
                 }
     }
 

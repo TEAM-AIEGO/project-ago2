@@ -2437,6 +2437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGunHandler
   testGun: {fileID: 2939823097667078889}
   subWeapon: {fileID: 821474399}
+  cameraShake: {fileID: 1823688470}
 --- !u!114 &733986121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4655,6 +4656,7 @@ GameObject:
   - component: {fileID: 1823688465}
   - component: {fileID: 1823688468}
   - component: {fileID: 1823688469}
+  - component: {fileID: 1823688470}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4890,7 +4892,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraMovement
   mouseSensitivity: 0.1
-  gamepadSensitivity: 2
+--- !u!114 &1823688470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823688464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c7ac5346cd5ee4396b22e7cbb8645d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  applySpeed: 40
+  returnSpeed: 10
 --- !u!1 &1845579159
 GameObject:
   m_ObjectHideFlags: 0
