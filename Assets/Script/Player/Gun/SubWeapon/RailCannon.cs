@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RailCannon : SubWeapon
 {
@@ -41,17 +42,23 @@ public class RailCannon : SubWeapon
             {
                 isInAftereffect = false;
                 delayTimer = 0f;
+                cooldownTimer = cooldownTime;
+
+                subWeaponObj.SetActive(false);
+                onSubWeaponUseComplete.Invoke();
             }
         }
     }
 
-    protected override void Initialize()
+    public override void Initialize(UnityEvent completeEvent)
     {
         uiManager = FindFirstObjectByType<UIManager>();
         if (!uiManager)
         {
             Debug.LogWarning("UIManager not found! Hitmarker will not show.");
         }
+
+        onSubWeaponUseComplete = completeEvent;
 
         delayTimer = 0f;
         isLunching = false;
@@ -61,6 +68,8 @@ public class RailCannon : SubWeapon
     public override void Use()
     {
         isLunching = true;
+        isReady = false;
+        subWeaponObj.SetActive(true);
     }
 
     private void Fire()
@@ -99,5 +108,7 @@ public class RailCannon : SubWeapon
         }
 
         objectPool.ProjectileRequest.Invoke(railCannonProjectilePrefab.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
+
+        isInAftereffect = true;
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InstantShot : SubWeapon
 {
@@ -11,7 +12,7 @@ public class InstantShot : SubWeapon
     private float delayTimer;
     private bool isLaunching;
 
-    protected override void Initialize()
+    public override void Initialize(UnityEvent unityEvent)
     {
         delayTimer = 0f;
         isLaunching = false;

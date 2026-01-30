@@ -11,8 +11,6 @@ public class PlayerInputManager : MonoBehaviour
     private PlayerGunHandler playerGunHandler;
     private PlayerCameraMovement playerCameraMovement;
     private Menu menu;
-    private SubWeapon subWeapon;
-
 
     [SerializeField] private InputActionReference MoveActionReference, JumpActionReference, SprintActionReference, MovementAction1ActionReference, LookActionReference, FireActionReference, PlayerMenuActionReference, UiMenuActionReference, UseSubActionReference; 
 
@@ -27,7 +25,6 @@ public class PlayerInputManager : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         playerGunHandler = GetComponentInChildren<PlayerGunHandler>();
         playerCameraMovement = GetComponentInChildren<PlayerCameraMovement>();
-        subWeapon = GetComponentInChildren<SubWeapon>();
 
         menu = FindFirstObjectByType<Menu>();
         if (!menu)
@@ -142,13 +139,13 @@ public class PlayerInputManager : MonoBehaviour
         if (menu && menu.IsMenuOpen) return;
         if (context.started)
         {
-            playerGunHandler.OnFire(true);
+            playerGunHandler.Fire(true);
             return;
         }
 
         if (context.canceled)   
         {
-            playerGunHandler.OnFire(false);
+            playerGunHandler.Fire(false);
             return;
         }
     }
@@ -158,12 +155,12 @@ public class PlayerInputManager : MonoBehaviour
         if (menu && menu.IsMenuOpen) return;
         if (!context.performed) return;
 
-        if (subWeapon == null)
+        if (playerGunHandler == null)
         {
             Debug.LogWarning("No SubWeapon Found");
             return;
         }
 
-        subWeapon.Use();
+        playerGunHandler.UseSubWeapon();
     }
 }
