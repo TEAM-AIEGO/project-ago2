@@ -88,7 +88,7 @@ public class PlayerJumpState : PlayerFSMBase
 
     public override void Exit() 
     {
-
+        player.PlayerJumpAction.Jump(false);
     }
 }
 
