@@ -46,7 +46,7 @@ public class PlayerGunHandler : MonoBehaviour
                 if (testGun.IsFireAble)
                 {
                     testGun.Fire();
-                    cameraShake?.AddRecoil(new Vector2(Random.Range(-0.025f, 0.025f), 0.1f));
+                    cameraShake?.AddRecoil(new Vector2(Random.Range(-25f, 25f), 100f));
                 }
     }
 

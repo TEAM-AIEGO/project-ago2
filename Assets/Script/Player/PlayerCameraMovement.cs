@@ -29,12 +29,12 @@ public class PlayerCameraMovement : MonoBehaviour
 
         if (shake != null)
         {
-            Vector2 r = shake.GetRecoil();
+            Vector2 r = shake.GetRecoil() * Time.deltaTime;
             pitch -= r.y;
             yaw += r.x;
         }
 
-        pitch = Mathf.Clamp(pitch, -40f, 40f);
+        pitch = Mathf.Clamp(pitch, -89f, 89f);
 
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
     }
