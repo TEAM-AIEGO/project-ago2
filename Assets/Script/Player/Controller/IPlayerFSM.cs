@@ -121,17 +121,21 @@ public class PlayerGroundPoundState : PlayerFSMBase
 
     public override void Enter() 
     {
-
+        player.PlayerGroundPoundAction.GroundPound();
     }
 
     public override void Update() 
     {
-
+        if (player.IsGrounded)
+        {
+            player.PlayerStateMachine.ChangeState(new PlayerDefaultState(player));
+        }
     }
 
     public override void Exit() 
     {
-
+        player.PlayerGroundPoundAction.GroundPoundKaboom();
+        
     }
 }
 

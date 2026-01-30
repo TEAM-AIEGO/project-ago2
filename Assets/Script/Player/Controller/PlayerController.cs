@@ -140,11 +140,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void GroundPound()
+    public void MovementAction1()
     {
-        if (playerStateMachine.CurrentState is PlayerDefaultState)
+        if (playerStateMachine.CurrentState is PlayerDefaultState && isGrounded)
         {
             playerStateMachine.ChangeState(new PlayerSlideState(this));
+        }
+        else if(!isGrounded && playerStateMachine.CurrentState is not PlayerGroundPoundState)
+        {
+            playerStateMachine.ChangeState(new PlayerGroundPoundState(this));
         }
     }
 

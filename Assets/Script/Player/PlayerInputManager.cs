@@ -91,7 +91,7 @@ public class PlayerInputManager : MonoBehaviour
     public void OnGroundPound(CallbackContext context)
     {
         if (menu && menu.IsMenuOpen) return;
-        playerController.GroundPound();
+        playerController.MovementAction1();
     }
 
     public void OnMove(CallbackContext context)
