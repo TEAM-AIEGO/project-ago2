@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TestGun : MonoBehaviour // 이 클래스 기능을 베이스로 추상 클래스를 만들어야함.
 {
+    [SerializeField] private Transform playerTransfrom;
+    [SerializeField] private SFXEmitter emitter;
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform projectileLunchPoint;
@@ -99,8 +101,13 @@ public class TestGun : MonoBehaviour // 이 클래스 기능을 베이스로 추상 클래스를 
             direction = aimDirection;
         }
 
-        objectPool.ProjectileRequest.Invoke(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
+        //objectPool.ProjectileRequest.Invoke(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
 
+        //objectPool.ProjectileRequest.Invoke(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
+
+        objectPool.SpawnProjectile(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
+
+        emitter.PlayFollow("Gun_Shot", playerTransfrom);
         isFireAble = false;
     }
 }

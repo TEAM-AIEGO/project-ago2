@@ -4,8 +4,10 @@ using UnityEngine.Events;
 
 public class RailCannon : SubWeapon
 {
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private SFXEmitter emitter;
     [SerializeField] private ObjectPool objectPool;
-    [SerializeField] private GameObject railCannonProjectilePrefab;
+    [SerializeField] private Projectile railCannonProjectilePrefab;
     [SerializeField] private Transform projectileLunchPoint;
 
     [SerializeField] private CameraShake cameraShake;
@@ -110,7 +112,8 @@ public class RailCannon : SubWeapon
             direction = aimDirection;
         }
 
-        objectPool.ProjectileRequest.Invoke(railCannonProjectilePrefab.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
+        objectPool.SpawnProjectile(railCannonProjectilePrefab, projectileLunchPoint.position, Quaternion.LookRotation(direction));
+        emitter.PlayFollow("Rail_Cannon_Fire", playerTransform);
         cameraShake?.AddRecoil(new Vector2(Random.Range(-0.4f, 0.4f), 3f));
         isInAftereffect = true;
     }
