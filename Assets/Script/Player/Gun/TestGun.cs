@@ -1,7 +1,7 @@
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
-public class TestGun : MonoBehaviour // ÀÌ Å¬·¡½º ±â´ÉÀ» º£ÀÌ½º·Î Ãß»ó Å¬·¡½º¸¦ ¸¸µé¾î¾ßÇÔ.
+public class TestGun : MonoBehaviour // ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 {
     [SerializeField] private Transform playerTransfrom;
     [SerializeField] private SFXEmitter emitter;
@@ -68,7 +68,7 @@ public class TestGun : MonoBehaviour // ÀÌ Å¬·¡½º ±â´ÉÀ» º£ÀÌ½º·Î Ãß»ó Å¬·¡½º¸¦ 
 
     public void Fire()
     {
-        Vector3 direction = Vector3.zero;
+        Vector3 direction;
 
         Ray aimRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 

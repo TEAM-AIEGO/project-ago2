@@ -46,7 +46,7 @@ public class PlayerGunHandler : MonoBehaviour
                 if (testGun.IsFireAble)
                 {
                     testGun.Fire();
-                    cameraShake?.AddRecoil(new Vector2(Random.Range(-0.25f, 0.25f), 0.4f));
+                    cameraShake?.AddRecoil(new Vector2(Random.Range(-0.025f, 0.025f), 0.1f));
                 }
     }
 
@@ -60,7 +60,7 @@ public class PlayerGunHandler : MonoBehaviour
         if (!subWeapon.IsReady) 
             return;
 
-        //³ªÁß¿¡ ÃÑ Ãß»óÈ­°¡ ¿Ï¼ºµÇ¸é ¼öÁ¤ ÇÒ °Í.
+        //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ ï¿½ß»ï¿½È­ï¿½ï¿½ ï¿½Ï¼ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½.
         testGun.gameObject.SetActive(false);
         isFirable = false;
         
