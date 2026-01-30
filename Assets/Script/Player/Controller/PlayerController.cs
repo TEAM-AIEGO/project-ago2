@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IWarpObserver
 {
     [SerializeField] private float walkingSpeedStage1 = 6.0f;
     [SerializeField] private float sprintingSpeedStage1 = 8.0f;
@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sprintingSpeedStage2 = 16.0f;
     [SerializeField] private float walkingSpeedStage3 = 18.0f;
     [SerializeField] private float sprintingSpeedStage3 = 30.0f;
+
+    [Header("Warp System Manager")]
+    [SerializeField] private WarpSystemManager warpSystemManager;
 
     #region Components
     public PlayerMovement PlayerMovement { get; private set; }
@@ -30,8 +33,6 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded;
     public bool IsGrounded => isGrounded;
-
-
 
     [Header("Main Camera Transform")]
     [SerializeField] private Transform cam;
@@ -61,6 +62,8 @@ public class PlayerController : MonoBehaviour
     {
         FindComponents();
 
+        warpSystemManager.RegisterWarpObserver(this);
+
         playerStateMachine = new PlayerStateMachine();
         PlayerMovement.Initialized(cam, rb);
         PlayerGroundPoundAction.Initialized(rb);
@@ -69,9 +72,14 @@ public class PlayerController : MonoBehaviour
         PlayerJumpAction.Initialized(rb, PlayerGroundChecker);
         PlayerStaminaCalc.Initialized(this);
 
-        PlayerMovement.SetSpeed(GetSpeed(0));
+        PlayerMovement.SetSpeed(GetSpeed(warpSystemManager.GetWarpStage()));
 
         playerStateMachine.ChangeState(new PlayerDefaultState(this));
+    }
+
+    private void OnDisable()
+    {
+        warpSystemManager.UnregisterWarpObserver(this);
     }
 
     private void FindComponents()
@@ -150,6 +158,11 @@ public class PlayerController : MonoBehaviour
         {
             playerStateMachine.ChangeState(new PlayerGroundPoundState(this));
         }
+    }
+
+    public void OnWarpStageChanged(int newStage)
+    {
+        PlayerMovement.SetSpeed(GetSpeed(newStage));
     }
 
     private float GetSpeed(int warpStage)
