@@ -19,6 +19,11 @@ public abstract class SubWeapon : MonoBehaviour
         if (cooldownTimer > 0f)
         {
             cooldownTimer -= Time.deltaTime;
+
+            if (cooldownTimer <= 0f)
+            {
+                isReady = true;
+            }
         }
     }
 
