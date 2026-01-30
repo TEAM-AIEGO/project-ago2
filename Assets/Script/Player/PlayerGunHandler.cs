@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -45,7 +46,7 @@ public class PlayerGunHandler : MonoBehaviour
                 if (testGun.IsFireAble)
                 {
                     testGun.Fire();
-                    cameraShake?.AddRecoil(new Vector2(Random.Range(-0.4f, 0.4f), 1f));
+                    cameraShake?.AddRecoil(new Vector2(Random.Range(-0.25f, 0.25f), 0.4f));
                 }
     }
 
@@ -62,7 +63,7 @@ public class PlayerGunHandler : MonoBehaviour
         //나중에 총 추상화가 완성되면 수정 할 것.
         testGun.gameObject.SetActive(false);
         isFirable = false;
-
+        
         subWeapon.Use();
     }
 

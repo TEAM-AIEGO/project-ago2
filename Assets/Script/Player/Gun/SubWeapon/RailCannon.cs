@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,6 +7,8 @@ public class RailCannon : SubWeapon
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private GameObject railCannonProjectilePrefab;
     [SerializeField] private Transform projectileLunchPoint;
+
+    [SerializeField] private CameraShake cameraShake;
 
     [SerializeField] private float lunchDelayTime;
     [SerializeField] private float lunchAftereffectTime;
@@ -108,7 +111,7 @@ public class RailCannon : SubWeapon
         }
 
         objectPool.ProjectileRequest.Invoke(railCannonProjectilePrefab.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
-
+        cameraShake?.AddRecoil(new Vector2(Random.Range(-0.4f, 0.4f), 3f));
         isInAftereffect = true;
     }
 }

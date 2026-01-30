@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class TestGun : MonoBehaviour // 이 클래스 기능을 베이스로 추상 클래스를 만들어야함.
@@ -8,6 +9,7 @@ public class TestGun : MonoBehaviour // 이 클래스 기능을 베이스로 추상 클래스를 
     [SerializeField] private float fireInterval;
     [SerializeField] private float fireTime;
     [SerializeField] private bool isFireAble;
+
     public bool IsFireAble => isFireAble;
     [SerializeField] private LayerMask layerMasks;
 
