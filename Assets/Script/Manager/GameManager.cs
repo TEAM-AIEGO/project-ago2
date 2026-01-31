@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,11 +13,18 @@ public enum StageState
 }
 
 [Serializable]
+public struct EnemySpawnData
+{
+    public GameObject EnemyPrefab;
+    public Vector3 EnemySpawnPosition;
+}
+
+[Serializable]
 public class Stage
 {
     public StageState StageState;
     public GameObject StageTarget;
-    public List<GameObject> RemainingEnemies;
+    public List<EnemySpawnData> Enemies;
 }
 
 public class GameManager : MonoBehaviour
@@ -51,11 +59,15 @@ public class GameManager : MonoBehaviour
         var currentStage = Stages[stageIndex];
         currentStage.StageState = StageState.Loading;
         currentStageIndex = stageIndex;
-        StageEnemyLeft = currentStage.RemainingEnemies.Count;
-        for (int i = 0; i < currentStage.RemainingEnemies.Count; i++)
+        StageEnemyLeft = currentStage.Enemies.Count;
+        for (int i = 0; i < currentStage.Enemies.Count; i++)
         {
-            var currentEnemy = currentStage.RemainingEnemies[i];
-            currentEnemy.SetActive(true);
+            var currentEnemySpawnData = currentStage.Enemies[i];
+            GameObject currentEnemy = Instantiate(currentEnemySpawnData.EnemyPrefab, currentEnemySpawnData.EnemySpawnPosition, quaternion.identity);
+            if (currentEnemy.TryGetComponent(out EnemyBase enemyBase))
+            {
+                enemyBase.Initialize(enemyBase);
+            }
             currentEnemy.GetComponent<Unit>().Died.AddListener(OnStageEnemyKilled);
         }
         currentStage.StageState = StageState.Fighting;
