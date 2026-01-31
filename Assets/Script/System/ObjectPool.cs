@@ -60,6 +60,7 @@ public class ObjectPool : MonoBehaviour
             enemy = enemyBasePool[prefab].Dequeue();
         }
 
+        enemy.Initialize(prefab);
         enemy.transform.position = spawnPos;
         enemy.transform.rotation = spawnRot;
         enemy.transform.SetParent(meleeEnemyParent);

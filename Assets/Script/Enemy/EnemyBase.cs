@@ -47,10 +47,10 @@ public abstract class EnemyBase : Unit
 
     void Start()
     {
-        Initialize();
+
     }
 
-    public virtual void Initialize()
+    public virtual void Initialize(EnemyBase oringin)
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
