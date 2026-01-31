@@ -7,6 +7,7 @@ public class PlayerManager : Unit, IStat
     public float MaxValue => maxHealth;
     public event System.Action<float, float> OnValueChanged;
     #endregion
+
     private GameManager gameManager;
 
     private void Awake()
@@ -48,7 +49,7 @@ public class PlayerManager : Unit, IStat
         
     }
 
-    public void TakeDamage(float damageAmount)
+    public override void TakeDamage(float damageAmount)
     {
         if (health <= 0) 
             return;
@@ -58,7 +59,7 @@ public class PlayerManager : Unit, IStat
         Debug.Log($"Player took {damageAmount} damage. Remaining Health: {health}");
     }
 
-    public override void Heal(int HealAmount)
+    public override void Heal(float HealAmount)
     {
         base.Heal(HealAmount);
         OnValueChanged?.Invoke(health, maxHealth);

@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IWarpObserver
 {
-    [SerializeField] private float walkingSpeedStage1 = 6.0f;
     [SerializeField] private float sprintingSpeedStage1 = 8.0f;
-    [SerializeField] private float walkingSpeedStage2 = 10.0f;
     [SerializeField] private float sprintingSpeedStage2 = 16.0f;
-    [SerializeField] private float walkingSpeedStage3 = 18.0f;
     [SerializeField] private float sprintingSpeedStage3 = 30.0f;
+
+    [SerializeField] private float warpStage1ChangeCriteria = 100.0f;
+    [SerializeField] private float warpStage2ChangeCriteria = 200.0f;
 
     [Header("Warp System Manager")]
     [SerializeField] private WarpSystemManager warpSystemManager;
@@ -45,14 +45,16 @@ public class PlayerController : MonoBehaviour, IWarpObserver
     private bool cannotSprint = false;
     public bool CannotSprint => cannotSprint;
 
-    private GameManager gameManager;
 
     private void Awake()
     {
-        gameManager = FindFirstObjectByType<GameManager>();
-        if (!gameManager)
+        if (!warpSystemManager)
         {
-            Debug.LogError("GameManager not found! Warping will not work. Be sure to add one");
+            warpSystemManager = FindFirstObjectByType<WarpSystemManager>();
+            if (!warpSystemManager)
+            {
+                Debug.LogError("WarpSystemManager not found! Please ensure there is one in the scene.");
+            }
         }
 
         playerManager = GetComponent<PlayerManager>();
@@ -80,11 +82,14 @@ public class PlayerController : MonoBehaviour, IWarpObserver
         PlayerMovement.SetSpeed(GetSpeed(warpSystemManager.GetWarpStage()));
 
         playerStateMachine.ChangeState(new PlayerDefaultState(this));
+
+        playerManager.OnValueChanged += OnHpChanged;
     }
 
     private void OnDisable()
     {
         warpSystemManager.UnregisterWarpObserver(this);
+        playerManager.OnValueChanged -= OnHpChanged;
     }
 
     private void FindComponents()
@@ -166,7 +171,6 @@ public class PlayerController : MonoBehaviour, IWarpObserver
     {
         if (playerStateMachine.CurrentState is PlayerDefaultState or PlayerJumpState)
             playerStateMachine.ChangeState(new PlayerJumpState(this, isJumping));
-
     }
 
     public void MovementAction1()
@@ -186,29 +190,26 @@ public class PlayerController : MonoBehaviour, IWarpObserver
         PlayerMovement.SetSpeed(GetSpeed(newStage));
     }
 
+    private void OnHpChanged(float currentHp, float maxHp)
+    {
+        if (warpSystemManager.GetWarpStage() == 0)
+        {
+            if (currentHp >= warpStage2ChangeCriteria)
+            {
+                warpSystemManager.SetChageWarpStage(1);
+            }
+        }
+        else if (warpSystemManager.GetWarpStage() == 1)
+        {
+            if (currentHp < warpStage1ChangeCriteria)
+            {
+                warpSystemManager.SetChageWarpStage(0);
+            }
+        }
+    }
+
     private float GetSpeed(int warpStage)
     {
-        // if (IsSprinting)
-        // {
-        //     return warpStage switch
-        //     {
-        //         0 => sprintingSpeedStage1,
-        //         1 => sprintingSpeedStage2,
-        //         //2
-        //         _ => sprintingSpeedStage3,
-        //     };
-        // }
-        // else
-        // {
-        //     return warpStage switch
-        //     {
-        //         0 => walkingSpeedStage1,
-        //         1 => walkingSpeedStage2,
-        //         //2
-        //         _ => walkingSpeedStage3,
-        //     };
-        // }
-
         return warpStage switch
         {
             0 => sprintingSpeedStage1,

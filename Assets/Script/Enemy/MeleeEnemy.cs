@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 enum MeleeState
@@ -13,6 +14,7 @@ public class MeleeEnemy : EnemyBase
     [SerializeField] private Vector3 attackVectorRange;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private HitFlash hitFlash;
+
 
     protected override void Initialize()
     {
@@ -61,7 +63,7 @@ public class MeleeEnemy : EnemyBase
         attackTime = 0f;
     }
 
-    public override void TakeDamage(float damageAmount)
+    public override void TakeDamage(float damage)
     {
         if (health <= 0) 
             return;
@@ -73,8 +75,8 @@ public class MeleeEnemy : EnemyBase
             state = EnemyState.moving;
         }
 
-        health -= damageAmount;
-        Debug.Log($"Melee Enemy took {damageAmount} damage. Remaining Health: {health}");
+        health -= damage;
+        Debug.Log($"Melee Enemy took {damage} damage. Remaining Health: {health}");
         
         hitFlash.Flash();
     }

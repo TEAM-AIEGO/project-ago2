@@ -6,18 +6,22 @@ public class Unit : MonoBehaviour
 {
     [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected float health = 100f;
-    public UnityEvent Died; 
+    [HideInInspector] public UnityEvent Died; 
 
     protected virtual void Update()
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
             Died?.Invoke();
         }
     }
 
-    public virtual void Heal(int HealAmount)
+    public virtual void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+
+    public virtual void Heal(float HealAmount)
     {
         health += HealAmount;
     }

@@ -9,23 +9,26 @@ public class ObjectPool : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private List<Projectile> projectilePrefabs;
     [SerializeField] private AudioPlayer audioPlayerPrefab;
+    [SerializeField] private List<EnemyBase> enemyBasePrefabs;
 
     [Header("Parent Transforms")]
     [SerializeField] private Transform projectileParent;
     [SerializeField] private Transform audioPlayerParent;
+    [SerializeField] private Transform meleeEnemyParent;
 
-    private Dictionary<Projectile, Queue<Projectile>> projectilePool = new();
-    private Queue<AudioPlayer> audioPlayerPool = new();
+    private readonly Dictionary<Projectile, Queue<Projectile>> projectilePool = new();
+    private readonly Queue<AudioPlayer> audioPlayerPool = new();
+    private readonly Queue<EnemyBase> enemyBasePool = new();
 
     private void Awake()
     {
-        Debug.Log($"[ObjectPool Awake] {name} id={GetInstanceID()} scene={gameObject.scene.name}");
+        //Debug.Log($"[ObjectPool Awake] {name} id={GetInstanceID()} scene={gameObject.scene.name}");
         Initialize();
     }
 
     private void OnDestroy()
     {
-        Debug.Log($"[ObjectPool Destroy] {name} id={GetInstanceID()} scene={gameObject.scene.name}");
+        //Debug.Log($"[ObjectPool Destroy] {name} id={GetInstanceID()} scene={gameObject.scene.name}");
     }
 
     public void Initialize()
@@ -35,6 +38,7 @@ public class ObjectPool : MonoBehaviour
             projectilePool[projectilePrefab] = new Queue<Projectile>();
         }
     }
+
 
     public void SpawnProjectile(Projectile prefab, Vector3 spawnPos, Quaternion spawnRot)
     {
@@ -53,7 +57,7 @@ public class ObjectPool : MonoBehaviour
             projectile = projectilePool[prefab].Dequeue();
         }
 
-        projectile.Initialized(prefab, this);
+        projectile.Initialized(prefab);
         projectile.transform.position = spawnPos;
         projectile.transform.rotation = spawnRot;
         projectile.transform.SetParent(projectileParent);

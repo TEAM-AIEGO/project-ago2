@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -36,6 +37,8 @@ public abstract class EnemyBase : Unit
 
     protected bool isPlayerDetected = false;
 
+    public event Action<EnemyBase> OnReturn;
+
     void Start()
     {
         Initialize();
@@ -53,6 +56,8 @@ public abstract class EnemyBase : Unit
         rb = GetComponent<Rigidbody>();
 
         state = EnemyState.idle;
+
+        Died.AddListener(Dead);
     }
 
     protected override void Update()
@@ -100,5 +105,9 @@ public abstract class EnemyBase : Unit
 
     protected abstract void Attacking();
 
-    public abstract void TakeDamage(float damageAmount);
+    protected virtual void Dead()
+    {
+        Destroy(gameObject);
+        //OnReturn?.Invoke(this);
+    }
 }
