@@ -105,8 +105,6 @@ public abstract class EnemyBase : Unit
 
     protected abstract void Attacking();
 
-    public abstract void TakeDamage(float damageAmount);
-
     protected virtual void Dead()
     {
         Destroy(gameObject);
