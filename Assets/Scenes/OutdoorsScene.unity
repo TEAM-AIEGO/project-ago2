@@ -2523,8 +2523,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStaminaCalc
   CurrentStamina: 100
   MaxStamina: 100
-  StaminaRegenSpeed: 5
-  DeshStaminaCost: 35
+  StaminaRegenSpeed: 20
+  DeshStaminaCost: 30
 --- !u!114 &733986124
 MonoBehaviour:
   m_ObjectHideFlags: 0
