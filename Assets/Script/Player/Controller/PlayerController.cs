@@ -35,10 +35,13 @@ public class PlayerController : MonoBehaviour, IWarpObserver
     private bool isGrounded;
     public bool IsGrounded => isGrounded;
 
+     private float nextDeshTime;
+    [SerializeField] private float deshCoolDown;
+
     [Header("Main Camera Transform")]
     [SerializeField] private Transform cam;
 
-    private bool IsSprinting;
+    private bool IsDeshing;
     private bool cannotSprint = false;
     public bool CannotSprint => cannotSprint;
 
@@ -109,7 +112,7 @@ public class PlayerController : MonoBehaviour, IWarpObserver
 
         isGrounded = PlayerGroundChecker.IsGrounded();
 
-        if (IsSprinting)
+        if (IsDeshing)
             PlayerStaminaCalc.ConsumeStamina();
         else
             PlayerStaminaCalc.RegenerateStamina();
@@ -120,7 +123,7 @@ public class PlayerController : MonoBehaviour, IWarpObserver
         movement = new Vector3(movementInput.x, 0, movementInput.y);
     }
 
-    public void Sprint(bool isSprinting)
+    public void Desh(bool isDeshing)
     {
         // if (cannotSprint)
         //     return;
@@ -130,16 +133,21 @@ public class PlayerController : MonoBehaviour, IWarpObserver
 
         // PlayerMovement.SetSpeed(GetSpeed(0));
 
-        if (!isSprinting && playerStateMachine.CurrentState is PlayerSlideState or PlayerGroundPoundState) return;
-        playerStateMachine.ChangeState(new PlayerDashState(this));
+        if (!isDeshing && playerStateMachine.CurrentState is PlayerSlideState or PlayerGroundPoundState) return;
+        if (PlayerStaminaCalc.IsStaminaUseable() && CanDesh())
+        {
+            nextDeshTime = Time.time + deshCoolDown;
+            IsDeshing = true;
+            playerStateMachine.ChangeState(new PlayerDashState(this));
+        }
 
     }
 
-    public void SprintAble(bool ornot)
+    public void DeshAble(bool ornot)
     {
         if (!ornot)
         {
-            IsSprinting = false;
+            IsDeshing = false;
             PlayerMovement.SetSpeed(GetSpeed(0));
             cannotSprint = true;
         }
@@ -147,6 +155,11 @@ public class PlayerController : MonoBehaviour, IWarpObserver
         {
             cannotSprint = false;
         }
+    }
+
+    private bool CanDesh()
+    {
+        return Time.time >= nextDeshTime;
     }
 
     public void Jump(bool isJumping)

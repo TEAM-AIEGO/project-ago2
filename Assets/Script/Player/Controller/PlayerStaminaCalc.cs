@@ -8,7 +8,7 @@ public class PlayerStaminaCalc : MonoBehaviour
     [SerializeField] private float CurrentStamina;
     [SerializeField] private float MaxStamina;
     [SerializeField] private float StaminaRegenSpeed;
-    [SerializeField] private float SprintStaminaCost;
+    [SerializeField] private float DeshStaminaCost;
 
     public void Initialized(PlayerController playerController)
     {
@@ -27,7 +27,7 @@ public class PlayerStaminaCalc : MonoBehaviour
                 if (CurrentStamina >= MaxStamina / 5.5)
                 {
                     Debug.Log("Stamina Sufficient - Can Sprint Again");
-                    playerController.SprintAble(true);
+                    playerController.DeshAble(true);
                 }
         }
     }
@@ -35,14 +35,20 @@ public class PlayerStaminaCalc : MonoBehaviour
     public void ConsumeStamina()
     {
         //Debug.Log("Consuming Stamina");
-        CurrentStamina -= Time.deltaTime * SprintStaminaCost;
+        CurrentStamina -= DeshStaminaCost;
+        
         CurrentStamina = Mathf.Max(CurrentStamina, 0);
         //Debug.Log("Current Stamina: " + CurrentStamina);
+        playerController.DeshAble(false);
+        /* if (CurrentStamina == 0)
+         {
+             Debug.Log("Stamina Depleted");
+             playerController.DeshAble(false);
+         }*/
+    }
 
-        if (CurrentStamina == 0)
-        {
-            Debug.Log("Stamina Depleted");
-            playerController.SprintAble(false);
-        }
+    public bool IsStaminaUseable()
+    {
+        return CurrentStamina >= DeshStaminaCost;
     }
 }

@@ -51,8 +51,8 @@ public class PlayerInputManager : MonoBehaviour
         MoveActionReference.action.canceled += OnMove;
         JumpActionReference.action.performed += OnJump;
         JumpActionReference.action.canceled += OnJump;
-        SprintActionReference.action.performed += OnSprint;
-        SprintActionReference.action.canceled += OnSprint;
+        SprintActionReference.action.performed += OnDesh;
+        //SprintActionReference.action.canceled += OnDesh;
         MovementAction1ActionReference.action.performed += OnGroundPound;
 
         LookActionReference.action.performed += OnLook;
@@ -73,8 +73,8 @@ public class PlayerInputManager : MonoBehaviour
         MoveActionReference.action.canceled -= OnMove;
         JumpActionReference.action.performed -= OnJump;
         JumpActionReference.action.canceled -= OnJump;
-        SprintActionReference.action.performed -= OnSprint;
-        SprintActionReference.action.canceled -= OnSprint;
+        SprintActionReference.action.performed -= OnDesh;
+        //SprintActionReference.action.canceled -= OnDesh;
         MovementAction1ActionReference.action.performed -= OnGroundPound;
 
         LookActionReference.action.performed -= OnLook;
@@ -106,10 +106,10 @@ public class PlayerInputManager : MonoBehaviour
         playerController.Jump(context.performed);
     }
 
-    public void OnSprint(CallbackContext context) 
+    public void OnDesh(CallbackContext context) 
     {
         if (menu && menu.IsMenuOpen) return;
-        playerController.Sprint(context.performed);
+        playerController.Desh(context.performed);
     }
 
     public void OnLook(CallbackContext context)
