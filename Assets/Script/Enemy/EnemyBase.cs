@@ -21,6 +21,7 @@ public abstract class EnemyBase : Unit
 
     protected IAttackStrategy attackStrategy;
     protected IMuKatteKuruNoKaStrategy muKatteKuruNoKaStrategy;
+    protected DontMuKatteKuruNoKaStrategy dontMuKatteKuruNoKaStrategy;
 
     #region Enemy Stats
     [Header("Enemy Stats")]
