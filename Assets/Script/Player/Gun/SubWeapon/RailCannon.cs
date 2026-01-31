@@ -79,24 +79,30 @@ public class RailCannon : SubWeapon
 
     private void Fire()
     {
-        Vector3 direction = Vector3.zero;
+        Vector3 direction;
 
         Ray aimRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-        Vector3 aimPoint;
+        Vector3 aimPoint = Vector3.zero;
 
-        if (Physics.Raycast(aimRay, out RaycastHit hitinfo, 1000, LayerMask.GetMask("Enemy")))
+        RaycastHit[] hitInfo = Physics.RaycastAll(aimRay, 1000, LayerMask.GetMask("Enemy"));
+
+        for (int i = 0; i < hitInfo.Length; i++)
         {
-            hitinfo.collider.TryGetComponent<MeleeEnemy>(out var hitbox);
-            if (hitbox != null)
+            var currentEnemyObject = hitInfo[i].collider.gameObject;
+            if (currentEnemyObject.TryGetComponent(out Unit unit))
             {
-                hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(9999f);
+                unit.TakeDamage(9999f);
                 uiManager.ShowHitMarker();
             }
-
-            aimPoint = hitinfo.point;
+            if (i == hitInfo.Length - 1)
+            {
+                aimPoint = hitInfo[i].point;
+            }
         }
-        else
+
+        
+        if (aimPoint != Vector3.zero)
         {
             aimPoint = Camera.main.transform.position + Camera.main.transform.forward * 1000f;
         }
