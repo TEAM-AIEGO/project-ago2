@@ -1,5 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+
+public struct KnockbackValue
+{
+    public Vector3 Force;
+    public float TimeLeft;
+}
 
 [RequireComponent(typeof(Rigidbody))]
 public abstract class EnemyBase : Unit, IWarpObserver
@@ -15,6 +22,7 @@ public abstract class EnemyBase : Unit, IWarpObserver
     protected GameObject player;
     protected Rigidbody rb;
     public Rigidbody Rb => rb;
+    protected float knockbackStun;
 
     protected EnemyBase originEnemy;
     public EnemyBase OriginEnemy => originEnemy;
@@ -79,7 +87,14 @@ public abstract class EnemyBase : Unit, IWarpObserver
                 break;
             case EnemyState.moving:
                 //Debug.Log("Enemy is moving");
-                Moving();
+                if (knockbackStun <= 0)
+                {
+                    Moving();
+                }
+                else
+                {
+                    knockbackStun = Mathf.Max(0, knockbackStun - Time.deltaTime);
+                }
                 AttackCheck();
                 break;
             case EnemyState.attacking:
@@ -103,6 +118,12 @@ public abstract class EnemyBase : Unit, IWarpObserver
         {
             canAttack = true;
         }
+    }
+
+    public void TakeKnockback(Vector3 force, float duration)
+    {
+        knockbackStun += duration;
+        rb.AddForce(force, ForceMode.Impulse);
     }
 
     protected abstract void Idle();
