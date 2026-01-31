@@ -8,6 +8,17 @@ public abstract class SubWeapon : MonoBehaviour
     [SerializeField] protected GameObject subWeaponObj;
     [SerializeField] protected float cooldownTime;
 
+    [SerializeField] protected ObjectPool objectPool;
+    [SerializeField] protected Transform playerTransform;
+    [SerializeField] protected CameraShake cameraShake;
+
+    [SerializeField] protected float launchDelayTime;
+    [SerializeField] protected float launchAftereffectTime;
+    [SerializeField] protected float delayTimer;
+
+    protected bool isLaunching;
+    protected bool isInAftereffect;
+
     protected float cooldownTimer;
     protected bool isReady = true;
     public bool IsReady => isReady;
@@ -28,9 +39,40 @@ public abstract class SubWeapon : MonoBehaviour
                 isReady = true;
             }
         }
+
+        if (isLaunching)
+        {
+            delayTimer += Time.deltaTime;
+
+            if (delayTimer >= launchDelayTime)
+            {
+                Fire();
+                isLaunching = false;
+                isInAftereffect = true;
+                delayTimer = 0f;
+            }
+            return;
+        }
+
+        if (isInAftereffect)
+        {
+            delayTimer += Time.deltaTime;
+
+            if (delayTimer >= launchAftereffectTime)
+            {
+                isInAftereffect = false;
+                delayTimer = 0f;
+                cooldownTimer = cooldownTime;
+
+                subWeaponObj.SetActive(false);
+                onSubWeaponUseComplete.Invoke();
+            }
+        }
     }
 
     public abstract void Initialize(UnityEvent completeEvent);
 
     public abstract void Use();
+
+    protected abstract void Fire();
 }

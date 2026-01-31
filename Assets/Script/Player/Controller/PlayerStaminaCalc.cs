@@ -15,7 +15,8 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
     [SerializeField] private float MaxStamina;
     [SerializeField] private float StaminaRegenSpeed;
     [SerializeField] private float DeshStaminaCost;
-
+    [SerializeField] private float StaminaRecoveryReadyDelayTime;
+    private float StaminaRecoveryReadyTime;
     private void Awake()
     {
         OnValueChanged?.Invoke(CurrentStamina, MaxStamina);
@@ -28,7 +29,7 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
 
     public void RegenerateStamina()
     {
-        if (CurrentStamina < MaxStamina)
+        if (CurrentStamina < MaxStamina && Time.time >= StaminaRecoveryReadyTime)
         {
             //Debug.Log("Regenerating Stamina");
             CurrentStamina += StaminaRegenSpeed * Time.deltaTime;
@@ -46,8 +47,8 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
     public void ConsumeStamina()
     {
         //Debug.Log("Consuming Stamina");
+        CanRecoverStamina();
         CurrentStamina -= DeshStaminaCost;
-        
         CurrentStamina = Mathf.Max(CurrentStamina, 0);
         OnValueChanged?.Invoke(CurrentStamina, MaxStamina);
         //Debug.Log("Current Stamina: " + CurrentStamina);
@@ -62,5 +63,10 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
     public bool IsStaminaUseable()
     {
         return CurrentStamina >= DeshStaminaCost;
+    }
+
+    void CanRecoverStamina()
+    {
+        StaminaRecoveryReadyTime = Time.time + StaminaRecoveryReadyDelayTime;
     }
 }

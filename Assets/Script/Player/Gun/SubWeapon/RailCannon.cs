@@ -1,58 +1,17 @@
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class RailCannon : SubWeapon
 {
-    [SerializeField] private Transform playerTransform;
     [SerializeField] private SFXEmitter emitter;
-    [SerializeField] private ObjectPool objectPool;
     [SerializeField] private Projectile railCannonProjectilePrefab;
-    [SerializeField] private Transform projectileLunchPoint;
-
-    [SerializeField] private CameraShake cameraShake;
-
-    [SerializeField] private float lunchDelayTime;
-    [SerializeField] private float lunchAftereffectTime;
-    [SerializeField] private float delayTimer;
-
-    private bool isLunching;
-    private bool isInAftereffect;
+    [SerializeField] private Transform projectileLaunchPoint;
 
     private UIManager uiManager;
 
     protected override void Update()
     {
         base.Update();
-
-        if (isLunching)
-        {
-            delayTimer += Time.deltaTime;
-
-            if (delayTimer >= lunchDelayTime)
-            {
-                Fire();
-                isLunching = false;
-                isInAftereffect = true;
-                delayTimer = 0f;
-            }
-            return;
-        }
-
-        if (isInAftereffect)
-        {
-            delayTimer += Time.deltaTime;
-
-            if (delayTimer >= lunchAftereffectTime)
-            {
-                isInAftereffect = false;
-                delayTimer = 0f;
-                cooldownTimer = cooldownTime;
-
-                subWeaponObj.SetActive(false);
-                onSubWeaponUseComplete.Invoke();
-            }
-        }
     }
 
     public override void Initialize(UnityEvent completeEvent)
@@ -66,18 +25,18 @@ public class RailCannon : SubWeapon
         onSubWeaponUseComplete = completeEvent;
 
         delayTimer = 0f;
-        isLunching = false;
+        isLaunching = false;
         isInAftereffect = false;
     }
 
     public override void Use()
     {
-        isLunching = true;
+        isLaunching = true;
         isReady = false;
         subWeaponObj.SetActive(true);
     }
 
-    private void Fire()
+    protected override void Fire()
     {
         Vector3 direction;
 
@@ -90,10 +49,11 @@ public class RailCannon : SubWeapon
         for (int i = 0; i < hitInfo.Length; i++)
         {
             var currentEnemyObject = hitInfo[i].collider.gameObject;
-            if (currentEnemyObject.TryGetComponent(out Unit unit))
+            if (currentEnemyObject.TryGetComponent(out EnemyBase enemyBase))
             {
-                unit.TakeDamage(9999f);
+                enemyBase.TakeDamage(99f);
                 uiManager.ShowHitMarker();
+                enemyBase.TakeKnockback(aimRay.direction * 250, 0.5f);
             }
             if (i == hitInfo.Length - 1)
             {
@@ -101,24 +61,23 @@ public class RailCannon : SubWeapon
             }
         }
 
-        
         if (aimPoint != Vector3.zero)
         {
             aimPoint = Camera.main.transform.position + Camera.main.transform.forward * 1000f;
         }
 
-        Vector3 aimDirection = (aimPoint - projectileLunchPoint.position).normalized;
+        Vector3 aimDirection = (aimPoint - projectileLaunchPoint.position).normalized;
 
-        if (Physics.Raycast(projectileLunchPoint.position, aimDirection, out RaycastHit hit, 1000f))
+        if (Physics.Raycast(projectileLaunchPoint.position, aimDirection, out RaycastHit hit, 1000f))
         {
-            direction = (hit.point - projectileLunchPoint.position).normalized;
+            direction = (hit.point - projectileLaunchPoint.position).normalized;
         }
         else
         {
             direction = aimDirection;
         }
 
-        objectPool.SpawnProjectile(railCannonProjectilePrefab, projectileLunchPoint.position, Quaternion.LookRotation(direction));
+        objectPool.SpawnProjectile(railCannonProjectilePrefab, projectileLaunchPoint.position, Quaternion.LookRotation(direction));
         emitter.PlayFollow("Rail_Cannon_Fire", playerTransform);
         cameraShake?.AddRecoil(new Vector2(Random.Range(-300f, 300f), 1000f));
         isInAftereffect = true;
