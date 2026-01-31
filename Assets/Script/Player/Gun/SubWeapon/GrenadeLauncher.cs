@@ -49,6 +49,7 @@ public class GrenadeLauncher : SubWeapon
         direction = (aimPoint - projectileLaunchPoint.position).normalized;
 
         GrenadeProjectile grenade = objectPool.SpawnGrenadeProjectile(projectileLaunchPoint.position);
+        emitter.PlayFollow("Grenade_Launcher_Fire", playerTransform);
         grenade.OnLaunched(direction);
         
         grenade.OnExplosionHit += PlayHitMarker;

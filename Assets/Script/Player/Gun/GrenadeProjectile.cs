@@ -5,6 +5,7 @@ using UnityEngine;
 public class GrenadeProjectile : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private SFXEmitter emitter;
 
     [HideInInspector] public event Action<GrenadeProjectile> OnReturn;
     [HideInInspector] public event Action OnExplosionHit;
@@ -52,6 +53,7 @@ public class GrenadeProjectile : MonoBehaviour
 
     private void OnExplosion()
     {
+        emitter.Play("Grenade_Explosion");
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayerMask);
 
         for (int i = 0; i < hitColliders.Length; i++)
