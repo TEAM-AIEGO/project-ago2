@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerGroundPoundAction : MonoBehaviour
 {
-    private PlayerController playerController;
 
     [SerializeField] private float maxHeight;
     [SerializeField] private float groundPoundForce;
@@ -13,22 +12,25 @@ public class PlayerGroundPoundAction : MonoBehaviour
     private float groundPoundStartHeight;
 
     private Rigidbody rb;
+    private SFXEmitter emitter;
 
-    public void Initialized(Rigidbody rb)
+    public void Initialized(Rigidbody rb, SFXEmitter emitter)
     {
         this.rb = rb;
+        this.emitter = emitter;
     }
 
     public void GroundPound()
     {
         groundPoundStartHeight = transform.position.y;
         rb.linearVelocity = Vector3.down * groundPoundForce; //gpspeed
+        emitter.Play("Ground_Pound_Start");
     }
 
     public void GroundPoundKaboom()
     {
         float kaboomPower = Mathf.Clamp((groundPoundStartHeight - transform.position.y) / maxHeight, 0, 1);
-        Debug.Log($"GP KABOOM POWER: {kaboomPower}");
+        emitter.Play("Ground_Pound_Land");
         Collider[] hitColliders = Physics.OverlapBox(transform.position - Vector3.down * 0.5f, new Vector3(7.5f, 10f, 7.5f), quaternion.identity, LayerMask.GetMask("Enemy"));
 
         for (int i = 0; i < hitColliders.Length; i++)

@@ -18,14 +18,16 @@ public class PlayerJumpAction : MonoBehaviour
     private float currentCoyoteTime;
 
     private Rigidbody rb;
+    private SFXEmitter emitter;
 
     bool isJumping;
 
-    public void Initialized(Rigidbody rb, PlayerGroundChecker groundChecker)
+    public void Initialized(Rigidbody rb, PlayerGroundChecker groundChecker, SFXEmitter emitter)
     {  
         Debug.Log("PlayerJumpAction Initialized");
         this.rb = rb;
         this.groundChecker = groundChecker;
+        this.emitter = emitter;
     }
 
     private void Update()
@@ -51,6 +53,7 @@ public class PlayerJumpAction : MonoBehaviour
         if (currentJumpBuffer > 0f && currentCoyoteTime > 0f)
         {
             isJumping = true;
+            emitter.PlayFollow("Jump", transform);
             currentJumpTime = 0f;
             currentJumpBuffer = currentCoyoteTime = 0f;
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, JumpForce);

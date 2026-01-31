@@ -1,5 +1,9 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(SFXEmitter))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerManager))]
 public class PlayerController : MonoBehaviour, IWarpObserver
 {
     [SerializeField] private float sprintingSpeedStage1 = 8.0f;
@@ -28,6 +32,7 @@ public class PlayerController : MonoBehaviour, IWarpObserver
     private PlayerManager playerManager;
     private Collider col;
     private Rigidbody rb;
+    private SFXEmitter emitter;
 
     private Vector3 movement;
     public Vector3 Movement => movement;
@@ -60,6 +65,7 @@ public class PlayerController : MonoBehaviour, IWarpObserver
         playerManager = GetComponent<PlayerManager>();
         col = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
+        emitter = GetComponent<SFXEmitter>();
 
         Initialized();
     }
@@ -72,11 +78,11 @@ public class PlayerController : MonoBehaviour, IWarpObserver
 
         playerStateMachine = new PlayerStateMachine();
         PlayerMovement.Initialized(cam, rb);
-        PlayerGroundPoundAction.Initialized(rb);
+        PlayerGroundPoundAction.Initialized(rb, emitter);
         PlayerSlideAction.Initialized(cam, rb);
-        PlayerDashAction.Initialized(cam, rb);
+        PlayerDashAction.Initialized(cam, rb, emitter);
         PlayerGroundChecker.Initialized(col);
-        PlayerJumpAction.Initialized(rb, PlayerGroundChecker);
+        PlayerJumpAction.Initialized(rb, PlayerGroundChecker, emitter);
         PlayerStaminaCalc.Initialized(this);
 
         PlayerMovement.SetSpeed(GetSpeed(warpSystemManager.GetWarpStage()));

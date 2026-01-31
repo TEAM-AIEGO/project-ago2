@@ -11,11 +11,13 @@ public class PlayerDashAction : MonoBehaviour
 
     private Transform cam;
     private Rigidbody rb;
+    private SFXEmitter emitter;
 
-    public void Initialized(Transform cam, Rigidbody rb)
+    public void Initialized(Transform cam, Rigidbody rb, SFXEmitter emitter)
     {
         this.cam = cam;
         this.rb = rb;
+        this.emitter = emitter;
     }
 
     void Update()
@@ -28,6 +30,7 @@ public class PlayerDashAction : MonoBehaviour
     public void Dash(Vector3 movement)
     {
         currentDashTime = DashTime;
+        emitter.PlayFollow("Dash", transform);
         Vector3 camForward = cam.forward;
         Vector3 camRight = cam.right;
         camForward.y = 0;
