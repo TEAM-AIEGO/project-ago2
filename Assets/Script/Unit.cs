@@ -16,7 +16,12 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public virtual void Heal(int HealAmount)
+    public virtual void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+
+    public virtual void Heal(float HealAmount)
     {
         health += HealAmount;
     }

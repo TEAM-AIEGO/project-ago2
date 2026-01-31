@@ -49,7 +49,7 @@ public class PlayerManager : Unit, IStat
         
     }
 
-    public void TakeDamage(float damageAmount)
+    public override void TakeDamage(float damageAmount)
     {
         if (health <= 0) 
             return;
@@ -59,7 +59,7 @@ public class PlayerManager : Unit, IStat
         Debug.Log($"Player took {damageAmount} damage. Remaining Health: {health}");
     }
 
-    public override void Heal(int HealAmount)
+    public override void Heal(float HealAmount)
     {
         base.Heal(HealAmount);
         OnValueChanged?.Invoke(health, maxHealth);
