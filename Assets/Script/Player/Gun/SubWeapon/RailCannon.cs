@@ -90,10 +90,11 @@ public class RailCannon : SubWeapon
         for (int i = 0; i < hitInfo.Length; i++)
         {
             var currentEnemyObject = hitInfo[i].collider.gameObject;
-            if (currentEnemyObject.TryGetComponent(out Unit unit))
+            if (currentEnemyObject.TryGetComponent(out EnemyBase enemyBase))
             {
-                unit.TakeDamage(9999f);
+                enemyBase.TakeDamage(99f);
                 uiManager.ShowHitMarker();
+                enemyBase.TakeKnockback(aimRay.direction * 250, 0.5f);
             }
             if (i == hitInfo.Length - 1)
             {

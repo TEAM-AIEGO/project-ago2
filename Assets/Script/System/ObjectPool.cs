@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class ObjectPool : MonoBehaviour
 {
+    [SerializeField] private WarpSystemManager warpSystemManager;
+
     [Header("Prefabs")]
     [SerializeField] private List<Projectile> projectilePrefabs;
     [SerializeField] private AudioPlayer audioPlayerPrefab;
@@ -14,7 +16,7 @@ public class ObjectPool : MonoBehaviour
     [Header("Parent Transforms")]
     [SerializeField] private Transform projectileParent;
     [SerializeField] private Transform audioPlayerParent;
-    [SerializeField] private Transform meleeEnemyParent;
+    [SerializeField] private Transform enemyParent;
 
     private readonly Dictionary<Projectile, Queue<Projectile>> projectilePool = new();
     private readonly Queue<AudioPlayer> audioPlayerPool = new();
@@ -44,7 +46,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public EnemyBase SpawnEnemy(EnemyBase prefab, Vector3 spawnPos, Quaternion spawnRot)
+    public EnemyBase SpawnEnemy(EnemyBase prefab, Vector3 spawnPos)
     {
         if (!enemyBasePool.ContainsKey(prefab))
             return null;
@@ -53,7 +55,7 @@ public class ObjectPool : MonoBehaviour
 
         if (enemyBasePool[prefab].Count == 0)
         {
-            enemy = Instantiate(prefab, spawnPos, spawnRot, meleeEnemyParent);
+            enemy = Instantiate(prefab, enemyParent);
         }
         else
         {
@@ -62,14 +64,17 @@ public class ObjectPool : MonoBehaviour
 
         enemy.Initialize(prefab);
         enemy.transform.position = spawnPos;
-        enemy.transform.rotation = spawnRot;
-        enemy.transform.SetParent(meleeEnemyParent);
+        enemy.transform.rotation = Quaternion.identity;
+        enemy.transform.SetParent(enemyParent);
         enemy.gameObject.SetActive(true);
+        warpSystemManager.RegisterWarpObserver(enemy);
+
         return enemy;
     }
 
     public void DisableEnemy(EnemyBase enemy)
     {
+        warpSystemManager.UnregisterWarpObserver(enemy);
         enemy.gameObject.SetActive(false);
         enemyBasePool[enemy.OriginEnemy].Enqueue(enemy);
     }

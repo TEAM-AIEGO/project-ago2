@@ -76,13 +76,13 @@ public class TestGun : MonoBehaviour // ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿
 
         if (Physics.Raycast(aimRay, out RaycastHit hitinfo, 1000, layerMasks))
         {
-            hitinfo.collider.TryGetComponent<MeleeEnemy>(out var hitbox);
-            if (hitbox != null)
+            hitinfo.collider.TryGetComponent<EnemyBase>(out var enemyBase);
+            if (enemyBase != null)
             {
-                hitinfo.collider.GetComponent<MeleeEnemy>().TakeDamage(10f);
+                enemyBase.TakeDamage(10f);
                 uiManager.ShowHitMarker();
+                enemyBase.TakeKnockback(aimRay.direction * 25, 0.05f);
             }
-
             aimPoint = hitinfo.point;
         }
         else
