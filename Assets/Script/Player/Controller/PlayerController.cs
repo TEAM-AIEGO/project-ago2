@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour, IWarpObserver
     public PlayerGroundPoundAction PlayerGroundPoundAction { get; private set; }
     public PlayerStaminaCalc PlayerStaminaCalc { get; private set; }
     public PlayerSlideAction PlayerSlideAction { get; private set; }
+    public PlayerDashAction PlayerDashAction { get; private set; }
     public PlayerGroundChecker PlayerGroundChecker { get; private set; }
     #endregion
 
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour, IWarpObserver
         PlayerMovement.Initialized(cam, rb);
         PlayerGroundPoundAction.Initialized(rb);
         PlayerSlideAction.Initialized(cam, rb);
+        PlayerDashAction.Initialized(cam, rb);
         PlayerGroundChecker.Initialized(col);
         PlayerJumpAction.Initialized(rb, PlayerGroundChecker);
         PlayerStaminaCalc.Initialized(this);
@@ -89,6 +91,7 @@ public class PlayerController : MonoBehaviour, IWarpObserver
         PlayerMovement = GetComponent<PlayerMovement>();
         PlayerStaminaCalc = GetComponent<PlayerStaminaCalc>();
         PlayerSlideAction = GetComponent<PlayerSlideAction>();
+        PlayerDashAction = GetComponent<PlayerDashAction>();
         PlayerGroundChecker = GetComponent<PlayerGroundChecker>();
 
         if (!PlayerJumpAction) Debug.LogError("PlayerJumpAction component not found!");
@@ -96,6 +99,7 @@ public class PlayerController : MonoBehaviour, IWarpObserver
         if (!PlayerMovement) Debug.LogError("PlayerMovement component not found!");
         if (!PlayerStaminaCalc) Debug.LogError("PlayerStaminaCalc component not found!");
         if (!PlayerSlideAction) Debug.LogError("PlayerSlideAction component not found!");
+        if (!PlayerDashAction) Debug.LogError("PlayerDashAction component not found!");
         if (!PlayerGroundChecker) Debug.LogError("PlayerGroundChecker component not found!");
     }
 
@@ -118,13 +122,17 @@ public class PlayerController : MonoBehaviour, IWarpObserver
 
     public void Sprint(bool isSprinting)
     {
-        if (cannotSprint)
-            return;
+        // if (cannotSprint)
+        //     return;
 
-        Debug.Log("Sprint Input Received: " + isSprinting);
-        IsSprinting = isSprinting;
+        // Debug.Log("Sprint Input Received: " + isSprinting);
+        // IsSprinting = isSprinting;
 
-        PlayerMovement.SetSpeed(GetSpeed(0));
+        // PlayerMovement.SetSpeed(GetSpeed(0));
+
+        if (!isSprinting && playerStateMachine.CurrentState is PlayerSlideState or PlayerGroundPoundState) return;
+        playerStateMachine.ChangeState(new PlayerDashState(this));
+
     }
 
     public void SprintAble(bool ornot)
@@ -167,25 +175,33 @@ public class PlayerController : MonoBehaviour, IWarpObserver
 
     private float GetSpeed(int warpStage)
     {
-        if (IsSprinting)
+        // if (IsSprinting)
+        // {
+        //     return warpStage switch
+        //     {
+        //         0 => sprintingSpeedStage1,
+        //         1 => sprintingSpeedStage2,
+        //         //2
+        //         _ => sprintingSpeedStage3,
+        //     };
+        // }
+        // else
+        // {
+        //     return warpStage switch
+        //     {
+        //         0 => walkingSpeedStage1,
+        //         1 => walkingSpeedStage2,
+        //         //2
+        //         _ => walkingSpeedStage3,
+        //     };
+        // }
+
+        return warpStage switch
         {
-            return warpStage switch
-            {
-                0 => sprintingSpeedStage1,
-                1 => sprintingSpeedStage2,
-                //2
-                _ => sprintingSpeedStage3,
-            };
-        }
-        else
-        {
-            return warpStage switch
-            {
-                0 => walkingSpeedStage1,
-                1 => walkingSpeedStage2,
-                //2
-                _ => walkingSpeedStage3,
-            };
-        }
+            0 => sprintingSpeedStage1,
+            1 => sprintingSpeedStage2,
+            //2
+            _ => sprintingSpeedStage3,
+        };
     }
 }

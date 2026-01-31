@@ -74,16 +74,15 @@ public class PlayerJumpState : PlayerFSMBase
     public override void Enter() 
     {
         player.PlayerJumpAction.Jump(isJumping);
+        if (!isJumping)
+        {
+            player.PlayerStateMachine.ChangeState(new PlayerDefaultState(player));
+        }
     }
 
     public override void Update() 
     {
         player.PlayerMovement.TranslationPosition(player.Movement);
-
-        if (player.PlayerGroundChecker.IsGrounded())
-        {
-            player.PlayerStateMachine.ChangeState(new PlayerDefaultState(player));
-        }
     }
 
     public override void Exit() 
@@ -136,6 +135,29 @@ public class PlayerGroundPoundState : PlayerFSMBase
     {
         player.PlayerGroundPoundAction.GroundPoundKaboom();
         
+    }
+}
+
+public class PlayerDashState : PlayerFSMBase
+{
+    public PlayerDashState(PlayerController player) : base(player) { }
+
+    public override void Enter() 
+    {
+        player.PlayerDashAction.Dash(player.Movement);
+    }
+
+    public override void Update() 
+    {
+        if (player.PlayerDashAction.CheckDashEnded())
+        {
+            player.PlayerStateMachine.ChangeState(new PlayerDefaultState(player));
+        }
+    }
+
+    public override void Exit() 
+    {
+
     }
 }
 
