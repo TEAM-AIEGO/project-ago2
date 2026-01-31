@@ -31,3 +31,21 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 50
     loop: 0
+  - id: Grenade_Launcher_Fire
+    type: 0
+    clip: {fileID: 8300000, guid: 18458d44c9e47e80faadfb4a9dca8d7d, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: Grenade_Explosion
+    type: 0
+    clip: {fileID: 8300000, guid: ff6922159e1a383649761b93f5abd1b2, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
