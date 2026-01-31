@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class EnemyBase : Unit
+public abstract class EnemyBase : Unit, IWarpObserver
 {
     protected enum EnemyState
     {
@@ -21,12 +21,13 @@ public abstract class EnemyBase : Unit
 
     protected IAttackStrategy attackStrategy;
     protected IMuKatteKuruNoKaStrategy muKatteKuruNoKaStrategy;
-    protected DontMuKatteKuruNoKaStrategy dontMuKatteKuruNoKaStrategy;
 
     #region Enemy Stats
     [Header("Enemy Stats")]
-    [SerializeField] protected float moveSpeed;
-    public float MoveSpeed => moveSpeed;
+    [SerializeField] protected float stage1MoveSpeed;
+    [SerializeField] protected float stage2MoveSpeed;
+    [SerializeField] protected float currentMoveSpeed;
+    public float MoveSpeed => currentMoveSpeed;
     [SerializeField] protected float turnSpeed;
     public float TurnSpeed => turnSpeed;
 
@@ -116,5 +117,20 @@ public abstract class EnemyBase : Unit
     {
         Destroy(gameObject);
         //OnReturn?.Invoke(this);
+    }
+
+    public void OnWarpStageChanged(int newStage)
+    {
+        currentMoveSpeed = GetSpeed(newStage);
+    }
+
+    protected int GetSpeed(int warpStage)
+    {
+        return warpStage switch
+        {
+            0 => (int)stage1MoveSpeed,
+            1 => (int)stage2MoveSpeed,
+            _ => (int)stage1MoveSpeed,
+        };
     }
 }

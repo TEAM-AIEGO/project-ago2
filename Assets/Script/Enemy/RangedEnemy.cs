@@ -18,7 +18,7 @@ public class RangedEnemy : EnemyBase
         base.Initialize(origin);
 
         //나중에 Ranged Attack Strategy 넣기
-        dontMuKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
+        muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
     }
 
     protected override void Update()
@@ -36,7 +36,7 @@ public class RangedEnemy : EnemyBase
 
     protected override void Moving()
     {
-        dontMuKatteKuruNoKaStrategy.KonoDIOniMuKatteKuruNoKa(this, player.transform);
+        muKatteKuruNoKaStrategy.KonoDIOniMuKatteKuruNoKa(this, player.transform);
     }
 
     protected override void AttackCheck()
