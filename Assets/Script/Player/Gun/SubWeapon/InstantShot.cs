@@ -47,6 +47,6 @@ public class InstantShot : SubWeapon
 
     private void Fire()
     {
-        objectPool.ProjectileRequest.Invoke(projectilePrefab, launchPoint.position, launchPoint.rotation);
+        //objectPool.ProjectileRequest.Invoke(projectilePrefab, launchPoint.position, launchPoint.rotation);
     }
 }

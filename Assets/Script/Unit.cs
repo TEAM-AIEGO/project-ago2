@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,5 +15,10 @@ public class Unit : MonoBehaviour
             Destroy(gameObject);
             Died?.Invoke();
         }
+    }
+
+    public virtual void Heal(int HealAmount)
+    {
+        health += HealAmount;
     }
 }

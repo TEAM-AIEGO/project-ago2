@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public event Action<Projectile> OnReturn;
+
     [SerializeField] private float speed = 50f;
     private Projectile OriginPrefab;
     public Projectile OriginProjectile => OriginPrefab;
@@ -22,12 +25,7 @@ public class Projectile : MonoBehaviour
         lifeTimeTimer -= Time.deltaTime;
         if (lifeTimeTimer <= 0)
         {
-            DisableProjectile();
+            OnReturn.Invoke(this);
         }
-    }
-
-    public void DisableProjectile()
-    {
-        objectPool.ProjectileDisableRequest.Invoke(this);
     }
 }
