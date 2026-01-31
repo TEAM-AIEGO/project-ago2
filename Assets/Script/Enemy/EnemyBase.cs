@@ -2,12 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct KnockbackValue
-{
-    public Vector3 Force;
-    public float TimeLeft;
-}
-
 [RequireComponent(typeof(Rigidbody))]
 public abstract class EnemyBase : Unit, IWarpObserver
 {

@@ -112,7 +112,7 @@ MonoBehaviour:
   lifeTime: 5
   explosionLayerMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   explosionRadius: 8
   explosionDamageReductionDistance: 7
   explosionDamage: 80
