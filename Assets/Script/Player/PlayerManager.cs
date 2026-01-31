@@ -57,4 +57,11 @@ public class PlayerManager : Unit, IStat
         OnValueChanged?.Invoke(health, maxHealth);
         Debug.Log($"Player took {damageAmount} damage. Remaining Health: {health}");
     }
+
+    public override void Heal(int HealAmount)
+    {
+        base.Heal(HealAmount);
+        OnValueChanged?.Invoke(health, maxHealth);
+        Debug.Log($"Player healed {HealAmount} damage. Remaining Health: {health}");
+    }
 }
