@@ -10,15 +10,18 @@ public class ObjectPool : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private List<Projectile> projectilePrefabs;
+    [SerializeField] private GrenadeProjectile grenadeProjectilePrefab;
     [SerializeField] private AudioPlayer audioPlayerPrefab;
     [SerializeField] private List<EnemyBase> enemyBasePrefabs;
 
     [Header("Parent Transforms")]
     [SerializeField] private Transform projectileParent;
+    [SerializeField] private Transform grenadeProjectileParent;
     [SerializeField] private Transform audioPlayerParent;
     [SerializeField] private Transform enemyParent;
 
     private readonly Dictionary<Projectile, Queue<Projectile>> projectilePool = new();
+    private readonly Queue<GrenadeProjectile> grenadeProjectilePool = new();
     private readonly Queue<AudioPlayer> audioPlayerPool = new();
     private readonly Dictionary<EnemyBase, Queue<EnemyBase>> enemyBasePool = new();
 
@@ -109,6 +112,34 @@ public class ObjectPool : MonoBehaviour
     {
         projectile.gameObject.SetActive(false);
         projectilePool[projectile.OriginProjectile].Enqueue(projectile);
+    }
+
+    public GrenadeProjectile SpawnGrenadeProjectile(Vector3 spawnPos)
+    {
+        GrenadeProjectile grenadeProjectile;
+
+        if (grenadeProjectilePool.Count == 0)
+        {
+            grenadeProjectile = Instantiate(grenadeProjectilePrefab, spawnPos, Quaternion.identity, grenadeProjectileParent);
+        }
+        else
+        {
+            grenadeProjectile = grenadeProjectilePool.Dequeue();
+        }
+
+        grenadeProjectile.Initialized(grenadeProjectilePrefab);
+        grenadeProjectile.transform.position = spawnPos;
+        grenadeProjectile.transform.rotation = Quaternion.identity;
+        grenadeProjectile.transform.SetParent(grenadeProjectileParent);
+        grenadeProjectile.OnReturn += DisableGrenadeProjectile;
+        grenadeProjectile.gameObject.SetActive(true);
+        return grenadeProjectile;
+    }
+
+    public void DisableGrenadeProjectile(GrenadeProjectile grenadeProjectile)
+    {
+        grenadeProjectile.gameObject.SetActive(false);
+        grenadeProjectilePool.Enqueue(grenadeProjectile);
     }
 
     public AudioPlayer SpawnAudioPlayer()
