@@ -7,6 +7,7 @@ public class PlayerManager : Unit, IStat
     public float MaxValue => maxHealth;
     public event System.Action<float, float> OnValueChanged;
     #endregion
+
     private GameManager gameManager;
 
     private void Awake()

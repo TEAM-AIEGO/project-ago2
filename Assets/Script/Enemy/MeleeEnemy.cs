@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 enum MeleeState
@@ -13,6 +14,7 @@ public class MeleeEnemy : EnemyBase
     [SerializeField] private Vector3 attackVectorRange;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private HitFlash hitFlash;
+
 
     protected override void Initialize()
     {

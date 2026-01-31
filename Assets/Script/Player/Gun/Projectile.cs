@@ -8,15 +8,13 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float speed = 50f;
     private Projectile OriginPrefab;
     public Projectile OriginProjectile => OriginPrefab;
-    private ObjectPool objectPool;
     [SerializeField] private float lifeTime = 2;
     private float lifeTimeTimer;
 
-    public void Initialized(Projectile projectile, ObjectPool objectPool)
+    public void Initialized(Projectile projectile)
     {
-        OriginPrefab = projectile;
-        this.objectPool = objectPool;
         lifeTimeTimer = lifeTime;
+        OriginPrefab = projectile;
     }
 
     void Update()
