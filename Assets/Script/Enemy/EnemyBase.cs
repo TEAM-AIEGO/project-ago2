@@ -16,9 +16,14 @@ public abstract class EnemyBase : Unit
     protected Rigidbody rb;
     public Rigidbody Rb => rb;
 
+    protected EnemyBase originEnemy;
+    public EnemyBase OriginEnemy => originEnemy;
+
     protected IAttackStrategy attackStrategy;
     protected IMuKatteKuruNoKaStrategy muKatteKuruNoKaStrategy;
 
+    #region Enemy Stats
+    [Header("Enemy Stats")]
     [SerializeField] protected float moveSpeed;
     public float MoveSpeed => moveSpeed;
     [SerializeField] protected float turnSpeed;
@@ -36,6 +41,7 @@ public abstract class EnemyBase : Unit
     [SerializeField] protected bool canAttack = true;
 
     protected bool isPlayerDetected = false;
+    #endregion
 
     public event Action<EnemyBase> OnReturn;
 
@@ -44,7 +50,7 @@ public abstract class EnemyBase : Unit
         Initialize();
     }
 
-    protected virtual void Initialize()
+    public virtual void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 

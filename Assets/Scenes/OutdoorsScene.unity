@@ -3427,7 +3427,7 @@ MonoBehaviour:
   CurrentStamina: 100
   MaxStamina: 100
   StaminaRegenSpeed: 5
-  SprintStaminaCost: 10
+  DeshStaminaCost: 35
 --- !u!114 &733986124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3474,6 +3474,7 @@ MonoBehaviour:
   warpStage1ChangeCriteria: 100
   warpStage2ChangeCriteria: 200
   warpSystemManager: {fileID: 709761147}
+  deshCoolDown: 0
   cam: {fileID: 1823688467}
 --- !u!114 &733986127
 MonoBehaviour:

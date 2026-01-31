@@ -18,7 +18,7 @@ public class ObjectPool : MonoBehaviour
 
     private readonly Dictionary<Projectile, Queue<Projectile>> projectilePool = new();
     private readonly Queue<AudioPlayer> audioPlayerPool = new();
-    private readonly Queue<EnemyBase> enemyBasePool = new();
+    private readonly Dictionary<EnemyBase, Queue<EnemyBase>> enemyBasePool = new();
 
     private void Awake()
     {
@@ -33,10 +33,44 @@ public class ObjectPool : MonoBehaviour
 
     public void Initialize()
     {
-        foreach (Projectile projectilePrefab in projectilePrefabs)
+        for (int i = 0; i < projectilePrefabs.Count; i++)
         {
-            projectilePool[projectilePrefab] = new Queue<Projectile>();
+            projectilePool[projectilePrefabs[i]] = new Queue<Projectile>();
         }
+
+        for (int i = 0; i < enemyBasePrefabs.Count; i++)
+        {
+            enemyBasePool[enemyBasePrefabs[i]] = new Queue<EnemyBase>();
+        }
+    }
+
+    public EnemyBase SpawnEnemy(EnemyBase prefab, Vector3 spawnPos, Quaternion spawnRot)
+    {
+        if (!enemyBasePool.ContainsKey(prefab))
+            return null;
+
+        EnemyBase enemy;
+
+        if (enemyBasePool[prefab].Count == 0)
+        {
+            enemy = Instantiate(prefab, spawnPos, spawnRot, meleeEnemyParent);
+        }
+        else
+        {
+            enemy = enemyBasePool[prefab].Dequeue();
+        }
+
+        enemy.transform.position = spawnPos;
+        enemy.transform.rotation = spawnRot;
+        enemy.transform.SetParent(meleeEnemyParent);
+        enemy.gameObject.SetActive(true);
+        return enemy;
+    }
+
+    public void DisableEnemy(EnemyBase enemy)
+    {
+        enemy.gameObject.SetActive(false);
+        enemyBasePool[enemy.OriginEnemy].Enqueue(enemy);
     }
 
 
