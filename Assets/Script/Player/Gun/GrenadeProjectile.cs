@@ -68,6 +68,7 @@ public class GrenadeProjectile : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(explosionDamage * damageMultiplier);
+                enemy.TakeExplosionKnockback(15f, transform.position, explosionRadius, 0.5f);
                 OnExplosionHit?.Invoke();
             }
 

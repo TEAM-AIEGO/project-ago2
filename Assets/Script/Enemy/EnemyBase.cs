@@ -126,6 +126,12 @@ public abstract class EnemyBase : Unit, IWarpObserver
         rb.AddForce(force, ForceMode.Impulse);
     }
 
+    public void TakeExplosionKnockback(float explosionForce, Vector3 explosionPosition, float explosionRadius, float duration)
+    {
+        knockbackStun += duration;
+        rb.AddExplosionForce(explosionForce, explosionPosition, explosionRadius, 2f, ForceMode.VelocityChange);
+    }
+
     protected abstract void Idle();
 
     protected abstract void Moving();
