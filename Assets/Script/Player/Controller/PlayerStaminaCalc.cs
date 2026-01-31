@@ -15,6 +15,7 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
     [SerializeField] private float MaxStamina;
     [SerializeField] private float StaminaRegenSpeed;
     [SerializeField] private float DeshStaminaCost;
+    [SerializeField] private float StaminaRecoveryReadyDelayTime;
     private float StaminaRecoveryReadyTime;
     private void Awake()
     {
@@ -66,6 +67,6 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
 
     void CanRecoverStamina()
     {
-        StaminaRecoveryReadyTime = Time.time + 1f;
+        StaminaRecoveryReadyTime = Time.time + StaminaRecoveryReadyDelayTime;
     }
 }
