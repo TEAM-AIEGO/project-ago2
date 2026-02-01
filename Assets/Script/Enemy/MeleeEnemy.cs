@@ -18,7 +18,7 @@ public class MeleeEnemy : EnemyBase
     {
         base.Initialize(origin, warpStage);
 
-        attackStrategy = new MeleeAttackStrategy(attackVectorRange, attackPoint);
+        muDAMUDAMUDAStrategy = new MeleeAttackStrategy(attackVectorRange, attackPoint);
         muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
     }
 
@@ -56,7 +56,7 @@ public class MeleeEnemy : EnemyBase
     protected override void Attacking()
     {
         Debug.Log("Melee Enemy is Attacking");
-        attackStrategy.Attacking(this, player.transform);
+        muDAMUDAMUDAStrategy.Attacking(this, player.transform);
 
         attackTime = 0f;
     }
