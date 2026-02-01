@@ -7,6 +7,8 @@ public class AudioPlayer : MonoBehaviour
 {
     public event Action<AudioPlayer> Finished;
 
+    private AudioPlayer originPlayerPrefab;
+    public AudioPlayer OriginPlayerPrefab => originPlayerPrefab;
     private Transform followTarget;
     private bool isStarted = false;
     private AudioSource src;
@@ -16,6 +18,11 @@ public class AudioPlayer : MonoBehaviour
         src = GetComponent<AudioSource>();
         src.playOnAwake = false;
         src.spatialBlend = 1f; // 3D
+    }
+
+    public void Initialize(AudioPlayer originPrefab)
+    {
+        originPlayerPrefab = originPrefab;
     }
 
     private void Update()
@@ -29,7 +36,7 @@ public class AudioPlayer : MonoBehaviour
         if (!src.isPlaying)
         {
             isStarted = false;
-            Finished?.Invoke(this);
+            Finished?.Invoke(originPlayerPrefab);
         }
     }
 

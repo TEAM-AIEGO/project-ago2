@@ -87,12 +87,12 @@ public class AudioManager : MonoBehaviour
 
     private void PlaySFX(AudioEntry entry, AudioRequest request)
     {
-        //Debug.Log(objectPool);
-        //if (objectPool == null)
-        //{
-        //    Debug.LogError("AudioManager: ObjectPool이 연결되지 않았습니다.");
-        //    return;
-        //}
+        Debug.Log(objectPool);
+        if (objectPool == null)
+        {
+            Debug.LogError("AudioManager: ObjectPool이 연결되지 않았습니다.");
+            return;
+        }
 
         AudioPlayer audioPlayer = objectPool.SpawnAudioPlayer();
 

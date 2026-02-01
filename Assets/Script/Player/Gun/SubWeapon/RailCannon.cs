@@ -44,7 +44,7 @@ public class RailCannon : SubWeapon
 
         Vector3 aimPoint = Vector3.zero;
 
-        RaycastHit[] hitInfo = Physics.RaycastAll(aimRay, 1000, LayerMask.GetMask("Enemy", "Hittable"));
+        RaycastHit[] hitInfo = Physics.RaycastAll(aimRay, 1000, LayerMask.GetMask("Enemy", "Hittable", "Ground"));
 
         for (int i = 0; i < hitInfo.Length; i++)
         {

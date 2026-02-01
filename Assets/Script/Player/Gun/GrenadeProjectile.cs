@@ -51,7 +51,7 @@ public class GrenadeProjectile : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(direction);
     }
 
-    private void OnExplosion()
+    public void OnExplosion()
     {
         emitter.Play("Grenade_Explosion");
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayerMask);

@@ -13,9 +13,9 @@ public class BombEnemy : EnemyBase
     [SerializeField] private Vector3 attackVectorRange;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private HitFlash hitFlash;
-    public override void Initialize(EnemyBase origin)
+    public override void Initialize(EnemyBase origin, int warpStage)
     {
-        base.Initialize(origin);
+        base.Initialize(origin, warpStage);
 
         //나중에 Bomb Attack Strategy 넣기
         muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();

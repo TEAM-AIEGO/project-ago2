@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     //
     //
 
+    [SerializeField] private ObjectPool objectPool;
     private int currentStageIndex = 0;
     private int StageEnemyLeft = 0;
 
@@ -63,11 +64,14 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < currentStage.Enemies.Count; i++)
         {
             var currentEnemySpawnData = currentStage.Enemies[i];
-            GameObject currentEnemy = Instantiate(currentEnemySpawnData.EnemyPrefab, currentEnemySpawnData.EnemySpawnPosition, quaternion.identity);
-            if (currentEnemy.TryGetComponent(out EnemyBase enemyBase))
-            {
-                enemyBase.Initialize(enemyBase);
-            }
+            //GameObject currentEnemy = Instantiate(currentEnemySpawnData.EnemyPrefab, currentEnemySpawnData.EnemySpawnPosition, quaternion.identity);
+            //if (currentEnemy.TryGetComponent(out EnemyBase enemyBase))
+            //{
+            //    enemyBase.Initialize(enemyBase);
+            //}
+            //currentEnemy.GetComponent<Unit>().Died.AddListener(OnStageEnemyKilled);
+
+            EnemyBase currentEnemy = objectPool.SpawnEnemy(currentEnemySpawnData.EnemyPrefab.GetComponent<EnemyBase>(), currentEnemySpawnData.EnemySpawnPosition);
             currentEnemy.GetComponent<Unit>().Died.AddListener(OnStageEnemyKilled);
         }
         currentStage.StageState = StageState.Fighting;

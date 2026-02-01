@@ -82,10 +82,17 @@ public class TestGun : MonoBehaviour // ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿
                 enemyBase.TakeDamage(10f);
                 uiManager.ShowHitMarker();
             }
+
             if (hitinfo.collider.TryGetComponent(out IKnockable knockable))
             {
                 knockable.TakeKnockback(aimRay.direction * 25, 0.05f);
             }
+
+            if (hitinfo.collider.TryGetComponent(out GrenadeProjectile grenadeProjectile))
+            {
+                grenadeProjectile.OnExplosion();
+            }
+
             aimPoint = hitinfo.point;
         }
         else
@@ -103,10 +110,6 @@ public class TestGun : MonoBehaviour // ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿
         {
             direction = aimDirection;
         }
-
-        //objectPool.ProjectileRequest.Invoke(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
-
-        //objectPool.ProjectileRequest.Invoke(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
 
         objectPool.SpawnProjectile(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
 

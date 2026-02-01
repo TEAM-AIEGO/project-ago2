@@ -54,7 +54,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     }
 
-    public virtual void Initialize(EnemyBase oringin)
+    public virtual void Initialize(EnemyBase oringin, int warpStage)
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -67,6 +67,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
         state = EnemyState.idle;
 
+        currentMoveSpeed = GetSpeed(warpStage);
         Died.AddListener(Dead);
     }
 

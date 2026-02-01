@@ -162,7 +162,9 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 3
+  stage1MoveSpeed: 5
+  stage2MoveSpeed: 8
+  currentMoveSpeed: 5
   turnSpeed: 15
   detectionDistance: 10
   attackDistance: 2

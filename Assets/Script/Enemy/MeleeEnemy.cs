@@ -14,9 +14,9 @@ public class MeleeEnemy : EnemyBase
     [SerializeField] private Transform attackPoint;
     [SerializeField] private HitFlash hitFlash;
 
-    public override void Initialize(EnemyBase origin)
+    public override void Initialize(EnemyBase origin, int warpStage)
     {
-        base.Initialize(origin);
+        base.Initialize(origin, warpStage);
 
         attackStrategy = new MeleeAttackStrategy(attackVectorRange, attackPoint);
         muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();

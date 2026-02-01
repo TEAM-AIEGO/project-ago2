@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6327751d2bb223428f6234657359600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 150
+  speed: 300
   lifeTime: 2
 --- !u!135 &549560395043706117
 SphereCollider:

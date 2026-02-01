@@ -65,7 +65,7 @@ public class ObjectPool : MonoBehaviour
             enemy = enemyBasePool[prefab].Dequeue();
         }
 
-        enemy.Initialize(prefab);
+        enemy.Initialize(prefab, warpSystemManager.GetWarpStage());
         enemy.transform.position = spawnPos;
         enemy.transform.rotation = Quaternion.identity;
         enemy.transform.SetParent(enemyParent);
@@ -148,15 +148,18 @@ public class ObjectPool : MonoBehaviour
 
         if (audioPlayerPool.Count == 0)
         {
-            audioPlayer = Instantiate(audioPlayerPrefab, transform);
+            //Debug.Log("Instantiate AudioPlayer : " + audioPlayerPool.Count);
+            audioPlayer = Instantiate(audioPlayerPrefab);
         }
         else
         {
+            //Debug.Log("Reuse AudioPlayer : " + audioPlayerPool.Count);
             audioPlayer = audioPlayerPool.Dequeue();
         }
 
-        audioPlayer.gameObject.SetActive(true);
+        audioPlayer.Initialize(audioPlayer);
         audioPlayer.Finished += DisableAudioPlayer;
+        audioPlayer.gameObject.SetActive(true);
         return audioPlayer;
     }
 
@@ -164,6 +167,8 @@ public class ObjectPool : MonoBehaviour
     {
         audioPlayer.gameObject.SetActive(false);
         audioPlayer.transform.SetParent(audioPlayerParent);
-        audioPlayerPool.Enqueue(audioPlayer);
+
+        if (!audioPlayerPool.Contains(audioPlayer.OriginPlayerPrefab))
+            audioPlayerPool.Enqueue(audioPlayer.OriginPlayerPrefab);
     }
 }
