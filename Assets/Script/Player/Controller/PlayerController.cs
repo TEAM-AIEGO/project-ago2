@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(SFXEmitter))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerManager))]
-public class PlayerController : MonoBehaviour, IWarpObserver
+public class PlayerController : MonoBehaviour, IWarpObserver, IKnockable
 {
     [SerializeField] private float sprintingSpeedStage1 = 8.0f;
     [SerializeField] private float sprintingSpeedStage2 = 16.0f;
@@ -123,6 +123,8 @@ public class PlayerController : MonoBehaviour, IWarpObserver
 
         isGrounded = PlayerGroundChecker.IsGrounded();
 
+        
+
         if (IsDeshing)
             PlayerStaminaCalc.ConsumeStamina();
         else
@@ -194,6 +196,19 @@ public class PlayerController : MonoBehaviour, IWarpObserver
     public void OnWarpStageChanged(int newStage)
     {
         PlayerMovement.SetSpeed(GetSpeed(newStage));
+    }
+
+    //knockbacks
+    public void TakeKnockback(Vector3 force, float duration)
+    {
+        PlayerMovement.GetKnockbackStunned(duration);
+        rb.AddForce(force, ForceMode.Impulse);
+    }
+
+    public void TakeExplosionKnockback(float explosionForce, Vector3 explosionPosition, float explosionRadius, float duration)
+    {
+        PlayerMovement.GetKnockbackStunned(duration);
+        rb.AddExplosionForce(explosionForce, explosionPosition, explosionRadius, 2f, ForceMode.VelocityChange);
     }
 
     private void OnHpChanged(float currentHp, float maxHp)

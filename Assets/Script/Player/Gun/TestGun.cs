@@ -81,7 +81,10 @@ public class TestGun : MonoBehaviour // ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿
             {
                 enemyBase.TakeDamage(10f);
                 uiManager.ShowHitMarker();
-                enemyBase.TakeKnockback(aimRay.direction * 25, 0.05f);
+            }
+            if (hitinfo.collider.TryGetComponent(out IKnockable knockable))
+            {
+                knockable.TakeKnockback(aimRay.direction * 25, 0.05f);
             }
             aimPoint = hitinfo.point;
         }

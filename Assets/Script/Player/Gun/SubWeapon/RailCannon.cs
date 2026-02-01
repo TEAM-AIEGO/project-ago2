@@ -44,16 +44,19 @@ public class RailCannon : SubWeapon
 
         Vector3 aimPoint = Vector3.zero;
 
-        RaycastHit[] hitInfo = Physics.RaycastAll(aimRay, 1000, LayerMask.GetMask("Enemy"));
+        RaycastHit[] hitInfo = Physics.RaycastAll(aimRay, 1000, LayerMask.GetMask("Enemy", "Hittable"));
 
         for (int i = 0; i < hitInfo.Length; i++)
         {
-            var currentEnemyObject = hitInfo[i].collider.gameObject;
-            if (currentEnemyObject.TryGetComponent(out EnemyBase enemyBase))
+            var currentObject = hitInfo[i].collider.gameObject;
+            if (currentObject.TryGetComponent(out EnemyBase enemyBase))
             {
                 enemyBase.TakeDamage(99f);
                 uiManager.ShowHitMarker();
-                enemyBase.TakeKnockback(aimRay.direction * 250, 0.5f);
+            }
+            if (currentObject.TryGetComponent(out IKnockable knockable))
+            {
+                knockable.TakeKnockback(aimRay.direction * 250, 0.5f);
             }
             if (i == hitInfo.Length - 1)
             {

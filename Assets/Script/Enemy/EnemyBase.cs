@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class EnemyBase : Unit, IWarpObserver
+public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 {
     protected enum EnemyState
     {

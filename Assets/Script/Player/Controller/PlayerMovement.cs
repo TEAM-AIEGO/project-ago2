@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float WalkSpeed;
     [SerializeField] private float SprintSpeed;
 
+    private float knockbackStun;
+
     private Transform cam;
     private Rigidbody rb;
     private float speed;
@@ -21,11 +23,17 @@ public class PlayerMovement : MonoBehaviour
         this.rb = rb;
     }
 
+    void Update()
+    {
+        knockbackStun = Mathf.Max(0, knockbackStun - Time.deltaTime);
+    }
+
     public void SetSpeed(float speed) => this.speed = speed;
 
     public void TranslationPosition(Vector3 movement)
     {
         rb.rotation = quaternion.Euler(0f, cam.transform.rotation.eulerAngles.y * Mathf.Deg2Rad, 0f);
+        if (knockbackStun > 0) return;
 
         Vector3 camForward = cam.forward;
         Vector3 camRight = cam.right;
@@ -45,5 +53,10 @@ public class PlayerMovement : MonoBehaviour
         moveDirection *= speed;
         moveDirection.y = rb.linearVelocity.y;
         rb.linearVelocity = moveDirection;
+    }
+
+    public void GetKnockbackStunned(float time)
+    {
+        knockbackStun += time;
     }
 }
