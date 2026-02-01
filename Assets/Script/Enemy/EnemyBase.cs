@@ -21,8 +21,15 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected EnemyBase originEnemy;
     public EnemyBase OriginEnemy => originEnemy;
 
+<<<<<<< Updated upstream
     protected IMUDAMUDAMUDAStrategy muDAMUDAMUDAStrategy;
     protected IMuKatteKuruNoKaStrategy muKatteKuruNoKaStrategy;
+=======
+    protected IORAORAORAStrategy NegromancyStrategy;
+    protected IMUDAMUDAMUDAStrategy attackStrategy;
+    protected IMuKatteKuruNoKaStrategy muKatteKuruNoKaStrategy;   
+
+>>>>>>> Stashed changes
 
     #region Enemy Stats
     [Header("Enemy Stats")]

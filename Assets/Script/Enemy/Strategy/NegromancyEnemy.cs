@@ -1,34 +1,34 @@
+using System;
 using UnityEngine;
 
-enum RangedState
-{
-    idle,
-    moving,
-    attacking
-}
-
 [RequireComponent(typeof(Rigidbody))]
-public class RangedEnemy : EnemyBase
+public class NegromancyEnemy : EnemyBase
 {
+    [Header("Negromancy Spawn")]
+    [SerializeField] private EnemyBase spawnPrefab;
+    [SerializeField] private int spawnCount = 2;
+    [SerializeField] private float spawnRadius = 2f;
+    [SerializeField] private bool spawnOnDeath = true;
+
     [SerializeField] private Vector3 attackVectorRange;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private HitFlash hitFlash;
+
+    public event Action<EnemySpawnRequest> SpawnRequested;
+
+    private IORAORAORAStrategy spawnStrategy;
+
     public override void Initialize(EnemyBase origin, int warpStage)
     {
         base.Initialize(origin, warpStage);
 
-        //나중에 Ranged Attack Strategy 넣기
-        
-        muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
+        attackStrategy = new MeleeAttackStrategy(attackVectorRange, attackPoint);
+        muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
+        spawnStrategy = new NegromancySpawnStrategy(spawnPrefab, spawnCount, spawnRadius);
     }
 
-    protected override void Update()
-    {
-        base.Update();
-    }
     protected override void Idle()
     {
-        // Detect player in idle state
         if (Vector3.Distance(player.transform.position, transform.position) < detectionDistance)
         {
             state = EnemyState.moving;
@@ -53,6 +53,7 @@ public class RangedEnemy : EnemyBase
 
     protected override void Attacking()
     {
+        attackStrategy.Attacking(this, player.transform);
         attackTime = 0f;
     }
 
@@ -61,7 +62,6 @@ public class RangedEnemy : EnemyBase
         if (health <= 0)
             return;
 
-        // Detect player on taking damage
         if (isPlayerDetected == false)
         {
             isPlayerDetected = true;
@@ -69,8 +69,29 @@ public class RangedEnemy : EnemyBase
         }
 
         health -= damage;
-        Debug.Log($"Ranged Enemy took {damage} damage. Remaining Health: {health}");
-
         hitFlash.Flash();
+    }
+
+    protected override void Dead()
+    {
+        if (spawnOnDeath)
+        {
+            RequestSpawn();
+        }
+
+        base.Dead();
+    }
+
+    private void RequestSpawn()
+    {
+        if (spawnStrategy == null)
+        {
+            return;
+        }
+
+        foreach (EnemySpawnRequest request in spawnStrategy.CreateSpawnRequests(this))
+        {
+            SpawnRequested?.Invoke(request);
+        }
     }
 }

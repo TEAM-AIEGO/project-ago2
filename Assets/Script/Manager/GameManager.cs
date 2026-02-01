@@ -72,12 +72,43 @@ public class GameManager : MonoBehaviour
             //currentEnemy.GetComponent<Unit>().Died.AddListener(OnStageEnemyKilled);
 
             EnemyBase currentEnemy = objectPool.SpawnEnemy(currentEnemySpawnData.EnemyPrefab.GetComponent<EnemyBase>(), currentEnemySpawnData.EnemySpawnPosition);
-            currentEnemy.GetComponent<Unit>().Died.AddListener(OnStageEnemyKilled);
+            RegisterEnemy(currentEnemy, false);
         }
         currentStage.StageState = StageState.Fighting;
     }
 
-    
+
+    private void RegisterEnemy(EnemyBase enemy, bool countForStage)
+    {
+        if (enemy == null)
+        {
+            return;
+        }
+
+        enemy.GetComponent<Unit>().Died.AddListener(OnStageEnemyKilled);
+
+        if (countForStage)
+        {
+            StageEnemyLeft++;
+        }
+
+        if (enemy is NegromancyEnemy negromancyEnemy)
+        {
+            negromancyEnemy.SpawnRequested += HandleNegromancySpawnRequest;
+        }
+    }
+
+    private void HandleNegromancySpawnRequest(EnemySpawnRequest request)
+    {
+        if (request.Prefab == null)
+        {
+            return;
+        }
+
+        EnemyBase spawnedEnemy = objectPool.SpawnEnemy(request.Prefab, request.Position);
+        RegisterEnemy(spawnedEnemy, true);
+    }
+
 
     void OnStageEnemyKilled()
     {
