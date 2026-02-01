@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 {
 
     public List<Stage> Stages;
+    public bool IsGameOver { get; private set; }
 
     #region Warping Stages
     /// <summary>
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ObjectPool objectPool;
     private int currentStageIndex = 0;
     private int StageEnemyLeft = 0;
+
 
     void Start()
     {
@@ -124,5 +126,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetGameOver()
+    {
+        IsGameOver = true;
     }
 }
