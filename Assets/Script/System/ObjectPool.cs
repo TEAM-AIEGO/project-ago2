@@ -65,6 +65,9 @@ public class ObjectPool : MonoBehaviour
             enemy = enemyBasePool[prefab].Dequeue();
         }
 
+        if (enemy is RangedEnemy rangedEnemy)
+            rangedEnemy.OnShootProjectile += SpawnProjectile;
+
         enemy.Initialize(prefab, warpSystemManager.GetWarpStage());
         enemy.transform.position = spawnPos;
         enemy.transform.rotation = Quaternion.identity;
@@ -83,7 +86,7 @@ public class ObjectPool : MonoBehaviour
     }
 
 
-    public void SpawnProjectile(Projectile prefab, Vector3 spawnPos, Quaternion spawnRot)
+    public void SpawnProjectile(Projectile prefab, Vector3 spawnPos, Quaternion spawnRot, float speed = 0f ,float damage = 0f)
     {
         if (!projectilePool.ContainsKey(prefab))
             return;
@@ -100,7 +103,7 @@ public class ObjectPool : MonoBehaviour
             projectile = projectilePool[prefab].Dequeue();
         }
 
-        projectile.Initialized(prefab);
+        projectile.Initialized(prefab, damage, speed);
         projectile.transform.position = spawnPos;
         projectile.transform.rotation = spawnRot;
         projectile.transform.SetParent(projectileParent);

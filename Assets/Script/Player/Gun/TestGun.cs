@@ -111,7 +111,7 @@ public class TestGun : MonoBehaviour // ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿
             direction = aimDirection;
         }
 
-        objectPool.SpawnProjectile(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction));
+        objectPool.SpawnProjectile(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction), 200f);
 
         emitter.PlayFollow("Gun_Shot", playerTransfrom);
         isFireAble = false;
