@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
 
         if (((1 << layer) & contactableLayerMask) != 0)
         {
-            Debug.Log("Projectile hit: " + other.gameObject.name);
+            //Debug.Log("Projectile hit: " + other.gameObject.name);
 
             if (damage != 0f)
             {
@@ -55,7 +55,7 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                Debug.Log("Projectile returned without dealing damage.");
+                //Debug.Log("Projectile returned without dealing damage.");
                 OnReturn.Invoke(this);
             }
         }

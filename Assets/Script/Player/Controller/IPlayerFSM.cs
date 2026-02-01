@@ -13,7 +13,7 @@ public class PlayerStateMachine
 
     public void ChangeState(IPlayerFSM newState)
     {
-        Debug.Log("Changing state to: " + newState.GetType().Name);
+        //Debug.Log("Changing state to: " + newState.GetType().Name);
         CurrentState?.Exit();
         CurrentState = newState;
         CurrentState?.Enter();

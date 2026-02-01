@@ -28,7 +28,6 @@ public class GermanysTechnologyStrategy : IMUDAMUDAMUDAStrategy
         {
             Quaternion shootRotation = Quaternion.LookRotation(leadDirection, Vector3.up);
             OnShootProjectile?.Invoke(rangedEnemy.ProjectilePrefab, shooter.position, shootRotation, projectileSpeed, damage);
-            
         }
         else
         {

@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Initialized(Transform cam, Rigidbody rb)
     {
-        Debug.Log("PlayerMovement Initialized");
+        //Debug.Log("PlayerMovement Initialized");
         this.cam = cam;
         this.rb = rb;
     }

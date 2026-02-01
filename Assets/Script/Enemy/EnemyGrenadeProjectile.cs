@@ -2,19 +2,10 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class GrenadeProjectile : MonoBehaviour
+public class EnemyGrenadeProjectile : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private SFXEmitter emitter;
-
-    [HideInInspector] public event Action<GrenadeProjectile> OnReturn;
-    [HideInInspector] public event Action OnExplosionHit;
-
-    [SerializeField] private float speed = 25f;
-
-    private GrenadeProjectile OriginPrefab;
-    public GrenadeProjectile OriginProjectile => OriginPrefab;
-
     [SerializeField] private float lifeTime = 5f;
     private float lifeTimeTimer;
 
@@ -25,7 +16,12 @@ public class GrenadeProjectile : MonoBehaviour
     [SerializeField] private float explosionDamage;
     private bool hasExploded;
 
-    public void Initialized(GrenadeProjectile projectile)
+    [HideInInspector] public event Action<EnemyGrenadeProjectile> OnReturn;
+
+    private EnemyGrenadeProjectile OriginPrefab;
+    public EnemyGrenadeProjectile OriginProjectile => OriginPrefab;
+
+    public void Initialized(EnemyGrenadeProjectile projectile, float damage)
     {
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -33,15 +29,12 @@ public class GrenadeProjectile : MonoBehaviour
 
         lifeTimeTimer = lifeTime;
         OriginPrefab = projectile;
+        explosionDamage = damage;
         hasExploded = false;
     }
 
     private void Update()
     {
-        transform.Translate(speed * Time.deltaTime * Vector3.forward);
-
-        //rb.linearVelocity = transform.forward * speed;
-
         lifeTimeTimer -= Time.deltaTime;
         if (lifeTimeTimer <= 0)
         {
@@ -49,9 +42,9 @@ public class GrenadeProjectile : MonoBehaviour
         }
     }
 
-    public void OnLaunched (Vector3 direction)
+    public void OnLaunched(Vector3 direction)
     {
-        rb.linearVelocity = direction * speed;
+        rb.linearVelocity = direction;
         transform.rotation = Quaternion.LookRotation(direction);
     }
 
@@ -63,7 +56,8 @@ public class GrenadeProjectile : MonoBehaviour
         }
 
         hasExploded = true;
-        emitter.Play("Grenade_Explosion");
+        //emitter.Play("Explosion");
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayerMask);
 
         for (int i = 0; i < hitColliders.Length; i++)
@@ -73,7 +67,7 @@ public class GrenadeProjectile : MonoBehaviour
 
             if (distance > explosionDamageReductionDistance)
             {
-                damageMultiplier = Mathf.Clamp01(1 - (distance - explosionDamageReductionDistance) / (explosionRadius - explosionDamageReductionDistance));
+                damageMultiplier = Mathf.Clamp01(1f - (distance - explosionDamageReductionDistance) / (explosionRadius - explosionDamageReductionDistance));
             }
 
             if (hitColliders[i].TryGetComponent(out IKnockable knockable))
@@ -81,27 +75,12 @@ public class GrenadeProjectile : MonoBehaviour
                 knockable.TakeExplosionKnockback(15f, transform.position, explosionRadius, 0.5f);
             }
 
-            if (hitColliders[i].TryGetComponent(out EnemyBase enemy))
+            if (hitColliders[i].TryGetComponent(out PlayerManager player))
             {
-                enemy.TakeDamage(explosionDamage * damageMultiplier);
-                OnExplosionHit?.Invoke();
+                player.TakeDamage(explosionDamage * damageMultiplier);
             }
-            PlayerManager player = hitColliders[i].GetComponent<PlayerManager>();
-            if (player != null)
-            {
-                player.TakeDamage((explosionDamage / 4) * damageMultiplier);
-                OnExplosionHit?.Invoke();
-            }
-
-            //IDamageable damageable = hitColliders[i].GetComponent<IDamageable>();
-
-            //if (damageable != null)
-            //{
-            //    damageable.TakeDamage(explosionDamage * damageMultiplier);
-            //}
         }
 
-        //OnReturn.Invoke(this);
         OnReturn?.Invoke(this);
     }
 

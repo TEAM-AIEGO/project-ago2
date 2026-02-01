@@ -24,7 +24,7 @@ public class PlayerJumpAction : MonoBehaviour
 
     public void Initialized(Rigidbody rb, PlayerGroundChecker groundChecker, SFXEmitter emitter)
     {  
-        Debug.Log("PlayerJumpAction Initialized");
+        //Debug.Log("PlayerJumpAction Initialized");
         this.rb = rb;
         this.groundChecker = groundChecker;
         this.emitter = emitter;

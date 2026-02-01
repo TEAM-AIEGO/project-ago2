@@ -11,6 +11,7 @@ public class ObjectPool : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private List<Projectile> projectilePrefabs;
     [SerializeField] private GrenadeProjectile grenadeProjectilePrefab;
+    [SerializeField] private EnemyGrenadeProjectile enemyGrenadeProjectilePrefab;
     [SerializeField] private AudioPlayer audioPlayerPrefab;
     [SerializeField] private List<EnemyBase> enemyBasePrefabs;
 
@@ -22,6 +23,7 @@ public class ObjectPool : MonoBehaviour
 
     private readonly Dictionary<Projectile, Queue<Projectile>> projectilePool = new();
     private readonly Queue<GrenadeProjectile> grenadeProjectilePool = new();
+    private readonly Queue<EnemyGrenadeProjectile> enemyGrenadeProjectilePool = new();
     private readonly Queue<AudioPlayer> audioPlayerPool = new();
     private readonly Dictionary<EnemyBase, Queue<EnemyBase>> enemyBasePool = new();
 
@@ -68,6 +70,10 @@ public class ObjectPool : MonoBehaviour
         if (enemy is RangedEnemy rangedEnemy)
             rangedEnemy.OnShootProjectile += SpawnProjectile;
 
+        if (enemy is BombEnemy bombEnemy)
+            bombEnemy.OnLaunchProjectile += SpawnEnemyGrenadeProjectile;
+
+        //Debug.Log($"Spawning Enemy: {enemy.name} at {spawnPos}");
         enemy.Initialize(prefab, warpSystemManager.GetWarpStage());
         enemy.transform.position = spawnPos;
         enemy.transform.rotation = Quaternion.identity;
@@ -84,7 +90,6 @@ public class ObjectPool : MonoBehaviour
         enemy.gameObject.SetActive(false);
         enemyBasePool[enemy.OriginEnemy].Enqueue(enemy);
     }
-
 
     public void SpawnProjectile(Projectile prefab, Vector3 spawnPos, Quaternion spawnRot, float speed = 0f ,float damage = 0f)
     {
@@ -133,7 +138,7 @@ public class ObjectPool : MonoBehaviour
         grenadeProjectile.Initialized(grenadeProjectilePrefab);
         grenadeProjectile.transform.position = spawnPos;
         grenadeProjectile.transform.rotation = Quaternion.identity;
-        grenadeProjectile.transform.SetParent(grenadeProjectileParent);
+        //grenadeProjectile.transform.SetParent(grenadeProjectileParent);
         grenadeProjectile.OnReturn += DisableGrenadeProjectile;
         grenadeProjectile.gameObject.SetActive(true);
         return grenadeProjectile;
@@ -143,6 +148,34 @@ public class ObjectPool : MonoBehaviour
     {
         grenadeProjectile.gameObject.SetActive(false);
         grenadeProjectilePool.Enqueue(grenadeProjectile);
+    }
+
+    public void SpawnEnemyGrenadeProjectile(Vector3 spawnPos, Vector3 direction, float damage)
+    {
+        EnemyGrenadeProjectile enemyGrenadeProjectile;
+
+        if (enemyGrenadeProjectilePool.Count == 0)
+        {
+            enemyGrenadeProjectile = Instantiate(enemyGrenadeProjectilePrefab, spawnPos, Quaternion.identity, grenadeProjectileParent);
+        }
+        else
+        {
+            enemyGrenadeProjectile = enemyGrenadeProjectilePool.Dequeue();
+        }
+
+        enemyGrenadeProjectile.Initialized(enemyGrenadeProjectilePrefab, damage);
+        enemyGrenadeProjectile.transform.position = spawnPos;
+        enemyGrenadeProjectile.transform.rotation = Quaternion.identity;
+        //enemyGrenadeProjectile.transform.SetParent(grenadeProjectileParent);
+        enemyGrenadeProjectile.OnReturn += DisableEnemyGrenadeProjectile;
+        enemyGrenadeProjectile.gameObject.SetActive(true);
+        enemyGrenadeProjectile.OnLaunched(direction);
+    }
+
+    public void DisableEnemyGrenadeProjectile(EnemyGrenadeProjectile enemyGrenadeProjectile)
+    {
+        enemyGrenadeProjectile.gameObject.SetActive(false);
+        enemyGrenadeProjectilePool.Enqueue(enemyGrenadeProjectile.OriginProjectile);
     }
 
     public AudioPlayer SpawnAudioPlayer()

@@ -93,6 +93,11 @@ public class TestGun : MonoBehaviour // ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿
                 grenadeProjectile.OnExplosion();
             }
 
+            if (hitinfo.collider.TryGetComponent(out EnemyGrenadeProjectile enemyGrenadeProjectile))
+            {
+                enemyGrenadeProjectile.OnExplosion();
+            }
+
             aimPoint = hitinfo.point;
         }
         else
@@ -111,7 +116,7 @@ public class TestGun : MonoBehaviour // ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿
             direction = aimDirection;
         }
 
-        objectPool.SpawnProjectile(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction), 200f);
+        objectPool.SpawnProjectile(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction), 300f);
 
         emitter.PlayFollow("Gun_Shot", playerTransfrom);
         isFireAble = false;
