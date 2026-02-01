@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 enum RangedState
@@ -10,15 +11,20 @@ enum RangedState
 [RequireComponent(typeof(Rigidbody))]
 public class RangedEnemy : EnemyBase
 {
-    [SerializeField] private Vector3 attackVectorRange;
-    [SerializeField] private Transform attackPoint;
+    [HideInInspector] public event Action<Projectile, Vector3, Quaternion, float, float> OnShootProjectile;
+
+    [SerializeField] private Transform ShootPoint;
+    [SerializeField] private float projectileSpeed = 40f;
+    [SerializeField] private float maxLeadTime = 2f;
     [SerializeField] private HitFlash hitFlash;
+    [SerializeField] private Projectile projectilePrefab;
+    public Projectile ProjectilePrefab => projectilePrefab;
+
     public override void Initialize(EnemyBase origin, int warpStage)
     {
         base.Initialize(origin, warpStage);
 
-        //나중에 Ranged Attack Strategy 넣기
-        
+        muDAMUDAMUDAStrategy = new GermanysTechnologyStrategy(projectileSpeed, attackDamage, maxLeadTime, ShootPoint, OnShootProjectile);
         muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
     }
 
@@ -53,7 +59,26 @@ public class RangedEnemy : EnemyBase
 
     protected override void Attacking()
     {
+        muDAMUDAMUDAStrategy.Attacking(this, player.transform);
         attackTime = 0f;
+    }
+
+    public override void OnWarpStageChanged(int newStage)
+    {
+        base.OnWarpStageChanged(newStage);
+
+        switch (newStage)
+        {
+            case 0:
+                muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
+                break;
+            case 1:
+                muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
+                break;
+            default:
+                Debug.LogError("Invalid warp stage");
+                break;
+        }
     }
 
     public override void TakeDamage(float damage)

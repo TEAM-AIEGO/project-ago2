@@ -85,6 +85,8 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                 //Debug.Log("Enemy is moving");
                 if (knockbackStun <= 0)
                 {
+                    if (muKatteKuruNoKaStrategy is DontMuKatteKuruNoKaStrategy)
+                        LookTarget();
                     Moving();
                 }
                 else
@@ -128,6 +130,13 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         rb.AddExplosionForce(explosionForce, explosionPosition, explosionRadius, 2f, ForceMode.VelocityChange);
     }
 
+    private void LookTarget()
+    {
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
     protected abstract void Idle();
 
     protected abstract void Moving();
@@ -142,7 +151,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         //OnReturn?.Invoke(this);
     }
 
-    public void OnWarpStageChanged(int newStage)
+    public virtual void OnWarpStageChanged(int newStage)
     {
         currentMoveSpeed = GetSpeed(newStage);
     }
