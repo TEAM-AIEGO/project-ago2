@@ -22,7 +22,7 @@ public class NegromancyEnemy : EnemyBase
     {
         base.Initialize(origin, warpStage);
 
-        attackStrategy = new MeleeAttackStrategy(attackVectorRange, attackPoint);
+        muDAMUDAMUDAStrategy = new MeleeAttackStrategy(attackVectorRange, attackPoint);
         muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
         spawnStrategy = new NegromancySpawnStrategy(spawnPrefab, spawnCount, spawnRadius);
     }
@@ -53,7 +53,7 @@ public class NegromancyEnemy : EnemyBase
 
     protected override void Attacking()
     {
-        attackStrategy.Attacking(this, player.transform);
+        muDAMUDAMUDAStrategy.Attacking(this, player.transform);
         attackTime = 0f;
     }
 
