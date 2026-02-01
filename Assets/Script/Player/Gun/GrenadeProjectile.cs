@@ -23,6 +23,7 @@ public class GrenadeProjectile : MonoBehaviour
     [SerializeField] private float explosionRadius;
     [SerializeField] private float explosionDamageReductionDistance;
     [SerializeField] private float explosionDamage;
+    private bool hasExploded;
 
     public void Initialized(GrenadeProjectile projectile)
     {
@@ -32,6 +33,7 @@ public class GrenadeProjectile : MonoBehaviour
 
         lifeTimeTimer = lifeTime;
         OriginPrefab = projectile;
+        hasExploded = false;
     }
 
     private void Update()
@@ -53,6 +55,12 @@ public class GrenadeProjectile : MonoBehaviour
 
     public void OnExplosion()
     {
+        if (hasExploded)
+        {
+            return;
+        }
+
+        hasExploded = true;
         emitter.Play("Grenade_Explosion");
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayerMask);
 
@@ -90,7 +98,7 @@ public class GrenadeProjectile : MonoBehaviour
             //}
         }
 
-        OnReturn.Invoke(this);
+        OnReturn?.Invoke(this);
     }
 
     private void OnCollisionEnter(Collision collision)
