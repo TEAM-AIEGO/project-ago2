@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IAttackStrategy
+public interface IMUDAMUDAMUDAStrategy
 {
     void Attacking(EnemyBase enemy, Transform target);
 }

@@ -18,6 +18,7 @@ public class RangedEnemy : EnemyBase
         base.Initialize(origin, warpStage);
 
         //나중에 Ranged Attack Strategy 넣기
+        M
         muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
     }
 

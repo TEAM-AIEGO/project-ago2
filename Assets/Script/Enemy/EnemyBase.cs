@@ -21,7 +21,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected EnemyBase originEnemy;
     public EnemyBase OriginEnemy => originEnemy;
 
-    protected IAttackStrategy attackStrategy;
+    protected IMUDAMUDAMUDAStrategy attackStrategy;
     protected IMuKatteKuruNoKaStrategy muKatteKuruNoKaStrategy;
 
     #region Enemy Stats

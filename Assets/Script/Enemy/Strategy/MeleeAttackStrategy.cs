@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MeleeAttackStrategy : IAttackStrategy
+public class MeleeAttackStrategy : IMUDAMUDAMUDAStrategy
 {
     private Vector2 meleeAttackRange;
     private Transform meleeAttackPoint;
