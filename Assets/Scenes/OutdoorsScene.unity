@@ -5060,7 +5060,7 @@ MonoBehaviour:
   MaxStamina: 100
   StaminaRegenSpeed: 20
   DeshStaminaCost: 30
-  StaminaRecoveryReadyDelayTime: 1
+  StaminaRecoveryReadyDelayTime: 0.25
 --- !u!114 &733986124
 MonoBehaviour:
   m_ObjectHideFlags: 0
