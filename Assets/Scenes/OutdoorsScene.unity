@@ -8180,6 +8180,88 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1027284101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1027284103}
+  - component: {fileID: 1027284102}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1027284102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027284101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eb23a5fb23cbbf4ab84c6b22bc0144b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageManager
+  Stages:
+  - StageState: 0
+    StageObject: {fileID: 0}
+    WarpStageObject: {fileID: 0}
+    StageTarget: {fileID: 1516448857}
+    Enemies:
+    - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+    - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+    - EnemyPrefab: {fileID: 7477929138127596566, guid: 25603aec74837564da67e926574ecd86, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+  - StageState: 0
+    StageObject: {fileID: 0}
+    WarpStageObject: {fileID: 0}
+    StageTarget: {fileID: 1516448857}
+    Enemies:
+    - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+    - EnemyPrefab: {fileID: 8501198157883964329, guid: e8354b079cbd8aa4aadd7dd9369d0e3f, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+    - EnemyPrefab: {fileID: 9193950021770029371, guid: c7a69b4a321f95b4cb89b14748d12ff0, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+    - EnemyPrefab: {fileID: 7477929138127596566, guid: 25603aec74837564da67e926574ecd86, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+  - StageState: 0
+    StageObject: {fileID: 0}
+    WarpStageObject: {fileID: 0}
+    StageTarget: {fileID: 1516448857}
+    Enemies:
+    - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+    - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+    - EnemyPrefab: {fileID: 7477929138127596566, guid: 25603aec74837564da67e926574ecd86, type: 3}
+      EnemySpawnPosition: {x: 0, y: 0, z: 0}
+  objectPool: {fileID: 173203512}
+  warpSystemManager: {fileID: 709761147}
+--- !u!4 &1027284103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027284101}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1039013303
 GameObject:
   m_ObjectHideFlags: 0
@@ -11888,7 +11970,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 99c354073e3013642a77a8be1374a2b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1664581062}
   m_SourcePrefab: {fileID: 100100000, guid: 99c354073e3013642a77a8be1374a2b9, type: 3}
 --- !u!1 &1384287602
 GameObject:
@@ -13846,6 +13931,33 @@ Transform:
   - {fileID: 252599983}
   m_Father: {fileID: 11850375}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1664581060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 99c354073e3013642a77a8be1374a2b9, type: 3}
+  m_PrefabInstance: {fileID: 1370536212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1664581062
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664581060}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ad9dbddec10179a4596963a387a97f48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1690998507
 GameObject:
   m_ObjectHideFlags: 0
@@ -16711,19 +16823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a53fcd1af0f1cc4e8f4f74cd249658e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  Stages:
-  - StageState: 0
-    StageTarget: {fileID: 1516448857}
-    Enemies:
-    - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.54, z: 15}
-  - StageState: 0
-    StageTarget: {fileID: 90009252}
-    Enemies:
-    - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
-      EnemySpawnPosition: {x: -0.18013763, y: 1.54, z: 150.02756}
   WarpStage: 0
-  objectPool: {fileID: 173203512}
+  stageManager: {fileID: 1027284102}
 --- !u!4 &1990891933
 Transform:
   m_ObjectHideFlags: 0
@@ -19015,6 +19116,7 @@ SceneRoots:
   - {fileID: 1872330245}
   - {fileID: 1329520398}
   - {fileID: 1990891933}
+  - {fileID: 1027284103}
   - {fileID: 173203513}
   - {fileID: 363887346}
   - {fileID: 1631427607}
