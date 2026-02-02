@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GrenadeLauncher : SubWeapon
+public class BlackHoleGun : SubWeapon
 {
     [SerializeField] private SFXEmitter emitter;
-    [SerializeField] private GrenadeProjectile grenadeProjectilePrefab;
     [SerializeField] private Transform projectileLaunchPoint;
 
     private UIManager uiManager;
@@ -16,7 +15,7 @@ public class GrenadeLauncher : SubWeapon
 
     // 오버라이드 된 함수들이 다른 서브웨폰과 동일한 코드를 사용하고 있음
     // 서브웨폰 클래스에서 기본 구현으로 만들어 중복 제거를 해야 할 필요가 있어보임
-    public override void Initialize(UnityEvent completeEvent) 
+    public override void Initialize(UnityEvent completeEvent)
     {
         uiManager = FindFirstObjectByType<UIManager>();
         if (!uiManager)
@@ -50,11 +49,10 @@ public class GrenadeLauncher : SubWeapon
 
         direction = (aimPoint - projectileLaunchPoint.position).normalized;
 
-        GrenadeProjectile grenade = objectPool.SpawnGrenadeProjectile(projectileLaunchPoint.position);
-        emitter.PlayFollow("Grenade_Launcher_Fire", playerTransform);
-        grenade.OnLaunched(direction);
-        
-        grenade.OnExplosionHit += PlayHitMarker;
+        BlackHoleProjectile blackHole = objectPool.SpawnBlackHoleProjectile(projectileLaunchPoint.position);
+        //emitter.PlayFollow("BlackHole_Gun_Fire", playerTransform);
+        blackHole.OnLaunched(direction);
+        blackHole.OnBlackHoleTick += PlayHitMarker;
 
         cameraShake?.AddRecoil(new Vector2(Random.Range(-300f, 300f), 500f));
     }

@@ -11,6 +11,7 @@ public class ObjectPool : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private List<Projectile> projectilePrefabs;
     [SerializeField] private GrenadeProjectile grenadeProjectilePrefab;
+    [SerializeField] private BlackHoleProjectile blackHoleProjectilePrefab;
     [SerializeField] private EnemyGrenadeProjectile enemyGrenadeProjectilePrefab;
     [SerializeField] private AudioPlayer audioPlayerPrefab;
     [SerializeField] private List<EnemyBase> enemyBasePrefabs;
@@ -23,6 +24,7 @@ public class ObjectPool : MonoBehaviour
 
     private readonly Dictionary<Projectile, Queue<Projectile>> projectilePool = new();
     private readonly Queue<GrenadeProjectile> grenadeProjectilePool = new();
+    private readonly Queue<BlackHoleProjectile> blackHoleProjectilePool = new();
     private readonly Queue<EnemyGrenadeProjectile> enemyGrenadeProjectilePool = new();
     private readonly Queue<AudioPlayer> audioPlayerPool = new();
     private readonly Dictionary<EnemyBase, Queue<EnemyBase>> enemyBasePool = new();
@@ -148,6 +150,34 @@ public class ObjectPool : MonoBehaviour
     {
         grenadeProjectile.gameObject.SetActive(false);
         grenadeProjectilePool.Enqueue(grenadeProjectile);
+    }
+
+    public BlackHoleProjectile SpawnBlackHoleProjectile(Vector3 spawnPos)
+    {
+        BlackHoleProjectile blackHoleProjectile;
+
+        if (blackHoleProjectilePool.Count == 0)
+        {
+            blackHoleProjectile = Instantiate(blackHoleProjectilePrefab, spawnPos, Quaternion.identity, grenadeProjectileParent);
+        }
+        else
+        {
+            blackHoleProjectile = blackHoleProjectilePool.Dequeue();
+        }
+
+        blackHoleProjectile.Initialized(blackHoleProjectilePrefab);
+        blackHoleProjectile.transform.position = spawnPos;
+        blackHoleProjectile.transform.rotation = Quaternion.identity;
+        //blackHoleProjectile.transform.SetParent(grenadeProjectileParent);
+        blackHoleProjectile.OnReturn += DisableBlackHoleProjectile;
+        blackHoleProjectile.gameObject.SetActive(true);
+        return blackHoleProjectile;
+    }
+
+    public void DisableBlackHoleProjectile(BlackHoleProjectile blackHoleProjectile)
+    {
+        blackHoleProjectile.gameObject.SetActive(false);
+        blackHoleProjectilePool.Enqueue(blackHoleProjectile);
     }
 
     public void SpawnEnemyGrenadeProjectile(Vector3 spawnPos, Vector3 direction, float damage)

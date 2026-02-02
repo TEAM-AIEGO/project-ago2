@@ -25,6 +25,7 @@ public class GrenadeProjectile : MonoBehaviour
     [SerializeField] private float explosionDamage;
     private bool hasExploded;
 
+    //프로젝타일들도 추상 클래스를 만들어서 관리해야 할 필요가 있음.
     public void Initialized(GrenadeProjectile projectile)
     {
         rb.linearVelocity = Vector3.zero;

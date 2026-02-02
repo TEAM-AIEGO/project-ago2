@@ -21,6 +21,7 @@ public class EnemyGrenadeProjectile : MonoBehaviour
     private EnemyGrenadeProjectile OriginPrefab;
     public EnemyGrenadeProjectile OriginProjectile => OriginPrefab;
 
+    //프로젝타일들도 추상 클래스를 만들어서 관리해야 할 필요가 있음.
     public void Initialized(EnemyGrenadeProjectile projectile, float damage)
     {
         rb.linearVelocity = Vector3.zero;

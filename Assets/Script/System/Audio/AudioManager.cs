@@ -26,10 +26,10 @@ public class AudioManager : MonoBehaviour
     private const string UI_PARAM = "UIVolume";
 
     [Header("Volume Settings")]
-    [Range(0f, 1f)][SerializeField] private float masterVolume = 1.0f;
-    [Range(0f, 1f)][SerializeField] private float bgmVolume = 0.5f;
+    //[Range(0f, 1f)][SerializeField] private float masterVolume = 1.0f;
+    //[Range(0f, 1f)][SerializeField] private float bgmVolume = 0.5f;
     [Range(0f, 1f)][SerializeField] private float sfxVolume = 1.0f;
-    [Range(0f, 1f)][SerializeField] private float uiVolume = 1.0f;
+    //[Range(0f, 1f)][SerializeField] private float uiVolume = 1.0f;
 
     private void Awake()
     {
