@@ -35,6 +35,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
 
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private WarpSystemManager warpSystemManager;
+    [SerializeField] private Playthething ptt;
     private int currentStageIndex = 0;
     private int StageEnemyLeft = 0;
 
@@ -126,7 +127,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
             {
                 Debug.Log("All Stages Cleared!");
                 // Ending Cutscene Play
-                SceneManager.LoadScene("CutSceneTestSceneScene");
+                ptt.PlaythethingPlz();
             }
         }
     }
