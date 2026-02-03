@@ -34,7 +34,7 @@ public abstract class SubWeapon : MonoBehaviour
     {
         if (cooldownTimer > 0f)
         {
-            Debug.Log("SubWeapon Cooldown: " + cooldownTimer);
+            //Debug.Log("SubWeapon Cooldown: " + cooldownTimer);
             cooldownTimer -= Time.deltaTime;
 
             if (cooldownTimer <= 0f)
