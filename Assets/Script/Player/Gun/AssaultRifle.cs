@@ -1,7 +1,6 @@
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
-public class TestGun : MonoBehaviour // �� Ŭ���� ����� ���̽��� �߻� Ŭ������ ��������.
+public class AssaultRifle : MonoBehaviour
 {
     [SerializeField] private Transform playerTransfrom;
     [SerializeField] private SFXEmitter emitter;
@@ -11,8 +10,8 @@ public class TestGun : MonoBehaviour // �� Ŭ���� ����� �
     [SerializeField] private float fireInterval;
     [SerializeField] private float fireTime;
     [SerializeField] private bool isFireAble;
-
     public bool IsFireAble => isFireAble;
+
     [SerializeField] private LayerMask layerMasks;
 
     private UIManager uiManager;
@@ -28,7 +27,7 @@ public class TestGun : MonoBehaviour // �� Ŭ���� ����� �
         isFireAble = true;
     }
 
-    void Update()
+    private void Update()
     {
         DebugLay();
 

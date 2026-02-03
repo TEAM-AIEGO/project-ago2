@@ -161,6 +161,6 @@ public class PlayerInputManager : MonoBehaviour
             return;
         }
 
-        playerGunHandler.UseSubWeapon();
+        playerGunHandler.UseSubWeapon(context.control.path);
     }
 }

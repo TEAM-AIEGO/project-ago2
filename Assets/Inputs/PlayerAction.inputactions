@@ -203,6 +203,28 @@
                 },
                 {
                     "name": "",
+                    "id": "f429399c-0bfd-4516-9eb9-1b1a4cf402d2",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseSub",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79e56968-72da-492a-9028-95cb724ae693",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseSub",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0de8f362-690f-4b72-8e65-5598bc482b05",
                     "path": "<Keyboard>/g",
                     "interactions": "",

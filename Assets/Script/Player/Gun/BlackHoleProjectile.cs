@@ -80,13 +80,6 @@ public class BlackHoleProjectile : MonoBehaviour
 
         for (int i = 0; i < affectedObjects.Length; i++)
         {
-            //Rigidbody affectedRb = affectedObjects[i].attachedRigidbody;
-            //if (affectedRb != null)
-            //{
-            //    Vector3 directionToCenter = (transform.position - affectedObjects[i].transform.position).normalized;
-            //    affectedRb.AddForce(directionToCenter * blackHolePullForce * Time.deltaTime, ForceMode.Acceleration);
-            //}
-
             if (affectedObjects[i].gameObject.TryGetComponent(out IKnockable knockable))
             {
                 Vector3 directionToCenter = (transform.position - affectedObjects[i].transform.position).normalized;
