@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public enum StageState
@@ -41,6 +42,18 @@ public class StageManager : MonoBehaviour, IWarpObserver
     {
         currentStageIndex = 0;
         StageEnemyLeft = 0;
+
+        if (warpSystemManager == null)
+        {
+            Debug.LogError("WarpSystemManager is not assigned in StageManager.");
+            return;
+        }
+
+        if (objectPool == null)
+        {
+            Debug.LogError("ObjectPool is not assigned in StageManager.");
+            return;
+        }
 
         warpSystemManager.RegisterWarpObserver(this);
         StartStage(currentStageIndex);
@@ -106,7 +119,15 @@ public class StageManager : MonoBehaviour, IWarpObserver
         {
             Stages[currentStageIndex].StageState = StageState.Ended;
             Stages[currentStageIndex].StageTarget.SetActive(false);
-            StartStage(++currentStageIndex);
+
+            if (++currentStageIndex != Stages.Count)
+                StartStage(currentStageIndex);
+            else
+            {
+                Debug.Log("All Stages Cleared!");
+                // Ending Cutscene Play
+                SceneManager.LoadScene("CutSceneTestSceneScene");
+            }
         }
     }
 
