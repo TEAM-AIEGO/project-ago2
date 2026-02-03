@@ -3526,7 +3526,7 @@ GameObject:
   - component: {fileID: 365381324}
   - component: {fileID: 365381323}
   m_Layer: 0
-  m_Name: Box001 (1)
+  m_Name: RifleBody5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5110,7 +5110,7 @@ GameObject:
   - component: {fileID: 676553790}
   - component: {fileID: 676553789}
   m_Layer: 0
-  m_Name: Box001
+  m_Name: RifleBody0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5958,7 +5958,7 @@ GameObject:
   - component: {fileID: 733485934}
   - component: {fileID: 733485933}
   m_Layer: 0
-  m_Name: Box001 (2)
+  m_Name: RifleBody6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9132,7 +9132,7 @@ GameObject:
   - component: {fileID: 1047489239}
   - component: {fileID: 1047489238}
   m_Layer: 0
-  m_Name: Box001 (4)
+  m_Name: RifleBody3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12884,7 +12884,7 @@ GameObject:
   - component: {fileID: 1441221940}
   - component: {fileID: 1441221939}
   m_Layer: 0
-  m_Name: Box001 (6)
+  m_Name: RifleBody2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14451,7 +14451,7 @@ GameObject:
   - component: {fileID: 1646658528}
   - component: {fileID: 1646658527}
   m_Layer: 0
-  m_Name: Box001 (3)
+  m_Name: RifleBody4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16115,7 +16115,7 @@ GameObject:
   - component: {fileID: 1831830066}
   - component: {fileID: 1831830065}
   m_Layer: 0
-  m_Name: Object002
+  m_Name: RifleHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16642,7 +16642,7 @@ GameObject:
   - component: {fileID: 1874315965}
   - component: {fileID: 1874315964}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: BlackHoleModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17983,7 +17983,7 @@ GameObject:
   - component: {fileID: 2050598989}
   - component: {fileID: 2050598988}
   m_Layer: 0
-  m_Name: Box001 (5)
+  m_Name: RifleBody1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19555,7 +19555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652235743489}
   m_Layer: 0
-  m_Name: railcannonModel
+  m_Name: RailcannonModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19876,7 +19876,7 @@ GameObject:
   - component: {fileID: 8478739616188226123}
   - component: {fileID: 6606414110589956786}
   m_Layer: 0
-  m_Name: Box001
+  m_Name: PistolHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20033,7 +20033,7 @@ GameObject:
   - component: {fileID: 6677179489087723030}
   - component: {fileID: 6830343721562446743}
   m_Layer: 0
-  m_Name: Object002
+  m_Name: PistolBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
