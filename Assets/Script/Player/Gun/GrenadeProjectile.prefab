@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Bits: 4032
   explosionRadius: 10
   explosionDamageReductionDistance: 6
-  explosionDamage: 80
+  explosionDamage: 65
 --- !u!135 &956244256788944054
 SphereCollider:
   m_ObjectHideFlags: 0

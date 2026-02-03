@@ -51,7 +51,7 @@ public class RailCannon : SubWeapon
             var currentObject = hitInfo[i].collider.gameObject;
             if (currentObject.TryGetComponent(out EnemyBase enemyBase))
             {
-                enemyBase.TakeDamage(99f);
+                enemyBase.TakeDamage(damage);
                 uiManager.ShowHitMarker();
             }
             if (currentObject.TryGetComponent(out IKnockable knockable))

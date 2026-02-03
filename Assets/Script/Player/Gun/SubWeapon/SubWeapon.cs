@@ -5,16 +5,18 @@ public abstract class SubWeapon : MonoBehaviour
 {
     protected UnityEvent onSubWeaponUseComplete;
 
-    [SerializeField] protected GameObject subWeaponObj;
-    [SerializeField] protected float cooldownTime;
-
+    [Header("References")]
     [SerializeField] protected ObjectPool objectPool;
     [SerializeField] protected Transform playerTransform;
     [SerializeField] protected CameraShake cameraShake;
 
+    [Header("SubWeapon Stats")]
+    [SerializeField] protected float damage;
+    [SerializeField] protected float cooldownTime;
     [SerializeField] protected float launchDelayTime;
     [SerializeField] protected float launchAftereffectTime;
     [SerializeField] protected float delayTimer;
+    [SerializeField] protected GameObject subWeaponObj;
 
     protected bool isLaunching;
     protected bool isInAftereffect;
@@ -32,6 +34,7 @@ public abstract class SubWeapon : MonoBehaviour
     {
         if (cooldownTimer > 0f)
         {
+            Debug.Log("SubWeapon Cooldown: " + cooldownTimer);
             cooldownTimer -= Time.deltaTime;
 
             if (cooldownTimer <= 0f)
