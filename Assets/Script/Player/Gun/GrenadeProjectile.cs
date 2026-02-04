@@ -82,27 +82,21 @@ public class GrenadeProjectile : MonoBehaviour
                 knockable.TakeExplosionKnockback(15f, transform.position, explosionRadius, 0.5f);
             }
 
-            if (hitColliders[i].TryGetComponent(out EnemyBase enemy))
+            if (hitColliders[i].TryGetComponent(out IHittable hittable))
             {
-                enemy.TakeDamage(explosionDamage * damageMultiplier);
+                if (hittable is PlayerManager)
+                {
+                    hittable.TakeDamage((explosionDamage / 4) * damageMultiplier);
+                    OnExplosionHit?.Invoke();
+
+                    continue;
+                }
+
+                hittable.TakeDamage(explosionDamage * damageMultiplier);
                 OnExplosionHit?.Invoke();
             }
-            PlayerManager player = hitColliders[i].GetComponent<PlayerManager>();
-            if (player != null)
-            {
-                player.TakeDamage((explosionDamage / 4) * damageMultiplier);
-                OnExplosionHit?.Invoke();
-            }
-
-            //IDamageable damageable = hitColliders[i].GetComponent<IDamageable>();
-
-            //if (damageable != null)
-            //{
-            //    damageable.TakeDamage(explosionDamage * damageMultiplier);
-            //}
         }
 
-        //OnReturn.Invoke(this);
         OnReturn?.Invoke(this);
     }
 

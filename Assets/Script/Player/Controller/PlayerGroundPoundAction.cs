@@ -42,8 +42,8 @@ public class PlayerGroundPoundAction : MonoBehaviour
                 knockable.TakeKnockback(Vector3.up * upwardForce * kaboomPower, 0.5f);
             }
 
-            if (!currentObject.TryGetComponent(out Unit unit)) continue;
-            unit.TakeDamage(damage * kaboomPower);
+            if (!currentObject.TryGetComponent(out IHittable hittable)) continue;
+            hittable.TakeDamage(damage * kaboomPower);
         }
     }
 }

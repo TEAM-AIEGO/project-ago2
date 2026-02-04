@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class HittableObject : MonoBehaviour, IKnockable
+public class KnockbackObject : MonoBehaviour, IKnockable
 {
     private Rigidbody rb;
     void Start()

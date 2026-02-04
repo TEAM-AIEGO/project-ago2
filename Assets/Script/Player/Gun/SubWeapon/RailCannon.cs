@@ -14,6 +14,11 @@ public class RailCannon : SubWeapon
         base.Update();
     }
 
+    public override void UnLock()
+    {
+        base.UnLock();
+    }
+
     public override void Initialize(UnityEvent completeEvent)
     {
         uiManager = FindFirstObjectByType<UIManager>();
@@ -49,10 +54,10 @@ public class RailCannon : SubWeapon
         for (int i = 0; i < hitInfo.Length; i++)
         {
             var currentObject = hitInfo[i].collider.gameObject;
-            if (currentObject.TryGetComponent(out EnemyBase enemyBase))
+            if (currentObject.TryGetComponent(out IHittable hittable))
             {
-                enemyBase.TakeDamage(damage);
-                uiManager.ShowHitMarker();
+                hittable.TakeDamage(100f);
+                uiManager?.ShowHitMarker();
             }
             if (currentObject.TryGetComponent(out IKnockable knockable))
             {

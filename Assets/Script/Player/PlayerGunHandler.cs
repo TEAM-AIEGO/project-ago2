@@ -35,6 +35,7 @@ public class PlayerGunHandler : MonoBehaviour, IWarpObserver
         isUsable = true;
 
         Initialized();
+
     }
 
     public void Initialized()
@@ -54,7 +55,9 @@ public class PlayerGunHandler : MonoBehaviour, IWarpObserver
 
             subWeapons[i].Initialize(subWeaponUsingComplete);
         }
+
         subWeaponUsingComplete.AddListener(UsingComplete);
+        UnLockSubWeapon(2);
     }
 
     private void Update()
@@ -72,6 +75,15 @@ public class PlayerGunHandler : MonoBehaviour, IWarpObserver
         this.isFiring = isFiring;
     }
 
+    public void UnLockSubWeapon(int index)
+    {
+        if (subWeapons[index] != null)
+        {
+            Debug.Log("Unlocking SubWeapon Index: " + index);
+            subWeapons[index].UnLock();
+        }
+    }
+
     public void UseSubWeapon(string path)
     {
         if (!isUsable)
@@ -80,14 +92,22 @@ public class PlayerGunHandler : MonoBehaviour, IWarpObserver
         switch (path)
         {
             case "/Keyboard/e":
+                if (!subWeapons[0].IsUnlocked)
+                {
+                    Debug.Log(subWeapons[0].IsUnlocked);
+                    return;
+                }
+
                 if (subWeapons[0].IsReady)
                 {
                     subWeapons[0].Use();
                     OnActiveSubWeapon();
                 }
-
                 break;
             case "/Keyboard/f":
+                if (!subWeapons[1].IsUnlocked) 
+                    return;
+
                 if (subWeapons[1].IsReady)
                 {
                     subWeapons[1].Use();
@@ -95,6 +115,9 @@ public class PlayerGunHandler : MonoBehaviour, IWarpObserver
                 }
                 break;
             case "/Keyboard/g":
+                //if (!subWeapons[2].IsUnlocked) 
+                //    return;
+
                 if (subWeapons[2].IsReady)
                 {
                     subWeapons[2].Use();

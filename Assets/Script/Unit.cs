@@ -2,7 +2,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IHittable
 {
     [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected float health = 100f;

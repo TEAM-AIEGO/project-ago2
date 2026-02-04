@@ -13,6 +13,11 @@ public class BlackHoleGun : SubWeapon
         base.Update();
     }
 
+    public override void UnLock()
+    {
+        base.UnLock();
+    }
+
     // 오버라이드 된 함수들이 다른 서브웨폰과 동일한 코드를 사용하고 있음
     // 서브웨폰 클래스에서 기본 구현으로 만들어 중복 제거를 해야 할 필요가 있어보임
     public override void Initialize(UnityEvent completeEvent)

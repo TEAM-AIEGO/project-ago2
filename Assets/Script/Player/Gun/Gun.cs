@@ -141,11 +141,10 @@ public class Gun : MonoBehaviour
 
         if (Physics.Raycast(aimRay, out RaycastHit hitinfo, gunRange, layerMasks))
         {
-            hitinfo.collider.TryGetComponent<EnemyBase>(out var enemyBase);
-            if (enemyBase != null)
+            if (hitinfo.collider.TryGetComponent(out IHittable hittable))
             {
-                enemyBase.TakeDamage(damage);
-                uiManager.ShowHitMarker();
+                hittable.TakeDamage(damage);
+                uiManager?.ShowHitMarker();
             }
 
             if (hitinfo.collider.TryGetComponent(out IKnockable knockable))

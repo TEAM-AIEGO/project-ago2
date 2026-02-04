@@ -22,7 +22,6 @@ public class PlayerGroundChecker : MonoBehaviour
 
         if (isGrounded)
         {
-            Debug.Log(isGrounded);
             this.isGrounded = isGrounded;
             return isGrounded;
         }
@@ -30,10 +29,8 @@ public class PlayerGroundChecker : MonoBehaviour
         Vector3 vec = groundCheckTr.position;
         Quaternion qut = Quaternion.identity;
 
-        //isGrounded = Physics.BoxCast(vec, halfBox, Vector3.down, out RaycastHit hit, qut, groundCheckDistance, groundLayer, QueryTriggerInteraction.Ignore);
         isGrounded = Physics.CheckBox(vec + Vector3.down * groundCheckDistance, halfBox, qut, groundLayer, QueryTriggerInteraction.Ignore);
 
-        Debug.Log(isGrounded);
         this.isGrounded = isGrounded;
         return isGrounded;
     }

@@ -88,10 +88,13 @@ public class BlackHoleProjectile : MonoBehaviour
 
             if (blackHoleTickTimer >= blackHoleTickInterval)
             {
-                affectedObjects[i].TryGetComponent(out EnemyBase enemyBase);
-                if (enemyBase != null)
+                if (affectedObjects[i].TryGetComponent(out IHittable hittable))
                 {
-                    BlackHoleTick(enemyBase);
+                    if (hittable is PlayerManager)
+                        continue;
+
+                    hittable.TakeDamage(blackHoleTickDamage);
+                    OnBlackHoleTick?.Invoke();
                 }
 
                 if (i == affectedObjects.Length - 1)
@@ -100,12 +103,6 @@ public class BlackHoleProjectile : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void BlackHoleTick(EnemyBase enemy)
-    {
-        enemy.TakeDamage(blackHoleTickDamage);
-        OnBlackHoleTick?.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -122,11 +119,19 @@ public class BlackHoleProjectile : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.isKinematic = true;
 
-            if (collision.gameObject.TryGetComponent(out EnemyBase enemy))
+            if (collision.gameObject.TryGetComponent(out IHittable hittable))
             {
-                enemy.TakeDamage(damage);
-                OnBlackHoleTick?.Invoke();
+                if (hittable is PlayerManager)
+                    return;
+
+                hittable.TakeDamage(damage);
             }
+
+            //if (collision.gameObject.TryGetComponent(out EnemyBase enemy))
+            //{
+            //    enemy.TakeDamage(damage);
+            //    OnBlackHoleTick?.Invoke();
+            //}
         }
     }
 }

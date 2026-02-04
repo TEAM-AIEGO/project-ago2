@@ -24,6 +24,8 @@ public abstract class SubWeapon : MonoBehaviour
     protected float cooldownTimer;
     protected bool isReady = true;
     public bool IsReady => isReady;
+    protected bool isUnlocked = false;
+    public bool IsUnlocked => isUnlocked;
 
     protected virtual void Awake()
     {
@@ -72,6 +74,8 @@ public abstract class SubWeapon : MonoBehaviour
             }
         }
     }
+
+    public virtual void UnLock() => isUnlocked = true;
 
     public abstract void Initialize(UnityEvent completeEvent);
 
