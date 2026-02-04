@@ -6,4 +6,4 @@ public class TitleManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("OutdoorsScene");
     }
-}
+} 

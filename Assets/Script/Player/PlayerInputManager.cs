@@ -9,7 +9,7 @@ public class PlayerInputManager : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerController playerController;
     private PlayerGunHandler playerGunHandler;
-    private PlayerCameraMovement playerCameraMovement;
+    [SerializeField] private PlayerCameraMovement playerCameraMovement;
     private Menu menu;
 
     [SerializeField] private InputActionReference MoveActionReference, JumpActionReference, SprintActionReference, MovementAction1ActionReference, LookActionReference, FireActionReference, PlayerMenuActionReference, UiMenuActionReference, UseSubActionReference; 
@@ -24,7 +24,7 @@ public class PlayerInputManager : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerController = GetComponent<PlayerController>();
         playerGunHandler = GetComponentInChildren<PlayerGunHandler>();
-        playerCameraMovement = GetComponentInChildren<PlayerCameraMovement>();
+        //playerCameraMovement = GetComponentInChildren<PlayerCameraMovement>();
 
         menu = FindFirstObjectByType<Menu>();
         if (!menu)

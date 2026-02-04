@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerCameraMovement : MonoBehaviour
 {
     [SerializeField] private float mouseSensitivity;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Vector3 cameraPosOffset;
 
     private float yaw;
     private float pitch;
@@ -24,6 +26,8 @@ public class PlayerCameraMovement : MonoBehaviour
 
     void Update()
     {
+        transform.position = playerTransform.position + cameraPosOffset;
+
         yaw += look.x * mouseSensitivity;
         pitch -= look.y * mouseSensitivity;
 
