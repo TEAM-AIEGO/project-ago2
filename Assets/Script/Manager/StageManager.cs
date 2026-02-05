@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [Serializable]
 public enum StageState
@@ -24,7 +23,7 @@ public class Stage
     public StageState StageState;
     public GameObject StageObject;
     public GameObject WarpStageObject;
-    public GameObject StageTarget;
+    public StageDoor StageDoor;
     public List<EnemySpawnData> Enemies;
 }
 
@@ -119,7 +118,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
         if (StageEnemyLeft <= 0)
         {
             Stages[currentStageIndex].StageState = StageState.Ended;
-            Stages[currentStageIndex].StageTarget.SetActive(false);
+            Stages[currentStageIndex].StageDoor.OpenDoor();
 
             if (++currentStageIndex != Stages.Count)
                 StartStage(currentStageIndex);
