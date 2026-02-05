@@ -263,7 +263,7 @@ MonoBehaviour:
   detectionDistance: 20
   attackDistance: 18
   attackDamage: 20
-  attackCooldown: 1
+  attackCooldown: 2.5
   attackTime: 0
   canAttack: 1
   ShootPoint: {fileID: 5594241828552157051}
