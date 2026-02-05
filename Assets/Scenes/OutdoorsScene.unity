@@ -1794,6 +1794,7 @@ MonoBehaviour:
   - {fileID: 3753738760484245519, guid: 25603aec74837564da67e926574ecd86, type: 3}
   - {fileID: 8248872591687576998, guid: c7a69b4a321f95b4cb89b14748d12ff0, type: 3}
   - {fileID: 8404270259094500067, guid: e8354b079cbd8aa4aadd7dd9369d0e3f, type: 3}
+  - {fileID: 981007754708470298, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
   projectileParent: {fileID: 798548893}
   grenadeProjectileParent: {fileID: 798548893}
   audioPlayerParent: {fileID: 2101848868}
@@ -8922,7 +8923,7 @@ MonoBehaviour:
     WarpStageObject: {fileID: 0}
     StageTarget: {fileID: 1516448857}
     Enemies:
-    - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
+    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.54, z: 15}
     - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.54, z: 17}
@@ -15448,7 +15449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1756915856
 Animator:
   serializedVersion: 7
