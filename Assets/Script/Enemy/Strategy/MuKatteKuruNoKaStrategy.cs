@@ -22,6 +22,6 @@ public class DontMuKatteKuruNoKaStrategy : IMuKatteKuruNoKaStrategy
 {
     public void KonoDIOniMuKatteKuruNoKa(EnemyBase enemy, Transform target)
     {
-        enemy.Rb.linearVelocity = Vector2.zero;
+        return;
     }
 }

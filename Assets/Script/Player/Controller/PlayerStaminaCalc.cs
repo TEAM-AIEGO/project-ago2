@@ -38,7 +38,7 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
             if (playerController.CannotSprint)
                 if (CurrentStamina >= MaxStamina / 5.5)
                 {
-                    Debug.Log("Stamina Sufficient - Can Sprint Again");
+                    //Debug.Log("Stamina Sufficient - Can Sprint Again");
                     playerController.DeshAble(true);
                 }
         }
