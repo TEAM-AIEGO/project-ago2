@@ -118,7 +118,11 @@ public class StageManager : MonoBehaviour, IWarpObserver
         if (StageEnemyLeft <= 0)
         {
             Stages[currentStageIndex].StageState = StageState.Ended;
-            Stages[currentStageIndex].StageDoor.OpenDoor();
+
+            if (Stages[currentStageIndex].StageDoor.IsScanDoor)
+                Stages[currentStageIndex].StageDoor.SetScan();
+            else
+                Stages[currentStageIndex].StageDoor.OpenDoor();
 
             if (++currentStageIndex != Stages.Count)
                 StartStage(currentStageIndex);
