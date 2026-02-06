@@ -36,7 +36,7 @@ public class PlayerGroundPoundAction : MonoBehaviour
         for (int i = 0; i < hitColliders.Length; i++)
         {
             GameObject currentObject = hitColliders[i].gameObject;
-            Debug.Log(currentObject);
+            //Debug.Log(currentObject);
             if (currentObject.TryGetComponent(out IKnockable knockable))
             {
                 knockable.TakeKnockback(Vector3.up * upwardForce * kaboomPower, 0.5f);

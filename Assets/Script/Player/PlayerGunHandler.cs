@@ -79,7 +79,7 @@ public class PlayerGunHandler : MonoBehaviour, IWarpObserver
     {
         if (subWeapons[index] != null)
         {
-            Debug.Log("Unlocking SubWeapon Index: " + index);
+            //Debug.Log("Unlocking SubWeapon Index: " + index);
             subWeapons[index].UnLock();
         }
     }
