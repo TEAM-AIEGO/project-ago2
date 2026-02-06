@@ -1,11 +1,14 @@
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class StageDoor : MonoBehaviour
 {
+    [SerializeField] private BoxCollider col;
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private bool isScanDoor = false;
     public bool IsScanDoor => isScanDoor;
     [SerializeField] private ScanDoorPoint scanDoorPoint;
+    [SerializeField] private InDoorCheck inDoorCheck;
 
     private void Start()
     {
@@ -21,18 +24,26 @@ public class StageDoor : MonoBehaviour
         }
         else if (scanDoorPoint != null)
         {
-            scanDoorPoint.OnScanComplete += ScanOpenDoor;
+            scanDoorPoint.OnScanStart += OpenDoor;
+            scanDoorPoint.OnScanComplete += CloseDoor;
+        }
+
+        if (inDoorCheck != null)
+        {
+            inDoorCheck.OnDoorCheck += PassOverDoor;
         }
     }
 
     public void OpenDoor()
     {
         doorAnimator.SetTrigger("Open");
+        col.enabled = false;
     }
 
     public void CloseDoor()
     {
         doorAnimator.SetTrigger("Close");
+        col.enabled = true;
     }
 
     public void SetScan()
@@ -40,11 +51,11 @@ public class StageDoor : MonoBehaviour
         scanDoorPoint.OnCanScanning();
     }
 
-    public void ScanOpenDoor()
+    public void PassOverDoor()
     {
-        if (!isScanDoor)
-            return;
+        CloseDoor();
 
-        doorAnimator.SetTrigger("ScanOpen");
+        if (scanDoorPoint != null)
+            scanDoorPoint.OnDoorPassed();
     }
 }
