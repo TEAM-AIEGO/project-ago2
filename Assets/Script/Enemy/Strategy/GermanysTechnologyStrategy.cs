@@ -6,35 +6,38 @@ public class GermanysTechnologyStrategy : IMUDAMUDAMUDAStrategy
     private float maxLeadTime = 2f;
     private Transform shooter;
     private float damage;
+    private Projectile projectilePrefab;
     private System.Action<Projectile, Vector3, Quaternion, float, float> OnShootProjectile;
 
-    public GermanysTechnologyStrategy(float projectileSpeed, float damage, float maxLeadTime, Transform shooter, System.Action<Projectile, Vector3, Quaternion, float, float> shootAction)
+    public GermanysTechnologyStrategy(float projectileSpeed, float damage, float maxLeadTime, Transform shooter, Projectile projectilePrefab, System.Action<Projectile, Vector3, Quaternion, float, float> shootAction)
     {
         this.projectileSpeed = projectileSpeed;
         this.maxLeadTime = maxLeadTime;
         this.shooter = shooter;
         this.damage = damage;
+        this.projectilePrefab = projectilePrefab;
         OnShootProjectile += shootAction;
     }
 
     public void Attacking(EnemyBase enemy, Transform target)
     {
         Rigidbody rb = target.GetComponent<Rigidbody>();
-        RangedEnemy rangedEnemy = enemy as RangedEnemy;
+        if (projectilePrefab == null)
+            return;
 
         Vector3 targetVelocity = rb.linearVelocity;
 
         if (TryGetLeadDirection(shooter, target, targetVelocity, 50f, out Vector3 leadDirection))
         {
             Quaternion shootRotation = Quaternion.LookRotation(leadDirection, Vector3.up);
-            OnShootProjectile?.Invoke(rangedEnemy.ProjectilePrefab, shooter.position, shootRotation, projectileSpeed, damage);
+            OnShootProjectile?.Invoke(projectilePrefab, shooter.position, shootRotation, projectileSpeed, damage);
         }
         else
         {
             leadDirection = (target.position - shooter.position).normalized;
 
             Quaternion shootRotation = Quaternion.LookRotation(leadDirection, Vector3.up);
-            OnShootProjectile?.Invoke(rangedEnemy.ProjectilePrefab, shooter.position, shootRotation, projectileSpeed, damage);
+            OnShootProjectile?.Invoke(projectilePrefab, shooter.position, shootRotation, projectileSpeed, damage);
         }
     }
 

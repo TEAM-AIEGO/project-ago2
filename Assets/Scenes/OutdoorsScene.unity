@@ -2046,6 +2046,7 @@ MonoBehaviour:
   - {fileID: 8404270259094500067, guid: e8354b079cbd8aa4aadd7dd9369d0e3f, type: 3}
   - {fileID: 981007754708470298, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
   - {fileID: 2394888397063174062, guid: 965fd3f4d66c6904cac2174758a6f8f4, type: 3}
+  - {fileID: 8258426560614943117, guid: f8093b301d8d5a241a2baa285af1d2f2, type: 3}
   projectileParent: {fileID: 798548893}
   grenadeProjectileParent: {fileID: 798548893}
   audioPlayerParent: {fileID: 2101848868}
@@ -10108,12 +10109,8 @@ MonoBehaviour:
     WarpStageObject: {fileID: 0}
     StageDoor: {fileID: 132119317}
     Enemies:
-    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.54, z: 15}
-    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.54, z: 17}
-    - EnemyPrefab: {fileID: 2946600272766831144, guid: 965fd3f4d66c6904cac2174758a6f8f4, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.54, z: 19}
+    - EnemyPrefab: {fileID: 1734525386574734480, guid: f8093b301d8d5a241a2baa285af1d2f2, type: 3}
+      EnemySpawnPosition: {x: 2.5, y: 1.54, z: 15}
   - StageState: 0
     StageObject: {fileID: 0}
     WarpStageObject: {fileID: 0}
