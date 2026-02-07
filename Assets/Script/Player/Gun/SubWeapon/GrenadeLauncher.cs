@@ -7,8 +7,6 @@ public class GrenadeLauncher : SubWeapon
     [SerializeField] private GrenadeProjectile grenadeProjectilePrefab;
     [SerializeField] private Transform projectileLaunchPoint;
 
-    private UIManager uiManager;
-
     protected override void Update()
     {
         base.Update();
@@ -38,9 +36,7 @@ public class GrenadeLauncher : SubWeapon
 
     public override void Use()
     {
-        isLaunching = true;
-        isReady = false;
-        subWeaponObj.SetActive(true);
+        base.Use();
     }
 
     protected override void Fire()

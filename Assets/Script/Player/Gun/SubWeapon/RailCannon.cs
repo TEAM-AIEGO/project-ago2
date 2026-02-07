@@ -7,8 +7,6 @@ public class RailCannon : SubWeapon
     [SerializeField] private Projectile railCannonProjectilePrefab;
     [SerializeField] private Transform projectileLaunchPoint;
 
-    private UIManager uiManager;
-
     protected override void Update()
     {
         base.Update();
@@ -36,9 +34,7 @@ public class RailCannon : SubWeapon
 
     public override void Use()
     {
-        isLaunching = true;
-        isReady = false;
-        subWeaponObj.SetActive(true);
+        base.Use();
     }
 
     protected override void Fire()
