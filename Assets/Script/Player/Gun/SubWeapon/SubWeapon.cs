@@ -27,6 +27,8 @@ public abstract class SubWeapon : MonoBehaviour
     protected bool isUnlocked = false;
     public bool IsUnlocked => isUnlocked;
 
+    protected UIManager uiManager;
+
     protected virtual void Awake()
     {
         cooldownTimer = 0f;
@@ -69,6 +71,7 @@ public abstract class SubWeapon : MonoBehaviour
                 delayTimer = 0f;
                 cooldownTimer = cooldownTime;
 
+                uiManager.ActiveSubWeapon();
                 subWeaponObj.SetActive(false);
                 onSubWeaponUseComplete.Invoke();
             }
@@ -79,7 +82,14 @@ public abstract class SubWeapon : MonoBehaviour
 
     public abstract void Initialize(UnityEvent completeEvent);
 
-    public abstract void Use();
+    public virtual void Use()
+    {
+        uiManager.ActiveSubWeapon();
+
+        isLaunching = true;
+        isReady = false;
+        subWeaponObj.SetActive(true);
+    }
 
     protected abstract void Fire();
 }

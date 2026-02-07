@@ -58,6 +58,7 @@ public class PlayerGunHandler : MonoBehaviour, IWarpObserver
 
         subWeaponUsingComplete.AddListener(UsingComplete);
         UnLockSubWeapon(2);
+        UnLockSubWeapon(0);
     }
 
     private void Update()

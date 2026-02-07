@@ -91,6 +91,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                 }
                 else
                 {
+                    //Debug.Log(knockbackStun);
                     knockbackStun = Mathf.Max(0, knockbackStun - Time.deltaTime);
                 }
                 AttackCheck();
@@ -120,6 +121,9 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     public void TakeKnockback(Vector3 force, float duration)
     {
+        if (muKatteKuruNoKaStrategy is DontMuKatteKuruNoKaStrategy && force.magnitude < 50f)
+            return;
+
         knockbackStun += duration;
         rb.AddForce(force, ForceMode.Impulse);
     }

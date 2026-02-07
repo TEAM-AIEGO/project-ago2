@@ -7,8 +7,6 @@ public class RailCannon : SubWeapon
     [SerializeField] private Projectile railCannonProjectilePrefab;
     [SerializeField] private Transform projectileLaunchPoint;
 
-    private UIManager uiManager;
-
     protected override void Update()
     {
         base.Update();
@@ -36,9 +34,7 @@ public class RailCannon : SubWeapon
 
     public override void Use()
     {
-        isLaunching = true;
-        isReady = false;
-        subWeaponObj.SetActive(true);
+        base.Use();
     }
 
     protected override void Fire()
@@ -56,12 +52,12 @@ public class RailCannon : SubWeapon
             var currentObject = hitInfo[i].collider.gameObject;
             if (currentObject.TryGetComponent(out IHittable hittable))
             {
-                hittable.TakeDamage(100f);
+                hittable.TakeDamage(99f);
                 uiManager?.ShowHitMarker();
             }
             if (currentObject.TryGetComponent(out IKnockable knockable))
             {
-                knockable.TakeKnockback(aimRay.direction * 250, 0.5f);
+                knockable.TakeKnockback(aimRay.direction * 60, 0.5f);
             }
             if (i == hitInfo.Length - 1)
             {
@@ -85,7 +81,7 @@ public class RailCannon : SubWeapon
             direction = aimDirection;
         }
 
-        objectPool.SpawnProjectile(railCannonProjectilePrefab, projectileLaunchPoint.position, Quaternion.LookRotation(direction));
+        //objectPool.SpawnProjectile(railCannonProjectilePrefab, projectileLaunchPoint.position, Quaternion.LookRotation(direction), 00);
         emitter.PlayFollow("Rail_Cannon_Fire", playerTransform);
         cameraShake?.AddRecoil(new Vector2(Random.Range(-300f, 300f), 1000f));
         isInAftereffect = true;

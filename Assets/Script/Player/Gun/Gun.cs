@@ -149,7 +149,7 @@ public class Gun : MonoBehaviour
 
             if (hitinfo.collider.TryGetComponent(out IKnockable knockable))
             {
-                knockable.TakeKnockback(aimRay.direction * hitForce, Time.deltaTime);
+                knockable.TakeKnockback(aimRay.direction * hitForce, 0.25f);
             }
 
             if (hitinfo.collider.TryGetComponent(out GrenadeProjectile grenadeProjectile))

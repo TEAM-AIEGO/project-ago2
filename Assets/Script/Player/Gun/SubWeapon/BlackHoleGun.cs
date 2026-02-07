@@ -6,8 +6,6 @@ public class BlackHoleGun : SubWeapon
     [SerializeField] private SFXEmitter emitter;
     [SerializeField] private Transform projectileLaunchPoint;
 
-    private UIManager uiManager;
-
     protected override void Update()
     {
         base.Update();
@@ -37,9 +35,7 @@ public class BlackHoleGun : SubWeapon
 
     public override void Use()
     {
-        isLaunching = true;
-        isReady = false;
-        subWeaponObj.SetActive(true);
+        base.Use();
     }
 
     protected override void Fire()
