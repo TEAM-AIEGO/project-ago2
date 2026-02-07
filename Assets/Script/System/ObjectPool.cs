@@ -80,6 +80,7 @@ public class ObjectPool : MonoBehaviour
         enemy.transform.position = spawnPos;
         enemy.transform.rotation = Quaternion.identity;
         enemy.transform.SetParent(enemyParent);
+        enemy.OnReturn += DisableEnemy;
         enemy.gameObject.SetActive(true);
         warpSystemManager.RegisterWarpObserver(enemy);
 

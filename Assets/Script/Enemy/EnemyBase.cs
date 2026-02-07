@@ -48,7 +48,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected bool isPlayerDetected = false;
     #endregion
 
-    public event Action<EnemyBase> OnReturn;
+    [HideInInspector] public event Action<EnemyBase> OnReturn;
 
     void Start()
     {
@@ -151,8 +151,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected virtual void Dead()
     {
-        Destroy(gameObject);
-        //OnReturn?.Invoke(this);
+        OnReturn?.Invoke(this);
     }
 
     public virtual void OnWarpStageChanged(int newStage)
