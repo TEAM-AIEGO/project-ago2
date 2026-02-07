@@ -1,15 +1,31 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BurstTurret : TurretBase
 {
+    [HideInInspector] public event Action<Projectile, Vector3, Quaternion, float, float> OnShootProjectile;
+
     [Header("Burst Settings")]
     [SerializeField] private int burstCount = 8;
     [SerializeField] private float burstInterval = 0.1f;
+    [SerializeField] private float projectileSpeed = 40f;
+    [SerializeField] private float maxLeadTime = 2f;
+
+    [SerializeField] private Projectile projectilePrefab;
+    public Projectile ProjectilePrefab => projectilePrefab;
 
     private int burstShotsRemaining;
     private float burstTimer;
     private bool isBursting;
+
+    public override void Initialize(EnemyBase origin, int warpStage)
+    {
+        base.Initialize(origin, warpStage);
+
+        muDAMUDAMUDAStrategy = new GermanysTechnologyStrategy(projectileSpeed, attackDamage, maxLeadTime, ShootPoint, projectilePrefab, OnShootProjectile);
+        muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
+    }
 
     protected override void Update()
     {
