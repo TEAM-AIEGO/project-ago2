@@ -72,6 +72,9 @@ public class ObjectPool : MonoBehaviour
         if (enemy is RangedEnemy rangedEnemy)
             rangedEnemy.OnShootProjectile += SpawnProjectile;
 
+        if (enemy is TurretBase turretEnemy)
+            turretEnemy.OnShootProjectile += SpawnProjectile;
+
         if (enemy is BombEnemy bombEnemy)
             bombEnemy.OnLaunchProjectile += SpawnEnemyGrenadeProjectile;
 

@@ -1,23 +1,17 @@
 using System;
 using UnityEngine;
 
-enum RangedState
-{
-    idle,
-    moving,
-    attacking
-}
-
 [RequireComponent(typeof(Rigidbody))]
-public class RangedEnemy : EnemyBase
+public abstract class TurretBase : EnemyBase
 {
     [HideInInspector] public event Action<Projectile, Vector3, Quaternion, float, float> OnShootProjectile;
 
-    [SerializeField] private Transform ShootPoint;
-    [SerializeField] private float projectileSpeed = 40f;
-    [SerializeField] private float maxLeadTime = 2f;
-    [SerializeField] private HitFlash hitFlash;
-    [SerializeField] private Projectile projectilePrefab;
+    [Header("Turret Settings")]
+    [SerializeField] protected Transform ShootPoint;
+    [SerializeField] protected float projectileSpeed = 40f;
+    [SerializeField] protected float maxLeadTime = 2f;
+    [SerializeField] protected HitFlash hitFlash;
+    [SerializeField] protected Projectile projectilePrefab;
     public Projectile ProjectilePrefab => projectilePrefab;
 
     public override void Initialize(EnemyBase origin, int warpStage)
@@ -28,13 +22,11 @@ public class RangedEnemy : EnemyBase
         muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
     }
 
-    protected override void Update()
-    {
-        base.Update();
-    }
     protected override void Idle()
     {
-        // Detect player in idle state
+        if (!EnsurePlayer())
+            return;
+
         if (Vector3.Distance(player.transform.position, transform.position) < detectionDistance)
         {
             state = EnemyState.moving;
@@ -43,11 +35,14 @@ public class RangedEnemy : EnemyBase
 
     protected override void Moving()
     {
-        muKatteKuruNoKaStrategy.KonoDIOniMuKatteKuruNoKa(this, player.transform);
+        return;
     }
 
     protected override void AttackCheck()
     {
+        if (!EnsurePlayer())
+            return;
+
         if (Vector3.Distance(player.transform.position, transform.position) < AttackDictance)
         {
             if (!canAttack)
@@ -57,45 +52,29 @@ public class RangedEnemy : EnemyBase
         }
     }
 
-    protected override void Attacking()
-    {
-        muDAMUDAMUDAStrategy.Attacking(this, player.transform);
-        attackTime = 0f;
-    }
-
-    public override void OnWarpStageChanged(int newStage)
-    {
-        base.OnWarpStageChanged(newStage);
-
-        switch (newStage)
-        {
-            case 0:
-                muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
-                break;
-            case 1:
-                muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
-                break;
-            default:
-                Debug.LogError("Invalid warp stage");
-                break;
-        }
-    }
-
     public override void TakeDamage(float damage)
     {
         if (health <= 0)
             return;
 
-        // Detect player on taking damage
-        if (isPlayerDetected == false)
+        if (isPlayerDetected == false && EnsurePlayer())
         {
             isPlayerDetected = true;
             state = EnemyState.moving;
         }
 
         health -= damage;
-        Debug.Log($"Ranged Enemy took {damage} damage. Remaining Health: {health}");
+        Debug.Log($"{name} took {damage} damage. Remaining Health: {health}");
 
         hitFlash.Flash();
+    }
+
+    protected bool EnsurePlayer()
+    {
+        if (player != null)
+            return true;
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        return player != null;
     }
 }
