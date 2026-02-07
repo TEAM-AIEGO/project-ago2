@@ -35,19 +35,14 @@ public class ScanDoorPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (isScanning)
+            return;
+
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Door Active");
             OnScanStart.Invoke();
             isScanning = true;
-            scanTimer = 0.0f;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isScanning = false;
             scanTimer = 0.0f;
         }
     }

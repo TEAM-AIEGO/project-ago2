@@ -9,9 +9,17 @@ public class StageDoor : MonoBehaviour
     public bool IsScanDoor => isScanDoor;
     [SerializeField] private ScanDoorPoint scanDoorPoint;
     [SerializeField] private InDoorCheck inDoorCheck;
+    
+    private UIManager uiManager;
 
     private void Start()
     {
+        uiManager = FindFirstObjectByType<UIManager>();
+        if (!uiManager)
+        {
+            Debug.LogWarning("UIManager not found! Hitmarker will not show.");
+        }
+
         if (doorAnimator == null)
         {
             Debug.LogError("Door Animator is not assigned in StageDoor.");
@@ -37,12 +45,14 @@ public class StageDoor : MonoBehaviour
     public void OpenDoor()
     {
         doorAnimator.SetTrigger("Open");
+        uiManager.ActiveDoorAlarm(false);
         col.enabled = false;
     }
 
     public void CloseDoor()
     {
         doorAnimator.SetTrigger("Close");
+        uiManager.ActiveDoorAlarm(true);
         col.enabled = true;
     }
 
