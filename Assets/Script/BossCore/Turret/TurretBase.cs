@@ -19,7 +19,17 @@ public abstract class TurretBase : EnemyBase
     {
         base.Initialize(origin, warpStage);
     }
+    protected override void Update()
+    {
+        if (!isDead && health <= 0)
+        {
+            isDead = true;
+            Destroy(gameObject);
+            return;
+        }
 
+        base.Update();
+    }
     protected override void Idle()
     {
         if (!EnsurePlayer())
