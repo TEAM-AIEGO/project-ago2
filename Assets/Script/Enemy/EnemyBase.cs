@@ -64,6 +64,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
             Debug.LogError("player is Null");
         }
 
+        originEnemy = oringin;
         rb = GetComponent<Rigidbody>();
 
         state = EnemyState.idle;

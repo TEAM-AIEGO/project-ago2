@@ -17,7 +17,7 @@ public abstract class TurretBase : EnemyBase
     {
         base.Initialize(origin, warpStage);
     }
-    protected override void Update()
+    /*protected override void Update()
     {
         if (!isDead && health <= 0)
         {
@@ -27,7 +27,7 @@ public abstract class TurretBase : EnemyBase
         }
 
         base.Update();
-    }
+    }*/
     protected override void Idle()
     {
         if (!EnsurePlayer())
@@ -72,6 +72,12 @@ public abstract class TurretBase : EnemyBase
         health -= damage;
         Debug.Log($"{name} took {damage} damage. Remaining Health: {health}");
 
+        if (health <= 0 && !isDead)
+        {
+            isDead = true;
+            Destroy(gameObject);
+            return;
+        }
         hitFlash.Flash();
     }
 

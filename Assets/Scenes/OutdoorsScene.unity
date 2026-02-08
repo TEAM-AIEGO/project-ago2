@@ -10173,6 +10173,8 @@ MonoBehaviour:
     StageDoor: {fileID: 132119317}
     Enemies:
     - EnemyPrefab: {fileID: 3227721525028264328, guid: fb6627008ce6d224884f1c3bf8e537db, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 6.42}
+    - EnemyPrefab: {fileID: 1291953402006919631, guid: a99d755959927347196a02cc99352d38, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.5, z: 4.11}
   - StageState: 0
     StageObject: {fileID: 0}
