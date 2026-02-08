@@ -7,7 +7,14 @@ public abstract class TurretBase : EnemyBase
     [Header("Turret Settings")]
     [SerializeField] protected Transform ShootPoint;
     [SerializeField] protected HitFlash hitFlash;
+    [SerializeField] private BossCore bossCore;
 
+    public BossCore BossCore => bossCore;
+
+    public void SetBossCore(BossCore core)
+    {
+        bossCore = core;
+    }
     public override void Initialize(EnemyBase origin, int warpStage)
     {
         base.Initialize(origin, warpStage);
