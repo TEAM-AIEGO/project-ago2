@@ -49,6 +49,11 @@ public class BossCore : Unit, IWarpObserver
                     grenadeTurret.OnLaunchProjectile -= objectPool.SpawnEnemyGrenadeProjectile;
                     grenadeTurret.OnLaunchProjectile += objectPool.SpawnEnemyGrenadeProjectile;
                 }
+
+                if (turret is LaserTurret laserTurret)
+                {
+                    laserTurret.OnShootProjectile += objectPool.SpawnProjectile;
+                }
             }
 
             turret.SetBossCore(this);

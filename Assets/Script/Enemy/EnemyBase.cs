@@ -119,7 +119,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         }
     }
 
-    public void TakeKnockback(Vector3 force, float duration)
+    public virtual void TakeKnockback(Vector3 force, float duration)
     {
         if (muKatteKuruNoKaStrategy is DontMuKatteKuruNoKaStrategy && force.magnitude < 50f)
             return;
@@ -128,13 +128,13 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         rb.AddForce(force, ForceMode.Impulse);
     }
 
-    public void TakeExplosionKnockback(float explosionForce, Vector3 explosionPosition, float explosionRadius, float duration)
+    public virtual void TakeExplosionKnockback(float explosionForce, Vector3 explosionPosition, float explosionRadius, float duration)
     {
         knockbackStun += duration;
         rb.AddExplosionForce(explosionForce, explosionPosition, explosionRadius, 2f, ForceMode.VelocityChange);
     }
 
-    private void LookTarget()
+    protected void LookTarget()
     {
         Vector3 direction = (player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));

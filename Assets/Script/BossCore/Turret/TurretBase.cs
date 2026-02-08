@@ -11,10 +11,8 @@ public abstract class TurretBase : EnemyBase
 
     public BossCore BossCore => bossCore;
 
-    public void SetBossCore(BossCore core)
-    {
-        bossCore = core;
-    }
+    public void SetBossCore(BossCore core) => bossCore = core;
+
     public override void Initialize(EnemyBase origin, int warpStage)
     {
         base.Initialize(origin, warpStage);
@@ -75,6 +73,16 @@ public abstract class TurretBase : EnemyBase
         Debug.Log($"{name} took {damage} damage. Remaining Health: {health}");
 
         hitFlash.Flash();
+    }
+
+    public override void TakeKnockback(Vector3 force, float duration)
+    {
+        return;
+    }
+
+    public override void TakeExplosionKnockback(float explosionForce, Vector3 explosionPosition, float explosionRadius, float duration)
+    {
+        return;
     }
 
     protected bool EnsurePlayer()

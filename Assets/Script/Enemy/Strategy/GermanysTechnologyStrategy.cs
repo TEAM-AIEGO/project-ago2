@@ -22,10 +22,27 @@ public class GermanysTechnologyStrategy : IMUDAMUDAMUDAStrategy
     public void Attacking(EnemyBase enemy, Transform target)
     {
         Rigidbody rb = target.GetComponent<Rigidbody>();
+
         if (projectilePrefab == null)
             return;
 
-        Vector3 targetVelocity = rb.linearVelocity;
+        Vector3 targetVelocity = Vector3.zero;
+
+        if (rb != null)
+        {
+            targetVelocity = rb.linearVelocity;
+        }
+
+        if (maxLeadTime <= 0f)
+        {
+            Debug.Log("Laserr");
+
+            Vector3 targetDirection = (target.position - shooter.position).normalized;
+
+            Quaternion shootRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            OnShootProjectile?.Invoke(projectilePrefab, shooter.position, shootRotation, projectileSpeed, damage);
+            return;
+        }
 
         if (TryGetLeadDirection(shooter, target, targetVelocity, 50f, out Vector3 leadDirection))
         {
