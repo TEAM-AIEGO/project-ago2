@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
 public class StageDoor : MonoBehaviour
 {
+    [HideInInspector] public event Action<int> OnDoorOpen;
+    public int nextStageIndex;
+
     [SerializeField] private BoxCollider col;
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private bool isScanDoor = false;
@@ -25,12 +29,7 @@ public class StageDoor : MonoBehaviour
             Debug.LogError("Door Animator is not assigned in StageDoor.");
         }
 
-        if (isScanDoor && scanDoorPoint == null)
-        {
-            Debug.LogError("ScanDoorPoint is not assigned for a scan door in StageDoor.");
-            return;
-        }
-        else if (scanDoorPoint != null)
+        if (scanDoorPoint != null)
         {
             scanDoorPoint.OnScanStart += OpenDoor;
             scanDoorPoint.OnScanComplete += CloseDoor;
@@ -46,6 +45,7 @@ public class StageDoor : MonoBehaviour
     {
         doorAnimator.SetTrigger("Open");
         uiManager.ActiveDoorAlarm(false);
+        OnDoorOpen.Invoke(nextStageIndex);
         col.enabled = false;
     }
 

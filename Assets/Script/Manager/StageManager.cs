@@ -35,7 +35,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private WarpSystemManager warpSystemManager;
     [SerializeField] private Playthething ptt;
-    private int currentStageIndex = 0;
+    [SerializeField] private int currentStageIndex = 0;
     private int StageEnemyLeft = 0;
 
     public void Initialize()
@@ -122,13 +122,14 @@ public class StageManager : MonoBehaviour, IWarpObserver
             Debug.Log("$tage C;ear");
             Stages[currentStageIndex].StageState = StageState.Ended;
 
-            if (Stages[currentStageIndex].StageDoor.IsScanDoor)
-                Stages[currentStageIndex].StageDoor.SetScan();
-            else
-                Stages[currentStageIndex].StageDoor.OpenDoor();
+            Stages[currentStageIndex].StageDoor.SetScan();
+            
 
-            if (++currentStageIndex != Stages.Count)
-                StartStage(currentStageIndex);
+            if (currentStageIndex + 1 != Stages.Count)
+            {
+                Stages[currentStageIndex].StageDoor.OnDoorOpen += StartStage;
+                Stages[currentStageIndex].StageDoor.nextStageIndex = ++currentStageIndex;
+            }
             else
             {
                 Debug.Log("All Stages Cleared!");

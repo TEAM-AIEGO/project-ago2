@@ -6,6 +6,7 @@ public class ScanDoorPoint : MonoBehaviour
     [HideInInspector] public event Action OnScanComplete;
     [HideInInspector] public event Action OnScanStart;
 
+    [SerializeField] private bool isScanDoor;
     [SerializeField] private float scanDuration = 5.0f;
     private float scanTimer = 0.0f;
     private int scanCount = 0;
@@ -18,6 +19,9 @@ public class ScanDoorPoint : MonoBehaviour
 
     private void Update()
     {
+        if (!isScanDoor)
+            return;
+
         if (isScanning)
         {
             scanTimer += Time.deltaTime;

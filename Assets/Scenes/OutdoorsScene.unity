@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38e12c0623e9b9448b3e487e9d84504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScanDoorPoint
+  isScanDoor: 0
   scanDuration: 5
 --- !u!65 &3017484
 BoxCollider:
@@ -1650,6 +1651,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138276834}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &145691313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 145691314}
+  - component: {fileID: 145691316}
+  - component: {fileID: 145691315}
+  m_Layer: 0
+  m_Name: ScanPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &145691314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145691313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.175, y: -0, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5242081624760831091}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &145691315
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145691313}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.35, y: 2.5, z: 1.25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &145691316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145691313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38e12c0623e9b9448b3e487e9d84504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScanDoorPoint
+  isScanDoor: 0
+  scanDuration: 5
 --- !u!1 &147284416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,11 +2064,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: 1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -2114,6 +2178,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!1 &173203511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,8 +2227,6 @@ MonoBehaviour:
   - {fileID: 8404270259094500067, guid: e8354b079cbd8aa4aadd7dd9369d0e3f, type: 3}
   - {fileID: 981007754708470298, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
   - {fileID: 2394888397063174062, guid: 965fd3f4d66c6904cac2174758a6f8f4, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 2741278897423310853, guid: fb6627008ce6d224884f1c3bf8e537db, type: 3}
   projectileParent: {fileID: 798548893}
   grenadeProjectileParent: {fileID: 798548893}
@@ -2783,11 +2850,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: -1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -2902,6 +2964,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!108 &252599986
 Light:
   m_ObjectHideFlags: 0
@@ -3291,6 +3358,10 @@ PrefabInstance:
     - target: {fileID: 8178892822538058316, guid: 84f336385bb4bed439d1ac9321fdbb84, type: 3}
       propertyPath: m_Name
       value: Stage_2_mess
+      objectReference: {fileID: 0}
+    - target: {fileID: 8178892822538058316, guid: 84f336385bb4bed439d1ac9321fdbb84, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7400,7 +7471,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &733986112
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7992,11 +8063,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: -1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -8111,6 +8177,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!108 &738085880
 Light:
   m_ObjectHideFlags: 0
@@ -10450,16 +10521,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   Stages:
   - StageState: 0
-    StageObject: {fileID: 0}
+    StageObject: {fileID: 7874699550487491660}
     WarpStageObject: {fileID: 0}
-    StageDoor: {fileID: 132119317}
+    StageDoor: {fileID: 5242081624760831092}
     Enemies:
     - EnemyPrefab: {fileID: 3227721525028264328, guid: fb6627008ce6d224884f1c3bf8e537db, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.5, z: 6.42}
     - EnemyPrefab: {fileID: 3227721525028264328, guid: fb6627008ce6d224884f1c3bf8e537db, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.5, z: 4.11}
   - StageState: 0
-    StageObject: {fileID: 0}
+    StageObject: {fileID: 1957507632}
     WarpStageObject: {fileID: 0}
     StageDoor: {fileID: 547112190}
     Enemies:
@@ -10956,9 +11027,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   hitMarker: {fileID: 259630159}
   DoorAlarm: {fileID: 1032435703}
-  SubWeaponFrame: {fileID: 0}
-  subtitleRoot: {fileID: 0}
-  subtitleText: {fileID: 0}
+  SubWeaponFrame: {fileID: 581997362}
+  subtitleRoot: {fileID: 1375097494}
+  subtitleText: {fileID: 1485563616}
 --- !u!114 &1045154502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11427,6 +11498,10 @@ PrefabInstance:
     - target: {fileID: 2951033366848185333, guid: 3e9a260342f5165478d5db5557dc143f, type: 3}
       propertyPath: m_Name
       value: Stage_1_normal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951033366848185333, guid: 3e9a260342f5165478d5db5557dc143f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11904,6 +11979,72 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1119158984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1119158985}
+  - component: {fileID: 1119158987}
+  - component: {fileID: 1119158986}
+  m_Layer: 0
+  m_Name: InDoorPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1119158985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119158984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000005960463, y: -0, z: 1, w: -0.000000029802315}
+  m_LocalPosition: {x: -13.701787, y: -0.019916534, z: 0.35151315}
+  m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.33333325}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5242081624760831091}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1119158986
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119158984}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1119158987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119158984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125245ffad023bb4b83b184759efe5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InDoorCheck
 --- !u!114 &1138857202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12769,11 +12910,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: -1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -12888,6 +13024,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!108 &1202013759
 Light:
   m_ObjectHideFlags: 0
@@ -13989,11 +14130,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: -1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -14108,6 +14244,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!108 &1325081005
 Light:
   m_ObjectHideFlags: 0
@@ -14751,7 +14892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1375097495
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14841,53 +14982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.HDAdditionalCameraData
-  m_Version: 9
-  m_ObsoleteRenderingPath: 0
-  m_ObsoleteFrameSettings:
-    overrides: 0
-    enableShadow: 0
-    enableContactShadows: 0
-    enableShadowMask: 0
-    enableSSR: 0
-    enableSSAO: 0
-    enableSubsurfaceScattering: 0
-    enableTransmission: 0
-    enableAtmosphericScattering: 0
-    enableVolumetrics: 0
-    enableReprojectionForVolumetrics: 0
-    enableLightLayers: 0
-    enableExposureControl: 1
-    diffuseGlobalDimmer: 0
-    specularGlobalDimmer: 0
-    shaderLitMode: 0
-    enableDepthPrepassWithDeferredRendering: 0
-    enableTransparentPrepass: 0
-    enableMotionVectors: 0
-    enableObjectMotionVectors: 0
-    enableDecals: 0
-    enableRoughRefraction: 0
-    enableTransparentPostpass: 0
-    enableDistortion: 0
-    enablePostprocess: 0
-    enableOpaqueObjects: 0
-    enableTransparentObjects: 0
-    enableRealtimePlanarReflection: 0
-    enableMSAA: 0
-    enableAsyncCompute: 0
-    runLightListAsync: 0
-    runSSRAsync: 0
-    runSSAOAsync: 0
-    runContactShadowsAsync: 0
-    runVolumeVoxelizationAsync: 0
-    lightLoopSettings:
-      overrides: 0
-      enableDeferredTileAndCluster: 0
-      enableComputeLightEvaluation: 0
-      enableComputeLightVariants: 0
-      enableComputeMaterialVariants: 0
-      enableFptlForForwardOpaque: 0
-      enableBigTilePrepass: 0
-      isFptlEnabled: 0
   clearColorMode: 0
   backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
   clearDepth: 1
@@ -14968,6 +15062,53 @@ MonoBehaviour:
       data1: 0
       data2: 0
   defaultFrameSettings: 0
+  m_Version: 9
+  m_ObsoleteRenderingPath: 0
+  m_ObsoleteFrameSettings:
+    overrides: 0
+    enableShadow: 0
+    enableContactShadows: 0
+    enableShadowMask: 0
+    enableSSR: 0
+    enableSSAO: 0
+    enableSubsurfaceScattering: 0
+    enableTransmission: 0
+    enableAtmosphericScattering: 0
+    enableVolumetrics: 0
+    enableReprojectionForVolumetrics: 0
+    enableLightLayers: 0
+    enableExposureControl: 1
+    diffuseGlobalDimmer: 0
+    specularGlobalDimmer: 0
+    shaderLitMode: 0
+    enableDepthPrepassWithDeferredRendering: 0
+    enableTransparentPrepass: 0
+    enableMotionVectors: 0
+    enableObjectMotionVectors: 0
+    enableDecals: 0
+    enableRoughRefraction: 0
+    enableTransparentPostpass: 0
+    enableDistortion: 0
+    enablePostprocess: 0
+    enableOpaqueObjects: 0
+    enableTransparentObjects: 0
+    enableRealtimePlanarReflection: 0
+    enableMSAA: 0
+    enableAsyncCompute: 0
+    runLightListAsync: 0
+    runSSRAsync: 0
+    runSSAOAsync: 0
+    runContactShadowsAsync: 0
+    runVolumeVoxelizationAsync: 0
+    lightLoopSettings:
+      overrides: 0
+      enableDeferredTileAndCluster: 0
+      enableComputeLightEvaluation: 0
+      enableComputeLightVariants: 0
+      enableComputeMaterialVariants: 0
+      enableFptlForForwardOpaque: 0
+      enableBigTilePrepass: 0
+      isFptlEnabled: 0
 --- !u!20 &1383719995
 Camera:
   m_ObjectHideFlags: 0
@@ -15217,6 +15358,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87290808276013848, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1449225613758784285, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15257,14 +15402,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7781680806174605628, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7874699549639604100, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
       propertyPath: m_Name
       value: Stage_0_Clean
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5242081623930212283, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 145691314}
+    - targetCorrespondingSourceObject: {fileID: 5242081623930212283, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1119158985}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 87290808276013848, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7781680805327995640}
+    - targetCorrespondingSourceObject: {fileID: 87290808276013848, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7781680805327995639}
+    - targetCorrespondingSourceObject: {fileID: 87290808276013848, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7781680805327995638}
+    - targetCorrespondingSourceObject: {fileID: 87290808276013848, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7781680805327995637}
+    - targetCorrespondingSourceObject: {fileID: 4896624293813081345, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5242081624760831093}
+    - targetCorrespondingSourceObject: {fileID: 4896624293813081345, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5242081624760831092}
   m_SourcePrefab: {fileID: 100100000, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
 --- !u!1 &1389141005
 GameObject:
@@ -17189,11 +17362,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: -1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -17308,6 +17476,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!108 &1619600606
 Light:
   m_ObjectHideFlags: 0
@@ -18832,11 +19005,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: -1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -18951,6 +19119,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!108 &1796254341
 Light:
   m_ObjectHideFlags: 0
@@ -19356,53 +19529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 9
-  m_ObsoleteRenderingPath: 0
-  m_ObsoleteFrameSettings:
-    overrides: 0
-    enableShadow: 0
-    enableContactShadows: 0
-    enableShadowMask: 0
-    enableSSR: 0
-    enableSSAO: 0
-    enableSubsurfaceScattering: 0
-    enableTransmission: 0
-    enableAtmosphericScattering: 0
-    enableVolumetrics: 0
-    enableReprojectionForVolumetrics: 0
-    enableLightLayers: 0
-    enableExposureControl: 1
-    diffuseGlobalDimmer: 0
-    specularGlobalDimmer: 0
-    shaderLitMode: 0
-    enableDepthPrepassWithDeferredRendering: 0
-    enableTransparentPrepass: 0
-    enableMotionVectors: 0
-    enableObjectMotionVectors: 0
-    enableDecals: 0
-    enableRoughRefraction: 0
-    enableTransparentPostpass: 0
-    enableDistortion: 0
-    enablePostprocess: 0
-    enableOpaqueObjects: 0
-    enableTransparentObjects: 0
-    enableRealtimePlanarReflection: 0
-    enableMSAA: 0
-    enableAsyncCompute: 0
-    runLightListAsync: 0
-    runSSRAsync: 0
-    runSSAOAsync: 0
-    runContactShadowsAsync: 0
-    runVolumeVoxelizationAsync: 0
-    lightLoopSettings:
-      overrides: 0
-      enableDeferredTileAndCluster: 0
-      enableComputeLightEvaluation: 0
-      enableComputeLightVariants: 0
-      enableComputeMaterialVariants: 0
-      enableFptlForForwardOpaque: 0
-      enableBigTilePrepass: 0
-      isFptlEnabled: 0
   clearColorMode: 0
   backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
   clearDepth: 1
@@ -19483,6 +19609,53 @@ MonoBehaviour:
       data1: 0
       data2: 0
   defaultFrameSettings: 0
+  m_Version: 9
+  m_ObsoleteRenderingPath: 0
+  m_ObsoleteFrameSettings:
+    overrides: 0
+    enableShadow: 0
+    enableContactShadows: 0
+    enableShadowMask: 0
+    enableSSR: 0
+    enableSSAO: 0
+    enableSubsurfaceScattering: 0
+    enableTransmission: 0
+    enableAtmosphericScattering: 0
+    enableVolumetrics: 0
+    enableReprojectionForVolumetrics: 0
+    enableLightLayers: 0
+    enableExposureControl: 1
+    diffuseGlobalDimmer: 0
+    specularGlobalDimmer: 0
+    shaderLitMode: 0
+    enableDepthPrepassWithDeferredRendering: 0
+    enableTransparentPrepass: 0
+    enableMotionVectors: 0
+    enableObjectMotionVectors: 0
+    enableDecals: 0
+    enableRoughRefraction: 0
+    enableTransparentPostpass: 0
+    enableDistortion: 0
+    enablePostprocess: 0
+    enableOpaqueObjects: 0
+    enableTransparentObjects: 0
+    enableRealtimePlanarReflection: 0
+    enableMSAA: 0
+    enableAsyncCompute: 0
+    runLightListAsync: 0
+    runSSRAsync: 0
+    runSSAOAsync: 0
+    runContactShadowsAsync: 0
+    runVolumeVoxelizationAsync: 0
+    lightLoopSettings:
+      overrides: 0
+      enableDeferredTileAndCluster: 0
+      enableComputeLightEvaluation: 0
+      enableComputeLightVariants: 0
+      enableComputeMaterialVariants: 0
+      enableFptlForForwardOpaque: 0
+      enableBigTilePrepass: 0
+      isFptlEnabled: 0
 --- !u!114 &1823688469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20928,6 +21101,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1957507632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2951033366848185333, guid: 3e9a260342f5165478d5db5557dc143f, type: 3}
+  m_PrefabInstance: {fileID: 1079128974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1971066503
 GameObject:
   m_ObjectHideFlags: 0
@@ -21503,11 +21681,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: -1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -21622,6 +21795,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!108 &2066816965
 Light:
   m_ObjectHideFlags: 0
@@ -22105,11 +22283,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: -1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -22224,6 +22397,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!108 &2104005577
 Light:
   m_ObjectHideFlags: 0
@@ -22606,11 +22784,6 @@ MonoBehaviour:
   m_ShapeWidth: -1
   m_ShapeHeight: -1
   m_AspectRatio: -1
-  m_Version: 14
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -22725,6 +22898,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+  m_Version: 14
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
 --- !u!108 &2121472560
 Light:
   m_ObjectHideFlags: 0
@@ -22868,6 +23046,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121472556}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &87290809056792784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 87290808276013848, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+  m_PrefabInstance: {fileID: 1385055176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &210401050037039378
 Transform:
   m_ObjectHideFlags: 0
@@ -23761,7 +23944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TestGun
   playerTransfrom: {fileID: 733986118}
   emitter: {fileID: 2939823097667078891}
-  cameraShake: {fileID: 0}
+  cameraShake: {fileID: 1823688470}
   objectPool: {fileID: 173203512}
   projectile: {fileID: 3252375257216778117, guid: a24e63d1a18ddcd419c137ab37f8a109, type: 3}
   layerMasks:
@@ -24088,6 +24271,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &4477289922728815696 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4477289924095225752, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+  m_PrefabInstance: {fileID: 1385055176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!33 &4481240885553470976
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24135,6 +24323,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768911962147548888}
   m_Mesh: {fileID: -16067715350652174, guid: 99c354073e3013642a77a8be1374a2b9, type: 3}
+--- !u!1 &4896624295130207945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4896624293813081345, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+  m_PrefabInstance: {fileID: 1385055176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4914571353324797300
 GameObject:
   m_ObjectHideFlags: 0
@@ -24213,6 +24406,49 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &5242081624760831091 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242081623930212283, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+  m_PrefabInstance: {fileID: 1385055176}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5242081624760831092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896624295130207945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48c7e47ba82946458720683d6be7fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageDoor
+  col: {fileID: 5242081624760831093}
+  doorAnimator: {fileID: 4477289922728815696}
+  isScanDoor: 0
+  scanDoorPoint: {fileID: 145691316}
+  inDoorCheck: {fileID: 0}
+--- !u!65 &5242081624760831093
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896624295130207945}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &5271695525245993235
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24720,6 +24956,95 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!65 &7781680805327995637
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87290809056792784}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 50, y: 1202.3003, z: 1070.2257}
+  m_Center: {x: 923.31, y: 0, z: 0}
+--- !u!65 &7781680805327995638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87290809056792784}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1838.9832, y: 1202.3003, z: 50}
+  m_Center: {x: 0, y: 0, z: -527}
+--- !u!65 &7781680805327995639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87290809056792784}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1838.9832, y: 60, z: 1070.2257}
+  m_Center: {x: 0, y: 600, z: 0}
+--- !u!65 &7781680805327995640
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87290809056792784}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1838.9832, y: 60, z: 1070.2257}
+  m_Center: {x: 0, y: -600, z: 0}
+--- !u!1 &7874699550487491660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7874699549639604100, guid: 336648c8c43b2564f982e84c1b6bbce2, type: 3}
+  m_PrefabInstance: {fileID: 1385055176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7936960821950323142
 GameObject:
   m_ObjectHideFlags: 0
