@@ -4,6 +4,8 @@ public class MuKatteKuruNoKaStrategy : IMuKatteKuruNoKaStrategy
 {
     public void KonoDIOniMuKatteKuruNoKa(EnemyBase enemy, Transform target)
     {
+        //Debug.Log("Move Enemy");
+
         Vector3 toTarget = target.position - enemy.Rb.position;
         toTarget.y = 0f;
 
