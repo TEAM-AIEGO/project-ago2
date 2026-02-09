@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody), typeof(Animator))] 
 public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 {
     protected enum EnemyState
@@ -14,6 +14,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected EnemyState state;
     protected GameObject player;
+    protected Animator enemyAnimator;
     protected Rigidbody rb;
     public Rigidbody Rb => rb;
     protected float knockbackStun;
@@ -50,11 +51,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     [HideInInspector] public event Action<EnemyBase> OnReturn;
 
-    void Start()
-    {
-
-    }
-
     public virtual void Initialize(EnemyBase oringin, int warpStage)
     {
         isPlayerDetected = false;
@@ -69,6 +65,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
         originEnemy = oringin;
         rb = GetComponent<Rigidbody>();
+        enemyAnimator = GetComponent<Animator>();
 
         state = EnemyState.idle;
 
@@ -105,6 +102,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                     state = EnemyState.moving;
                     break;
                 }
+                //enemyAnimator.SetTrigger("Attack");
                 Attacking();
                 canAttack = false; 
                 break;
@@ -144,11 +142,22 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
-    protected abstract void Idle();
+    protected virtual void Idle()
+    {
+        if (Vector3.Distance(player.transform.position, transform.position) < detectionDistance)
+        {
+            if (enemyAnimator != null)
+                enemyAnimator.SetTrigger("Move");
+
+            state = EnemyState.moving;
+        }
+    }
 
     protected abstract void Moving();
 
     protected abstract void AttackCheck();
+
+    public void OnAttack() => Attacking();
 
     protected abstract void Attacking();
 

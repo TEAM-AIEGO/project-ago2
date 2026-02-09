@@ -31,10 +31,7 @@ public class NegromancyEnemy : EnemyBase
 
     protected override void Idle()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < detectionDistance)
-        {
-            state = EnemyState.moving;
-        }
+        base.Idle();
     }
 
     protected override void Moving()

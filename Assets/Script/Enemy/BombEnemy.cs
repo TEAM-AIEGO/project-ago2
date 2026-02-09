@@ -29,13 +29,10 @@ public class BombEnemy : EnemyBase
     {
         base.Update();
     }
+
     protected override void Idle()
     {
-        // Detect player in idle state
-        if (Vector3.Distance(player.transform.position, transform.position) < detectionDistance)
-        {
-            state = EnemyState.moving;
-        }
+        base.Idle();
     }
 
     protected override void Moving()

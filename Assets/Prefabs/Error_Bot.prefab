@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5654973610826968289}
   - component: {fileID: 2741278897423310853}
   - component: {fileID: 384026025853262413}
+  - component: {fileID: 5852507137885859801}
   m_Layer: 7
   m_Name: Error_Bot
   m_TagString: Untagged
@@ -163,6 +164,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HitFlash
   targetRenderer: {fileID: 6567167305903232808}
   flashDuration: 0.1
+--- !u!95 &5852507137885859801
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227721525028264328}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f860db9b298d2041af8567072c1b0d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3914533982212704749
 GameObject:
   m_ObjectHideFlags: 0
