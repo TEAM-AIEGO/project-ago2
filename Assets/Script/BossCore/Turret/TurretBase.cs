@@ -9,6 +9,9 @@ public abstract class TurretBase : EnemyBase
     [SerializeField] protected HitFlash hitFlash;
     [SerializeField] private BossCore bossCore;
 
+    [SerializeField] private Transform turretHead;
+    [SerializeField] private Transform poSin;
+
     protected bool isDestroyed = false;
 
     public BossCore BossCore => bossCore;
@@ -28,6 +31,17 @@ public abstract class TurretBase : EnemyBase
             return;
 
         base.Update();
+    }
+
+    protected override void LookTarget()
+    {
+        Vector3 direction = (player.transform.position - turretHead.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        turretHead.rotation = Quaternion.Slerp(turretHead.rotation, lookRotation, Time.deltaTime * turnSpeed);
+
+        Vector3 direction2 = (player.transform.position - poSin.position).normalized;
+        Quaternion lookRotation2 = Quaternion.LookRotation(new Vector3(direction2.x, direction2.y, direction2.z));
+        poSin.rotation = Quaternion.Slerp(poSin.rotation, lookRotation2, Time.deltaTime * turnSpeed);
     }
 
     protected override void Idle()

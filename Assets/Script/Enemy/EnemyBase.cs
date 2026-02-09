@@ -137,11 +137,11 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         rb.AddExplosionForce(explosionForce, explosionPosition, explosionRadius, 2f, ForceMode.VelocityChange);
     }
 
-    protected void LookTarget()
+    protected virtual void LookTarget()
     {
         Vector3 direction = (player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
     protected abstract void Idle();
