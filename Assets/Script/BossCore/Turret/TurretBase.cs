@@ -4,8 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class TurretBase : EnemyBase
 {
-    [HideInInspector] public event Action OnDestory;
-
     [Header("Turret Settings")]
     [SerializeField] protected Transform ShootPoint;
     [SerializeField] protected HitFlash hitFlash;
@@ -19,17 +17,7 @@ public abstract class TurretBase : EnemyBase
     {
         base.Initialize(origin, warpStage);
     }
-    /*protected override void Update()
-    {
-        if (!isDead && health <= 0)
-        {
-            isDead = true;
-            Destroy(gameObject);
-            return;
-        }
 
-        base.Update();
-    }*/
     protected override void Idle()
     {
         if (!EnsurePlayer())
@@ -62,8 +50,18 @@ public abstract class TurretBase : EnemyBase
 
     public override void TakeDamage(float damage)
     {
+        hitFlash.Flash();
+
         if (health <= 0)
             return;
+
+        health -= damage;
+
+        if (!isDead && health <= 0)
+        {
+            isDead = true;
+            Died?.Invoke();
+        }
 
         if (isPlayerDetected == false && EnsurePlayer())
         {
@@ -71,17 +69,9 @@ public abstract class TurretBase : EnemyBase
             state = EnemyState.moving;
         }
 
-        health -= damage;
         //Debug.Log($"{name} took {damage} damage. Remaining Health: {health}");
-
-        if (health <= 0 && !isDead)
-        {
-            isDead = true;
-            Destroy(gameObject);
-            return;
-        }
-        hitFlash.Flash();
     }
+
 
     public override void TakeKnockback(Vector3 force, float duration)
     {
@@ -91,6 +81,11 @@ public abstract class TurretBase : EnemyBase
     public override void TakeExplosionKnockback(float explosionForce, Vector3 explosionPosition, float explosionRadius, float duration)
     {
         return;
+    }
+
+    protected override void Dead()
+    { 
+        Destroy(gameObject);
     }
 
     protected bool EnsurePlayer()

@@ -83,19 +83,8 @@ public class RangedEnemy : EnemyBase
 
     public override void TakeDamage(float damage)
     {
-        if (health <= 0)
-            return;
-
-        // Detect player on taking damage
-        if (isPlayerDetected == false)
-        {
-            isPlayerDetected = true;
-            state = EnemyState.moving;
-        }
-
-        health -= damage;
-        Debug.Log($"Ranged Enemy took {damage} damage. Remaining Health: {health}");
-
         hitFlash.Flash();
+
+        base.TakeDamage(damage);
     }
 }

@@ -16,6 +16,11 @@ public class BossCore : Unit, IWarpObserver
         Initialize();
     }
 
+    protected override void Update()
+    {
+
+    }
+
     public void Initialize()
     {
         if (warpSystemManager == null)
@@ -62,16 +67,20 @@ public class BossCore : Unit, IWarpObserver
             }
 
             turretCount++;
-            turret.Died.AddListener(TurretDestroyedCount);
+            Debug.Log("Turret Count : " + turretCount);
             turret.SetBossCore(this);
             turret.Initialize(turret, warpStage);
+            turret.Died.AddListener(TurretDestroyedCount);
             warpSystemManager?.RegisterWarpObserver(turret);
         }
     }
 
     private void TurretDestroyedCount()
     {
-        if (--turretCount == 0)
+        turretCount--;
+        Debug.Log("Turret Count : " + turretCount);
+
+        if (turretCount == 0)
         {
             Debug.Log("second phase");
         }

@@ -79,8 +79,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected override void Update()
     {
-        base.Update();
-
         switch (state)
         {
             case EnemyState.idle:
@@ -153,6 +151,17 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected abstract void AttackCheck();
 
     protected abstract void Attacking();
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+
+        if (isPlayerDetected == false)
+        {
+            isPlayerDetected = true;
+            state = EnemyState.moving;
+        }
+    }
 
     protected virtual void Dead()
     {

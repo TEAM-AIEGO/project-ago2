@@ -17,7 +17,6 @@ public class PlayerManager : Unit, IStat
     
     protected override void Update()
     {
-        base.Update();
         ChangeWarpStage();
     }
 
@@ -51,10 +50,8 @@ public class PlayerManager : Unit, IStat
 
     public override void TakeDamage(float damageAmount)
     {
-        if (health <= 0) 
-            return;
+        base.TakeDamage(damageAmount);
 
-        health -= damageAmount;
         OnValueChanged?.Invoke(health, maxHealth);
         Debug.Log($"Player took {damageAmount} damage. Remaining Health: {health}");
     }
@@ -62,6 +59,7 @@ public class PlayerManager : Unit, IStat
     public override void Heal(float HealAmount)
     {
         base.Heal(HealAmount);
+
         OnValueChanged?.Invoke(health, maxHealth);
         Debug.Log($"Player healed {HealAmount} damage. Remaining Health: {health}");
     }
