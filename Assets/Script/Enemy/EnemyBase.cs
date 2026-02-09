@@ -57,6 +57,9 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     public virtual void Initialize(EnemyBase oringin, int warpStage)
     {
+        isPlayerDetected = false;
+        health = maxHealth;
+
         player = GameObject.FindGameObjectWithTag("Player");
 
         if (player == null )
@@ -70,6 +73,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         state = EnemyState.idle;
 
         currentMoveSpeed = GetSpeed(warpStage);
+        Died.RemoveAllListeners();
         Died.AddListener(Dead);
     }
 

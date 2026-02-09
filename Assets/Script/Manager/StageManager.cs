@@ -71,6 +71,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
         currentStage.StageState = StageState.Loading;
         currentStageIndex = stageIndex;
         StageEnemyLeft = currentStage.Enemies.Count;
+        Debug.Log("Enemy Count : " + currentStage.Enemies.Count);
         for (int i = 0; i < currentStage.Enemies.Count; i++)
         {
             var currentEnemySpawnData = currentStage.Enemies[i];
@@ -115,8 +116,10 @@ public class StageManager : MonoBehaviour, IWarpObserver
     void OnStageEnemyKilled()
     {
         StageEnemyLeft--;
+        Debug.Log("Enemy Killed. Enemies Remaining : " + StageEnemyLeft);
         if (StageEnemyLeft <= 0)
         {
+            Debug.Log("Stage C;ear");
             Stages[currentStageIndex].StageState = StageState.Ended;
 
             if (Stages[currentStageIndex].StageDoor.IsScanDoor)
@@ -130,7 +133,8 @@ public class StageManager : MonoBehaviour, IWarpObserver
             {
                 Debug.Log("All Stages Cleared!");
                 // Ending Cutscene Play
-                ptt.PlaythethingPlz();
+                if (ptt != null)
+                    ptt.PlaythethingPlz();
             }
         }
     }

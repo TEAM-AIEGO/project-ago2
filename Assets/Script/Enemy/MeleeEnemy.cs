@@ -74,7 +74,7 @@ public class MeleeEnemy : EnemyBase
         }
 
         health -= damage;
-        Debug.Log($"Melee Enemy took {damage} damage. Remaining Health: {health}");
+        //Debug.Log($"Melee Enemy took {damage} damage. Remaining Health: {health}");
         
         hitFlash.Flash();
     }

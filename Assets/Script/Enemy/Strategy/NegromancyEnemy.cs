@@ -62,6 +62,14 @@ public class NegromancyEnemy : EnemyBase
         if (health <= 0)
             return;
 
+        if (health <= maxHealth / 2)
+        {
+            if (spawnOnDeath)
+            {
+                RequestSpawn();
+            }
+        }
+
         if (isPlayerDetected == false)
         {
             isPlayerDetected = true;
@@ -74,11 +82,6 @@ public class NegromancyEnemy : EnemyBase
 
     protected override void Dead()
     {
-        if (spawnOnDeath)
-        {
-            RequestSpawn();
-        }
-
         base.Dead();
     }
 

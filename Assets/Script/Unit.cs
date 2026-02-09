@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour, IHittable
     [SerializeField] protected float health = 100f;
     [HideInInspector] public UnityEvent Died;
     protected bool isDead;
+
     protected virtual void OnEnable()
     {
         isDead = false;

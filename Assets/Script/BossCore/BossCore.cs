@@ -8,6 +8,9 @@ public class BossCore : Unit, IWarpObserver
     [SerializeField] private WarpSystemManager warpSystemManager;
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private TurretBase[] turrets;
+
+    private float turretCount = 0f;
+
     private void Awake()
     {
         Initialize();
@@ -29,6 +32,8 @@ public class BossCore : Unit, IWarpObserver
         {
             objectPool = FindFirstObjectByType<ObjectPool>();
         }
+
+        turretCount = 0;
 
         int warpStage = warpSystemManager != null ? warpSystemManager.GetWarpStage() : 0;
         foreach (var turret in turrets)
@@ -56,15 +61,20 @@ public class BossCore : Unit, IWarpObserver
                 }
             }
 
+            turretCount++;
+            turret.Died.AddListener(TurretDestroyedCount);
             turret.SetBossCore(this);
             turret.Initialize(turret, warpStage);
             warpSystemManager?.RegisterWarpObserver(turret);
         }
     }
 
-    private void TurretActivate()
+    private void TurretDestroyedCount()
     {
-
+        if (--turretCount == 0)
+        {
+            Debug.Log("second phase");
+        }
     }
     
     private void TurrentWarpChange(int stage)

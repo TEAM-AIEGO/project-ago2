@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class TurretBase : EnemyBase
 {
+    [HideInInspector] public event Action OnDestory;
+
     [Header("Turret Settings")]
     [SerializeField] protected Transform ShootPoint;
     [SerializeField] protected HitFlash hitFlash;
@@ -70,7 +72,7 @@ public abstract class TurretBase : EnemyBase
         }
 
         health -= damage;
-        Debug.Log($"{name} took {damage} damage. Remaining Health: {health}");
+        //Debug.Log($"{name} took {damage} damage. Remaining Health: {health}");
 
         if (health <= 0 && !isDead)
         {
