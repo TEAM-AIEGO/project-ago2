@@ -64,7 +64,16 @@ public class Gun : MonoBehaviour
         if (fireTime >= fireInterval)
         {
             fireTime = 0f;
-            isFireAble = true;
+            isFireAble = true;   
+        }
+
+        if (transform.localRotation.eulerAngles .z > .2)
+        {
+            transform.localRotation = Quaternion.Euler(0, -90, Mathf.LerpAngle(transform.localRotation.eulerAngles.z, 0, Time.deltaTime * 10));
+        }
+        else
+        {
+            transform.localRotation = Quaternion.Euler(0, -90, 0);
         }
     }
 
@@ -133,6 +142,7 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
+        transform.localRotation = Quaternion.Euler(0, -90, 15);
         Vector3 direction;
 
         Ray aimRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
