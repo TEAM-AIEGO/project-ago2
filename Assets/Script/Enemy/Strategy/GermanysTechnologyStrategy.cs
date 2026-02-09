@@ -35,7 +35,7 @@ public class GermanysTechnologyStrategy : IMUDAMUDAMUDAStrategy
 
         if (maxLeadTime <= 0f)
         {
-            Debug.Log("Laserr");
+           //Debug.Log("Laserr");
 
             Vector3 targetDirection = (target.position - shooter.position).normalized;
 
