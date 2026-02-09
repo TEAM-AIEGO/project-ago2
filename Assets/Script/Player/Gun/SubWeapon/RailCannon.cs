@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -45,16 +46,42 @@ public class RailCannon : SubWeapon
 
         Vector3 aimPoint = Vector3.zero;
 
+        List<GameObject> duplicationObjs = new();
         RaycastHit[] hitInfo = Physics.RaycastAll(aimRay, 1000, LayerMask.GetMask("Enemy", "Hittable", "Ground"));
 
         for (int i = 0; i < hitInfo.Length; i++)
         {
+            if (duplicationObjs.Contains(hitInfo[i].transform.gameObject))
+                continue;
+            else
+                duplicationObjs.Add(hitInfo[i].transform.gameObject);
+
             var currentObject = hitInfo[i].collider.gameObject;
-            if (currentObject.TryGetComponent(out IHittable hittable))
+
+            Transform t = currentObject.transform;
+
+            for (int j = 0; j <= 2 && t != null; j++)
             {
-                hittable.TakeDamage(99f);
-                uiManager?.ShowHitMarker();
+                if (t.TryGetComponent(out IHittable hittable))
+                {
+                    if (duplicationObjs.Contains(t.gameObject))
+                        break;
+
+                    hittable.TakeDamage(99f);
+                    uiManager?.ShowHitMarker();
+                    duplicationObjs.Add(t.gameObject);
+                    break;
+                }
+
+                t = t.parent;
             }
+
+            //if (currentObject.TryGetComponent(out IHittable hittable))
+            //{
+            //    hittable.TakeDamage(99f);
+            //    uiManager?.ShowHitMarker();
+            //}
+
             if (currentObject.TryGetComponent(out IKnockable knockable))
             {
                 knockable.TakeKnockback(aimRay.direction * 60, 0.5f);

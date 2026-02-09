@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -55,7 +56,8 @@ public class BlackHoleProjectile : MonoBehaviour
         {
             blackHoleDurationTimer += Time.deltaTime;
             blackHoleTickTimer += Time.deltaTime;
-            ActivateBlackHole();
+            if (blackHoleTickTimer >= blackHoleTickInterval)
+                ActivateBlackHole();
 
             if (blackHoleDurationTimer >= blackHoleDuration)
             {
@@ -76,31 +78,52 @@ public class BlackHoleProjectile : MonoBehaviour
 
     public void ActivateBlackHole()
     {
+        List<GameObject> duplicationObjs = new();
         Collider[] affectedObjects = Physics.OverlapSphere(transform.position, blackHoleRadius, blackHoleLayerMask);
 
         for (int i = 0; i < affectedObjects.Length; i++)
         {
+            if (duplicationObjs.Contains(affectedObjects[i].gameObject))
+                continue;
+            else
+                duplicationObjs.Add(affectedObjects[i].gameObject);
+
             if (affectedObjects[i].gameObject.TryGetComponent(out IKnockable knockable))
             {
                 Vector3 directionToCenter = (transform.position - affectedObjects[i].transform.position).normalized;
                 knockable.TakeKnockback(directionToCenter * blackHolePullForce * Time.deltaTime, Time.deltaTime);
             }
+            
+            Transform t = affectedObjects[i].transform;
 
-            if (blackHoleTickTimer >= blackHoleTickInterval)
+            for (int j = 0; j <= 2 && t != null; j++)
             {
-                if (affectedObjects[i].TryGetComponent(out IHittable hittable))
+                if (t.TryGetComponent(out IHittable hittable))
                 {
-                    if (hittable is PlayerManager)
-                        continue;
+                    if (duplicationObjs.Contains(t.gameObject))
+                        break;
 
                     hittable.TakeDamage(blackHoleTickDamage);
                     OnBlackHoleTick?.Invoke();
+                    duplicationObjs.Add(t.gameObject);
+                    break;
                 }
 
-                if (i == affectedObjects.Length - 1)
-                {
-                    blackHoleTickTimer = 0f;
-                }
+                t = t.parent;
+            }
+
+            //if (affectedObjects[i].TryGetComponent(out IHittable hittable))
+            //{
+            //    if (hittable is PlayerManager)
+            //        continue;
+
+            //    hittable.TakeDamage(blackHoleTickDamage);
+            //    OnBlackHoleTick?.Invoke();
+            //}
+
+            if (i == affectedObjects.Length - 1)
+            {
+                blackHoleTickTimer = 0f;
             }
         }
     }

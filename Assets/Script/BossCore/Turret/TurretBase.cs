@@ -112,6 +112,7 @@ public abstract class TurretBase : EnemyBase
     protected override void Dead()
     {
         this.enabled = false;
+        hitFlash.enabled = false;
     }
 
     protected bool EnsurePlayer()

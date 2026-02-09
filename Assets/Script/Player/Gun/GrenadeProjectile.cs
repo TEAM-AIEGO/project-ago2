@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -63,12 +65,16 @@ public class GrenadeProjectile : MonoBehaviour
             return;
         }
 
+        List<GameObject> duplicationObjs = new();
+
         hasExploded = true;
         emitter.Play("Grenade_Explosion");
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayerMask);
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
+            
+
             float distance = Vector3.Distance(transform.position, hitColliders[i].transform.position);
             float damageMultiplier = 1f;
 
@@ -82,18 +88,38 @@ public class GrenadeProjectile : MonoBehaviour
                 knockable.TakeExplosionKnockback(15f, transform.position, explosionRadius, 0.5f);
             }
 
-            if (hitColliders[i].TryGetComponent(out IHittable hittable))
-            {
-                if (hittable is PlayerManager)
-                {
-                    hittable.TakeDamage((explosionDamage / 4) * damageMultiplier);
-                    OnExplosionHit?.Invoke();
+            //if (hitColliders[i].TryGetComponent(out IHittable hittable))
+            //{
+            //    if (hittable is PlayerManager)
+            //    {
+            //        hittable.TakeDamage((explosionDamage / 4) * damageMultiplier);
+            //        OnExplosionHit?.Invoke();
 
-                    continue;
+            //        continue;
+            //    }
+
+            //    hittable.TakeDamage(explosionDamage * damageMultiplier);
+            //    OnExplosionHit?.Invoke();
+            //}
+
+            Transform t = hitColliders[i].transform;
+
+            for (int j = 0; j <= 2 && t != null; j++)
+            {
+                if (t.TryGetComponent(out IHittable hittable))
+                {
+                    if (duplicationObjs.Contains(t.gameObject))
+                        break;
+
+                    float finalDamage = (hittable is PlayerManager) ? (explosionDamage / 4) * damageMultiplier : explosionDamage * damageMultiplier;
+
+                    hittable.TakeDamage(finalDamage);
+                    OnExplosionHit?.Invoke();
+                    duplicationObjs.Add(t.gameObject);
+                    break;
                 }
 
-                hittable.TakeDamage(explosionDamage * damageMultiplier);
-                OnExplosionHit?.Invoke();
+                t = t.parent;
             }
         }
 

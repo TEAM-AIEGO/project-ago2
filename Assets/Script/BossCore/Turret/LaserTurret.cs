@@ -147,4 +147,10 @@ public class LaserTurret : TurretBase
         attackTime = 0f;
         isZiiiiingEnd = false;
     }
+
+    protected override void Dead()
+    {
+        laserLineRenderer.enabled = false;
+        base.Dead();
+    }
 }
