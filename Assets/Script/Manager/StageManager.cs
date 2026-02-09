@@ -119,7 +119,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
         Debug.Log("Enemy Killed. Enemies Remaining : " + StageEnemyLeft);
         if (StageEnemyLeft <= 0)
         {
-            Debug.Log("Stage C;ear");
+            Debug.Log("$tage C;ear");
             Stages[currentStageIndex].StageState = StageState.Ended;
 
             if (Stages[currentStageIndex].StageDoor.IsScanDoor)

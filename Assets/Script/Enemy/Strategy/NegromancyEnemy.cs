@@ -8,7 +8,7 @@ public class NegromancyEnemy : EnemyBase
     [SerializeField] private EnemyBase spawnPrefab;
     [SerializeField] private int spawnCount = 2;
     [SerializeField] private float spawnRadius = 2f;
-    [SerializeField] private bool spawnOnDeath = true;
+    [SerializeField] private bool spawnOnHalf = true;
 
     [SerializeField] private Vector3 attackVectorRange;
     [SerializeField] private Transform attackPoint;
@@ -16,7 +16,7 @@ public class NegromancyEnemy : EnemyBase
 
     public event Action<EnemySpawnRequest> SpawnRequested;
 
-    private IORAORAORAStrategy spawnStrategy;
+    private IORAORAORAStrategy oRAORAORAStrategy;
 
     public override void Initialize(EnemyBase origin, int warpStage)
     {
@@ -24,7 +24,9 @@ public class NegromancyEnemy : EnemyBase
 
         muDAMUDAMUDAStrategy = new MeleeAttackStrategy(attackVectorRange, attackPoint);
         muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
-        spawnStrategy = new NegromancySpawnStrategy(spawnPrefab, spawnCount, spawnRadius);
+        oRAORAORAStrategy = new NegromancySpawnStrategy(spawnPrefab, spawnCount, spawnRadius);
+
+        spawnOnHalf = true;
     }
 
     protected override void Idle()
@@ -59,25 +61,17 @@ public class NegromancyEnemy : EnemyBase
 
     public override void TakeDamage(float damage)
     {
-        if (health <= 0)
-            return;
+        hitFlash.Flash();
+
+        base.TakeDamage(damage);
 
         if (health <= maxHealth / 2)
         {
-            if (spawnOnDeath)
+            if (spawnOnHalf)
             {
                 RequestSpawn();
             }
         }
-
-        if (isPlayerDetected == false)
-        {
-            isPlayerDetected = true;
-            state = EnemyState.moving;
-        }
-
-        health -= damage;
-        hitFlash.Flash();
     }
 
     protected override void Dead()
@@ -87,12 +81,14 @@ public class NegromancyEnemy : EnemyBase
 
     private void RequestSpawn()
     {
-        if (spawnStrategy == null)
+        spawnOnHalf = false;
+
+        if (oRAORAORAStrategy == null)
         {
             return;
         }
 
-        foreach (EnemySpawnRequest request in spawnStrategy.CreateSpawnRequests(this))
+        foreach (EnemySpawnRequest request in oRAORAORAStrategy.CreateSpawnRequests(this))
         {
             SpawnRequested?.Invoke(request);
         }

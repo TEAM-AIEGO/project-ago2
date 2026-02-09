@@ -9,6 +9,8 @@ public abstract class TurretBase : EnemyBase
     [SerializeField] protected HitFlash hitFlash;
     [SerializeField] private BossCore bossCore;
 
+    protected bool isDestroyed = false;
+
     public BossCore BossCore => bossCore;
 
     public void SetBossCore(BossCore core) => bossCore = core;
@@ -16,6 +18,16 @@ public abstract class TurretBase : EnemyBase
     public override void Initialize(EnemyBase origin, int warpStage)
     {
         base.Initialize(origin, warpStage);
+
+        isDestroyed = false;
+    }
+
+    protected override void Update()
+    {
+        if (isDestroyed)
+            return;
+
+        base.Update();
     }
 
     protected override void Idle()
@@ -84,8 +96,8 @@ public abstract class TurretBase : EnemyBase
     }
 
     protected override void Dead()
-    { 
-        Destroy(gameObject);
+    {
+        this.enabled = false;
     }
 
     protected bool EnsurePlayer()
