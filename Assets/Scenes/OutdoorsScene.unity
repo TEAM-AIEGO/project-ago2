@@ -10530,20 +10530,8 @@ MonoBehaviour:
     WarpStageObject: {fileID: 0}
     StageDoor: {fileID: 5242081624760831092}
     Enemies:
-    - EnemyPrefab: {fileID: 5537856391491196169, guid: 095000b00b1402945898e217fe77e404, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.5, z: 6.42}
-    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.5, z: 6.42}
     - EnemyPrefab: {fileID: 3584620285830627391, guid: 139282b39e823154b81cb53380687324, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.5, z: 7.81}
-    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
-      EnemySpawnPosition: {x: 2.03, y: 1.5, z: 6.53}
-    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
-      EnemySpawnPosition: {x: -1.64, y: 1.5, z: 7.81}
-    - EnemyPrefab: {fileID: 2946600272766831144, guid: 965fd3f4d66c6904cac2174758a6f8f4, type: 3}
-      EnemySpawnPosition: {x: 2.26, y: 1.5, z: 5.59}
-    - EnemyPrefab: {fileID: 2946600272766831144, guid: 965fd3f4d66c6904cac2174758a6f8f4, type: 3}
-      EnemySpawnPosition: {x: -2.67, y: 1.5, z: 5.59}
   - StageState: 0
     StageObject: {fileID: 1957507632}
     WarpStageObject: {fileID: 0}
@@ -25087,6 +25075,7 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
+  rdTrigger: {fileID: 0}
   firstAvatar: {fileID: 0}
   secondAvatar: {fileID: 0}
   firstModels: {fileID: 0}

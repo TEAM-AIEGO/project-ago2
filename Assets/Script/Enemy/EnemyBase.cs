@@ -10,7 +10,8 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     {
         idle,
         moving,
-        attacking
+        attacking,
+        Dead
     }
 
     protected EnemyState state;
@@ -27,6 +28,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected IMuKatteKuruNoKaStrategy muKatteKuruNoKaStrategy;
     protected IORAORAORAStrategy NegromancyStrategy;
 
+    [SerializeField] protected RagdollTrigger rdTrigger;
     [SerializeField] protected Avatar firstAvatar;
     [SerializeField] protected Avatar secondAvatar;
     [SerializeField] protected GameObject firstModels;
@@ -120,6 +122,8 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                 Attacking();
                 canAttack = false; 
                 break;
+            case EnemyState.Dead:
+                break;
         }
 
         if (attackTime < attackCooldown)
@@ -140,12 +144,26 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
             return;
 
         knockbackStun += duration;
+        if (state == EnemyState.Dead)
+        {
+            rdTrigger.RagdollKnockback(force);
+            return;
+        }
+
         rb.AddForce(force, ForceMode.Impulse);
+
     }
 
     public virtual void TakeExplosionKnockback(float explosionForce, Vector3 explosionPosition, float explosionRadius, float duration)
     {
         knockbackStun += duration;
+
+        if (state == EnemyState.Dead)
+        {
+            rdTrigger.RagdollExplosionKnockback(explosionForce, explosionPosition, explosionRadius);
+            return;
+        }
+
         rb.AddExplosionForce(explosionForce, explosionPosition, explosionRadius, 2f, ForceMode.VelocityChange);
     }
 
@@ -191,11 +209,17 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected virtual void Dead()
     {
-        OnReturn?.Invoke(this);
+        state = EnemyState.Dead;
+        rdTrigger.SetRagdoll(true);
+
+        //OnReturn?.Invoke(this);
     }
 
     public virtual void OnWarpStageChanged(int newStage)
     {
+        if (state == EnemyState.Dead)
+            return;
+
         if (firstModels != null && secondModels != null)
             switch (newStage)
             {
