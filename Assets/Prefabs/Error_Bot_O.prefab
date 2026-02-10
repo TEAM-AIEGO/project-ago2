@@ -1874,8 +1874,8 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
-  firstController: {fileID: 9100000, guid: c7fd9b98cc1dc774d8871b1aec0a2620, type: 2}
-  secondController: {fileID: 9100000, guid: dc7ab2b133f10be47823082344bb93d7, type: 2}
+  firstAvatar: {fileID: 9000000, guid: 3726653141c716948ba6dc6bb14130b0, type: 3}
+  secondAvatar: {fileID: 9000000, guid: e6f9faf38d7547740be26820b4f7212d, type: 3}
   firstModels: {fileID: 5263391119955003459}
   secondModels: {fileID: 734911917969510832}
   stage1MoveSpeed: 6

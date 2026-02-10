@@ -27,10 +27,13 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected IMuKatteKuruNoKaStrategy muKatteKuruNoKaStrategy;
     protected IORAORAORAStrategy NegromancyStrategy;
 
-    [SerializeField] protected AnimatorController firstController;
-    [SerializeField] protected AnimatorController secondController;
+    [SerializeField] protected Avatar firstAvatar;
+    [SerializeField] protected Avatar secondAvatar;
     [SerializeField] protected GameObject firstModels;
     [SerializeField] protected GameObject secondModels;
+    private int fL;
+    private int sL;
+
 
     #region Enemy Stats
     [Header("Enemy Stats")]
@@ -72,7 +75,14 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         originEnemy = oringin;
         rb = GetComponent<Rigidbody>();
         enemyAnimator = GetComponent<Animator>();
-        enemyAnimator.runtimeAnimatorController = firstController;
+
+        fL = enemyAnimator.GetLayerIndex("First_Layer");
+        sL = enemyAnimator.GetLayerIndex("Second_Layer");
+
+        enemyAnimator.avatar = firstAvatar;
+        enemyAnimator.SetLayerWeight(fL, 1);
+        enemyAnimator.SetLayerWeight(sL, 0);
+        enemyAnimator.SetBool("Move", false);
 
         state = EnemyState.idle;
 
@@ -155,7 +165,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         if (Vector3.Distance(player.transform.position, transform.position) < detectionDistance)
         {
             if (enemyAnimator != null)
-                enemyAnimator.SetTrigger("Move");
+                enemyAnimator.SetBool("Move", true);
 
             state = EnemyState.moving;
         }
@@ -176,6 +186,9 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         if (isPlayerDetected == false)
         {
             isPlayerDetected = true;
+
+            if (enemyAnimator != null)
+                enemyAnimator.SetBool("Move", true);
             state = EnemyState.moving;
         }
     }
@@ -187,17 +200,24 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     public virtual void OnWarpStageChanged(int newStage)
     {
-        switch (newStage)
-        {
-            case 0:
-                firstModels.SetActive(true);
-                secondModels.SetActive(false);
-                break;
-            case 1:
-                secondModels.SetActive(true);
-                firstModels.SetActive(false);
-                break;
-        }
+        if (firstModels != null && secondModels != null)
+            switch (newStage)
+            {
+                case 0:
+                    firstModels.SetActive(true);
+                    secondModels.SetActive(false);
+                    enemyAnimator.avatar = firstAvatar;
+                    enemyAnimator.SetLayerWeight(fL, 1);
+                    enemyAnimator.SetLayerWeight(sL, 0);
+                    break;
+                case 1:
+                    secondModels.SetActive(true);
+                    firstModels.SetActive(false);
+                    enemyAnimator.avatar = secondAvatar;
+                    enemyAnimator.SetLayerWeight(fL, 0);
+                    enemyAnimator.SetLayerWeight(sL, 1);
+                    break;
+            }
         
         currentMoveSpeed = GetSpeed(newStage);
     }
