@@ -238,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4343084866900846920
 Transform:
   m_ObjectHideFlags: 0
@@ -1875,9 +1875,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   firstAvatar: {fileID: 9000000, guid: 3726653141c716948ba6dc6bb14130b0, type: 3}
-  secondAvatar: {fileID: 9000000, guid: e6f9faf38d7547740be26820b4f7212d, type: 3}
+  secondAvatar: {fileID: 9000000, guid: 13f676bb444695b4f8cfe5499672fee7, type: 3}
   firstModels: {fileID: 5263391119955003459}
   secondModels: {fileID: 734911917969510832}
+  firstController: {fileID: 9100000, guid: c7fd9b98cc1dc774d8871b1aec0a2620, type: 2}
+  secondController: {fileID: 9100000, guid: dc7ab2b133f10be47823082344bb93d7, type: 2}
   stage1MoveSpeed: 6
   stage2MoveSpeed: 10
   currentMoveSpeed: 0

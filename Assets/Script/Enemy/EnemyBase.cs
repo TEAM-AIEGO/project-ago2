@@ -31,6 +31,9 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     [SerializeField] protected Avatar secondAvatar;
     [SerializeField] protected GameObject firstModels;
     [SerializeField] protected GameObject secondModels;
+
+    [SerializeField] protected RuntimeAnimatorController firstController;
+    [SerializeField] protected RuntimeAnimatorController secondController;
     private int fL;
     private int sL;
 
@@ -204,21 +207,26 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
             switch (newStage)
             {
                 case 0:
+                    firstModels.transform.SetAsFirstSibling();
                     firstModels.SetActive(true);
                     secondModels.SetActive(false);
                     enemyAnimator.avatar = firstAvatar;
+                    enemyAnimator.runtimeAnimatorController = firstController;
                     enemyAnimator.SetLayerWeight(fL, 1);
                     enemyAnimator.SetLayerWeight(sL, 0);
                     break;
                 case 1:
+                    secondModels.transform.SetAsFirstSibling();
                     secondModels.SetActive(true);
                     firstModels.SetActive(false);
                     enemyAnimator.avatar = secondAvatar;
+                    enemyAnimator.runtimeAnimatorController = secondController;
                     enemyAnimator.SetLayerWeight(fL, 0);
                     enemyAnimator.SetLayerWeight(sL, 1);
                     break;
             }
-        
+        //enemyAnimator.Rebind();
+        enemyAnimator.WriteDefaultValues();
         currentMoveSpeed = GetSpeed(newStage);
     }
 
