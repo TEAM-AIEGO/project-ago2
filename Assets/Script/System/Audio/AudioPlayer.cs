@@ -10,8 +10,11 @@ public class AudioPlayer : MonoBehaviour
     private AudioPlayer originPlayerPrefab;
     public AudioPlayer OriginPlayerPrefab => originPlayerPrefab;
     private Transform followTarget;
-    private bool isStarted = false;
+    private bool isStarted;
     private AudioSource src;
+
+    private bool useSegmentPlayback;
+    private float segmentEndTime;
 
     private void Awake()
     {
@@ -33,9 +36,16 @@ public class AudioPlayer : MonoBehaviour
         if (!isStarted) 
             return;
 
+        if (useSegmentPlayback && src.isPlaying && src.time >= segmentEndTime)
+        {
+            src.Stop();
+            useSegmentPlayback = false;
+        }
+
         if (!src.isPlaying)
         {
             isStarted = false;
+            useSegmentPlayback = false;
             Finished?.Invoke(originPlayerPrefab);
         }
     }
@@ -45,7 +55,7 @@ public class AudioPlayer : MonoBehaviour
         followTarget = t;
     }
 
-    public void Play(AudioEntry entry, float volumeMul, float pitchMul)
+    public void Play(AudioEntry entry, float volumeMul, float pitchMul, bool playFullClip = true, float startTime = 0f, float endTime = -1f)
     {
         src.clip = entry.clip;
         src.outputAudioMixerGroup = entry.mixerGroup;
@@ -58,6 +68,23 @@ public class AudioPlayer : MonoBehaviour
 
         src.minDistance = entry.minDistance;
         src.maxDistance = entry.maxDistance;
+
+        useSegmentPlayback = false;
+
+        if (!playFullClip && src.clip != null)
+        {
+            float clipLength = src.clip.length;
+            float normalizedStart = Mathf.Clamp(startTime, 0f, clipLength);
+            float normalizedEnd = endTime < 0f ? clipLength : Mathf.Clamp(endTime, normalizedStart, clipLength);
+
+            src.time = normalizedStart;
+            segmentEndTime = normalizedEnd;
+            useSegmentPlayback = true;
+        }
+        else
+        {
+            src.time = 0f;
+        }
 
         src.Play();
 

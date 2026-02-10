@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour, IWarpObserver, IKnockable
         playerStateMachine = new PlayerStateMachine();
         PlayerMovement.Initialized(cam, rb);
         PlayerGroundPoundAction.Initialized(rb, emitter);
-        PlayerSlideAction.Initialized(cam, rb);
+        PlayerSlideAction.Initialized(cam, rb, emitter);
         PlayerDashAction.Initialized(cam, rb, emitter);
         PlayerGroundChecker.Initialized(col);
         PlayerJumpAction.Initialized(rb, PlayerGroundChecker, emitter);

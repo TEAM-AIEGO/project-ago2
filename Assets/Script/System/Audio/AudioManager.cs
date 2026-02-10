@@ -107,7 +107,7 @@ public class AudioManager : MonoBehaviour
             audioPlayer.SetFollowTarget(null);
         }
 
-        audioPlayer.Play(entry, sfxVolume, 1f);
+        audioPlayer.Play(entry, sfxVolume, 1f, request.playFullClip, request.startTime, request.endTime);
     }
 
     private void PlayUISFX(string clipName)

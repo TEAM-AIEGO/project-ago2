@@ -9,7 +9,7 @@ public class PlayerManager : Unit, IStat
     #endregion
 
     private GameManager gameManager;
-
+    [SerializeField] private SFXEmitter emitter;
     private void Awake()
     {
         OnValueChanged?.Invoke(health, maxHealth);
@@ -51,6 +51,8 @@ public class PlayerManager : Unit, IStat
     public override void TakeDamage(float damageAmount)
     {
         base.TakeDamage(damageAmount);
+
+        emitter.PlayFollow("hurt", transform);
 
         OnValueChanged?.Invoke(health, maxHealth);
         Debug.Log($"Player took {damageAmount} damage. Remaining Health: {health}");

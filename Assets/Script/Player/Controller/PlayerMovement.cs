@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     private PlayerController playerController;
 
+    [SerializeField] private SFXEmitter sfxEmitter;
+
     [SerializeField] private float WalkSpeed;
     [SerializeField] private float SprintSpeed;
 
@@ -15,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     private Transform cam;
     private Rigidbody rb;
     private float speed;
+
+    private float footstepTimer;
+    [SerializeField] private float walkStepInterval;
+    [SerializeField] private float sprintStepInterval;
 
     public void Initialized(Transform cam, Rigidbody rb)
     {
@@ -47,12 +53,21 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection == Vector3.zero)
         {
             rb.linearVelocity = new (0, rb.linearVelocity.y, 0);
+            footstepTimer = 0f;
             return;
         }
 
         moveDirection *= speed;
         moveDirection.y = rb.linearVelocity.y;
         rb.linearVelocity = moveDirection;
+
+        float interval = (speed > WalkSpeed) ? sprintStepInterval : walkStepInterval;
+        footstepTimer -= Time.deltaTime;
+        if (footstepTimer <= 0f)
+        {
+            sfxEmitter?.Play("Movement first", false, 0.5f);
+            footstepTimer = interval;
+        }
     }
 
     public void GetKnockbackStunned(float time)

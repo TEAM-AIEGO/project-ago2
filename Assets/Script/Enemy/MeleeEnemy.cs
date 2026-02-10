@@ -13,6 +13,12 @@ public class MeleeEnemy : EnemyBase
     [SerializeField] private Vector3 attackVectorRange;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private HitFlash hitFlash;
+    private SFXEmitter emitter;
+
+    private void Awake()
+    {
+        emitter = GetComponent<SFXEmitter>();
+    }
 
     public override void Initialize(EnemyBase origin, int warpStage)
     {

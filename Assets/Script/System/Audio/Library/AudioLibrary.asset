@@ -15,7 +15,7 @@ MonoBehaviour:
   entries:
   - id: Gun_Shot
     type: 0
-    clip: {fileID: 8300000, guid: 59f2654567e627145a5f0ffce702e2f7, type: 3}
+    clip: {fileID: 8300000, guid: ea3b12889b8ba744883531c8aa563aff, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
     baseVolume: 1
     basePitch: 1
@@ -24,7 +24,7 @@ MonoBehaviour:
     loop: 0
   - id: Rail_Cannon_Fire
     type: 0
-    clip: {fileID: 8300000, guid: 6ab1e8eb86fe632a0b4279235f720132, type: 3}
+    clip: {fileID: 8300000, guid: 97031d39e370d4f49aa998f149d012f9, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
     baseVolume: 1
     basePitch: 1
@@ -33,7 +33,7 @@ MonoBehaviour:
     loop: 0
   - id: Grenade_Launcher_Fire
     type: 0
-    clip: {fileID: 8300000, guid: 18458d44c9e47e80faadfb4a9dca8d7d, type: 3}
+    clip: {fileID: 8300000, guid: 10b5d6708ba52f740a28f52c693e4131, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
     baseVolume: 1
     basePitch: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     loop: 0
   - id: Grenade_Explosion
     type: 0
-    clip: {fileID: 8300000, guid: ff6922159e1a383649761b93f5abd1b2, type: 3}
+    clip: {fileID: 8300000, guid: f02e6964a59201d4b995a61d38ee2c6f, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
     baseVolume: 1
     basePitch: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
     loop: 0
   - id: Ground_Pound_Land
     type: 0
-    clip: {fileID: 8300000, guid: ba5338ccadf8dc1c38ec9f5bd5404949, type: 3}
+    clip: {fileID: 8300000, guid: 7b0d79befb8a27045a77738d3c34ea45, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
     baseVolume: 1
     basePitch: 1
@@ -60,7 +60,7 @@ MonoBehaviour:
     loop: 0
   - id: Ground_Pound_Start
     type: 0
-    clip: {fileID: 8300000, guid: 9055f6141a1b17ceab1f1879bf9b303a, type: 3}
+    clip: {fileID: 8300000, guid: a19d59cd387871644bbff6412e0281a5, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
     baseVolume: 1
     basePitch: 1
@@ -69,7 +69,7 @@ MonoBehaviour:
     loop: 0
   - id: Dash
     type: 0
-    clip: {fileID: 8300000, guid: 9055f6141a1b17ceab1f1879bf9b303a, type: 3}
+    clip: {fileID: 8300000, guid: ad56f169ade437f45af6e411370f7745, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
     baseVolume: 1
     basePitch: 0.7
@@ -78,7 +78,61 @@ MonoBehaviour:
     loop: 0
   - id: Jump
     type: 0
-    clip: {fileID: 8300000, guid: 752b81623977931cb91d8d9706af4aee, type: 3}
+    clip: {fileID: 8300000, guid: ea5f2769766ed4b498f7ba7dbc12436c, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 0.7
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: Slide
+    type: 0
+    clip: {fileID: 8300000, guid: 20d893c18f144bf4e80e667cefa2616a, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 0.7
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: hurt
+    type: 0
+    clip: {fileID: 8300000, guid: a4ee3a9483db94347a076f3eafafe2b0, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 0.7
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: Movement first
+    type: 0
+    clip: {fileID: 8300000, guid: aaef236362412f942b70b61268fe4c34, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 0.7
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: airlock door open and close
+    type: 0
+    clip: {fileID: 8300000, guid: 258a9f21916b2b44281d6f05ae15cad3, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 0.7
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: barrel explosion
+    type: 0
+    clip: {fileID: 8300000, guid: 6d5546d779776d44396fbf0a164fbce5, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 0.7
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: vicinity robot moving
+    type: 0
+    clip: {fileID: 8300000, guid: 910f7c6a074e97d45b376a0d47fd164b, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
     baseVolume: 1
     basePitch: 0.7

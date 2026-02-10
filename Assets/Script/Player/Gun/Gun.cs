@@ -206,7 +206,7 @@ public class Gun : MonoBehaviour
         objectPool.SpawnProjectile(projectile.GetComponent<Projectile>(), projectileLaunchPoint.position, Quaternion.LookRotation(direction), 300f);
         cameraShake?.AddRecoil(new Vector2(Random.Range(-xRecoil, xRecoil), yRecoil));
 
-        emitter.PlayFollow("Gun_Shot", playerTransfrom);
+        emitter.PlayFollow("Gun_Shot", playerTransfrom, false, 1.2f, 2f);
         isFireAble = false;
     }
 }
