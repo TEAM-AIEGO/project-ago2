@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(Animator))] 
@@ -25,6 +26,11 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected IMUDAMUDAMUDAStrategy muDAMUDAMUDAStrategy;
     protected IMuKatteKuruNoKaStrategy muKatteKuruNoKaStrategy;
     protected IORAORAORAStrategy NegromancyStrategy;
+
+    [SerializeField] protected AnimatorController firstController;
+    [SerializeField] protected AnimatorController secondController;
+    [SerializeField] protected GameObject firstModels;
+    [SerializeField] protected GameObject secondModels;
 
     #region Enemy Stats
     [Header("Enemy Stats")]
@@ -66,10 +72,12 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         originEnemy = oringin;
         rb = GetComponent<Rigidbody>();
         enemyAnimator = GetComponent<Animator>();
+        enemyAnimator.runtimeAnimatorController = firstController;
 
         state = EnemyState.idle;
 
-        currentMoveSpeed = GetSpeed(warpStage);
+        OnWarpStageChanged(warpStage);
+
         Died.RemoveAllListeners();
         Died.AddListener(Dead);
     }
@@ -179,6 +187,18 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     public virtual void OnWarpStageChanged(int newStage)
     {
+        switch (newStage)
+        {
+            case 0:
+                firstModels.SetActive(true);
+                secondModels.SetActive(false);
+                break;
+            case 1:
+                secondModels.SetActive(true);
+                firstModels.SetActive(false);
+                break;
+        }
+        
         currentMoveSpeed = GetSpeed(newStage);
     }
 
