@@ -116,8 +116,8 @@ MonoBehaviour:
   explosionRadius: 10
   explosionDamageReductionDistance: 6
   explosionDamage: 65
-  railExplosionRadius: 25
-  railExplosionDamageReductionDistance: 18
+  railExplosionRadius: 15
+  railExplosionDamageReductionDistance: 12
   railExplosionDamage: 125
 --- !u!135 &956244256788944054
 SphereCollider:
