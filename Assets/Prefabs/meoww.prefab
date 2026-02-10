@@ -114,13 +114,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   stage1MoveSpeed: 8
-  stage2MoveSpeed: 12
+  stage2MoveSpeed: 18
   currentMoveSpeed: 0
-  turnSpeed: 11
+  turnSpeed: 30
   detectionDistance: 80
-  attackDistance: 45
-  attackDamage: 25
-  attackCooldown: 0.6
+  attackDistance: 150
+  attackDamage: 19
+  attackCooldown: 0.03
   attackTime: 0
   canAttack: 0
   ShootPoint: {fileID: 6402657488101833697}

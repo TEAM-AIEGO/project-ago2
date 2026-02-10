@@ -115,13 +115,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   stage1MoveSpeed: 10
-  stage2MoveSpeed: 15
+  stage2MoveSpeed: 20
   currentMoveSpeed: 5
-  turnSpeed: 15
-  detectionDistance: 50
+  turnSpeed: 30
+  detectionDistance: 75
   attackDistance: 2
-  attackDamage: 75
-  attackCooldown: 3
+  attackDamage: 37
+  attackCooldown: 0.3
   attackTime: 0
   canAttack: 1
   attackVectorRange: {x: 1.2, y: 1.2, z: 1.2}
