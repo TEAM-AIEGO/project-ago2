@@ -25,9 +25,14 @@ public class GrenadeProjectile : MonoBehaviour
     [SerializeField] private float explosionRadius;
     [SerializeField] private float explosionDamageReductionDistance;
     [SerializeField] private float explosionDamage;
+
+    [Header("Rail Explosion Settings")]
+    [SerializeField] private float railExplosionRadius;
+    [SerializeField] private float railExplosionDamageReductionDistance;
+    [SerializeField] private float railExplosionDamage;
     private bool hasExploded;
 
-    //ÇÁ·ÎÁ§Å¸ÀÏµéµµ Ãß»ó Å¬·¡½º¸¦ ¸¸µé¾î¼­ °ü¸®ÇØ¾ß ÇÒ ÇÊ¿ä°¡ ÀÖÀ½.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½Ïµéµµ ï¿½ß»ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½.
     public void Initialized(GrenadeProjectile projectile)
     {
         rb.linearVelocity = Vector3.zero;
@@ -52,24 +57,28 @@ public class GrenadeProjectile : MonoBehaviour
         }
     }
 
-    public void OnLaunched (Vector3 direction)
+    public void OnLaunched(Vector3 direction)
     {
         rb.linearVelocity = direction * speed;
         transform.rotation = Quaternion.LookRotation(direction);
     }
 
-    public void OnExplosion()
+    public void OnExplosion(bool railgun = false)
     {
         if (hasExploded)
         {
             return;
         }
 
+        float finalExplosionDamage = railgun ? railExplosionDamage : explosionDamage;
+        float finalExplosionRadius = railgun ? railExplosionRadius : explosionRadius ;
+        float finalExplosionDamageReductionDistance = railgun ? railExplosionDamageReductionDistance : explosionDamageReductionDistance;
+
         List<GameObject> duplicationObjs = new();
 
         hasExploded = true;
         emitter.Play("Grenade_Explosion");
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayerMask);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, finalExplosionRadius, explosionLayerMask);
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
@@ -80,12 +89,12 @@ public class GrenadeProjectile : MonoBehaviour
 
             if (distance > explosionDamageReductionDistance)
             {
-                damageMultiplier = Mathf.Clamp01(1 - (distance - explosionDamageReductionDistance) / (explosionRadius - explosionDamageReductionDistance));
+                damageMultiplier = Mathf.Clamp01(1 - (distance - finalExplosionDamageReductionDistance) / (finalExplosionRadius - finalExplosionDamageReductionDistance));
             }
 
             if (hitColliders[i].TryGetComponent(out IKnockable knockable))
             {
-                knockable.TakeExplosionKnockback(15f, transform.position, explosionRadius, 0.5f);
+                knockable.TakeExplosionKnockback(railgun ? 25f : 15f, transform.position, finalExplosionRadius, 0.5f);
             }
 
             //if (hitColliders[i].TryGetComponent(out IHittable hittable))
@@ -111,7 +120,7 @@ public class GrenadeProjectile : MonoBehaviour
                     if (duplicationObjs.Contains(t.gameObject))
                         break;
 
-                    float finalDamage = (hittable is PlayerManager) ? (explosionDamage / 4) * damageMultiplier : explosionDamage * damageMultiplier;
+                    float finalDamage = (hittable is PlayerManager) ? (explosionDamage / 4) * damageMultiplier : finalExplosionDamage * damageMultiplier;
 
                     hittable.TakeDamage(finalDamage);
                     OnExplosionHit?.Invoke();

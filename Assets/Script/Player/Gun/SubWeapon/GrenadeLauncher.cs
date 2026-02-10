@@ -17,8 +17,8 @@ public class GrenadeLauncher : SubWeapon
         base.UnLock();
     }
 
-    // ¿À¹ö¶óÀÌµå µÈ ÇÔ¼öµéÀÌ ´Ù¸¥ ¼­ºê¿þÆù°ú µ¿ÀÏÇÑ ÄÚµå¸¦ »ç¿ëÇÏ°í ÀÖÀ½
-    // ¼­ºê¿þÆù Å¬·¡½º¿¡¼­ ±âº» ±¸ÇöÀ¸·Î ¸¸µé¾î Áßº¹ Á¦°Å¸¦ ÇØ¾ß ÇÒ ÇÊ¿ä°¡ ÀÖ¾îº¸ÀÓ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ßºï¿½ ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½Ö¾îº¸ï¿½ï¿½
     public override void Initialize(UnityEvent completeEvent) 
     {
         uiManager = FindFirstObjectByType<UIManager>();
@@ -57,7 +57,7 @@ public class GrenadeLauncher : SubWeapon
         
         grenade.OnExplosionHit += PlayHitMarker;
 
-        cameraShake?.AddRecoil(new Vector2(Random.Range(-300f, 300f), 500f));
+        cameraShake?.AddRecoil(new Vector2(Random.Range(-100f, 100f), 300f));
     }
 
     public void PlayHitMarker()

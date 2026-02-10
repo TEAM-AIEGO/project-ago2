@@ -58,16 +58,29 @@ public class RailCannon : SubWeapon
 
             var currentObject = hitInfo[i].collider.gameObject;
 
+            if (currentObject.TryGetComponent(out GrenadeProjectile grenadeProjectile))
+            {
+                grenadeProjectile.OnExplosion(true);
+                continue;
+            }
+
+            if (currentObject.TryGetComponent(out EnemyGrenadeProjectile enemyGrenadeProjectile))
+            {
+                enemyGrenadeProjectile.OnExplosion();
+                continue;
+            }
+
             Transform t = currentObject.transform;
 
             for (int j = 0; j <= 2 && t != null; j++)
             {
                 if (t.TryGetComponent(out IHittable hittable))
                 {
-                    if (duplicationObjs.Contains(t.gameObject))
-                        break;
+                    // if (duplicationObjs.Contains(t.gameObject))
+                    //     break;
 
-                    hittable.TakeDamage(99f);
+                    print(damage);
+                    hittable.TakeDamage(damage);
                     uiManager?.ShowHitMarker();
                     duplicationObjs.Add(t.gameObject);
                     break;
