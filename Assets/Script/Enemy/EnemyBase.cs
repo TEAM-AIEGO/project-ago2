@@ -34,8 +34,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     [SerializeField] protected RuntimeAnimatorController firstController;
     [SerializeField] protected RuntimeAnimatorController secondController;
-    private int fL;
-    private int sL;
 
 
     #region Enemy Stats
@@ -79,12 +77,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         rb = GetComponent<Rigidbody>();
         enemyAnimator = GetComponent<Animator>();
 
-        fL = enemyAnimator.GetLayerIndex("First_Layer");
-        sL = enemyAnimator.GetLayerIndex("Second_Layer");
-
         enemyAnimator.avatar = firstAvatar;
-        enemyAnimator.SetLayerWeight(fL, 1);
-        enemyAnimator.SetLayerWeight(sL, 0);
         enemyAnimator.SetBool("Move", false);
 
         state = EnemyState.idle;
@@ -212,8 +205,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                     secondModels.SetActive(false);
                     enemyAnimator.avatar = firstAvatar;
                     enemyAnimator.runtimeAnimatorController = firstController;
-                    enemyAnimator.SetLayerWeight(fL, 1);
-                    enemyAnimator.SetLayerWeight(sL, 0);
                     break;
                 case 1:
                     secondModels.transform.SetAsFirstSibling();
@@ -221,8 +212,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                     firstModels.SetActive(false);
                     enemyAnimator.avatar = secondAvatar;
                     enemyAnimator.runtimeAnimatorController = secondController;
-                    enemyAnimator.SetLayerWeight(fL, 0);
-                    enemyAnimator.SetLayerWeight(sL, 1);
                     break;
             }
         //enemyAnimator.Rebind();
