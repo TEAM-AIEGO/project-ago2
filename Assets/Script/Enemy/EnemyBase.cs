@@ -58,6 +58,9 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     [SerializeField] protected float attackTime;
     [SerializeField] protected bool canAttack = true;
 
+    [SerializeField] protected float bodyDisableTime = 5f;
+    [SerializeField] protected float bodyDisableTimer;
+
     protected bool isPlayerDetected = false;
     #endregion
 
@@ -92,6 +95,17 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected override void Update()
     {
+        if (state == EnemyState.Dead)
+        {
+            bodyDisableTimer += Time.deltaTime;
+
+            if (bodyDisableTimer >= bodyDisableTime)
+            {
+                OnReturn.Invoke(this);
+            }
+            return;
+        }
+
         switch (state)
         {
             case EnemyState.idle:
@@ -121,8 +135,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                 //enemyAnimator.SetTrigger("Attack");
                 Attacking();
                 canAttack = false; 
-                break;
-            case EnemyState.Dead:
                 break;
         }
 
@@ -195,11 +207,10 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     public override void TakeDamage(float damage)
     {
+        if (state == EnemyState.Dead)
+            return;
+
         base.TakeDamage(damage);
-        if (health <= 0)
-        {
-            Dead();
-        }
 
         if (isPlayerDetected == false)
         {
@@ -214,6 +225,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected virtual void Dead()
     {
         state = EnemyState.Dead;
+        bodyDisableTimer = 0f;
         rb.constraints = RigidbodyConstraints.None;
         if (!rdTrigger) return;
         rdTrigger.SetRagdoll(true);

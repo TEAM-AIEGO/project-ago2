@@ -34,6 +34,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
     public bool IsGameOver { get; private set; }
 
     [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private BossCore bossCore;
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private WarpSystemManager warpSystemManager;
     [SerializeField] private Playthething ptt;
@@ -92,6 +93,23 @@ public class StageManager : MonoBehaviour, IWarpObserver
             playerManager.transform.position = currentStage.StageSpawnPosition.position;
     }
 
+    public void BossStageStart(int stageIndex)
+    {
+        currentStage?.StageObject.SetActive(false);
+
+        currentStage = Stages[^1];
+        currentStage.StageState = StageState.Loading;
+        currentStageIndex = Stages.Count - 1;
+
+        StageEnemyLeft = 1;
+        bossCore.gameObject.SetActive(true);
+        bossCore.Initialize(warpSystemManager.GetWarpStage());
+        RegisterEnemy(bossCore, false);
+
+        currentStage.StageState = StageState.Fighting;
+        currentStage.StageObject.SetActive(true);
+    }
+
     private void RegisterEnemy(EnemyBase enemy, bool countForStage)
     {
         if (enemy == null)
@@ -133,12 +151,22 @@ public class StageManager : MonoBehaviour, IWarpObserver
             Stages[currentStageIndex].StageState = StageState.Ended;
 
             Stages[currentStageIndex].StageDoor.SetScan();
-            
 
-            if (currentStageIndex + 1 != Stages.Count)
+            if (currentStageIndex >= 0 && currentStageIndex < Stages.Count)
             {
-                Stages[currentStageIndex].StageDoor.OnDoorOpen += StartStage;
-                Stages[currentStageIndex].StageDoor.nextStageIndex = ++currentStageIndex;
+                if (currentStageIndex + 1 == Stages.Count - 1)
+                {
+                    Debug.Log("Last $tage");
+                    Stages[currentStageIndex].StageDoor.OnDoorOpen += BossStageStart;
+                    int next = currentStageIndex + 1;
+                    Stages[currentStageIndex].StageDoor.nextStageIndex = next;
+                }
+                else
+                {
+                    Stages[currentStageIndex].StageDoor.OnDoorOpen += StartStage; 
+                    int next = currentStageIndex + 1;
+                    Stages[currentStageIndex].StageDoor.nextStageIndex = next;
+                }
             }
             else
             {

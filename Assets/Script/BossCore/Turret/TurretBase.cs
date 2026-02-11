@@ -76,10 +76,13 @@ public abstract class TurretBase : EnemyBase
 
     public override void TakeDamage(float damage)
     {
-        hitFlash.Flash();
+        if (state == EnemyState.Dead)
+            return;
 
         if (health <= 0)
             return;
+
+        hitFlash.Flash();
 
         health -= damage;
 
@@ -111,7 +114,7 @@ public abstract class TurretBase : EnemyBase
 
     protected override void Dead()
     {
-        this.enabled = false;
+        isDestroyed = true;
         hitFlash.enabled = false;
     }
 
