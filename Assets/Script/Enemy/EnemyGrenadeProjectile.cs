@@ -57,7 +57,7 @@ public class EnemyGrenadeProjectile : MonoBehaviour
         }
 
         hasExploded = true;
-        //emitter.Play("Explosion");
+        emitter.Play(AudioIds.RobotBombRobotCrashAttack);
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayerMask);
 

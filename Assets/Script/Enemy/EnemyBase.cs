@@ -34,7 +34,10 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     private int fL;
     private int sL;
 
+    protected float footstepTimer;
+    [SerializeField] protected float interval;
 
+    protected SFXEmitter emitter;
     #region Enemy Stats
     [Header("Enemy Stats")]
     [SerializeField] protected float stage1MoveSpeed;
@@ -75,7 +78,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         originEnemy = oringin;
         rb = GetComponent<Rigidbody>();
         enemyAnimator = GetComponent<Animator>();
-
+        emitter = GetComponent<SFXEmitter>();
         fL = enemyAnimator.GetLayerIndex("First_Layer");
         sL = enemyAnimator.GetLayerIndex("Second_Layer");
 
@@ -167,6 +170,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
             if (enemyAnimator != null)
                 enemyAnimator.SetBool("Move", true);
 
+            emitter.PlayFollow(AudioIds.RobotTargetAcquiredBleep, transform, false, 0f, 0.1f);
             state = EnemyState.moving;
         }
     }
@@ -181,8 +185,8 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     public override void TakeDamage(float damage)
     {
+        emitter.Play(AudioIds.RobotRobotHeat, false);
         base.TakeDamage(damage);
-
         if (isPlayerDetected == false)
         {
             isPlayerDetected = true;
@@ -195,6 +199,14 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected virtual void Dead()
     {
+        List<string> audioIdsList = new List<string>
+        { 
+            AudioIds.RobotRobotCrunch1,
+            AudioIds.RobotRobotCrunch2,
+            AudioIds.RobotRobotCrunch3 
+        };
+        int randomAudioIdsIdx = UnityEngine.Random.Range(0, audioIdsList.Count);
+        emitter.PlayFollow(audioIdsList[randomAudioIdsIdx], transform);
         OnReturn?.Invoke(this);
     }
 

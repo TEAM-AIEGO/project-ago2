@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float footstepTimer;
     [SerializeField] private float walkStepInterval;
     [SerializeField] private float sprintStepInterval;
-
+    bool isInterval;
     public void Initialized(Transform cam, Rigidbody rb)
     {
         //Debug.Log("PlayerMovement Initialized");
@@ -61,11 +61,20 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.y = rb.linearVelocity.y;
         rb.linearVelocity = moveDirection;
 
-        float interval = (speed > WalkSpeed) ? sprintStepInterval : walkStepInterval;
+        isInterval = (speed > WalkSpeed);
+        float interval = isInterval ? sprintStepInterval : walkStepInterval;
+        string audioIds = isInterval ? AudioIds.PlayerMovementSecond : AudioIds.MovementFirst;
         footstepTimer -= Time.deltaTime;
         if (footstepTimer <= 0f)
         {
-            sfxEmitter?.Play(AudioIds.MovementFirst, false, 0.5f);
+            if (isInterval)
+            {
+                sfxEmitter?.Play(audioIds, false);
+            }
+            else
+            {
+                sfxEmitter?.Play(audioIds, false, 0.5f);
+            }
             footstepTimer = interval;
         }
     }

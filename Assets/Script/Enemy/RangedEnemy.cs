@@ -39,6 +39,13 @@ public class RangedEnemy : EnemyBase
 
     protected override void Moving()
     {
+        footstepTimer -= Time.deltaTime;
+        if (footstepTimer <= 0f)
+        {
+            
+            emitter?.Play(AudioIds.RobotTurretRobotMoving, false, 0.2f, 0.6f);
+            footstepTimer = interval;
+        }
         muKatteKuruNoKaStrategy.KonoDIOniMuKatteKuruNoKa(this, player.transform);
     }
 
@@ -55,6 +62,7 @@ public class RangedEnemy : EnemyBase
 
     protected override void Attacking()
     {
+        emitter.PlayFollow(AudioIds.RobotTurretRobotShot, transform, false, 0.4f, 0.7f);
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
         attackTime = 0f;
     }

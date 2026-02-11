@@ -36,6 +36,12 @@ public class NegromancyEnemy : EnemyBase
 
     protected override void Moving()
     {
+        footstepTimer -= Time.deltaTime;
+        if (footstepTimer <= 0f)
+        {
+            emitter?.Play(AudioIds.VicinityRobotMoving, false, 2.3f);
+            footstepTimer = interval;
+        }
         muKatteKuruNoKaStrategy.KonoDIOniMuKatteKuruNoKa(this, player.transform);
     }
 
@@ -52,6 +58,7 @@ public class NegromancyEnemy : EnemyBase
 
     protected override void Attacking()
     {
+        emitter.Play(AudioIds.RobotVicinityRobotScratch1, false, 0.7f);
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
         attackTime = 0f;
     }
@@ -66,6 +73,7 @@ public class NegromancyEnemy : EnemyBase
         {
             if (spawnOnHalf)
             {
+                emitter.Play(AudioIds.RobotVicinityRobotScreech, false);
                 RequestSpawn();
             }
         }

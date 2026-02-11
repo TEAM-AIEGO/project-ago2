@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3452995064475371555}
   - component: {fileID: 5757289283458434111}
   - component: {fileID: 2572233513595852306}
+  - component: {fileID: 7795532580178067392}
   m_Layer: 7
   m_Name: meoww
   m_TagString: Untagged
@@ -113,6 +114,10 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
+  firstAvatar: {fileID: 0}
+  secondAvatar: {fileID: 0}
+  firstModels: {fileID: 0}
+  secondModels: {fileID: 0}
   stage1MoveSpeed: 8
   stage2MoveSpeed: 18
   currentMoveSpeed: 0
@@ -128,6 +133,7 @@ MonoBehaviour:
   maxLeadTime: 2
   hitFlash: {fileID: 6696504302246451547}
   projectilePrefab: {fileID: -7587069919348615963, guid: 05d90409f5ea04b409e108355967004f, type: 3}
+  interval: 0
 --- !u!114 &6696504302246451547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +218,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7795532580178067392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946600272766831144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &3988394500797366744
 GameObject:
   m_ObjectHideFlags: 0

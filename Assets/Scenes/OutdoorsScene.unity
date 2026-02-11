@@ -2825,6 +2825,7 @@ GameObject:
   - component: {fileID: 252599986}
   - component: {fileID: 252599985}
   - component: {fileID: 252599984}
+  - component: {fileID: 252599990}
   m_Layer: 0
   m_Name: HealOrb
   m_TagString: Untagged
@@ -3145,6 +3146,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252599982}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &252599990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252599982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &259630155
 GameObject:
   m_ObjectHideFlags: 0
@@ -7473,6 +7488,8 @@ GameObject:
   - component: {fileID: 733986111}
   - component: {fileID: 733986127}
   - component: {fileID: 733986128}
+  - component: {fileID: 733986130}
+  - component: {fileID: 733986129}
   m_Layer: 8
   m_Name: P?layer
   m_TagString: Player
@@ -7874,6 +7891,126 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
   channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
   offset: {x: 0, y: 0, z: 0}
+--- !u!114 &733986129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733986110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368a6eac71414434fb422dcbe3d7693b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WallProximityVolume
+  audioLibrary: {fileID: 11400000, guid: 85bd8e0d139735849825758b34e27892, type: 2}
+  audioId: SFX_Gas Leak
+  wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  detectionRadius: 8
+  updateInterval: 0.05
+  rayCount: 24
+  rayOriginHeightOffset: 0.5
+  farVolume: 0.05
+  nearVolume: 1
+--- !u!82 &733986130
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733986110}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &735693899
 GameObject:
   m_ObjectHideFlags: 0
@@ -8044,6 +8181,7 @@ GameObject:
   - component: {fileID: 738085880}
   - component: {fileID: 738085879}
   - component: {fileID: 738085878}
+  - component: {fileID: 738085884}
   m_Layer: 0
   m_Name: HealOrb
   m_TagString: Untagged
@@ -8364,6 +8502,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738085876}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &738085884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738085876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &745370179
 GameObject:
   m_ObjectHideFlags: 0
@@ -10566,7 +10718,7 @@ MonoBehaviour:
     Enemies:
     - EnemyPrefab: {fileID: 5537856391491196169, guid: 095000b00b1402945898e217fe77e404, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.5, z: 6.42}
-    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
+    - EnemyPrefab: {fileID: 7477929138127596566, guid: 25603aec74837564da67e926574ecd86, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.5, z: 6.42}
     - EnemyPrefab: {fileID: 3584620285830627391, guid: 139282b39e823154b81cb53380687324, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.5, z: 7.81}
@@ -12336,6 +12488,7 @@ GameObject:
   - component: {fileID: 1154526636}
   - component: {fileID: 1154526635}
   - component: {fileID: 1154526634}
+  - component: {fileID: 1154526637}
   m_Layer: 0
   m_Name: AudioSystem
   m_TagString: Untagged
@@ -12358,7 +12511,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -12473,6 +12626,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1154526637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154526633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1165260584
 GameObject:
   m_ObjectHideFlags: 0
@@ -12828,6 +12995,7 @@ GameObject:
   - component: {fileID: 1202013759}
   - component: {fileID: 1202013758}
   - component: {fileID: 1202013757}
+  - component: {fileID: 1202013763}
   m_Layer: 0
   m_Name: HealOrb
   m_TagString: Untagged
@@ -13148,6 +13316,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202013755}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1202013763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202013755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1207669832
 GameObject:
   m_ObjectHideFlags: 0
@@ -14062,6 +14244,7 @@ GameObject:
   - component: {fileID: 1325081005}
   - component: {fileID: 1325081004}
   - component: {fileID: 1325081003}
+  - component: {fileID: 1325081009}
   m_Layer: 0
   m_Name: HealOrb
   m_TagString: Untagged
@@ -14382,6 +14565,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325081001}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1325081009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325081001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1329520393
 GameObject:
   m_ObjectHideFlags: 0
@@ -17280,6 +17477,7 @@ GameObject:
   - component: {fileID: 1619600606}
   - component: {fileID: 1619600605}
   - component: {fileID: 1619600604}
+  - component: {fileID: 1619600610}
   m_Layer: 0
   m_Name: HealOrb
   m_TagString: Untagged
@@ -17600,6 +17798,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619600602}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1619600610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619600602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1630365319
 GameObject:
   m_ObjectHideFlags: 0
@@ -18923,6 +19135,7 @@ GameObject:
   - component: {fileID: 1796254341}
   - component: {fileID: 1796254340}
   - component: {fileID: 1796254339}
+  - component: {fileID: 1796254345}
   m_Layer: 0
   m_Name: HealOrb
   m_TagString: Untagged
@@ -19243,6 +19456,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796254337}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1796254345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796254337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1796755397
 GameObject:
   m_ObjectHideFlags: 0
@@ -21585,6 +21812,7 @@ GameObject:
   - component: {fileID: 2066816965}
   - component: {fileID: 2066816964}
   - component: {fileID: 2066816963}
+  - component: {fileID: 2066816969}
   m_Layer: 0
   m_Name: HealOrb
   m_TagString: Untagged
@@ -21905,6 +22133,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066816961}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2066816969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066816961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &2092949957
 GameObject:
   m_ObjectHideFlags: 0
@@ -22200,6 +22442,7 @@ GameObject:
   - component: {fileID: 2104005577}
   - component: {fileID: 2104005576}
   - component: {fileID: 2104005581}
+  - component: {fileID: 2104005582}
   m_Layer: 0
   m_Name: HealOrb
   m_TagString: Untagged
@@ -22520,6 +22763,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealObject
   healAmount: 25
+--- !u!114 &2104005582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104005574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &2113193857
 GameObject:
   m_ObjectHideFlags: 0
@@ -22688,6 +22945,7 @@ GameObject:
   - component: {fileID: 2121472560}
   - component: {fileID: 2121472559}
   - component: {fileID: 2121472558}
+  - component: {fileID: 2121472564}
   m_Layer: 0
   m_Name: HealOrb
   m_TagString: Untagged
@@ -23008,6 +23266,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121472556}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2121472564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121472556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &2129947363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25149,6 +25421,7 @@ MonoBehaviour:
   secondAvatar: {fileID: 0}
   firstModels: {fileID: 0}
   secondModels: {fileID: 0}
+  interval: 0
   stage1MoveSpeed: 0
   stage2MoveSpeed: 0
   currentMoveSpeed: 0

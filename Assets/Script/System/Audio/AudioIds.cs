@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public static class AudioIds
 {
@@ -63,6 +64,15 @@ public static class AudioIds
     public const string WeaponPistolWallshot = "weapon_pistol wallshot";
     public const string WeaponRifleReload = "weapon_rifle reload";
     public const string WeaponRifleShot = "weapon_rifle shot";
+    public const string BossPhaseChange = "boss phase change";
+    public const string BossTurretActivate = "boss turret activate";
+    public const string BossTurretLaser = "boss turret laser";
+    public const string BossWaring = "boss waring";
+    public const string ContainerClose = "container close";
+    public const string ContainerOpen = "container open";
+    public const string ScanDenied = "scan denied";
+    public const string ScanSuccess = "scan success";
+    public const string Scaning = "scaning";
 
     public static readonly string[] All =
     {
@@ -127,5 +137,14 @@ public static class AudioIds
         WeaponPistolWallshot,
         WeaponRifleReload,
         WeaponRifleShot,
+        BossPhaseChange,
+        BossTurretActivate,
+        BossTurretLaser,
+        BossWaring,
+        ContainerClose,
+        ContainerOpen,
+        ScanDenied,
+        ScanSuccess,
+        Scaning,
     };
 }

@@ -13,14 +13,6 @@ public class MeleeEnemy : EnemyBase
     [SerializeField] private Vector3 attackVectorRange;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private HitFlash hitFlash;
-    private SFXEmitter emitter;
-    private float footstepTimer;
-    [SerializeField] private float interval;
-
-    private void Awake()
-    {
-        emitter = GetComponent<SFXEmitter>();
-    }
 
     public override void Initialize(EnemyBase origin, int warpStage)
     {
@@ -66,6 +58,7 @@ public class MeleeEnemy : EnemyBase
     protected override void Attacking()
     {
         Debug.Log("Melee Enemy is Attacking");
+        emitter.Play(AudioIds.RobotVicinityRobotScratch1, false, 0.7f);
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
 
         attackTime = 0f;
@@ -74,7 +67,6 @@ public class MeleeEnemy : EnemyBase
     public override void TakeDamage(float damage)
     {
         hitFlash.Flash();
-
         base.TakeDamage(damage);
     }
 }

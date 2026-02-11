@@ -17,7 +17,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: ea3b12889b8ba744883531c8aa563aff, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -26,7 +26,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 97031d39e370d4f49aa998f149d012f9, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -35,7 +35,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 10b5d6708ba52f740a28f52c693e4131, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -44,7 +44,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: f02e6964a59201d4b995a61d38ee2c6f, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -53,7 +53,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 7b0d79befb8a27045a77738d3c34ea45, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -62,7 +62,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: a19d59cd387871644bbff6412e0281a5, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -71,7 +71,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: ad56f169ade437f45af6e411370f7745, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 0.7
     minDistance: 1
     maxDistance: 50
@@ -80,7 +80,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: ea5f2769766ed4b498f7ba7dbc12436c, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 0.7
     minDistance: 1
     maxDistance: 50
@@ -89,7 +89,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 20d893c18f144bf4e80e667cefa2616a, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 0.7
     minDistance: 1
     maxDistance: 50
@@ -98,7 +98,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: a4ee3a9483db94347a076f3eafafe2b0, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 0.7
     minDistance: 1
     maxDistance: 50
@@ -107,7 +107,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: aaef236362412f942b70b61268fe4c34, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 0.7
     minDistance: 1
     maxDistance: 50
@@ -134,7 +134,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 910f7c6a074e97d45b376a0d47fd164b, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 0.7
     minDistance: 1
     maxDistance: 50
@@ -143,7 +143,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 2ee0f09b8d062724b867450f869b3ccf, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -158,14 +158,14 @@ MonoBehaviour:
     maxDistance: 50
     loop: 0
   - id: SFX_Emergency Siren starting
-    type: 0
+    type: 2
     clip: {fileID: 8300000, guid: b25b0a0c0a7d6c542a68ce38a5f95238, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.005
     basePitch: 1
     minDistance: 1
     maxDistance: 50
-    loop: 0
+    loop: 1
   - id: SFX_Flesh Heartbeat
     type: 0
     clip: {fileID: 8300000, guid: d5c6b8ca5a5b13b40bc288ecad567d9a, type: 3}
@@ -251,7 +251,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: fa9fe29f42e53e04c8acdab3d71fee1e, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -260,7 +260,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 30535a3192d386e42bde4d520faf0f11, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -269,7 +269,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 61ca3bb766d1c8242b1e5dca12d9b803, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -278,7 +278,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 7488eff6e928cfa4a8ea22da8a6b30bf, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.5
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -341,7 +341,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 58978160c73d61c4eac397b1972a7273, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -350,7 +350,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 4e606c67f68db6f49980247d7dcb3b6f, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -359,7 +359,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 9d4f260f617bc284faa6b293720fd8c5, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -377,7 +377,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 2755599b47f8eb440bfed982e34376c2, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -395,7 +395,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 9ae9a3b9e127be54bbab86901ad4b3f6, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.5
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -422,7 +422,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 4d1acb3ca5197bf4fbc41055af959285, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.3
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -431,7 +431,7 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 1585b98866240e34e81e695c6073348a, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
-    baseVolume: 1
+    baseVolume: 0.4
     basePitch: 1
     minDistance: 1
     maxDistance: 50
@@ -557,9 +557,89 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: e93677f37bb2c044491b69e82d8729f1, type: 3}
     mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 0.3
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: boss phase change
+    type: 0
+    clip: {fileID: 8300000, guid: f17f20f57b7886944bf4a38089287b37, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
     baseVolume: 1
     basePitch: 1
     minDistance: 1
     maxDistance: 50
     loop: 0
-
+  - id: boss turret activate
+    type: 0
+    clip: {fileID: 8300000, guid: 7ea1471458d3de8459deb2e80ec79a24, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: boss turret laser
+    type: 0
+    clip: {fileID: 8300000, guid: 386c1e9f943788645982c2fc4386e003, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: boss waring
+    type: 0
+    clip: {fileID: 8300000, guid: d6082d6f998bde543a78f882f4a616e3, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: container close
+    type: 0
+    clip: {fileID: 8300000, guid: 31d830eac088f1944b3687a38f8cf7a3, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: container open
+    type: 0
+    clip: {fileID: 8300000, guid: 50e8984d1c8008b4d902f29824f06f08, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: scan denied
+    type: 0
+    clip: {fileID: 8300000, guid: 94a9082a16b84764ebcded85cad95464, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: scan success
+    type: 0
+    clip: {fileID: 8300000, guid: 8bdd70a94d0ebf343944b6cba5f8880b, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: scaning
+    type: 0
+    clip: {fileID: 8300000, guid: fff571e4c9cf093489f8eb93c69ec066, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0

@@ -37,6 +37,12 @@ public class BombEnemy : EnemyBase
 
     protected override void Moving()
     {
+        footstepTimer -= Time.deltaTime;
+        if (footstepTimer <= 0f)
+        {
+            emitter.Play(AudioIds.RobotBombRobotMoving, false, 1f, 1.3f);
+            footstepTimer = interval;
+        }
         muKatteKuruNoKaStrategy.KonoDIOniMuKatteKuruNoKa(this, player.transform);
     }
 
@@ -53,6 +59,7 @@ public class BombEnemy : EnemyBase
 
     protected override void Attacking()
     {
+        emitter.PlayFollow(AudioIds.RobotBombRobotExplosionAttack, transform);
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
         attackTime = 0f;
     }

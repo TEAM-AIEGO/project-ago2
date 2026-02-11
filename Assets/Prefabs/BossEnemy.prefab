@@ -159,6 +159,8 @@ GameObject:
   - component: {fileID: 5108602995125311798}
   - component: {fileID: 5172418216055031677}
   - component: {fileID: 1191809231854201440}
+  - component: {fileID: 7506339455016070975}
+  - component: {fileID: -4104586273653766461}
   m_Layer: 7
   m_Name: BossEnemy
   m_TagString: Untagged
@@ -320,6 +322,11 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
+  firstAvatar: {fileID: 0}
+  secondAvatar: {fileID: 0}
+  firstModels: {fileID: 0}
+  secondModels: {fileID: 0}
+  interval: 0
   stage1MoveSpeed: 0
   stage2MoveSpeed: 0
   currentMoveSpeed: 0
@@ -335,3 +342,39 @@ MonoBehaviour:
   maxLeadTime: 2
   hitFlash: {fileID: 326702497132532585}
   projectilePrefab: {fileID: 7342315372723829194, guid: 9634bf1945c5b605084a4e7c4352fe21, type: 3}
+--- !u!95 &7506339455016070975
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537856391491196169}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-4104586273653766461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537856391491196169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}

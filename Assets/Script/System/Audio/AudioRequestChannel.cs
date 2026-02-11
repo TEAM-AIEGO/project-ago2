@@ -15,6 +15,7 @@ public struct AudioRequest
     public bool playFullClip;
     public float startTime;
     public float endTime;
+    public bool loop;
 }
 
 [CreateAssetMenu(menuName = "Audio/Audio Request Channel")]
@@ -36,6 +37,7 @@ public class AudioRequestChannel : ScriptableObject
             playFullClip = playFullClip,
             startTime = startTime,
             endTime = endTime
+            
         });
 
     public void RaiseFollow(string id, Transform target)
