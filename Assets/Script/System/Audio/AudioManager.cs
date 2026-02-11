@@ -40,6 +40,8 @@ public class AudioManager : MonoBehaviour
     {
         if (channel != null)
             channel.OnRequest += HandleAudioRequest;
+
+        ValidateRegisteredAudioIds();
     }
 
     private void OnDisable()
@@ -118,5 +120,21 @@ public class AudioManager : MonoBehaviour
     private void LoadVolumes()
     {
 
+    }
+
+    private void ValidateRegisteredAudioIds()
+    {
+        if (library == null)
+        {
+            return;
+        }
+
+        foreach (var id in AudioIds.All)
+        {
+            if (!library.TryGet(id, out var entry) || entry.clip == null)
+            {
+                Debug.LogWarning($"AudioManager: Missing AudioLibrary entry or clip for id: {id}");
+            }
+        }
     }
 }

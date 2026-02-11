@@ -50,7 +50,7 @@ public class StageDoor : MonoBehaviour
 
     public void OpenDoor()
     {
-        emitter.PlayFollow("airlock door open and close", transform);
+        emitter.PlayFollow(AudioIds.AirlockDoorOpenAndClose, transform);
         doorAnimator.SetTrigger("Open");
         uiManager.ActiveDoorAlarm(false);
         OnDoorOpen.Invoke(nextStageIndex);
@@ -59,7 +59,7 @@ public class StageDoor : MonoBehaviour
 
     public void CloseDoor()
     {
-        emitter.PlayFollow("airlock door open and close", transform);
+        emitter.PlayFollow(AudioIds.AirlockDoorOpenAndClose, transform);
         doorAnimator.SetTrigger("Close");
         uiManager.ActiveDoorAlarm(true);
         col.enabled = true;

@@ -52,7 +52,7 @@ public class PlayerManager : Unit, IStat
     {
         base.TakeDamage(damageAmount);
 
-        emitter.PlayFollow("hurt", transform);
+        emitter.PlayFollow(AudioIds.Hurt, transform);
 
         OnValueChanged?.Invoke(health, maxHealth);
         Debug.Log($"Player took {damageAmount} damage. Remaining Health: {health}");

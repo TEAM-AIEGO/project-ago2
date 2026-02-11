@@ -24,13 +24,13 @@ public class PlayerGroundPoundAction : MonoBehaviour
     {
         groundPoundStartHeight = transform.position.y;
         rb.linearVelocity = Vector3.down * groundPoundForce; //gpspeed
-        emitter.Play("Ground_Pound_Start", false, 0.2f);
+        emitter.Play(AudioIds.GroundPoundStart, false, 0.2f);
     }
 
     public void GroundPoundKaboom()
     {
         float kaboomPower = Mathf.Clamp((groundPoundStartHeight - transform.position.y) / maxHeight, 0, 1);
-        emitter.Play("Ground_Pound_Land", false, 0.2f);
+        emitter.Play(AudioIds.GroundPoundLand, false, 0.2f);
         Collider[] hitColliders = Physics.OverlapBox(transform.position - Vector3.down * 0.5f, new Vector3(7.5f, 10f, 7.5f), quaternion.identity, LayerMask.GetMask("Enemy", "Hittable", "Ground"));
 
         for (int i = 0; i < hitColliders.Length; i++)

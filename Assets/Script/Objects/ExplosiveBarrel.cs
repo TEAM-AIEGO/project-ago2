@@ -40,7 +40,7 @@ public class ExplosiveBarrel : BreakableObject
             return;
         }
 
-        emitter.PlayFollow("barrel explosion", transform);
+        emitter.PlayFollow(AudioIds.BarrelExplosion, transform);
         hasExploded = true;
         Vector3 explosionPosition = transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(explosionPosition, explosionRadius, explosionLayerMask);

@@ -30,7 +30,7 @@ public class PlayerDashAction : MonoBehaviour
     public void Dash(Vector3 movement)
     {
         currentDashTime = DashTime;
-        emitter.PlayFollow("Dash", transform);
+        emitter.PlayFollow(AudioIds.Dash, transform);
         Vector3 camForward = cam.forward;
         Vector3 camRight = cam.right;
         camForward.y = 0;

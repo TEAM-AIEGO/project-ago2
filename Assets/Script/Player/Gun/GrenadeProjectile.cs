@@ -68,7 +68,7 @@ public class GrenadeProjectile : MonoBehaviour
         List<GameObject> duplicationObjs = new();
 
         hasExploded = true;
-        emitter.Play("Grenade_Explosion");
+        emitter.Play(AudioIds.GrenadeExplosion);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayerMask);
 
         for (int i = 0; i < hitColliders.Length; i++)

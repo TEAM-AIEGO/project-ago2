@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         footstepTimer -= Time.deltaTime;
         if (footstepTimer <= 0f)
         {
-            sfxEmitter?.Play("Movement first", false, 0.5f);
+            sfxEmitter?.Play(AudioIds.MovementFirst, false, 0.5f);
             footstepTimer = interval;
         }
     }

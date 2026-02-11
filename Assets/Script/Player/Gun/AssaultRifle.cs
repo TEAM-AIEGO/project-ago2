@@ -117,7 +117,7 @@ public class AssaultRifle : MonoBehaviour
 
         objectPool.SpawnProjectile(projectile.GetComponent<Projectile>(), projectileLunchPoint.position, Quaternion.LookRotation(direction), 300f);
 
-        emitter.PlayFollow("Gun_Shot", playerTransfrom);
+        emitter.PlayFollow(AudioIds.WeaponRifleShot, playerTransfrom);
         isFireAble = false;
     }
 }

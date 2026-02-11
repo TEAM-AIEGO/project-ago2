@@ -46,7 +46,7 @@ public class MeleeEnemy : EnemyBase
         footstepTimer -= Time.deltaTime;
         if (footstepTimer <= 0f)
         {
-            emitter?.Play("vicinity robot moving", false, 2.3f);
+            emitter?.Play(AudioIds.VicinityRobotMoving, false, 2.3f);
             footstepTimer = interval;
         }
         muKatteKuruNoKaStrategy.KonoDIOniMuKatteKuruNoKa(this, player.transform);
