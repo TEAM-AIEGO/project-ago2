@@ -139,3 +139,427 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 50
     loop: 0
+  - id: BlackHole_Gun_Fire
+    type: 0
+    clip: {fileID: 8300000, guid: 2ee0f09b8d062724b867450f869b3ccf, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: SFX_Distant Screams
+    type: 0
+    clip: {fileID: 8300000, guid: 7da9adb0b3d8ef842b5f4ba9391d08aa, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: SFX_Emergency Siren starting
+    type: 0
+    clip: {fileID: 8300000, guid: b25b0a0c0a7d6c542a68ce38a5f95238, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: SFX_Flesh Heartbeat
+    type: 0
+    clip: {fileID: 8300000, guid: d5c6b8ca5a5b13b40bc288ecad567d9a, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: SFX_Gas Leak
+    type: 0
+    clip: {fileID: 8300000, guid: 8f70c16a5f9c70745ae80667dd31b091, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: SFX_Organic Squish
+    type: 0
+    clip: {fileID: 8300000, guid: ae63f6e78cc2edf4d8da9f84ddc00ce6, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: SFX_train separation ending
+    type: 0
+    clip: {fileID: 8300000, guid: 0142e19619bb5b24abb69cc22f40effd, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: object_item pickup
+    type: 0
+    clip: {fileID: 8300000, guid: bd18e73b7bdb1654d938c1c3107389f2, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: omission_dead blow
+    type: 0
+    clip: {fileID: 8300000, guid: 708f7551190cfca47ba7aa5fb1627a57, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: omission_dead hurt
+    type: 0
+    clip: {fileID: 8300000, guid: a4cf5f45b89cdbe499307f58a671cadf, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: omission_ground pound barrel
+    type: 0
+    clip: {fileID: 8300000, guid: 518c221547d9fc94fb0493fe55266dc2, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: omission_ground pound box
+    type: 0
+    clip: {fileID: 8300000, guid: 04b0b94bd6ce6424592ca7e3e2c4c7f5, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: player_Movement second
+    type: 0
+    clip: {fileID: 8300000, guid: fa9fe29f42e53e04c8acdab3d71fee1e, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: player_flesh impact
+    type: 0
+    clip: {fileID: 8300000, guid: 30535a3192d386e42bde4d520faf0f11, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: player_landing
+    type: 0
+    clip: {fileID: 8300000, guid: 61ca3bb766d1c8242b1e5dca12d9b803, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: player_recovery
+    type: 0
+    clip: {fileID: 8300000, guid: 7488eff6e928cfa4a8ea22da8a6b30bf, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_Target Acquired Bleep
+    type: 0
+    clip: {fileID: 8300000, guid: 6b136f125a3f4844a91cdfdfbd266ee5, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_bomb robot crash attack
+    type: 0
+    clip: {fileID: 8300000, guid: 16d81e3410b84cc4b9148619eaa6916f, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_bomb robot explosion attack
+    type: 0
+    clip: {fileID: 8300000, guid: f4ff89f2fd5eed649b9a6e85b61be8e7, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_bomb robot hatch open
+    type: 0
+    clip: {fileID: 8300000, guid: e979799cd59814e448e62420f26be912, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_bomb robot moving
+    type: 0
+    clip: {fileID: 8300000, guid: a47a11c50ed3da64bbe0b72c96194483, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_bomb robot walking
+    type: 0
+    clip: {fileID: 8300000, guid: a654844aa95b3aa41abe51b857233d45, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_robot crunch1
+    type: 0
+    clip: {fileID: 8300000, guid: 58978160c73d61c4eac397b1972a7273, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_robot crunch2
+    type: 0
+    clip: {fileID: 8300000, guid: 4e606c67f68db6f49980247d7dcb3b6f, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_robot crunch3
+    type: 0
+    clip: {fileID: 8300000, guid: 9d4f260f617bc284faa6b293720fd8c5, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_robot heat
+    type: 0
+    clip: {fileID: 8300000, guid: 663168271c3ebdd40aa1340209468afc, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_turret robot moving
+    type: 0
+    clip: {fileID: 8300000, guid: 2755599b47f8eb440bfed982e34376c2, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_turret robot rotate
+    type: 0
+    clip: {fileID: 8300000, guid: dd6406a79f0ec1f469c3546233daff67, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_turret robot shot
+    type: 0
+    clip: {fileID: 8300000, guid: 9ae9a3b9e127be54bbab86901ad4b3f6, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_turret robot transform
+    type: 0
+    clip: {fileID: 8300000, guid: b11329f5e94a5b9418be2b1b8ec6947a, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_turret robot walking
+    type: 0
+    clip: {fileID: 8300000, guid: 939c50d1dc96f9b49829e3ed214ecc23, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_vicinity robot scratch1
+    type: 0
+    clip: {fileID: 8300000, guid: 4d1acb3ca5197bf4fbc41055af959285, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_vicinity robot screech
+    type: 0
+    clip: {fileID: 8300000, guid: 1585b98866240e34e81e695c6073348a, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_vicinity robot signal
+    type: 0
+    clip: {fileID: 8300000, guid: 9f6a70a4601704d48a0d3a3994e3e14b, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: robot_vicinity robot waliking
+    type: 0
+    clip: {fileID: 8300000, guid: 866975e4bd40d934b846e7ac311cc405, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: ui system_first button click
+    type: 1
+    clip: {fileID: 8300000, guid: 85f1efc8bef597944bd02d21df6c7455, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: ui system_glitch noise
+    type: 1
+    clip: {fileID: 8300000, guid: 57ba9c04cde15fa4e8dbc78d2ca20aaf, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: ui system_menu swipe
+    type: 1
+    clip: {fileID: 8300000, guid: e58328bfb3a3ece4cb777852195a773f, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: ui system_second button click
+    type: 1
+    clip: {fileID: 8300000, guid: d59997f02a605e3418a4bb5be17ee6d9, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: ui system_second warning heart
+    type: 1
+    clip: {fileID: 8300000, guid: 4ef8e7c935c17b94f9e64297c26e65e9, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: weapon_Railgun Beam charging power
+    type: 0
+    clip: {fileID: 8300000, guid: 0ab94f601b58e9548a275315c6f458f7, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: weapon_bullet shell falling
+    type: 0
+    clip: {fileID: 8300000, guid: cb6592d8b710a7b4287850846c64cd84, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: weapon_dry fire
+    type: 0
+    clip: {fileID: 8300000, guid: 338aa820aa835a64d977b2e7460ccf15, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: weapon_pistol reload
+    type: 0
+    clip: {fileID: 8300000, guid: 4f4e6dab6e738254c9e6fa86f06718b6, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: weapon_pistol wallshot
+    type: 0
+    clip: {fileID: 8300000, guid: 28f867f2c76a65845af97f00e7ea7c64, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: weapon_rifle reload
+    type: 0
+    clip: {fileID: 8300000, guid: f7a215cff0cdcf64a916b35e6d3dc9be, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+  - id: weapon_rifle shot
+    type: 0
+    clip: {fileID: 8300000, guid: e93677f37bb2c044491b69e82d8729f1, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 50
+    loop: 0
+

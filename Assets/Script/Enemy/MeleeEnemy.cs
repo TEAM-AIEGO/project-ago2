@@ -14,6 +14,8 @@ public class MeleeEnemy : EnemyBase
     [SerializeField] private Transform attackPoint;
     [SerializeField] private HitFlash hitFlash;
     private SFXEmitter emitter;
+    private float footstepTimer;
+    [SerializeField] private float interval;
 
     private void Awake()
     {
@@ -41,6 +43,12 @@ public class MeleeEnemy : EnemyBase
     {
         //Debug.Log("Melee Enemy is Moving");
         //Debug.Log(player.transform.position);
+        footstepTimer -= Time.deltaTime;
+        if (footstepTimer <= 0f)
+        {
+            emitter?.Play("vicinity robot moving", false, 2.3f);
+            footstepTimer = interval;
+        }
         muKatteKuruNoKaStrategy.KonoDIOniMuKatteKuruNoKa(this, player.transform);
     }
 

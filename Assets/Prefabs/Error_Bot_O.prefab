@@ -1810,6 +1810,7 @@ GameObject:
   - component: {fileID: 4158173344589559946}
   - component: {fileID: 5921032144570475388}
   - component: {fileID: 5729972949183464219}
+  - component: {fileID: -2618404913789161697}
   m_Layer: 7
   m_Name: Error_Bot_O
   m_TagString: Untagged
@@ -1891,6 +1892,7 @@ MonoBehaviour:
   attackVectorRange: {x: 1.5, y: 1.5, z: 1.5}
   attackPoint: {fileID: 1701769027992710993}
   hitFlash: {fileID: 4158173344589559946}
+  interval: 0.3
 --- !u!114 &4158173344589559946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1955,6 +1957,20 @@ CapsuleCollider:
   m_Height: 2.7
   m_Direction: 1
   m_Center: {x: 0, y: 1.35, z: 0}
+--- !u!114 &-2618404913789161697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3584620285830627391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &3638205509812017580
 GameObject:
   m_ObjectHideFlags: 0
