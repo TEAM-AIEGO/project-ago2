@@ -22,6 +22,12 @@ public class SansBoneWallAttackStrategy : IMUDAMUDAMUDAStrategy
 
     public void Attacking(EnemyBase enemy, Transform target)
     {
-        OnShootProjectile?.Invoke(projectilePrefab, shooter.position, quaternion.identity, projectileSpeed, damage);
+        Vector3 randomPosition = shooter.position + new Vector3(UnityEngine.Random.Range(0, 2) == 1 ? 100 : -100, UnityEngine.Random.Range(-3f, 4f), UnityEngine.Random.Range(0, 2) == 1 ? 100 : -100);
+        Vector3 relative = target.position - randomPosition;
+        float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0f, angle, 0f);
+
+
+        OnShootProjectile?.Invoke(projectilePrefab, shooter.position + randomPosition, rotation, projectileSpeed, damage);
     }
 }

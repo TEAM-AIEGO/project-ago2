@@ -151,19 +151,19 @@ public class Gun : MonoBehaviour
 
         if (Physics.Raycast(aimRay, out RaycastHit hitinfo, gunRange, layerMasks))
         {
-            Transform t = hitinfo.collider.transform;
+            //Transform t = hitinfo.collider.transform;
 
-            for (int i = 0; i <= 2 && t != null; i++)
-            {
-                if (t.TryGetComponent<IHittable>(out var hittable))
+            //for (int i = 0; i <= 2 && t != null; i++)
+            //{
+                if (hitinfo.collider.transform.TryGetComponent<IHittable>(out var hittable))
                 {
                     hittable.TakeDamage(damage);
                     uiManager?.ShowHitMarker();
-                    break;
+                    //break;
                 }
 
-                t = t.parent;
-            }
+                //t = t.parent;
+            //}
             //if (hitinfo.collider.TryGetComponent(out IHittable hittable))
             //{
             //    hittable.TakeDamage(damage);

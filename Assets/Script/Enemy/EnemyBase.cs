@@ -144,7 +144,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
             return;
 
         knockbackStun += duration;
-        if (state == EnemyState.Dead)
+        if (state == EnemyState.Dead && rdTrigger)
         {
             rdTrigger.RagdollKnockback(force);
             return;
@@ -158,7 +158,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     {
         knockbackStun += duration;
 
-        if (state == EnemyState.Dead)
+        if (state == EnemyState.Dead && rdTrigger)
         {
             rdTrigger.RagdollExplosionKnockback(explosionForce, explosionPosition, explosionRadius);
             return;
@@ -196,6 +196,10 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+        if (health <= 0)
+        {
+            Dead();
+        }
 
         if (isPlayerDetected == false)
         {
@@ -210,6 +214,8 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected virtual void Dead()
     {
         state = EnemyState.Dead;
+        rb.constraints = RigidbodyConstraints.None;
+        if (!rdTrigger) return;
         rdTrigger.SetRagdoll(true);
 
         //OnReturn?.Invoke(this);

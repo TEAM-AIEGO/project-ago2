@@ -25,7 +25,7 @@ public class RagdollTrigger : MonoBehaviour
         for (int i = 0; i < ragdollBodies.Length; i++)
         {
             ragdollBodies[i].isKinematic = !enabled;
-            //rb.detectCollisions = enabled;
+            rb.detectCollisions = enabled;
         }
 
         for (int i = 0; i < ragdollColliders.Length; i++)
