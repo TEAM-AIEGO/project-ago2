@@ -39,18 +39,6 @@ public class GrenadeTurret : TurretBase
 
     public override void TakeDamage(float damage)
     {
-        if (health <= 0)
-            return;
-
-        if (isPlayerDetected == false && EnsurePlayer())
-        {
-            isPlayerDetected = true;
-            state = EnemyState.moving;
-        }
-
-        health -= damage;
-        Debug.Log($"{name} took {damage} damage. Remaining Health: {health}");
-
-        hitFlash.Flash();
+        base.TakeDamage(damage);
     }
 }

@@ -54,7 +54,6 @@ public class BombEnemy : EnemyBase
     protected override void Attacking()
     {
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
-        attackTime = 0f;
     }
 
     public override void OnWarpStageChanged(int newStage)
@@ -68,6 +67,16 @@ public class BombEnemy : EnemyBase
                 break;
             case 1:
                 muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
+                break;
+        }
+
+        switch (newStage)
+        {
+            case 0:
+                up.material = textures[0];
+                break;
+            case 1:
+                up.material = textures[1];
                 break;
         }
     }

@@ -29,14 +29,11 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected IORAORAORAStrategy NegromancyStrategy;
 
     [SerializeField] protected RagdollTrigger rdTrigger;
-    [SerializeField] protected Avatar firstAvatar;
-    [SerializeField] protected Avatar secondAvatar;
-    [SerializeField] protected GameObject firstModels;
-    [SerializeField] protected GameObject secondModels;
 
-    [SerializeField] protected RuntimeAnimatorController firstController;
-    [SerializeField] protected RuntimeAnimatorController secondController;
+    [SerializeField] protected SkinnedMeshRenderer up;
+    [SerializeField] protected SkinnedMeshRenderer down;
 
+    [SerializeField] protected Material[] textures;
 
     #region Enemy Stats
     [Header("Enemy Stats")]
@@ -62,6 +59,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     [SerializeField] protected float bodyDisableTimer;
 
     protected bool isPlayerDetected = false;
+    protected bool isAttacking = false;
     #endregion
 
     [HideInInspector] public event Action<EnemyBase> OnReturn;
@@ -82,7 +80,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         rb = GetComponent<Rigidbody>();
         enemyAnimator = GetComponent<Animator>();
 
-        enemyAnimator.avatar = firstAvatar;
         enemyAnimator.SetBool("Move", false);
 
         state = EnemyState.idle;
@@ -132,9 +129,24 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                     state = EnemyState.moving;
                     break;
                 }
-                //enemyAnimator.SetTrigger("Attack");
-                Attacking();
-                canAttack = false; 
+
+                if (enemyAnimator != null)
+                {
+                    if (isAttacking != true)
+                    {
+                        enemyAnimator.SetTrigger("Attack");
+                        isAttacking = true;
+                    }
+
+                    LookTarget();
+                }
+                else
+                {
+                    Attacking();
+                    canAttack = false;
+                }
+                //Attacking();
+                //canAttack = false;
                 break;
         }
 
@@ -201,9 +213,20 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected abstract void AttackCheck();
 
-    public void OnAttack() => Attacking();
+    public void OnAttack()
+    {
+        Debug.Log("Attack");
+        Attacking();
+    }
 
     protected abstract void Attacking();
+
+    public void OnAttackEnd()
+    {
+        isAttacking = false;
+        canAttack = false;
+        attackTime = 0f;
+    }
 
     public override void TakeDamage(float damage)
     {
@@ -238,26 +261,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         if (state == EnemyState.Dead)
             return;
 
-        if (firstModels != null && secondModels != null)
-            switch (newStage)
-            {
-                case 0:
-                    firstModels.transform.SetAsFirstSibling();
-                    firstModels.SetActive(true);
-                    secondModels.SetActive(false);
-                    enemyAnimator.avatar = firstAvatar;
-                    enemyAnimator.runtimeAnimatorController = firstController;
-                    break;
-                case 1:
-                    secondModels.transform.SetAsFirstSibling();
-                    secondModels.SetActive(true);
-                    firstModels.SetActive(false);
-                    enemyAnimator.avatar = secondAvatar;
-                    enemyAnimator.runtimeAnimatorController = secondController;
-                    break;
-            }
-        //enemyAnimator.Rebind();
-        enemyAnimator.WriteDefaultValues();
         currentMoveSpeed = GetSpeed(newStage);
     }
 

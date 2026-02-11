@@ -63,4 +63,21 @@ public class MeleeEnemy : EnemyBase
 
         base.TakeDamage(damage);
     }
+
+    public override void OnWarpStageChanged(int newStage)
+    {
+        base.OnWarpStageChanged(newStage);
+
+        switch (newStage)
+        {
+            case 0:
+                up.material = textures[0];
+                down.material = textures[1];
+                break;
+            case 1:
+                up.material = textures[2];
+                down.material = textures[3];
+                break;
+        }
+    }
 }
