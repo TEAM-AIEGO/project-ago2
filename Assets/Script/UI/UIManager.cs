@@ -4,17 +4,38 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    private GameManager gameManager;
     [SerializeField] private HitMarker hitMarker;
     [SerializeField] private Image DoorAlarm;
     [SerializeField] private Image SubWeaponFrame;
     [SerializeField] private GameObject subtitleRoot;
     [SerializeField] private TMP_Text subtitleText;
+    [SerializeField] private Image transitionImage;
+
+    [SerializeField] private float transitionTime;
+    private float currentTransitionTime;
+    private bool isWarping;
 
     private void Start()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
+        if (gameManager)
+        {
+            gameManager.WarpStageChanged.AddListener(GetWarped);
+        }
+        
         if (hitMarker == null)
         {
             Debug.LogError("hitMarker is NUll");
+        }
+    }
+
+    void Update()
+    {
+        currentTransitionTime -= Time.unscaledDeltaTime;
+        if (currentTransitionTime <= 0 && isWarping)
+        {
+            WarpEnd();
         }
     }
 
@@ -57,5 +78,22 @@ public class UIManager : MonoBehaviour
         }
 
         subtitleText.text = $"{text}";
+    }
+
+    public void GetWarped(int stage)
+    {
+        Debug.Log("omg it dark");
+        isWarping = true;
+        transitionImage.enabled = true;
+        currentTransitionTime = transitionTime;
+        Time.timeScale = 0;
+    }
+
+    private void WarpEnd()
+    {
+        Debug.Log("omg it no dark");
+        isWarping = false;
+        transitionImage.enabled = false;
+        Time.timeScale = 1;
     }
 }

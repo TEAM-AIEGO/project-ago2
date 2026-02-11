@@ -2788,7 +2788,7 @@ Transform:
   m_GameObject: {fileID: 245617453}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -173.01, y: 0.1125, z: 32.61}
+  m_LocalPosition: {x: -173.01, y: 0.1125, z: 41.32}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4686,7 +4686,7 @@ Transform:
   m_GameObject: {fileID: 370572739}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -170.01, y: 0.1125, z: 35.61}
+  m_LocalPosition: {x: -170.01, y: 0.1125, z: 44.32}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6161,7 +6161,7 @@ Transform:
   m_GameObject: {fileID: 575226263}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -170.01, y: 0.1125, z: 32.61}
+  m_LocalPosition: {x: -170.01, y: 0.1125, z: 41.32}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6350,7 +6350,7 @@ Transform:
   m_GameObject: {fileID: 582473202}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -173.01, y: 0.1125, z: 38.61}
+  m_LocalPosition: {x: -173.01, y: 0.1125, z: 47.32}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6765,7 +6765,7 @@ Transform:
   m_GameObject: {fileID: 683666664}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -173.01, y: 0.1125, z: 35.61}
+  m_LocalPosition: {x: -173.01, y: 0.1125, z: 44.32}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10335,7 +10335,7 @@ Transform:
   m_GameObject: {fileID: 1017103271}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -167.01, y: 0.1125, z: 35.61}
+  m_LocalPosition: {x: -167.01, y: 0.1125, z: 44.32}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10526,6 +10526,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   Stages:
   - StageState: 0
+    StageObject: {fileID: 1957507632}
+    WarpStageObject: {fileID: 0}
+    StageDoor: {fileID: 547112190}
+    Enemies:
+    - EnemyPrefab: {fileID: 3584620285830627391, guid: 139282b39e823154b81cb53380687324, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 10}
+    - EnemyPrefab: {fileID: 8501198157883964329, guid: e8354b079cbd8aa4aadd7dd9369d0e3f, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 4.11}
+    - EnemyPrefab: {fileID: 9193950021770029371, guid: c7a69b4a321f95b4cb89b14748d12ff0, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 7477929138127596566, guid: 25603aec74837564da67e926574ecd86, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 0}
+  - StageState: 0
     StageObject: {fileID: 7874699550487491660}
     WarpStageObject: {fileID: 0}
     StageDoor: {fileID: 5242081624760831092}
@@ -10540,19 +10553,6 @@ MonoBehaviour:
       EnemySpawnPosition: {x: -13.3, y: 1.5, z: 7.81}
     - EnemyPrefab: {fileID: 2946600272766831144, guid: 965fd3f4d66c6904cac2174758a6f8f4, type: 3}
       EnemySpawnPosition: {x: -59.1, y: 1.5, z: 7.81}
-  - StageState: 0
-    StageObject: {fileID: 1957507632}
-    WarpStageObject: {fileID: 0}
-    StageDoor: {fileID: 547112190}
-    Enemies:
-    - EnemyPrefab: {fileID: 3227721525028264328, guid: fb6627008ce6d224884f1c3bf8e537db, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.5, z: 6.42}
-    - EnemyPrefab: {fileID: 8501198157883964329, guid: e8354b079cbd8aa4aadd7dd9369d0e3f, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.5, z: 4.11}
-    - EnemyPrefab: {fileID: 9193950021770029371, guid: c7a69b4a321f95b4cb89b14748d12ff0, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
-    - EnemyPrefab: {fileID: 7477929138127596566, guid: 25603aec74837564da67e926574ecd86, type: 3}
-      EnemySpawnPosition: {x: 0, y: 1.5, z: 0}
   objectPool: {fileID: 173203512}
   warpSystemManager: {fileID: 709761147}
   ptt: {fileID: 0}
@@ -11018,6 +11018,7 @@ RectTransform:
   - {fileID: 1032435705}
   - {fileID: 581997364}
   - {fileID: 1375097495}
+  - {fileID: 1577181000}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -11042,6 +11043,8 @@ MonoBehaviour:
   SubWeaponFrame: {fileID: 581997362}
   subtitleRoot: {fileID: 1375097494}
   subtitleText: {fileID: 1485563616}
+  transitionImage: {fileID: 1577180998}
+  transitionTime: 1
 --- !u!114 &1045154502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11845,7 +11848,7 @@ Transform:
   m_GameObject: {fileID: 1095310435}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -167.01, y: 0.1125, z: 32.61}
+  m_LocalPosition: {x: -167.01, y: 0.1125, z: 41.32}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17052,6 +17055,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1577180997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577181000}
+  - component: {fileID: 1577180999}
+  - component: {fileID: 1577180998}
+  m_Layer: 5
+  m_Name: TransImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1577180998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577180997}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1577180999
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577180997}
+  m_CullTransparentMesh: 1
+--- !u!224 &1577181000
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577180997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1045154500}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1610508534
 GameObject:
   m_ObjectHideFlags: 0
@@ -18096,7 +18174,7 @@ Transform:
   m_GameObject: {fileID: 1660373077}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -167.01, y: 0.1125, z: 38.61}
+  m_LocalPosition: {x: -167.01, y: 0.1125, z: 47.32}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20653,7 +20731,7 @@ Transform:
   m_GameObject: {fileID: 1924834706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -170.01, y: 0.1125, z: 38.61}
+  m_LocalPosition: {x: -170.01, y: 0.1125, z: 47.32}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21163,7 +21241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a53fcd1af0f1cc4e8f4f74cd249658e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  WarpStage: 0
+  WarpStageChanged:
+    m_PersistentCalls:
+      m_Calls: []
   stageManager: {fileID: 1027284102}
 --- !u!4 &1990891933
 Transform:

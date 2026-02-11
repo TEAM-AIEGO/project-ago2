@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,19 +6,22 @@ public class GameManager : MonoBehaviour
 {
     public bool IsGameOver { get; private set; }
 
-    #region Warping Stages
-    /// <summary>
-    /// 0. ��Ʋ�� 1�ܰ�
-    /// 1. ��Ʋ�� �߰� �ܰ�
-    /// 2. ��Ʋ�� 2�ܰ�
-    /// </summary>
-    public int WarpStage = 0;
+    #region Warping Stages    
+    private int warpStage = 0;
+    public int WarpStage
+    {
+        get => warpStage;
+        set 
+        {
+            if (warpStage != value)
+            {
+                WarpStageChanged?.Invoke(warpStage);
+            }
+            warpStage = value;
+        }
+    }
+    public UnityEvent<int> WarpStageChanged;
     #endregion
-
-    //
-    //
-    //
-
     [SerializeField] private StageManager stageManager;
 
 
@@ -28,11 +29,6 @@ public class GameManager : MonoBehaviour
     {
         stageManager.Initialize();
 
-    }
-
-    void Update()
-    {
-        
     }
 
     public void SetGameOver()
