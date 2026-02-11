@@ -2219,7 +2219,7 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
-  rdTrigger: {fileID: 0}
+  rdTrigger: {fileID: 6115037013672325922}
   firstAvatar: {fileID: 9000000, guid: 3726653141c716948ba6dc6bb14130b0, type: 3}
   secondAvatar: {fileID: 9000000, guid: 13f676bb444695b4f8cfe5499672fee7, type: 3}
   firstModels: {fileID: 5263391119955003459}
@@ -3598,6 +3598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7134562223242022517}
+  - component: {fileID: 6115037013672325922}
   m_Layer: 0
   m_Name: ModlesFirst
   m_TagString: Untagged
@@ -3623,6 +3624,20 @@ Transform:
   - {fileID: 8736791106720469270}
   m_Father: {fileID: 5164940243226713375}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6115037013672325922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263391119955003459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088cffce4a1588347bee8fdd3c537d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RagdollTrigger
+  animator: {fileID: 854278900122219166}
+  rb: {fileID: 5921032144570475388}
 --- !u!1 &5396189604594429654
 GameObject:
   m_ObjectHideFlags: 0

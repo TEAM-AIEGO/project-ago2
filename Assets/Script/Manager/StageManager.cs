@@ -22,6 +22,7 @@ public class Stage
 {
     public StageState StageState;
     public GameObject StageObject;
+    public Transform StageSpawnPosition;
     public GameObject WarpStageObject;
     public StageDoor StageDoor;
     public List<EnemySpawnData> Enemies;
@@ -32,11 +33,13 @@ public class StageManager : MonoBehaviour, IWarpObserver
     public List<Stage> Stages;
     public bool IsGameOver { get; private set; }
 
+    [SerializeField] private PlayerManager playerManager;
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private WarpSystemManager warpSystemManager;
     [SerializeField] private Playthething ptt;
     [SerializeField] private int currentStageIndex = 0;
     private int StageEnemyLeft = 0;
+    private Stage currentStage;
 
     public void Initialize()
     {
@@ -67,7 +70,10 @@ public class StageManager : MonoBehaviour, IWarpObserver
     public void StartStage(int stageIndex)
     {
         if (Stages[stageIndex] == default(Stage)) return;
-        var currentStage = Stages[stageIndex];
+
+        currentStage?.StageObject.SetActive(false);
+
+        currentStage = Stages[stageIndex];
         currentStage.StageState = StageState.Loading;
         currentStageIndex = stageIndex;
         StageEnemyLeft = currentStage.Enemies.Count;
@@ -80,6 +86,10 @@ public class StageManager : MonoBehaviour, IWarpObserver
             RegisterEnemy(currentEnemy, false);
         }
         currentStage.StageState = StageState.Fighting;
+        currentStage.StageObject.SetActive(true);
+        
+        if (currentStage.StageSpawnPosition != null)
+            playerManager.transform.position = currentStage.StageSpawnPosition.position;
     }
 
     private void RegisterEnemy(EnemyBase enemy, bool countForStage)

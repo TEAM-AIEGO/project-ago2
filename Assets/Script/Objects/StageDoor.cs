@@ -45,14 +45,19 @@ public class StageDoor : MonoBehaviour
     {
         doorAnimator.SetTrigger("Open");
         uiManager.ActiveDoorAlarm(false);
-        OnDoorOpen.Invoke(nextStageIndex);
         col.enabled = false;
+    }
+
+    public void TPNextStage()
+    {
+        OnDoorOpen.Invoke(nextStageIndex);
+        //doorAnimator.SetTrigger("Close");
+        uiManager.ActiveDoorAlarm(true);
     }
 
     public void CloseDoor()
     {
         doorAnimator.SetTrigger("Close");
-        uiManager.ActiveDoorAlarm(true);
         col.enabled = true;
     }
 
