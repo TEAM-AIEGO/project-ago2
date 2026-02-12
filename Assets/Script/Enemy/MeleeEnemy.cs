@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 enum MeleeState
@@ -49,10 +50,26 @@ public class MeleeEnemy : EnemyBase
         }
     }
 
+    protected override void BeginAttack()
+    {
+        base.BeginAttack();
+        rb.linearVelocity = Vector3.zero;
+    }
+
+    public override void OnAttack()
+    {
+        base.OnAttack();
+    }
+
     protected override void Attacking()
     {
         Debug.Log("Melee Enemy is Attacking");
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
+    }
+
+    public override void OnAttackEnd()
+    {
+        base.OnAttackEnd();
     }
 
     public override void TakeDamage(float damage)
@@ -77,5 +94,10 @@ public class MeleeEnemy : EnemyBase
                 down.material = textures[3];
                 break;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(attackPoint.position, attackVectorRange);
     }
 }

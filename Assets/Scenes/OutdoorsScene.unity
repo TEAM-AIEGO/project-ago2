@@ -2490,7 +2490,6 @@ MonoBehaviour:
   - {fileID: 8404270259094500067, guid: e8354b079cbd8aa4aadd7dd9369d0e3f, type: 3}
   - {fileID: 981007754708470298, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
   - {fileID: 2394888397063174062, guid: 965fd3f4d66c6904cac2174758a6f8f4, type: 3}
-  - {fileID: 508186639687555541, guid: 139282b39e823154b81cb53380687324, type: 3}
   - {fileID: 3402415563794233525, guid: 9585b472768133c4db66917cc47a22e3, type: 3}
   - {fileID: 5944279906260170657, guid: 4f5c040798e917045b95309f5e216696, type: 3}
   projectileParent: {fileID: 798548893}
@@ -16585,6 +16584,7 @@ MonoBehaviour:
   canAttack: 1
   bodyDisableTime: 5
   bodyDisableTimer: 0
+  isAttacking: 0
   hitFlash: {fileID: 1452185238}
   sansWallProjectilePrefab: {fileID: 7342315372723829194, guid: 9634bf1945c5b605084a4e7c4352fe21, type: 3}
   sansWallShootPoint: {fileID: 322046364}
@@ -25820,6 +25820,7 @@ MonoBehaviour:
   canAttack: 1
   bodyDisableTime: 5
   bodyDisableTimer: 0
+  isAttacking: 0
   ShootPoint: {fileID: 461847768}
   hitFlash: {fileID: 6688127165207896892}
   bossCore: {fileID: 0}
@@ -26491,6 +26492,7 @@ MonoBehaviour:
   canAttack: 1
   bodyDisableTime: 5
   bodyDisableTimer: 0
+  isAttacking: 0
   ShootPoint: {fileID: 678759390}
   hitFlash: {fileID: 6144433880690558168}
   bossCore: {fileID: 1452185239}
@@ -26866,6 +26868,7 @@ MonoBehaviour:
   canAttack: 1
   bodyDisableTime: 5
   bodyDisableTimer: 0
+  isAttacking: 0
   ShootPoint: {fileID: 8195951131047764997}
   hitFlash: {fileID: 591112026560587849}
   bossCore: {fileID: 0}

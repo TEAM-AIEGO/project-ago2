@@ -60,7 +60,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     [SerializeField] protected float bodyDisableTimer;
 
     protected bool isPlayerDetected = false;
-    protected bool isAttacking = false;
+    [SerializeField] protected bool isAttacking = false;
     #endregion
 
     [HideInInspector] public event Action<EnemyBase> OnReturn;
@@ -238,7 +238,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected abstract void AttackCheck();
 
-    public void BeginAttack()
+    protected virtual void BeginAttack()
     {
         if (!isAttacking)
             return;
@@ -248,7 +248,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         enemyAnimator.SetTrigger("Attack");
     }
 
-    public void OnAttack()
+    public virtual void OnAttack()
     {
         Debug.Log("Attack");
         Attacking();
@@ -256,7 +256,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected abstract void Attacking();
 
-    public void OnAttackEnd()
+    public virtual void OnAttackEnd()
     {
         Debug.Log("is Attack End");
         //enemyAnimator.applyRootMotion = false;
@@ -264,6 +264,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         canAttack = false;
         attackTime = 0f;
 
+        enemyAnimator.SetBool("Move", false);
         state = EnemyState.idle;
     }
 

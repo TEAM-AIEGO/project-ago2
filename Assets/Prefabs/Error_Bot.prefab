@@ -3417,7 +3417,7 @@ GameObject:
   - component: {fileID: 9161554415060245833}
   - component: {fileID: 7749362703459446180}
   m_Layer: 7
-  m_Name: Error_bot
+  m_Name: Error_Bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3494,14 +3494,15 @@ MonoBehaviour:
   currentMoveSpeed: 0
   turnSpeed: 12
   detectionDistance: 10
-  attackDistance: 3.5
+  attackDistance: 2.5
   attackDamage: 30
   attackCooldown: 3
   attackTime: 3.22
   canAttack: 1
   bodyDisableTime: 5
   bodyDisableTimer: 0
-  attackVectorRange: {x: 1.5, y: 1.5, z: 1.5}
+  isAttacking: 0
+  attackVectorRange: {x: 2.5, y: 2.5, z: 2.5}
   attackPoint: {fileID: 7490180257585161836}
   hitFlash: {fileID: 3261270979869048632}
 --- !u!114 &3261270979869048632
