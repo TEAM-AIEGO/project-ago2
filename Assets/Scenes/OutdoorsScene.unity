@@ -11586,6 +11586,24 @@ MonoBehaviour:
       EnemySpawnPosition: {x: 3.39, y: 0, z: -0.96}
     - EnemyPrefab: {fileID: 8994879981341997244, guid: 4f5c040798e917045b95309f5e216696, type: 3}
       EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 2946600272766831144, guid: 965fd3f4d66c6904cac2174758a6f8f4, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 2946600272766831144, guid: 965fd3f4d66c6904cac2174758a6f8f4, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 5934273993293601195, guid: 1112190de45d48af18a0b1ba2ac6d55a, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 5934273993293601195, guid: 1112190de45d48af18a0b1ba2ac6d55a, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
+    - EnemyPrefab: {fileID: 3025851181845676495, guid: dce72a95d6ee6134ba783d4df712e7d4, type: 3}
+      EnemySpawnPosition: {x: 0, y: 1.5, z: 5.1}
   - StageState: 0
     StageObject: {fileID: 1957507632}
     StageSpawnPosition: {fileID: 161899946}
