@@ -32,7 +32,6 @@ public class GrenadeProjectile : MonoBehaviour
     [SerializeField] private float railExplosionDamage;
     private bool hasExploded;
 
-    //������Ÿ�ϵ鵵 �߻� Ŭ������ ���� �����ؾ� �� �ʿ䰡 ����.
     public void Initialized(GrenadeProjectile projectile)
     {
         rb.linearVelocity = Vector3.zero;

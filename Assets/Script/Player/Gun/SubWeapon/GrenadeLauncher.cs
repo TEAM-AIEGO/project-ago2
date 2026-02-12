@@ -17,8 +17,6 @@ public class GrenadeLauncher : SubWeapon
         base.UnLock();
     }
 
-    // �������̵� �� �Լ����� �ٸ� ��������� ������ �ڵ带 ����ϰ� ����
-    // ������� Ŭ�������� �⺻ �������� ����� �ߺ� ���Ÿ� �ؾ� �� �ʿ䰡 �־��
     public override void Initialize(UnityEvent completeEvent) 
     {
         uiManager = FindFirstObjectByType<UIManager>();
