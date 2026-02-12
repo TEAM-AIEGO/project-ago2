@@ -108,21 +108,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c66f9da71bb36240b9c5b050bffe04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemy
-  maxHealth: 100
-  health: 100
+  maxHealth: 350
+  health: 350
   Died:
     m_PersistentCalls:
       m_Calls: []
+  rdTrigger: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
+  textures: []
   stage1MoveSpeed: 8
   stage2MoveSpeed: 18
   currentMoveSpeed: 0
   turnSpeed: 30
   detectionDistance: 80
-  attackDistance: 150
+  attackDistance: 200
   attackDamage: 19
   attackCooldown: 0.03
   attackTime: 0
   canAttack: 0
+  bodyDisableTime: 5
+  bodyDisableTimer: 0
+  isAttacking: 0
   ShootPoint: {fileID: 6402657488101833697}
   projectileSpeed: 40
   maxLeadTime: 2

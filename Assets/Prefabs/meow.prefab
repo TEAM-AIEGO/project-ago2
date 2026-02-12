@@ -109,13 +109,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e8f43c3b5421a4bab96a3de93111fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  maxHealth: 100
-  health: 100
+  maxHealth: 450
+  health: 450
   Died:
     m_PersistentCalls:
       m_Calls: []
-  stage1MoveSpeed: 10
-  stage2MoveSpeed: 20
+  rdTrigger: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
+  textures: []
+  stage1MoveSpeed: 12
+  stage2MoveSpeed: 25
   currentMoveSpeed: 5
   turnSpeed: 30
   detectionDistance: 75
@@ -124,6 +128,9 @@ MonoBehaviour:
   attackCooldown: 0.3
   attackTime: 0
   canAttack: 1
+  bodyDisableTime: 5
+  bodyDisableTimer: 0
+  isAttacking: 0
   attackVectorRange: {x: 1.2, y: 1.2, z: 1.2}
   attackPoint: {fileID: 6585246074447637232}
   hitFlash: {fileID: 9151263713985314587}

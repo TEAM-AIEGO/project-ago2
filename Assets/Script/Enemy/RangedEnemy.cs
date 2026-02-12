@@ -63,6 +63,7 @@ public class RangedEnemy : EnemyBase
     {
         base.OnWarpStageChanged(newStage);
 
+        if (textures.Length == 0) return;
         switch (newStage)
         {
             case 0:
@@ -79,7 +80,10 @@ public class RangedEnemy : EnemyBase
 
     public override void TakeDamage(float damage)
     {
-        hitFlash.Flash();
+        if (hitFlash)
+        {
+            hitFlash.Flash();
+        }
 
         base.TakeDamage(damage);
     }

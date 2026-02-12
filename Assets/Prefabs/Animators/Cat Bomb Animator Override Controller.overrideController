@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cat Bomb Animator Override Controller
+  m_Controller: {fileID: 9100000, guid: 054d30f86166fff42955c27e05783c0e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c6931004e5ac8e846827ebef73cdd024, type: 2}
+    m_OverrideClip: {fileID: -203655887218126122, guid: cc2dbb1c96d559d45a29057d58426e59, type: 3}
+  - m_OriginalClip: {fileID: 1827226128182048838, guid: b7e46d3904530274baad0f0ce224a773, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 21b4334a260897fcb95a07cc245b5c05, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e4f2f03965c0c8e4da9e48fb72b1eca3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fe06046d2db61f19b8ecdb1794c026ec, type: 2}

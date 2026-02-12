@@ -74,6 +74,7 @@ public class BombEnemy : EnemyBase
                 break;
         }
 
+        if (textures.Length == 0) return;
         switch (newStage)
         {
             case 0:
@@ -87,7 +88,10 @@ public class BombEnemy : EnemyBase
 
     public override void TakeDamage(float damage)
     {
-        hitFlash.Flash();
+        if (hitFlash)
+        {
+            hitFlash.Flash();
+        }
 
         base.TakeDamage(damage);
     }
