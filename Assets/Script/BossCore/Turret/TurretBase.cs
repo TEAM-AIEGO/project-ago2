@@ -30,6 +30,16 @@ public abstract class TurretBase : EnemyBase
         if (isDestroyed)
             return;
 
+        if (attackTime < attackCooldown)
+        {
+            attackTime += Time.deltaTime;
+
+            canAttack = false;
+        }
+        else
+        {
+            canAttack = true;
+        }
         base.Update();
     }
 

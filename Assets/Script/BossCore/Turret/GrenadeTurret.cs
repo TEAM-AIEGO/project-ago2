@@ -15,6 +15,20 @@ public class GrenadeTurret : TurretBase
         muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
     }
 
+    protected override void Update()
+    {
+        if (health <= 0) // idk how
+        {
+            enabled = false;
+            return;
+        }
+        base.Update();
+        if (attackTime >= attackCooldown)
+        {
+            Attacking();
+        }
+    }
+
     protected override void Idle()
     {
         if (!EnsurePlayer())

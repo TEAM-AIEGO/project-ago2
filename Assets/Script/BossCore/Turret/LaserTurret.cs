@@ -39,6 +39,12 @@ public class LaserTurret : TurretBase
             Died?.Invoke();
         }
 
+        if (health <= 0) // idk how
+        {
+            enabled = false;
+            return;
+        }
+
         switch (state)
         {
             case EnemyState.idle:
@@ -60,12 +66,6 @@ public class LaserTurret : TurretBase
                 AttackCheck();
                 break;
             case EnemyState.attacking:
-                if (!canAttack)
-                {
-                    state = EnemyState.moving;
-                    break;
-                }
-
                 LookTarget();
 
                 if (isZiiiiingEnd)
@@ -100,7 +100,7 @@ public class LaserTurret : TurretBase
             }
             else
             {
-                targetVector = player.transform.position;
+                targetVector = player.transform.position -  player.transform.right.normalized/3; //dont ask why. this has weird offset thing. PLZ CHANGE THIS TO RAYCAST PLZ
             }
 
             ziiiiingTimer += Time.deltaTime;
@@ -134,6 +134,8 @@ public class LaserTurret : TurretBase
         {
             if (!canAttack)
                 return;
+            canAttack = false;
+            attackTime = 0;
 
             isZiiiiingStart = true;
             laserLineRenderer.enabled = true;
@@ -144,8 +146,8 @@ public class LaserTurret : TurretBase
     protected override void Attacking()
     {
         muDAMUDAMUDAStrategy.Attacking(this, targetTransform);
-        attackTime = 0f;
         isZiiiiingEnd = false;
+        state = EnemyState.moving;
     }
 
     protected override void Dead()

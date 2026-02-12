@@ -29,8 +29,18 @@ public class BurstTurret : TurretBase
 
     protected override void Update()
     {
+        if (health <= 0) // idk how
+        {
+            enabled = false;
+            return;
+        }
         base.Update();
         HandleBurstFire();
+        if (canAttack)
+        {
+            Attacking();
+            canAttack = false;
+        }
     }
 
     protected override void Attacking()
