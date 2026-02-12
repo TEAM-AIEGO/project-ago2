@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -80,6 +81,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         rb = GetComponent<Rigidbody>();
         enemyAnimator = GetComponent<Animator>();
 
+        enemyAnimator.applyRootMotion = false;
         enemyAnimator.SetBool("Move", false);
 
         state = EnemyState.idle;
@@ -114,28 +116,32 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                 {
                     if (muKatteKuruNoKaStrategy is DontMuKatteKuruNoKaStrategy)
                         LookTarget();
+
+                    if (Vector3.Distance(player.transform.position, transform.position) < AttackDictance && !canAttack)
+                    {
+                        state = EnemyState.idle;
+                        rb.linearVelocity = Vector3.zero;
+                        enemyAnimator.SetBool("Move", false);
+                        return;
+                    }
+
                     Moving();
+                    AttackCheck();
                 }
                 else
                 {
                     //Debug.Log(knockbackStun);
                     knockbackStun = Mathf.Max(0, knockbackStun - Time.deltaTime);
                 }
-                AttackCheck();
                 break;
             case EnemyState.attacking:
-                if (!canAttack)
-                {
-                    state = EnemyState.moving;
-                    break;
-                }
-
                 if (enemyAnimator != null)
                 {
                     if (isAttacking != true)
                     {
-                        enemyAnimator.SetTrigger("Attack");
+                        //enemyAnimator.applyRootMotion = true;
                         isAttacking = true;
+                        BeginAttack();
                     }
 
                     LookTarget();
@@ -150,15 +156,22 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                 break;
         }
 
-        if (attackTime < attackCooldown)
-        {
-            attackTime += Time.deltaTime;
 
-            canAttack = false;
+        if (!isAttacking)
+        {
+            if (attackTime < attackCooldown)
+            {
+                attackTime += Time.deltaTime;
+                canAttack = false;
+            }
+            else
+            {
+                canAttack = true;
+            }
         }
         else
         {
-            canAttack = true;
+            canAttack = false;
         }
     }
 
@@ -200,10 +213,22 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected virtual void Idle()
     {
+        if (Vector3.Distance(player.transform.position, transform.position) > AttackDictance)
+            PlayerDetectCheck();
+        else
+        {
+            LookTarget();
+            AttackCheck();
+        }
+    }
+    
+    protected virtual void PlayerDetectCheck()
+    {
         if (Vector3.Distance(player.transform.position, transform.position) < detectionDistance)
         {
             if (enemyAnimator != null)
-                enemyAnimator.SetBool("Move", true);
+                if (muKatteKuruNoKaStrategy is not DontMuKatteKuruNoKaStrategy)
+                    enemyAnimator.SetBool("Move", true);
 
             state = EnemyState.moving;
         }
@@ -212,6 +237,16 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected abstract void Moving();
 
     protected abstract void AttackCheck();
+
+    public void BeginAttack()
+    {
+        if (!isAttacking)
+            return;
+
+        Debug.Log("Begin Attack");
+
+        enemyAnimator.SetTrigger("Attack");
+    }
 
     public void OnAttack()
     {
@@ -223,9 +258,13 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     public void OnAttackEnd()
     {
+        Debug.Log("is Attack End");
+        //enemyAnimator.applyRootMotion = false;
         isAttacking = false;
         canAttack = false;
         attackTime = 0f;
+
+        state = EnemyState.idle;
     }
 
     public override void TakeDamage(float damage)
@@ -240,7 +279,9 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
             isPlayerDetected = true;
 
             if (enemyAnimator != null)
-                enemyAnimator.SetBool("Move", true);
+                if (muKatteKuruNoKaStrategy is not DontMuKatteKuruNoKaStrategy)
+                    enemyAnimator.SetBool("Move", true);
+
             state = EnemyState.moving;
         }
     }
@@ -248,7 +289,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected virtual void Dead()
     {
         state = EnemyState.Dead;
-        bodyDisableTimer = 0f;
         rb.constraints = RigidbodyConstraints.None;
         if (!rdTrigger) return;
         rdTrigger.SetRagdoll(true);

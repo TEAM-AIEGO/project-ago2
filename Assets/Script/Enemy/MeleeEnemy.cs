@@ -53,8 +53,6 @@ public class MeleeEnemy : EnemyBase
     {
         Debug.Log("Melee Enemy is Attacking");
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
-
-        attackTime = 0f;
     }
 
     public override void TakeDamage(float damage)

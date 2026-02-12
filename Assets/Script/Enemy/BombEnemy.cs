@@ -64,9 +64,13 @@ public class BombEnemy : EnemyBase
         {
             case 0:
                 muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
+                if (enemyAnimator.GetBool("Move"))
+                    enemyAnimator.SetBool("Move", false);
                 break;
             case 1:
                 muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
+                if (!enemyAnimator.GetBool("Move") && state == EnemyState.moving)
+                    enemyAnimator.SetBool("Move", true);
                 break;
         }
 
