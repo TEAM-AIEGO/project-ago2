@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver { get; private set; }
 
     #region Warping Stages    
-    private int warpStage = 0;
+    [SerializeField] private int warpStage = 0;
     public int WarpStage
     {
         get => warpStage;
@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
         {
             if (warpStage != value)
             {
+                warpStage = value;
                 WarpStageChanged?.Invoke(warpStage);
             }
-            warpStage = value;
         }
     }
     public UnityEvent<int> WarpStageChanged;

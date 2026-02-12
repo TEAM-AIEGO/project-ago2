@@ -12,9 +12,11 @@ public class PlayerManager : Unit, IStat
 
     private void Awake()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
+        ChangeWarpStage();
         OnValueChanged?.Invoke(health, maxHealth);
     }
-    
+
     protected override void Update()
     {
         ChangeWarpStage();

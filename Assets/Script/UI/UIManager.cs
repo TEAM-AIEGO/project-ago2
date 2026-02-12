@@ -11,7 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject subtitleRoot;
     [SerializeField] private TMP_Text subtitleText;
     [SerializeField] private Image transitionImage;
-
+    [SerializeField] private GameObject[] frames;
+    [SerializeField] private GameObject[] statusBarFrames;
     [SerializeField] private float transitionTime;
     private float currentTransitionTime;
     private bool isWarping;
@@ -22,7 +23,9 @@ public class UIManager : MonoBehaviour
         if (gameManager)
         {
             gameManager.WarpStageChanged.AddListener(GetWarped);
+            gameManager.WarpStageChanged.AddListener(SetFrame);
         }
+        SetFrame(gameManager.WarpStage);
         
         if (hitMarker == null)
         {
@@ -95,5 +98,29 @@ public class UIManager : MonoBehaviour
         isWarping = false;
         transitionImage.enabled = false;
         Time.timeScale = 1;
+    }
+
+    public void SetFrame(int stage)
+    {
+        stage = gameManager.WarpStage;
+        for (int i = 0; i < frames.Length; i++)
+        {
+            frames[i].SetActive(false);
+            statusBarFrames[i].SetActive(false);
+        }
+        if (stage == 1)
+        {
+            frames[0].SetActive(true);
+            statusBarFrames[0].SetActive(true);
+        }
+        else if (stage == 2)
+        {
+            frames[1].SetActive(true);
+            statusBarFrames[1].SetActive(true);
+        }
+        else
+        {
+            statusBarFrames[0].SetActive(true);
+        }
     }
 }
