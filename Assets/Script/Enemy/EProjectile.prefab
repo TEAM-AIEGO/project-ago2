@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   rb: {fileID: -6478376329534595194}
   speed: 35
-  lifeTime: 5
+  lifeTime: 6
   contactableLayerMask:
     serializedVersion: 2
     m_Bits: 3904
