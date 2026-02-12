@@ -273,8 +273,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         if (state == EnemyState.Dead)
             return;
 
-        base.TakeDamage(damage);
-
         if (isPlayerDetected == false)
         {
             isPlayerDetected = true;
@@ -285,6 +283,8 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
             state = EnemyState.moving;
         }
+
+        base.TakeDamage(damage);
     }
 
     protected virtual void Dead()
