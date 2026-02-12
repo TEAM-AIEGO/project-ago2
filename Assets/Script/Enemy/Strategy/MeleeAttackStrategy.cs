@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MeleeAttackStrategy : IMUDAMUDAMUDAStrategy
 {
-    private Vector2 meleeAttackRange;
+    private Vector3 meleeAttackRange;
     private Transform meleeAttackPoint;
 
     public MeleeAttackStrategy(Vector3 meleeAttackRange, Transform meleeAttackPoint)
