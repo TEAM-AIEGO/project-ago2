@@ -97,7 +97,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
     {
         currentStage?.StageObject.SetActive(false);
 
-        currentStage = Stages[^1];
+        currentStage = Stages[^2];
         currentStage.StageState = StageState.Loading;
         currentStageIndex = Stages.Count - 1;
 
