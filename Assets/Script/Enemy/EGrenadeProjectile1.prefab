@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyGrenadeProjectile
   rb: {fileID: 1574624728134934441}
   emitter: {fileID: 7264330287754158468}
-  lifeTime: 5
+  lifeTime: 12
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 3904
