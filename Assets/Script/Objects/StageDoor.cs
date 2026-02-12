@@ -4,10 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class StageDoor : MonoBehaviour
 {
-    [HideInInspector] public event Action<int> OnDoorOpen;
+    [HideInInspector] public event Action<int> OnDoorClose;
     public int nextStageIndex;
 
-    [SerializeField] private BoxCollider col;
+    [SerializeField] private BoxCollider doorCol;
+    [SerializeField] private BoxCollider[] wallCols;
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private bool isScanDoor = false;
     public bool IsScanDoor => isScanDoor;
@@ -39,18 +40,33 @@ public class StageDoor : MonoBehaviour
         {
             inDoorCheck.OnDoorCheck += PassOverDoor;
         }
+
+        doorCol.enabled = true;
+
+        if (wallCols != null)
+        {
+            for (int i = 0; i < wallCols.Length; i++)
+            {
+                wallCols[i].enabled = false;
+            }
+        }
     }
 
     public void OpenDoor()
     {
         doorAnimator.SetTrigger("Open");
         uiManager.ActiveDoorAlarm(false);
-        col.enabled = false;
+        doorCol.enabled = false;
+
+        for (int i = 0; i < wallCols.Length; i++)
+        {
+            wallCols[i].enabled = true;
+        }
     }
 
     public void TPNextStage()
     {
-        OnDoorOpen.Invoke(nextStageIndex);
+        OnDoorClose.Invoke(nextStageIndex);
         //doorAnimator.SetTrigger("Close");
         uiManager.ActiveDoorAlarm(true);
     }
@@ -58,12 +74,19 @@ public class StageDoor : MonoBehaviour
     public void CloseDoor()
     {
         doorAnimator.SetTrigger("Close");
-        col.enabled = true;
+        uiManager.ActiveDoorAlarm(true);
+        OnDoorClose?.Invoke(nextStageIndex);
+        doorCol.enabled = true;
     }
 
     public void SetScan()
     {
         scanDoorPoint.OnCanScanning();
+
+        for (int i = 0; i < wallCols.Length; i++)
+        {
+            wallCols[i].enabled = true;
+        }
     }
 
     public void PassOverDoor()

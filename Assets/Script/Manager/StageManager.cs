@@ -22,9 +22,11 @@ public class Stage
 {
     public StageState StageState;
     public GameObject StageObject;
+    public BoxCollider WallCollider;
     public Transform StageSpawnPosition;
     public GameObject WarpStageObject;
-    public StageDoor StageDoor;
+    public StageDoor StageInDoor;
+    public StageDoor StageOutDoor;
     public List<EnemySpawnData> Enemies;
 }
 
@@ -88,9 +90,6 @@ public class StageManager : MonoBehaviour, IWarpObserver
         }
         currentStage.StageState = StageState.Fighting;
         currentStage.StageObject.SetActive(true);
-        
-        if (currentStage.StageSpawnPosition != null)
-            playerManager.transform.position = currentStage.StageSpawnPosition.position;
     }
 
     public void BossStageStart(int stageIndex)
@@ -149,23 +148,25 @@ public class StageManager : MonoBehaviour, IWarpObserver
         {
             Debug.Log("$tage C;ear");
             Stages[currentStageIndex].StageState = StageState.Ended;
-
-            Stages[currentStageIndex].StageDoor.SetScan();
+            Stages[currentStageIndex].WallCollider.enabled = false;
+            Stages[currentStageIndex].StageOutDoor.SetScan();
 
             if (currentStageIndex >= 0 && currentStageIndex < Stages.Count)
             {
                 if (currentStageIndex + 1 == Stages.Count - 1)
                 {
                     Debug.Log("Last $tage");
-                    Stages[currentStageIndex].StageDoor.OnDoorOpen += BossStageStart;
                     int next = currentStageIndex + 1;
-                    Stages[currentStageIndex].StageDoor.nextStageIndex = next;
+                    Stages[next].StageObject.SetActive(true);
+                    Stages[next].StageInDoor.OnDoorClose += BossStageStart;
+                    Stages[next].StageInDoor.nextStageIndex = next;
                 }
                 else
                 {
-                    Stages[currentStageIndex].StageDoor.OnDoorOpen += StartStage; 
                     int next = currentStageIndex + 1;
-                    Stages[currentStageIndex].StageDoor.nextStageIndex = next;
+                    Stages[next].StageObject.SetActive(true);
+                    Stages[next].StageInDoor.OnDoorClose += StartStage; 
+                    Stages[next].StageInDoor.nextStageIndex = next;
                 }
             }
             else
