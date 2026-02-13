@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BossCore : EnemyBase, IWarpObserver
@@ -118,6 +119,11 @@ public class BossCore : EnemyBase, IWarpObserver
 
     protected override void Update()
     {
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
+
         if (!isSecondPhase)
             return;
 
