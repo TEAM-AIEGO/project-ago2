@@ -20,8 +20,9 @@ public class RangedEnemy : EnemyBase
     [SerializeField] private float maxLeadTime = 2f;
     [SerializeField] private HitFlash hitFlash;
     [SerializeField] private Projectile projectilePrefab;
-    [SerializeField] private GameObject FirstBody;
-    [SerializeField] private GameObject SecondBody;
+    [SerializeField] private GameObject head;
+    [SerializeField] private GameObject firstBody;
+    [SerializeField] private GameObject secondBody;
 
     public override void Initialize(EnemyBase origin, int warpStage)
     {
@@ -35,6 +36,16 @@ public class RangedEnemy : EnemyBase
     {
         base.Update();
     }
+
+    protected override void LookTarget()
+    {
+        base.LookTarget();
+
+        Vector3 direction = (player.transform.position - head.transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
+        transform.rotation = Quaternion.Slerp(head.transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+    }
+
     protected override void Idle()
     {
         base.Idle();
@@ -79,15 +90,15 @@ public class RangedEnemy : EnemyBase
         {
             case 0:
                 muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
-                SecondBody.SetActive(false);
-                FirstBody.SetActive(true);
+                secondBody.SetActive(false);
+                firstBody.SetActive(true);
                 rUp.material = textures[0];
                 rDown.material = textures[0];
                 break;
             case 1:
                 muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
-                SecondBody.SetActive(true);
-                FirstBody.SetActive(false);
+                secondBody.SetActive(true);
+                firstBody.SetActive(false);
                 rUp.material = textures[1];
                 rDown.material = textures[1];
                 break;
