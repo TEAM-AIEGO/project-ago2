@@ -75,6 +75,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
     {
         if (Stages[stageIndex] == default(Stage)) return;
 
+        Stages[stageIndex].StageFakeDoor?.SetActive(true);
         currentStage?.StageObject.SetActive(false);
 
         currentStage = Stages[stageIndex];
@@ -167,7 +168,6 @@ public class StageManager : MonoBehaviour, IWarpObserver
                     BossStageStart(warpSystemManager.GetWarpStage());
                     //Stages[next].StageInDoor.OnDoorClose += BossStageStart;
                     Stages[next].StageInDoor.nextStageIndex = next;
-                    Stages[next].StageFakeDoor?.SetActive(true);
                 }
                 else
                 {
@@ -175,7 +175,6 @@ public class StageManager : MonoBehaviour, IWarpObserver
                     Stages[next].StageObject.SetActive(true);
                     Stages[next].StageInDoor.OnDoorClose += StartStage; 
                     Stages[next].StageInDoor.nextStageIndex = next;
-                    Stages[next].StageFakeDoor?.SetActive(true);
                 }
             }
             else
