@@ -94,9 +94,10 @@ public class StageManager : MonoBehaviour, IWarpObserver
 
     public void BossStageStart(int stageIndex)
     {
-        currentStage?.StageObject.SetActive(false);
+        print("vossifuhad");
+        //currentStage?.StageObject.SetActive(false);
 
-        currentStage = Stages[^2];
+        currentStage = Stages[^1];
         currentStage.StageState = StageState.Loading;
         currentStageIndex = Stages.Count - 1;
 
@@ -160,7 +161,8 @@ public class StageManager : MonoBehaviour, IWarpObserver
                     Debug.Log("Last $tage");
                     int next = currentStageIndex + 1;
                     Stages[next].StageObject.SetActive(true);
-                    Stages[next].StageInDoor.OnDoorClose += BossStageStart;
+                    BossStageStart(warpSystemManager.GetWarpStage());
+                    //Stages[next].StageInDoor.OnDoorClose += BossStageStart;
                     Stages[next].StageInDoor.nextStageIndex = next;
                 }
                 else

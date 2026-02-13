@@ -40,6 +40,7 @@ public class BossCore : EnemyBase, IWarpObserver
 
     public void Initialize(int warpStage)
     {
+        print("init");
         isPlayerDetected = false;
         health = maxHealth;
 
@@ -77,6 +78,7 @@ public class BossCore : EnemyBase, IWarpObserver
         //warpStage = warpSystemManager != null ? warpSystemManager.GetWarpStage() : 0;
         foreach (var turret in turrets)
         {
+            print("initsss");
             if (turret == null)
                 continue;
 
