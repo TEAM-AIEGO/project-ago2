@@ -121,7 +121,7 @@ public class BossCore : EnemyBase, IWarpObserver
     {
         if (health <= 0)
         {
-            SceneManager.LoadScene("TitleScene");
+            SceneManager.LoadScene("Ending");
         }
 
         if (!isSecondPhase)
