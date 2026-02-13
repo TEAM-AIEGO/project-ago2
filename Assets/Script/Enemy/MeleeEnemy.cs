@@ -102,6 +102,6 @@ public class MeleeEnemy : EnemyBase
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawCube(attackPoint.position, attackVectorRange);
+        //Gizmos.DrawCube(attackPoint.position, attackVectorRange);
     }
 }

@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9700411505edfdf4f8cfd2ad109deccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitFlash
-  targetRenderer: {fileID: 46558803437781345}
+  targetRenderer:
+  - {fileID: 46558803437781345}
   flashDuration: 0.1
 --- !u!54 &3452995064475371555
 Rigidbody:

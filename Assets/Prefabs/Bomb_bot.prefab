@@ -2615,6 +2615,7 @@ MonoBehaviour:
   canAttack: 1
   bodyDisableTime: 5
   bodyDisableTimer: 0
+  isAttacking: 0
   filghtTime: 0.75
   LaunchPoint: {fileID: 7932193687293421972}
   hitFlash: {fileID: 7641207392557773927}
@@ -2630,7 +2631,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9700411505edfdf4f8cfd2ad109deccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitFlash
-  targetRenderer: {fileID: 6404402101038518293}
+  targetRenderer:
+  - {fileID: 6404402101038518293}
   flashDuration: 0.1
 --- !u!136 &1238281143239193123
 CapsuleCollider:

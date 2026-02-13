@@ -1,30 +1,52 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HitFlash : MonoBehaviour
 {
-    [SerializeField] private Renderer targetRenderer;
+    [SerializeField] private Renderer[] targetRenderer;
     [SerializeField] private float flashDuration = 0.1f;
 
-    private Material material;
-    private Color originalColor;
+    private List<Material> materials = new();
+    private List<Color> originalColors = new();
+
+    private Coroutine flashCoroutine;
 
     void Awake()
     {
-        material = targetRenderer.material;
-        originalColor = material.color;
+        for (int i = 0; i < targetRenderer.Length; i++)
+        {
+            materials.Add(targetRenderer[i].material);
+        }
+
+        for (int i = 0; i < materials.Count; i++)
+        {
+            originalColors.Add(materials[i].color);
+        }
+        //material = targetRenderer.material;
+        //originalColor = material.color;
     }
 
     public void Flash()
     {
-        StopAllCoroutines();
-        StartCoroutine(FlashCoroutine());
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
+        flashCoroutine = StartCoroutine(FlashCoroutine());
     }
 
     IEnumerator FlashCoroutine()
     {
-        material.color = Color.white;
+        for( int i = 0; i < materials.Count; i++)
+        {
+            materials[i].color = Color.red;
+        }
+
         yield return new WaitForSeconds(flashDuration);
-        material.color = originalColor;
+
+        for ( int i = 0 ; i < materials.Count; i++)
+        {
+            materials[i].color = originalColors[i];
+        }
     }
 }

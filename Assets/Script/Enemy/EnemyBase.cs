@@ -214,7 +214,9 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     protected virtual void Idle()
     {
         if (Vector3.Distance(player.transform.position, transform.position) > AttackDictance)
+        {
             PlayerDetectCheck();
+        }
         else
         {
             LookTarget();
@@ -224,7 +226,20 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     
     protected virtual void PlayerDetectCheck()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < detectionDistance)
+        if (!isPlayerDetected)
+        {
+            if (Vector3.Distance(player.transform.position, transform.position) < detectionDistance)
+            {
+                if (enemyAnimator != null)
+                    if (muKatteKuruNoKaStrategy is not DontMuKatteKuruNoKaStrategy)
+                        enemyAnimator.SetBool("Move", true);
+
+                isPlayerDetected = true;
+                state = EnemyState.moving;
+            }
+
+        }
+        else
         {
             if (enemyAnimator != null)
                 if (muKatteKuruNoKaStrategy is not DontMuKatteKuruNoKaStrategy)

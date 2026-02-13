@@ -53,7 +53,6 @@ public class NegromancyEnemy : EnemyBase
     protected override void Attacking()
     {
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
-        attackTime = 0f;
     }
 
     public override void TakeDamage(float damage)
@@ -74,6 +73,24 @@ public class NegromancyEnemy : EnemyBase
     protected override void Dead()
     {
         base.Dead();
+    }
+
+    public override void OnWarpStageChanged(int newStage)
+    {
+        base.OnWarpStageChanged(newStage);
+
+        if (textures.Length == 0) return;
+        switch (newStage)
+        {
+            case 0:
+                up.material = textures[0];
+                down.material = textures[1];
+                break;
+            case 1:
+                up.material = textures[2];
+                down.material = textures[3];
+                break;
+        }
     }
 
     private void RequestSpawn()

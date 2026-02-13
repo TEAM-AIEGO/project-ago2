@@ -102,11 +102,11 @@ GameObject:
   - component: {fileID: 1400797177816939135}
   - component: {fileID: 1066589177139977863}
   - component: {fileID: 3917699896627267066}
+  - component: {fileID: 4184796771905691170}
   - component: {fileID: 8641838442670441050}
   - component: {fileID: 3498786414132420106}
   - component: {fileID: 6337886756247050202}
   - component: {fileID: 2121319092849135315}
-  - component: {fileID: 4184796771905691170}
   m_Layer: 7
   m_Name: meowww
   m_TagString: Untagged
@@ -187,6 +187,43 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4184796771905691170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5934273993293601195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5636419de305c0a44b0d46a11885edc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BombEnemy
+  maxHealth: 300
+  health: 300
+  Died:
+    m_PersistentCalls:
+      m_Calls: []
+  rdTrigger: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
+  textures: []
+  stage1MoveSpeed: 0
+  stage2MoveSpeed: 12
+  currentMoveSpeed: 0
+  turnSpeed: 12
+  detectionDistance: 80
+  attackDistance: 200
+  attackDamage: 45
+  attackCooldown: 0.2
+  attackTime: 0
+  canAttack: 1
+  bodyDisableTime: 5
+  bodyDisableTimer: 0
+  isAttacking: 0
+  filghtTime: 0.75
+  LaunchPoint: {fileID: 7119403941332274892}
+  hitFlash: {fileID: 8641838442670441050}
 --- !u!114 &8641838442670441050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9700411505edfdf4f8cfd2ad109deccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitFlash
-  targetRenderer: {fileID: 3917699896627267066}
+  targetRenderer:
+  - {fileID: 3917699896627267066}
   flashDuration: 0.1
 --- !u!54 &3498786414132420106
 Rigidbody:
@@ -271,43 +309,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4184796771905691170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5934273993293601195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5636419de305c0a44b0d46a11885edc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BombEnemy
-  maxHealth: 300
-  health: 300
-  Died:
-    m_PersistentCalls:
-      m_Calls: []
-  rdTrigger: {fileID: 0}
-  up: {fileID: 0}
-  down: {fileID: 0}
-  textures: []
-  stage1MoveSpeed: 0
-  stage2MoveSpeed: 12
-  currentMoveSpeed: 0
-  turnSpeed: 12
-  detectionDistance: 80
-  attackDistance: 200
-  attackDamage: 45
-  attackCooldown: 0.2
-  attackTime: 0
-  canAttack: 1
-  bodyDisableTime: 5
-  bodyDisableTimer: 0
-  isAttacking: 0
-  filghtTime: 0.75
-  LaunchPoint: {fileID: 7119403941332274892}
-  hitFlash: {fileID: 8641838442670441050}
 --- !u!1 &7516097896840704187
 GameObject:
   m_ObjectHideFlags: 0

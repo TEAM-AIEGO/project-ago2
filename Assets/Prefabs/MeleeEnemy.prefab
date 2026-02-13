@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7725551292407991305}
   - component: {fileID: 6618530689467317589}
   - component: {fileID: 871426309164372168}
+  - component: {fileID: 5266267950742063341}
   m_Layer: 7
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -113,16 +114,23 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
+  rdTrigger: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
+  textures: []
   stage1MoveSpeed: 5
   stage2MoveSpeed: 8
   currentMoveSpeed: 5
   turnSpeed: 15
-  detectionDistance: 10
+  detectionDistance: 20
   attackDistance: 2
   attackDamage: 10
   attackCooldown: 3
   attackTime: 0
   canAttack: 1
+  bodyDisableTime: 5
+  bodyDisableTimer: 0
+  isAttacking: 0
   attackVectorRange: {x: 1.2, y: 1.2, z: 1.2}
   attackPoint: {fileID: 6340788560880658155}
   hitFlash: {fileID: 7725551292407991305}
@@ -138,7 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9700411505edfdf4f8cfd2ad109deccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitFlash
-  targetRenderer: {fileID: 612371467018272488}
+  targetRenderer:
+  - {fileID: 0}
   flashDuration: 0.1
 --- !u!136 &6618530689467317589
 CapsuleCollider:
@@ -190,6 +199,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!95 &5266267950742063341
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291953402006919631}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2822417512254700100
 GameObject:
   m_ObjectHideFlags: 0

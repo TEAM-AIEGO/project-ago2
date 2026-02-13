@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8902800687142381444}
   - component: {fileID: 898763301074750136}
   - component: {fileID: 8248872591687576998}
+  - component: {fileID: 1754979219643418498}
   m_Layer: 7
   m_Name: NegromancyEnemy
   m_TagString: Untagged
@@ -207,6 +208,10 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
+  rdTrigger: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
+  textures: []
   stage1MoveSpeed: 5
   stage2MoveSpeed: 8
   currentMoveSpeed: 5
@@ -217,10 +222,35 @@ MonoBehaviour:
   attackCooldown: 3
   attackTime: 0
   canAttack: 1
-  spawnPrefab: {fileID: 7140261063827576441, guid: a99d755959927347196a02cc99352d38, type: 3}
+  bodyDisableTime: 5
+  bodyDisableTimer: 0
+  isAttacking: 0
+  spawnPrefab: {fileID: 5944279906260170657, guid: 4f5c040798e917045b95309f5e216696, type: 3}
   spawnCount: 3
   spawnRadius: 2
-  spawnOnDeath: 1
+  spawnOnHalf: 1
   attackVectorRange: {x: 1.2, y: 1.2, z: 1.2}
   attackPoint: {fileID: 6257445426723958103}
   hitFlash: {fileID: 898763301074750136}
+--- !u!95 &1754979219643418498
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9193950021770029371}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
