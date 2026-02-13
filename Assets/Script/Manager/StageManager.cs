@@ -90,6 +90,9 @@ public class StageManager : MonoBehaviour, IWarpObserver
         }
         currentStage.StageState = StageState.Fighting;
         currentStage.StageObject.SetActive(true);
+
+        if (currentStage.StageSpawnPosition != null)
+            playerManager.transform.position = currentStage.StageSpawnPosition.position;
     }
 
     public void BossStageStart(int stageIndex)
