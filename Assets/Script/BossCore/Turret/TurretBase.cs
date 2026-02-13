@@ -30,17 +30,84 @@ public abstract class TurretBase : EnemyBase
         if (isDestroyed)
             return;
 
-        if (attackTime < attackCooldown)
+        if (state == EnemyState.Dead)
         {
-            attackTime += Time.deltaTime;
+            bodyDisableTimer += Time.deltaTime;
 
-            canAttack = false;
+            if (bodyDisableTimer >= bodyDisableTime)
+            {
+                Return();
+            }
+            return;
+        }
+
+        switch (state)
+        {
+            case EnemyState.idle:
+                Idle();
+                break;
+            case EnemyState.moving:
+                //Debug.Log("Enemy is moving");
+                if (knockbackStun <= 0)
+                {
+                    if (muKatteKuruNoKaStrategy is DontMuKatteKuruNoKaStrategy)
+                        LookTarget();
+
+                    if (Vector3.Distance(player.transform.position, transform.position) < AttackDictance && !canAttack)
+                    {
+                        state = EnemyState.idle;
+                        rb.linearVelocity = Vector3.zero;
+                        enemyAnimator.SetBool("Move", false);
+                        return;
+                    }
+
+                    Moving();
+                    AttackCheck();
+                }
+                else
+                {
+                    //Debug.Log(knockbackStun);
+                    knockbackStun = Mathf.Max(0, knockbackStun - Time.deltaTime);
+                }
+                break;
+            case EnemyState.attacking:
+                if (enemyAnimator != null)
+                {
+                    if (isAttacking != true)
+                    {
+                        //enemyAnimator.applyRootMotion = true;
+                        isAttacking = true;
+                        BeginAttack();
+                    }
+
+                    LookTarget();
+                }
+                else
+                {
+                    Attacking();
+                    canAttack = false;
+                }
+                //Attacking();
+                //canAttack = false;
+                break;
+        }
+
+        if (!isAttacking)
+        {
+            if (attackTime < attackCooldown)
+            {
+                attackTime += Time.deltaTime;
+                canAttack = false;
+            }
+            else
+            {
+                canAttack = true;
+            }
         }
         else
         {
-            canAttack = true;
+            canAttack = false;
         }
-        base.Update();
     }
 
     protected override void LookTarget()
@@ -86,27 +153,13 @@ public abstract class TurretBase : EnemyBase
 
     public override void TakeDamage(float damage)
     {
-        if (state == EnemyState.Dead)
-            return;
+        base.TakeDamage(damage);
 
-        if (health <= 0)
-            return;
-
-        hitFlash.Flash();
-
-        health -= damage;
-
-        if (!isDead && health <= 0)
-        {
-            isDead = true;
-            Died?.Invoke();
-        }
-
-        if (isPlayerDetected == false && EnsurePlayer())
-        {
-            isPlayerDetected = true;
-            state = EnemyState.moving;
-        }
+        //if (isPlayerDetected == false && EnsurePlayer())
+        //{
+        //    isPlayerDetected = true;
+        //    state = EnemyState.moving;
+        //}
 
         //Debug.Log($"{name} took {damage} damage. Remaining Health: {health}");
     }
@@ -124,7 +177,7 @@ public abstract class TurretBase : EnemyBase
 
     protected override void Dead()
     {
-        isDestroyed = true;
+        state = EnemyState.Dead;
         hitFlash.enabled = false;
     }
 

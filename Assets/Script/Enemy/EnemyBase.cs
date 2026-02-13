@@ -108,8 +108,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
             if (bodyDisableTimer >= bodyDisableTime)
             {
-                rdTrigger.OnDespawn();
-                OnReturn.Invoke(this);
+                Return();
             }
             return;
         }
@@ -331,6 +330,12 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         rdTrigger.SetRagdoll(true);
         //OnReturn?.Invoke(this);
     }
+
+    protected void Return()
+    {
+        rdTrigger.OnDespawn();
+        OnReturn?.Invoke(this);
+    }    
 
     public virtual void OnWarpStageChanged(int newStage)
     {
