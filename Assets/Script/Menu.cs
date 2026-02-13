@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
@@ -6,6 +7,8 @@ public class Menu : MonoBehaviour
     public GameObject MenuImage;
 
     public bool IsMenuOpen;
+
+    [SerializeField] private PlayerInputManager playerInputManager;
 
     private void Start()
     {
@@ -21,6 +24,13 @@ public class Menu : MonoBehaviour
         Time.timeScale = IsMenuOpen? 0 : 1;
         MenuImage.SetActive(IsMenuOpen);
         return IsMenuOpen;
+    }
+
+    public void Cancel()
+    {
+        ToggleMenu();
+        playerInputManager.SwitchCurrentPlayerActionMap();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void GoToTitleScene()

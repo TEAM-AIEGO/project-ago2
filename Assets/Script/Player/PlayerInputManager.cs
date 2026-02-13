@@ -163,4 +163,9 @@ public class PlayerInputManager : MonoBehaviour
 
         playerGunHandler.UseSubWeapon(context.control.path);
     }
+
+    public void SwitchCurrentPlayerActionMap()
+    {
+        playerInput.SwitchCurrentActionMap("Player");
+    }
 }
