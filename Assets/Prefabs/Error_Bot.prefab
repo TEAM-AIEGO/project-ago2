@@ -3492,7 +3492,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5a0cb84371f663b42af3cb7179e1dd25, type: 2}
   - {fileID: 2100000, guid: 57a8c525305ccaa4a827925fb66cf73a, type: 2}
   - {fileID: 2100000, guid: d60bc2662b7b99340b3651f737b03e06, type: 2}
-  interval: 1
+  interval: 0.3
   stage1MoveSpeed: 6
   stage2MoveSpeed: 10
   currentMoveSpeed: 0
@@ -3524,7 +3524,7 @@ MonoBehaviour:
   targetRenderer:
   - {fileID: 4861294168296922284}
   - {fileID: 5918862401252118072}
-  flashDuration: 0.1
+  flashDuration: 0.2
 --- !u!54 &9161554415060245833
 Rigidbody:
   m_ObjectHideFlags: 0

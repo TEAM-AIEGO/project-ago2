@@ -16,6 +16,8 @@ public class HealContainer : BreakableObject
 
     private void HealObjSpawn()
     {
-        Instantiate(healObj, transform.position, transform.rotation);
+        Vector3 spawnPos = transform.position;
+        spawnPos.y = transform.position.y + 0.3f;
+        Instantiate(healObj, spawnPos, transform.rotation);
     }
 }
