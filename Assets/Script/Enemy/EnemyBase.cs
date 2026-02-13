@@ -299,6 +299,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     {
         if (state == EnemyState.Dead)
             return;
+
         if (emitter) emitter.Play(AudioIds.RobotRobotHeat, false);
 
         if (isPlayerDetected == false)

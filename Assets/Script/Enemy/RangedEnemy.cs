@@ -35,11 +35,17 @@ public class RangedEnemy : EnemyBase
     }
     protected override void Idle()
     {
+        if (state == EnemyState.Dead)
+            return;
+
         base.Idle();
     }
 
     protected override void Moving()
     {
+        if (state == EnemyState.Dead)
+            return;
+
         footstepTimer -= Time.deltaTime;
         if (footstepTimer <= 0f)
         {
@@ -52,6 +58,9 @@ public class RangedEnemy : EnemyBase
 
     protected override void AttackCheck()
     {
+        if (state == EnemyState.Dead)
+            return;
+
         if (Vector3.Distance(player.transform.position, transform.position) < AttackDictance)
         {
             if (!canAttack)
@@ -63,6 +72,9 @@ public class RangedEnemy : EnemyBase
 
     protected override void LookTarget()
     {
+        if (state == EnemyState.Dead)
+            return;
+
         base.LookTarget();
         //Vector3 hDirection = (player.transform.position - head.transform.position).normalized;
         //Quaternion hLookRotation = Quaternion.LookRotation(new Vector3(hDirection.x, hDirection.y, hDirection.z));
@@ -78,6 +90,9 @@ public class RangedEnemy : EnemyBase
 
     protected override void Attacking()
     {
+        if (state == EnemyState.Dead)
+            return;
+
         emitter.PlayFollow(AudioIds.RobotTurretRobotShot, transform, false, 0.4f, 0.7f);
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
         attackTime = 0f;
@@ -86,6 +101,20 @@ public class RangedEnemy : EnemyBase
     public override void OnWarpStageChanged(int newStage)
     {
         base.OnWarpStageChanged(newStage);
+
+        switch (newStage)
+        {
+            case 0:
+                muKatteKuruNoKaStrategy = new DontMuKatteKuruNoKaStrategy();
+                if (enemyAnimator.GetBool("Move"))
+                    enemyAnimator.SetBool("Move", false);
+                break;
+            case 1:
+                muKatteKuruNoKaStrategy = new MuKatteKuruNoKaStrategy();
+                if (!enemyAnimator.GetBool("Move") && state == EnemyState.moving)
+                    enemyAnimator.SetBool("Move", true);
+                break;
+        }
     }
 
     public override void TakeDamage(float damage)
