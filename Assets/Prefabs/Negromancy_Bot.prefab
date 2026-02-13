@@ -282,7 +282,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5a0cb84371f663b42af3cb7179e1dd25, type: 2}
   - {fileID: 2100000, guid: 57a8c525305ccaa4a827925fb66cf73a, type: 2}
   - {fileID: 2100000, guid: d60bc2662b7b99340b3651f737b03e06, type: 2}
-  interval: 0
+  interval: 1
   stage1MoveSpeed: 5
   stage2MoveSpeed: 8
   currentMoveSpeed: 5

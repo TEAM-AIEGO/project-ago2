@@ -2606,7 +2606,7 @@ MonoBehaviour:
   textures:
   - {fileID: 2100000, guid: 25517d8d6067e8240bf57ec6fdc7de69, type: 2}
   - {fileID: 2100000, guid: 14c2800817d648b4e87ebf286d47707e, type: 2}
-  interval: 0
+  interval: 1
   stage1MoveSpeed: 0
   stage2MoveSpeed: 6
   currentMoveSpeed: 0
