@@ -761,7 +761,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159421694155271272}
-  m_Layer: 0
+  - component: {fileID: -9189346119759668614}
+  - component: {fileID: 5923969037978314316}
+  m_Layer: 9
   m_Name: Container_Special_Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -777,13 +779,48 @@ Transform:
   m_GameObject: {fileID: 1488799267333684680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -58.559303, y: 2.63, z: 2.32}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4688046884570390376}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-9189346119759668614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488799267333684680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedabd160d09a8f43918f2d5aae6a53f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealContainer
+  health: 100
+  healObj: {fileID: 2703232800130119410, guid: fc2eaa6669525e046aee7122f24e4abc, type: 3}
+--- !u!65 &5923969037978314316
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488799267333684680}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.2, y: 4.7, z: 13.82}
+  m_Center: {x: 2.85, y: -0.25, z: -1.5}
 --- !u!1 &1618936581079160389
 GameObject:
   m_ObjectHideFlags: 0
