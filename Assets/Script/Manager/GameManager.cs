@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     #region Warping Stages    
     [SerializeField] private int warpStage = 0;
+    private int catsFound = 0;
     public int WarpStage
     {
         get => warpStage;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
         }
     }
     public UnityEvent<int> WarpStageChanged;
+    public UnityEvent CatFound;
     #endregion
     [SerializeField] private StageManager stageManager;
 
@@ -28,11 +30,17 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         stageManager.Initialize();
-
     }
 
     public void SetGameOver()
     {
         IsGameOver = true;
+    }
+
+    public void OnCatFound()
+    {
+        catsFound++;
+        Debug.Log("gamemanager cat");
+        CatFound?.Invoke();
     }
 }
