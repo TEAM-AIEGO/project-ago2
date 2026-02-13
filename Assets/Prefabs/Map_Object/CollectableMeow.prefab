@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8533413046647292347}
   - component: {fileID: 5042788801368578009}
   - component: {fileID: 2769950955480385926}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: CollectableMeow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -298,8 +298,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
         emitter.Play(AudioIds.RobotRobotHeat, false);
 
-        base.TakeDamage(damage);
-
         if (isPlayerDetected == false)
         {
             isPlayerDetected = true;
@@ -310,6 +308,8 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
             state = EnemyState.moving;
         }
+
+        base.TakeDamage(damage);
     }
 
     protected virtual void Dead()

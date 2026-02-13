@@ -115,7 +115,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4032
   blackHoleRadius: 10
-  blackHolePullForce: 100
+  blackHolePullForce: 300
   blackHoleDuration: 5
   blackHoleTickDamage: 4
   blackHoleTickInterval: 0.25
