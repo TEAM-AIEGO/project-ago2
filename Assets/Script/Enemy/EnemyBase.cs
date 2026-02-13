@@ -97,6 +97,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         Died.RemoveAllListeners();
         Died.AddListener(Dead);
 
+        if (rdTrigger == null) return;
         rdTrigger.OnSpawn();
     }
 
@@ -108,7 +109,8 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
             if (bodyDisableTimer >= bodyDisableTime)
             {
-                Return();
+                OnReturn?.Invoke(this);
+                if (rdTrigger != null) rdTrigger.OnDespawn();
             }
             return;
         }

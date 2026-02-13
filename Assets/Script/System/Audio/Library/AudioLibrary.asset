@@ -124,6 +124,12 @@ MonoBehaviour:
   - id: Found
     type: 0
     clip: {fileID: 8300000, guid: 986e5d6472f37879dbf2bdff19f66884, type: 3}
+    mixerGroup: {fileID: -3153373559038017309, guid: 4c956c10707902a4cad40ad379340a82, type: 2}
+    baseVolume: 1
+    basePitch: 1
+    minDistance: 1
+    maxDistance: 99999
+    loop: 0
   - id: barrel explosion
     type: 0
     clip: {fileID: 8300000, guid: 6d5546d779776d44396fbf0a164fbce5, type: 3}
