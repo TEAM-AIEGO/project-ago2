@@ -148,6 +148,7 @@ public class PlayerGunHandler : MonoBehaviour, IWarpObserver
 
     public void OnWarpStageChanged(int newStage)
     {
+        int gunIndex = newStage >= 2 ? 1 : 0;
         gun.OnGunChange(newStage);
     }
 }

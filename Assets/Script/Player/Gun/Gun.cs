@@ -81,7 +81,7 @@ public class Gun : MonoBehaviour
     {
         switch (gunIndex)
         {
-               case 0:
+            case 0:
                 currentStats = stats[0];
                 Initialize();
                 break;

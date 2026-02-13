@@ -32,6 +32,12 @@ public class RangedEnemy : EnemyBase
     protected override void Update()
     {
         base.Update();
+        if (!isDead && health <= 0)
+        {
+            state = EnemyState.Dead;
+            isDead = true;
+            Died?.Invoke();
+        }
     }
     protected override void Idle()
     {
@@ -126,4 +132,5 @@ public class RangedEnemy : EnemyBase
 
         base.TakeDamage(damage);
     }
+
 }

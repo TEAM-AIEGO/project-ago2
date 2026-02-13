@@ -21,6 +21,9 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     public Rigidbody Rb => rb;
     protected float knockbackStun;
 
+    private RigidbodyConstraints initialRbConstraints;
+    private bool hasInitialRbConstraints;
+
     protected EnemyBase originEnemy;
     public EnemyBase OriginEnemy => originEnemy;
 
@@ -83,6 +86,21 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         rb = GetComponent<Rigidbody>();
         enemyAnimator = GetComponent<Animator>();
         emitter = GetComponent<SFXEmitter>();
+
+        if (!hasInitialRbConstraints)
+        {
+            initialRbConstraints = rb.constraints;
+            hasInitialRbConstraints = true;
+        }
+
+        rb.constraints = initialRbConstraints;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        knockbackStun = 0;
+
+        isAttacking = false;
+        canAttack = true;
+        attackTime = attackCooldown;
 
         enemyAnimator.applyRootMotion = false;
         enemyAnimator.SetBool("Move", false);

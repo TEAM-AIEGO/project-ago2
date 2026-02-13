@@ -4,6 +4,11 @@ public class TitleManager : MonoBehaviour
 {
     [SerializeField] private GameObject guideUiBG;
 
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void StartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("OutdoorsScene");

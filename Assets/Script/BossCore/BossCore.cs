@@ -35,9 +35,11 @@ public class BossCore : EnemyBase, IWarpObserver
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private TurretBase[] turrets;
 
+
     private float turretCount = 0f;
     
     private bool isSecondPhase = false;
+    
 
     public void Initialize(int warpStage)
     {

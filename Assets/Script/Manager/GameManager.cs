@@ -5,7 +5,6 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     public bool IsGameOver { get; private set; }
-
     #region Warping Stages    
     [SerializeField] private int warpStage = 0;
     private int catsFound = 0;
