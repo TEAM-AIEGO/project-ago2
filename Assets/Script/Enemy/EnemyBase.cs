@@ -89,12 +89,15 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         enemyAnimator.applyRootMotion = false;
         enemyAnimator.SetBool("Move", false);
 
+        bodyDisableTimer = 0f;
         state = EnemyState.idle;
 
         OnWarpStageChanged(warpStage);
 
         Died.RemoveAllListeners();
         Died.AddListener(Dead);
+
+        rdTrigger.OnSpawn();
     }
 
     protected override void Update()
@@ -105,6 +108,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
             if (bodyDisableTimer >= bodyDisableTime)
             {
+                rdTrigger.OnDespawn();
                 OnReturn.Invoke(this);
             }
             return;
@@ -280,7 +284,6 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     public virtual void OnAttackEnd()
     {
         Debug.Log("is Attack End");
-        //enemyAnimator.applyRootMotion = false;
         isAttacking = false;
         canAttack = false;
         attackTime = 0f;
@@ -295,7 +298,9 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
             return;
 
         emitter.Play(AudioIds.RobotRobotHeat, false);
+
         base.TakeDamage(damage);
+
         if (isPlayerDetected == false)
         {
             isPlayerDetected = true;
@@ -316,9 +321,15 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
             AudioIds.RobotRobotCrunch2,
             AudioIds.RobotRobotCrunch3 
         };
+
         int randomAudioIdsIdx = UnityEngine.Random.Range(0, audioIdsList.Count);
         emitter.PlayFollow(audioIdsList[randomAudioIdsIdx], transform);
-        OnReturn?.Invoke(this);
+
+        state = EnemyState.Dead;
+        rb.constraints = RigidbodyConstraints.None;
+        if (!rdTrigger) return;
+        rdTrigger.SetRagdoll(true);
+        //OnReturn?.Invoke(this);
     }
 
     public virtual void OnWarpStageChanged(int newStage)

@@ -731,6 +731,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RagdollTrigger
   animator: {fileID: 8806202659623140928}
   rb: {fileID: 1826270809132503974}
+  col: {fileID: 1238281143239193123}
+  ragdollRoot: {fileID: 3944909045056621118}
 --- !u!1 &3050444208405862492
 GameObject:
   m_ObjectHideFlags: 0
