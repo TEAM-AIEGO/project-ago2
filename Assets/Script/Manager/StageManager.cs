@@ -27,6 +27,7 @@ public class Stage
     public GameObject WarpStageObject;
     public StageDoor StageInDoor;
     public StageDoor StageOutDoor;
+    public GameObject StageFakeDoor;
     public List<EnemySpawnData> Enemies;
 }
 
@@ -89,7 +90,6 @@ public class StageManager : MonoBehaviour, IWarpObserver
             RegisterEnemy(currentEnemy, false);
         }
         currentStage.StageState = StageState.Fighting;
-        currentStage.StageObject.SetActive(true);
 
         if (currentStage.StageSpawnPosition != null)
             playerManager.transform.position = currentStage.StageSpawnPosition.position;
@@ -167,6 +167,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
                     BossStageStart(warpSystemManager.GetWarpStage());
                     //Stages[next].StageInDoor.OnDoorClose += BossStageStart;
                     Stages[next].StageInDoor.nextStageIndex = next;
+                    Stages[next].StageFakeDoor?.SetActive(true);
                 }
                 else
                 {
@@ -174,6 +175,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
                     Stages[next].StageObject.SetActive(true);
                     Stages[next].StageInDoor.OnDoorClose += StartStage; 
                     Stages[next].StageInDoor.nextStageIndex = next;
+                    Stages[next].StageFakeDoor?.SetActive(true);
                 }
             }
             else
