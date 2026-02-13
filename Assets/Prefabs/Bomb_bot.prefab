@@ -2506,6 +2506,7 @@ GameObject:
   - component: {fileID: 3402415563794233525}
   - component: {fileID: 7641207392557773927}
   - component: {fileID: 1238281143239193123}
+  - component: {fileID: 8956291441540455561}
   m_Layer: 7
   m_Name: Bomb_bot
   m_TagString: Untagged
@@ -2603,6 +2604,7 @@ MonoBehaviour:
   textures:
   - {fileID: 2100000, guid: 25517d8d6067e8240bf57ec6fdc7de69, type: 2}
   - {fileID: 2100000, guid: 14c2800817d648b4e87ebf286d47707e, type: 2}
+  interval: 0
   stage1MoveSpeed: 0
   stage2MoveSpeed: 6
   currentMoveSpeed: 0
@@ -2657,6 +2659,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8956291441540455561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039826556225157606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &8177307864284476344
 GameObject:
   m_ObjectHideFlags: 0

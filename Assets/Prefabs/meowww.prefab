@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 3498786414132420106}
   - component: {fileID: 6337886756247050202}
   - component: {fileID: 2121319092849135315}
+  - component: {fileID: 338596662929363360}
   m_Layer: 7
   m_Name: meowww
   m_TagString: Untagged
@@ -208,6 +209,7 @@ MonoBehaviour:
   up: {fileID: 0}
   down: {fileID: 0}
   textures: []
+  interval: 0
   stage1MoveSpeed: 0
   stage2MoveSpeed: 12
   currentMoveSpeed: 0
@@ -309,6 +311,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &338596662929363360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5934273993293601195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &7516097896840704187
 GameObject:
   m_ObjectHideFlags: 0

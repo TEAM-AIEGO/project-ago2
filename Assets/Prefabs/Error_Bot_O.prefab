@@ -1845,7 +1845,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3584620285830627391}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3726653141c716948ba6dc6bb14130b0, type: 3}
+  m_Avatar: {fileID: 9000000, guid: b9016f4ac5fd00e45b4f7b4370e5efcb, type: 3}
   m_Controller: {fileID: 9100000, guid: c7fd9b98cc1dc774d8871b1aec0a2620, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -1875,10 +1875,11 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
-  firstAvatar: {fileID: 9000000, guid: 3726653141c716948ba6dc6bb14130b0, type: 3}
-  secondAvatar: {fileID: 9000000, guid: e6f9faf38d7547740be26820b4f7212d, type: 3}
-  firstModels: {fileID: 5263391119955003459}
-  secondModels: {fileID: 734911917969510832}
+  rdTrigger: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
+  textures: []
+  interval: 0.3
   stage1MoveSpeed: 6
   stage2MoveSpeed: 10
   currentMoveSpeed: 0
@@ -1889,10 +1890,12 @@ MonoBehaviour:
   attackCooldown: 3
   attackTime: 3.22
   canAttack: 1
+  bodyDisableTime: 5
+  bodyDisableTimer: 0
+  isAttacking: 0
   attackVectorRange: {x: 1.5, y: 1.5, z: 1.5}
   attackPoint: {fileID: 1701769027992710993}
   hitFlash: {fileID: 4158173344589559946}
-  interval: 0.3
 --- !u!114 &4158173344589559946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1905,7 +1908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9700411505edfdf4f8cfd2ad109deccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitFlash
-  targetRenderer: {fileID: 9192339779778749573}
+  targetRenderer:
+  - {fileID: 0}
   flashDuration: 0.1
 --- !u!54 &5921032144570475388
 Rigidbody:

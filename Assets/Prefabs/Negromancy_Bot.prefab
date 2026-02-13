@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 6889099042571655009}
   - component: {fileID: 728884655236819567}
   - component: {fileID: 7346948343127557591}
+  - component: {fileID: 8931264495535928030}
   m_Layer: 7
   m_Name: Negromancy_Bot
   m_TagString: Untagged
@@ -281,6 +282,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5a0cb84371f663b42af3cb7179e1dd25, type: 2}
   - {fileID: 2100000, guid: 57a8c525305ccaa4a827925fb66cf73a, type: 2}
   - {fileID: 2100000, guid: d60bc2662b7b99340b3651f737b03e06, type: 2}
+  interval: 0
   stage1MoveSpeed: 5
   stage2MoveSpeed: 8
   currentMoveSpeed: 5
@@ -367,6 +369,20 @@ CapsuleCollider:
   m_Height: 2.7
   m_Direction: 1
   m_Center: {x: 0, y: 1.35, z: 0}
+--- !u!114 &8931264495535928030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397185382901924477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &528047318947680285
 GameObject:
   m_ObjectHideFlags: 0

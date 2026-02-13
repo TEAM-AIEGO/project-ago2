@@ -4,7 +4,8 @@ using System.Security.Cryptography;
 using UnityEditor.Animations;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody), typeof(Animator))] 
+[RequireComponent(typeof(Rigidbody), typeof(Animator))]
+[RequireComponent(typeof(SFXEmitter))]
 public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 {
     protected enum EnemyState
@@ -83,6 +84,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         originEnemy = oringin;
         rb = GetComponent<Rigidbody>();
         enemyAnimator = GetComponent<Animator>();
+        emitter = GetComponent<SFXEmitter>();
 
         enemyAnimator.applyRootMotion = false;
         enemyAnimator.SetBool("Move", false);
