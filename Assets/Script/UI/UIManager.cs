@@ -13,9 +13,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image transitionImage;
     [SerializeField] private GameObject[] frames;
     [SerializeField] private GameObject[] statusBarFrames;
+    [SerializeField] private Image catFoundImage;
     [SerializeField] private float transitionTime;
+    [SerializeField] private float catTime;
+    [SerializeField] private float catStayTime;
     private float currentTransitionTime;
+
+    private float currentCatTime;
+    private float currentCatStayTime;
     private bool isWarping;
+    private bool isGettingCatd;
 
     private void Start()
     {
@@ -24,6 +31,7 @@ public class UIManager : MonoBehaviour
         {
             gameManager.WarpStageChanged.AddListener(GetWarped);
             gameManager.WarpStageChanged.AddListener(SetFrame);
+            gameManager.CatFound.AddListener(OnCat);
         }
         SetFrame(gameManager.WarpStage);
         
@@ -36,9 +44,30 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         currentTransitionTime -= Time.unscaledDeltaTime;
+        
         if (currentTransitionTime <= 0 && isWarping)
         {
             WarpEnd();
+        }
+        if (isGettingCatd)
+        {
+            if (currentCatStayTime >= catTime)
+            {
+                OnCatEnd();
+            }
+            else
+            {
+                if (currentCatTime < catTime)
+                {
+                    currentCatTime += Time.unscaledDeltaTime;
+                    catFoundImage.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, currentCatTime/catTime));
+                }
+                else
+                {
+                    currentCatStayTime += Time.unscaledDeltaTime;
+                }
+                
+            }
         }
     }
 
@@ -122,5 +151,19 @@ public class UIManager : MonoBehaviour
         {
             statusBarFrames[0].SetActive(true);
         }
+    }
+
+    public void OnCat()
+    {
+        currentCatTime = 0;
+        currentCatStayTime = 0;
+        isGettingCatd = true;
+    }
+
+    public void OnCatEnd()
+    {
+        catFoundImage.color = new Color(1,1,1,0);
+        isGettingCatd = false;
+        
     }
 }
