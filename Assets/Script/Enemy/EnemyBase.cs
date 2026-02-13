@@ -125,7 +125,11 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                 if (knockbackStun <= 0)
                 {
                     if (muKatteKuruNoKaStrategy is DontMuKatteKuruNoKaStrategy)
+                    {
                         LookTarget();
+                        AttackCheck();
+                        break;
+                    }
 
                     if (Vector3.Distance(player.transform.position, transform.position) < AttackDictance && !canAttack)
                     {
