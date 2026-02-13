@@ -14,7 +14,7 @@ public enum StageState
 public struct EnemySpawnData
 {
     public GameObject EnemyPrefab;
-    public Vector3 EnemySpawnPosition;
+    public Transform EnemySpawnPosition;
 }
 
 [Serializable]
@@ -85,7 +85,7 @@ public class StageManager : MonoBehaviour, IWarpObserver
         {
             var currentEnemySpawnData = currentStage.Enemies[i];
 
-            EnemyBase currentEnemy = objectPool.SpawnEnemy(currentEnemySpawnData.EnemyPrefab.GetComponent<EnemyBase>(), currentEnemySpawnData.EnemySpawnPosition);
+            EnemyBase currentEnemy = objectPool.SpawnEnemy(currentEnemySpawnData.EnemyPrefab.GetComponent<EnemyBase>(), currentEnemySpawnData.EnemySpawnPosition.position);
             RegisterEnemy(currentEnemy, false);
         }
         currentStage.StageState = StageState.Fighting;
@@ -149,7 +149,9 @@ public class StageManager : MonoBehaviour, IWarpObserver
             Debug.Log("$tage C;ear");
             Stages[currentStageIndex].StageState = StageState.Ended;
             Stages[currentStageIndex].WallCollider.enabled = false;
-            Stages[currentStageIndex].StageOutDoor.SetScan();
+
+            if (Stages[currentStageIndex].StageOutDoor)
+                Stages[currentStageIndex].StageOutDoor.SetScan();
 
             if (currentStageIndex >= 0 && currentStageIndex < Stages.Count)
             {

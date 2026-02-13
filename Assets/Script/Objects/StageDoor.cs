@@ -54,7 +54,7 @@ public class StageDoor : MonoBehaviour
         {
             for (int i = 0; i < wallCols.Length; i++)
             {
-                wallCols[i].enabled = false;
+                wallCols[i].enabled = true;
             }
         }
     }
@@ -65,11 +65,6 @@ public class StageDoor : MonoBehaviour
         doorAnimator.SetTrigger("Open");
         uiManager.ActiveDoorAlarm(false);
         doorCol.enabled = false;
-
-        for (int i = 0; i < wallCols.Length; i++)
-        {
-            wallCols[i].enabled = true;
-        }
     }
 
     public void TPNextStage()
