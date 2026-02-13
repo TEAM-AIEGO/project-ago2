@@ -51,7 +51,7 @@ public class BlackHoleGun : SubWeapon
         direction = (aimPoint - projectileLaunchPoint.position).normalized;
 
         BlackHoleProjectile blackHole = objectPool.SpawnBlackHoleProjectile(projectileLaunchPoint.position);
-        //emitter.PlayFollow("BlackHole_Gun_Fire", playerTransform);
+        emitter.PlayFollow(AudioIds.BlackHoleGunFire, playerTransform);
         blackHole.OnLaunched(direction);
         blackHole.OnBlackHoleTick += PlayHitMarker;
 

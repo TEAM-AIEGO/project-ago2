@@ -11,11 +11,12 @@ public class PlayerSlideAction : MonoBehaviour
 
     private Transform cam;
     private Rigidbody rb;
-
-    public void Initialized(Transform cam, Rigidbody rb)
+    private SFXEmitter emitter;
+    public void Initialized(Transform cam, Rigidbody rb, SFXEmitter emitter)
     {
         this.cam = cam;
         this.rb = rb;
+        this.emitter = emitter;
     }
 
     void Update()
@@ -27,6 +28,7 @@ public class PlayerSlideAction : MonoBehaviour
 
     public void Slide(Vector3 movement)
     {
+        emitter.PlayFollow(AudioIds.Slide, transform, false, 0.2f, 0.65f);
         currentSlideTime = SlideTime;
         Vector3 camForward = cam.forward;
         Vector3 camRight = cam.right;

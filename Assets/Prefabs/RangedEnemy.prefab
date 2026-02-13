@@ -159,6 +159,8 @@ GameObject:
   - component: {fileID: 383464922514094289}
   - component: {fileID: 3600128686184841454}
   - component: {fileID: 3045269933161942455}
+  - component: {fileID: 8591198263141107743}
+  - component: {fileID: 8110807601471988648}
   m_Layer: 7
   m_Name: RangedEnemy
   m_TagString: Untagged
@@ -256,6 +258,10 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls: []
+  firstAvatar: {fileID: 0}
+  secondAvatar: {fileID: 0}
+  firstModels: {fileID: 0}
+  secondModels: {fileID: 0}
   stage1MoveSpeed: 0
   stage2MoveSpeed: 5
   currentMoveSpeed: 0
@@ -271,6 +277,7 @@ MonoBehaviour:
   maxLeadTime: 2
   hitFlash: {fileID: 383464922514094289}
   projectilePrefab: {fileID: -7587069919348615963, guid: 05d90409f5ea04b409e108355967004f, type: 3}
+  interval: 0
 --- !u!114 &383464922514094289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,3 +342,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!95 &8591198263141107743
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477929138127596566}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8110807601471988648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477929138127596566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}

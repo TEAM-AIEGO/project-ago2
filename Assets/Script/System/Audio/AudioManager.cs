@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     private UnityEvent<string, Vector3> onSFXAudioPlay = new();
     private UnityEvent<string> onUIAudioPlay = new();
-
+    private SFXEmitter emitter;
     [Header("Audio Assets")]
     [SerializeField] private AudioRequestChannel channel;
     [SerializeField] private AudioLibrary library;
@@ -40,6 +40,9 @@ public class AudioManager : MonoBehaviour
     {
         if (channel != null)
             channel.OnRequest += HandleAudioRequest;
+        emitter = GetComponent<SFXEmitter>();
+        ValidateRegisteredAudioIds();
+        emitter.Play(AudioIds.SFXEmergencySirenStarting);
     }
 
     private void OnDisable()
@@ -83,6 +86,37 @@ public class AudioManager : MonoBehaviour
     private void PlayBGM(AudioEntry entry, AudioRequest request, bool loop = true)
     {
 
+        if (bgmSource == null)
+        {
+            Debug.LogWarning("AudioManager: BGM AudioSource가 설정되지 않았습니다.");
+            return;
+        }
+
+        bool isSameClipPlaying = bgmSource.isPlaying && bgmSource.clip == entry.clip;
+        if (isSameClipPlaying)
+        {
+            return;
+        }
+
+        bgmSource.Stop();
+
+        bgmSource.clip = entry.clip;
+        bgmSource.outputAudioMixerGroup = entry.mixerGroup;
+        bgmSource.volume = entry.baseVolume;
+        bgmSource.pitch = Mathf.Clamp(entry.basePitch, -3f, 3f);
+        bgmSource.loop = loop;
+
+        if (!request.playFullClip && entry.clip != null)
+        {
+            float clipLength = entry.clip.length;
+            bgmSource.time = Mathf.Clamp(request.startTime, 0f, clipLength);
+        }
+        else
+        {
+            bgmSource.time = 0f;
+        }
+        
+        bgmSource.Play();
     }
 
     private void PlaySFX(AudioEntry entry, AudioRequest request)
@@ -107,7 +141,7 @@ public class AudioManager : MonoBehaviour
             audioPlayer.SetFollowTarget(null);
         }
 
-        audioPlayer.Play(entry, sfxVolume, 1f);
+        audioPlayer.Play(entry, sfxVolume, 1f, request.playFullClip, request.startTime, request.endTime);
     }
 
     private void PlayUISFX(string clipName)
@@ -118,5 +152,21 @@ public class AudioManager : MonoBehaviour
     private void LoadVolumes()
     {
 
+    }
+
+    private void ValidateRegisteredAudioIds()
+    {
+        if (library == null)
+        {
+            return;
+        }
+
+        foreach (var id in AudioIds.All)
+        {
+            if (!library.TryGet(id, out var entry) || entry.clip == null)
+            {
+                Debug.LogWarning($"AudioManager: Missing AudioLibrary entry or clip for id: {id}");
+            }
+        }
     }
 }

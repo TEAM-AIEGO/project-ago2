@@ -35,7 +35,10 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
     [SerializeField] protected SkinnedMeshRenderer down;
 
     [SerializeField] protected Material[] textures;
+    protected float footstepTimer;
+    [SerializeField] protected float interval;
 
+    protected SFXEmitter emitter;
     #region Enemy Stats
     [Header("Enemy Stats")]
     [SerializeField] protected float stage1MoveSpeed;
@@ -245,6 +248,7 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
                 if (muKatteKuruNoKaStrategy is not DontMuKatteKuruNoKaStrategy)
                     enemyAnimator.SetBool("Move", true);
 
+            emitter.PlayFollow(AudioIds.RobotTargetAcquiredBleep, transform, false, 0f, 0.1f);
             state = EnemyState.moving;
         }
     }
@@ -288,8 +292,8 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
         if (state == EnemyState.Dead)
             return;
 
+        emitter.Play(AudioIds.RobotRobotHeat, false);
         base.TakeDamage(damage);
-
         if (isPlayerDetected == false)
         {
             isPlayerDetected = true;
@@ -304,12 +308,15 @@ public abstract class EnemyBase : Unit, IWarpObserver, IKnockable
 
     protected virtual void Dead()
     {
-        state = EnemyState.Dead;
-        rb.constraints = RigidbodyConstraints.None;
-        if (!rdTrigger) return;
-        rdTrigger.SetRagdoll(true);
-
-        //OnReturn?.Invoke(this);
+        List<string> audioIdsList = new List<string>
+        { 
+            AudioIds.RobotRobotCrunch1,
+            AudioIds.RobotRobotCrunch2,
+            AudioIds.RobotRobotCrunch3 
+        };
+        int randomAudioIdsIdx = UnityEngine.Random.Range(0, audioIdsList.Count);
+        emitter.PlayFollow(audioIdsList[randomAudioIdsIdx], transform);
+        OnReturn?.Invoke(this);
     }
 
     public virtual void OnWarpStageChanged(int newStage)

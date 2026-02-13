@@ -122,7 +122,7 @@ public class RailCannon : SubWeapon
         }
 
         //objectPool.SpawnProjectile(railCannonProjectilePrefab, projectileLaunchPoint.position, Quaternion.LookRotation(direction), 00);
-        emitter.PlayFollow("Rail_Cannon_Fire", playerTransform);
+        emitter.PlayFollow(AudioIds.RailCannonFire, playerTransform, false, 2.8f);
         cameraShake?.AddRecoil(new Vector2(Random.Range(-300f, 300f), 1000f));
         isInAftereffect = true;
     }

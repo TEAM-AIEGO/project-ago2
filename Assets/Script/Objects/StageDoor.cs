@@ -14,8 +14,15 @@ public class StageDoor : MonoBehaviour
     public bool IsScanDoor => isScanDoor;
     [SerializeField] private ScanDoorPoint scanDoorPoint;
     [SerializeField] private InDoorCheck inDoorCheck;
+
+    private SFXEmitter emitter;
     
     private UIManager uiManager;
+
+    private void Awake()
+    {
+        emitter = GetComponent<SFXEmitter>();
+    }
 
     private void Start()
     {
@@ -54,6 +61,7 @@ public class StageDoor : MonoBehaviour
 
     public void OpenDoor()
     {
+        emitter.PlayFollow(AudioIds.AirlockDoorOpenAndClose, transform);
         doorAnimator.SetTrigger("Open");
         uiManager.ActiveDoorAlarm(false);
         doorCol.enabled = false;
@@ -73,6 +81,7 @@ public class StageDoor : MonoBehaviour
 
     public void CloseDoor()
     {
+        emitter.PlayFollow(AudioIds.AirlockDoorOpenAndClose, transform);
         doorAnimator.SetTrigger("Close");
         uiManager.ActiveDoorAlarm(true);
         OnDoorClose?.Invoke(nextStageIndex);

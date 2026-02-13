@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -9,8 +10,13 @@ public class ExplosiveBarrel : BreakableObject
     [SerializeField] private float explosionDamage = 70f;
     [SerializeField] private float explosionForce = 15f;
     [SerializeField] private float knockbackDuration = 0.5f;
-
+    [SerializeField] private SFXEmitter emitter;
     private bool hasExploded;
+
+    private void Awake()
+    {
+        emitter = GetComponent<SFXEmitter>();
+    }
 
     public override void TakeDamage(float damage)
     {
@@ -34,6 +40,7 @@ public class ExplosiveBarrel : BreakableObject
             return;
         }
 
+        emitter.PlayFollow(AudioIds.BarrelExplosion, transform);
         hasExploded = true;
         Vector3 explosionPosition = transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(explosionPosition, explosionRadius, explosionLayerMask);

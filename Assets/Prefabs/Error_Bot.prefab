@@ -107,7 +107,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7034717740910015013}
+  - component: {fileID: 5371520631757062669}
+  - component: {fileID: 7092181467000526315}
+  - component: {fileID: 5654973610826968289}
+  - component: {fileID: 2741278897423310853}
+  - component: {fileID: 384026025853262413}
+  - component: {fileID: 5852507137885859801}
   m_Layer: 7
   m_Name: mixamorig:LeftHandThumb1
   m_TagString: Untagged
@@ -348,11 +353,30 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.48440087, y: 0.63305867, z: 0.4844008}
-  m_Center: {x: -0.24220043, y: 0.2539279, z: 0.07158327}
---- !u!54 &2872389948958329877
-Rigidbody:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e8f43c3b5421a4bab96a3de93111fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
+  maxHealth: 100
+  health: 100
+  Died:
+    m_PersistentCalls:
+      m_Calls: []
+  stage1MoveSpeed: 5
+  stage2MoveSpeed: 8
+  currentMoveSpeed: 5
+  turnSpeed: 15
+  detectionDistance: 10
+  attackDistance: 2
+  attackDamage: 10
+  attackCooldown: 3
+  attackTime: 0
+  canAttack: 1
+  attackVectorRange: {x: 1.2, y: 1.2, z: 1.2}
+  attackPoint: {fileID: 3224036726649800556}
+  hitFlash: {fileID: 384026025853262413}
+--- !u!114 &384026025853262413
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -658,83 +682,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.48440075, y: 0.6456154, z: 0.4844008}
-  m_Center: {x: 0.24220037, y: 0.14932902, z: 0.014854476}
---- !u!54 &9020104642818153973
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805281764755823499}
-  serializedVersion: 5
-  m_Mass: 3.125
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!144 &5290008907420393459
-CharacterJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805281764755823499}
-  serializedVersion: 3
-  m_ConnectedBody: {fileID: 2872389948958329877}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_SwingAxis: {x: 0, y: 0, z: 1}
-  m_TwistLimitSpring:
-    spring: 0
-    damper: 0
-  m_LowTwistLimit:
-    limit: -20
-    bounciness: 0
-    contactDistance: 0
-  m_HighTwistLimit:
-    limit: 20
-    bounciness: 0
-    contactDistance: 0
-  m_SwingLimitSpring:
-    spring: 0
-    damper: 0
-  m_Swing1Limit:
-    limit: 10
-    bounciness: 0
-    contactDistance: 0
-  m_Swing2Limit:
-    limit: 0
-    bounciness: 0
-    contactDistance: 0
-  m_EnableProjection: 0
-  m_ProjectionDistance: 0.1
-  m_ProjectionAngle: 180
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 0
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
---- !u!1 &1960856130862960761
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f860db9b298d2041af8567072c1b0d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &3914533982212704749
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

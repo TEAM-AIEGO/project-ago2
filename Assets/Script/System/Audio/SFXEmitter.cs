@@ -7,16 +7,10 @@ public class SFXEmitter : MonoBehaviour
 
     public void Play(string id)
     {
-        if (channel == null)
-        {
-            Debug.LogError($"{name}: AudioRequestChannel이 연결되지 않았습니다.");
-            return;
-        }
-
-        channel.Raise(id, transform.TransformPoint(offset));
+        Play(id, true);
     }
 
-    public void PlayFollow(string id, Transform target)
+    public void Play(string id, bool playFullClip, float startTime = 0f, float endTime = -1f)
     {
         if (channel == null)
         {
@@ -24,6 +18,22 @@ public class SFXEmitter : MonoBehaviour
             return;
         }
 
-        channel.RaiseFollow(id, target);
+        channel.Raise(id, transform.TransformPoint(offset), playFullClip, startTime, endTime);
+    }
+
+    public void PlayFollow(string id, Transform target)
+    {
+        PlayFollow(id, target, true);
+    }
+
+    public void PlayFollow(string id, Transform target, bool playFullClip, float startTime = 0f, float endTime = -1f)
+    {
+        if (channel == null)
+        {
+            Debug.LogError($"{name}: AudioRequestChannel이 연결되지 않았습니다.");
+            return;
+        }
+
+        channel.RaiseFollow(id, target, playFullClip, startTime, endTime);
     }
 }

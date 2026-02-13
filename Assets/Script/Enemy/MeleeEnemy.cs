@@ -36,6 +36,12 @@ public class MeleeEnemy : EnemyBase
     {
         //Debug.Log("Melee Enemy is Moving");
         //Debug.Log(player.transform.position);
+        footstepTimer -= Time.deltaTime;
+        if (footstepTimer <= 0f)
+        {
+            emitter?.Play(AudioIds.VicinityRobotMoving, false, 2.3f);
+            footstepTimer = interval;
+        }
         muKatteKuruNoKaStrategy.KonoDIOniMuKatteKuruNoKa(this, player.transform);
     }
 
@@ -64,6 +70,7 @@ public class MeleeEnemy : EnemyBase
     protected override void Attacking()
     {
         Debug.Log("Melee Enemy is Attacking");
+        emitter.Play(AudioIds.RobotVicinityRobotScratch1, false, 0.7f);
         muDAMUDAMUDAStrategy.Attacking(this, player.transform);
     }
 

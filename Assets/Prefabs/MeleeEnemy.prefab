@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6618530689467317589}
   - component: {fileID: 871426309164372168}
   - component: {fileID: 5266267950742063341}
+  - component: {fileID: -6736052953455843157}
   m_Layer: 7
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -134,6 +135,7 @@ MonoBehaviour:
   attackVectorRange: {x: 1.2, y: 1.2, z: 1.2}
   attackPoint: {fileID: 6340788560880658155}
   hitFlash: {fileID: 7725551292407991305}
+  interval: 0.3
 --- !u!114 &7725551292407991305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +223,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6736052953455843157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291953402006919631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79ad6303f9632d4389db7ad884e458d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  channel: {fileID: 11400000, guid: 60e637a9daa306145b40096fd3644d39, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &2822417512254700100
 GameObject:
   m_ObjectHideFlags: 0

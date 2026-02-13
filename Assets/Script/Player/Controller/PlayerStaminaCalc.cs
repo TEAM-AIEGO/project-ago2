@@ -1,8 +1,10 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class PlayerStaminaCalc : MonoBehaviour, IStat
 {
     private PlayerController playerController;
+    private SFXEmitter emitter;
 
     #region IStat
     public float CurrentValue => CurrentStamina;
@@ -16,10 +18,12 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
     [SerializeField] private float StaminaRegenSpeed;
     [SerializeField] private float DeshStaminaCost;
     [SerializeField] private float StaminaRecoveryReadyDelayTime;
+    private bool isAudioPlay;
     private float StaminaRecoveryReadyTime;
     private void Awake()
     {
         OnValueChanged?.Invoke(CurrentStamina, MaxStamina);
+        emitter = GetComponent<SFXEmitter>();
     }
 
     public void Initialized(PlayerController playerController)
@@ -31,6 +35,11 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
     {
         if (CurrentStamina < MaxStamina && Time.time >= StaminaRecoveryReadyTime)
         {
+            if (!isAudioPlay)
+            {
+                emitter.PlayFollow(AudioIds.PlayerRecovery, transform, false, 0.1f, 1f);
+                isAudioPlay = true;
+            }
             //Debug.Log("Regenerating Stamina");
             CurrentStamina += StaminaRegenSpeed * Time.deltaTime;
             CurrentStamina = Mathf.Min(CurrentStamina, MaxStamina);
@@ -46,6 +55,7 @@ public class PlayerStaminaCalc : MonoBehaviour, IStat
 
     public void ConsumeStamina()
     {
+        isAudioPlay = false; 
         //Debug.Log("Consuming Stamina");
         CanRecoverStamina();
         CurrentStamina -= DeshStaminaCost;
