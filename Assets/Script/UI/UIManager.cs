@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float transitionTime;
     [SerializeField] private float catTime;
     [SerializeField] private float catStayTime;
+    [SerializeField] private Light light_m;
     private float currentTransitionTime;
 
     private float currentCatTime;
@@ -31,10 +33,11 @@ public class UIManager : MonoBehaviour
         {
             gameManager.WarpStageChanged.AddListener(GetWarped);
             gameManager.WarpStageChanged.AddListener(SetFrame);
+            gameManager.WarpStageChanged.AddListener(SetLight);
             gameManager.CatFound.AddListener(OnCat);
         }
         SetFrame(gameManager.WarpStage);
-        
+        SetLight(gameManager.WarpStage);
         if (hitMarker == null)
         {
             Debug.LogError("hitMarker is NUll");
@@ -129,6 +132,19 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private void SetLight(int stage)
+    {
+        stage = gameManager.WarpStage;
+        if (stage == 0 || stage == 1)
+        {
+            light_m.color = Color.white;
+        }
+        else
+        {
+            light_m.color = new Color(185f / 255f, 102f / 255f, 102f / 255f);
+        }
+    }
+
     public void SetFrame(int stage)
     {
         stage = gameManager.WarpStage;
@@ -137,6 +153,7 @@ public class UIManager : MonoBehaviour
             frames[i].SetActive(false);
             statusBarFrames[i].SetActive(false);
         }
+
         if (stage == 1)
         {
             frames[0].SetActive(true);
@@ -149,6 +166,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            frames[0].SetActive(true);
             statusBarFrames[0].SetActive(true);
         }
     }

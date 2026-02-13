@@ -3268,7 +3268,7 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  detectionRadius: 8
+  detectionRadius: 6
   updateInterval: 0
   rayCount: 24
   rayOriginHeightOffset: 0.5
@@ -5472,6 +5472,7 @@ MonoBehaviour:
   transitionTime: 1
   catTime: 1
   catStayTime: 2
+  light_m: {fileID: 157207113}
 --- !u!114 &1045154502
 MonoBehaviour:
   m_ObjectHideFlags: 0
