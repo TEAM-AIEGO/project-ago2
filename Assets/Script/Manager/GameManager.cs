@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
         stageManager.Initialize();
     }
 
+    void Update()
+    {
+        StaticValueManager.GameTime += Time.deltaTime;
+    }
+
     public void SetGameOver()
     {
         IsGameOver = true;
@@ -39,6 +44,7 @@ public class GameManager : MonoBehaviour
     public void OnCatFound()
     {
         catsFound++;
+        StaticValueManager.CatsFound++;
         Debug.Log("gamemanager cat");
         CatFound?.Invoke();
     }
