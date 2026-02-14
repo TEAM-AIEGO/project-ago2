@@ -8,7 +8,7 @@ public class FinalStatText : MonoBehaviour
     void Start()
     {
         if (!text) return;
-        text.text = $"걸린 시간: {StaticValueManager.GameTime.ToString("0.##")}분   찾은 고양이: {StaticValueManager.CatsFound}/8"; 
+        text.text = $"걸린 시간: {StaticValueManager.GameTime.ToString("0.##")}초   찾은 고양이: {StaticValueManager.CatsFound}/8"; 
     }
 
     // Update is called once per frame
