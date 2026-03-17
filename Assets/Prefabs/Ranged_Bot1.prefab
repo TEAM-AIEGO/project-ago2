@@ -205,7 +205,7 @@ MonoBehaviour:
   up: {fileID: 0}
   down: {fileID: 0}
   textures: []
-  interval: 0.1
+  interval: 0.3
   stage1MoveSpeed: 0
   stage2MoveSpeed: 5
   currentMoveSpeed: 0
@@ -224,6 +224,8 @@ MonoBehaviour:
   maxLeadTime: 2
   hitFlash: {fileID: 8072378219236316550}
   projectilePrefab: {fileID: -7587069919348615963, guid: 05d90409f5ea04b409e108355967004f, type: 3}
+  head: {fileID: 0}
+  body: {fileID: 0}
 --- !u!114 &9062689082559772797
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -55,8 +55,15 @@ public class ObjectPool : MonoBehaviour
 
     public EnemyBase SpawnEnemy(EnemyBase prefab, Vector3 spawnPos)
     {
-        if (!enemyBasePool.ContainsKey(prefab))
+        if (prefab == null)
+        {
             return null;
+        }
+
+        if (!enemyBasePool.ContainsKey(prefab))
+        {
+            enemyBasePool[prefab] = new Queue<EnemyBase>();
+        }
 
         EnemyBase enemy;
 
@@ -70,19 +77,34 @@ public class ObjectPool : MonoBehaviour
         }
 
         if (enemy is RangedEnemy rangedEnemy)
+        {
+            rangedEnemy.OnShootProjectile -= SpawnProjectile;
             rangedEnemy.OnShootProjectile += SpawnProjectile;
+        }
 
         if (enemy is BossEnemy bossEnemy)
+        {
+            bossEnemy.OnShootSansWall -= SpawnProjectile;
             bossEnemy.OnShootSansWall += SpawnProjectile;
+        }
 
         if (enemy is BurstTurret burstTurretEnemy)
+        {
+            burstTurretEnemy.OnShootProjectile -= SpawnProjectile;
             burstTurretEnemy.OnShootProjectile += SpawnProjectile;
+        }
 
         if (enemy is GrenadeTurret grenadeTurretEnemy)
+        {
+            grenadeTurretEnemy.OnLaunchProjectile -= SpawnEnemyGrenadeProjectile;
             grenadeTurretEnemy.OnLaunchProjectile += SpawnEnemyGrenadeProjectile;
+        }
 
         if (enemy is BombEnemy bombEnemy)
+        {
+            bombEnemy.OnLaunchProjectile -= SpawnEnemyGrenadeProjectile;
             bombEnemy.OnLaunchProjectile += SpawnEnemyGrenadeProjectile;
+        }
 
         //Debug.Log($"Spawning Enemy: {enemy.name} at {spawnPos}");
         enemy.Initialize(prefab, warpSystemManager.GetWarpStage());
@@ -99,8 +121,18 @@ public class ObjectPool : MonoBehaviour
 
     public void DisableEnemy(EnemyBase enemy)
     {
+        if (enemy == null || enemy.OriginEnemy == null)
+        {
+            return;
+        }
+
         warpSystemManager.UnregisterWarpObserver(enemy);
         enemy.gameObject.SetActive(false);
+
+        if (!enemyBasePool.ContainsKey(enemy.OriginEnemy))
+        {
+            enemyBasePool[enemy.OriginEnemy] = new Queue<EnemyBase>();
+        }
         enemyBasePool[enemy.OriginEnemy].Enqueue(enemy);
     }
 

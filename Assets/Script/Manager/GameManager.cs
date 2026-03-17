@@ -5,7 +5,6 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     public bool IsGameOver { get; private set; }
-
     #region Warping Stages    
     [SerializeField] private int warpStage = 0;
     private int catsFound = 0;
@@ -32,6 +31,11 @@ public class GameManager : MonoBehaviour
         stageManager.Initialize();
     }
 
+    void Update()
+    {
+        StaticValueManager.GameTime += Time.deltaTime;
+    }
+
     public void SetGameOver()
     {
         IsGameOver = true;
@@ -40,6 +44,7 @@ public class GameManager : MonoBehaviour
     public void OnCatFound()
     {
         catsFound++;
+        StaticValueManager.CatsFound++;
         Debug.Log("gamemanager cat");
         CatFound?.Invoke();
     }

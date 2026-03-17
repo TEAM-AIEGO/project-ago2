@@ -876,7 +876,7 @@ MonoBehaviour:
   up: {fileID: 0}
   down: {fileID: 0}
   textures: []
-  interval: 1
+  interval: 0.3
   stage1MoveSpeed: 0
   stage2MoveSpeed: 5
   currentMoveSpeed: 0

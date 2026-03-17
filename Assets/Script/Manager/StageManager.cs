@@ -173,8 +173,14 @@ public class StageManager : MonoBehaviour, IWarpObserver
                 {
                     int next = currentStageIndex + 1;
                     Stages[next].StageObject.SetActive(true);
-                    Stages[next].StageInDoor.OnDoorClose += StartStage; 
-                    Stages[next].StageInDoor.nextStageIndex = next;
+                    /*Stages[next].StageInDoor.OnDoorClose += StartStage; 
+                    Stages[next].StageInDoor.nextStageIndex = next;*/
+                    if (Stages[next].StageInDoor != null)
+                    {
+                        Stages[next].StageInDoor.OnDoorClose -= StartStage;
+                        Stages[next].StageInDoor.OnDoorClose += StartStage;
+                        Stages[next].StageInDoor.nextStageIndex = next;
+                    }
                 }
             }
             else
